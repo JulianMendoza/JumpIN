@@ -22,4 +22,18 @@ public class Board {
 		return board[pos.getX()][pos.getY()];
 	}
 	
+	public void setTile(Position pos, Piece piece) {
+		board[pos.getX()][pos.getY()].setPiece(piece);
+	}
+	
+	public void clearTile(Position pos) {
+		getTile(pos).clear();
+	}
+	
+	public void updateBoard(Position oldPos, Position newPos) {
+		Piece movePiece = getTile(oldPos).getPiece();
+		setTile(newPos, movePiece);
+		clearTile(oldPos);
+	}
+	
 }

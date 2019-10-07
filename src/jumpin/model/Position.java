@@ -26,7 +26,7 @@ public class Position {
 		return y;
 	}
 	
-	public Position getNewPosition(Direction direction) {
+	public Position nextPosition(Direction direction) {
 		int x = this.x;
 		int y = this.y;
 		if(direction.isEastWest()) {

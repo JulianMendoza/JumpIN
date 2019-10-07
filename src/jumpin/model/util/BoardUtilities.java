@@ -1,5 +1,6 @@
 package jumpin.model.util;
 
+import jumpin.model.Board;
 import jumpin.model.Position;
 import jumpin.model.RabbitHole;
 import jumpin.model.Tile;
@@ -69,12 +70,20 @@ public class BoardUtilities {
 		return true; //gets here if the move is in the middle of the board
 	}
 	
-	public static Tile findRabbitMove() {
-		return PieceLogic.findRabbitMove();
+	public static boolean isValidPosition(Position pos) {
+		int maxPos = BoardConstants.MAX_POS;
+		int minPos = BoardConstants.MIN_POS;
+		int x = pos.getX();
+		int y = pos.getY();
+		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
 	}
 	
-	public static Tile findFoxMove() {
-		return PieceLogic.findFoxMove();
+	public static Position findRabbitMove(Board board, Position pos, Direction direction) {
+		return PieceLogic.findRabbitMove(board, pos, direction);
+	}
+	
+	public static Position findFoxMove() {
+		return PieceLogic.findFoxMove(null, null, null);
 	}
 	
 	private static boolean isRabbitHole(int x, int y) {

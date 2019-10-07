@@ -30,10 +30,16 @@ public class Game {
 		if(BoardUtilities.allowsDirection(direction, pos)) {
 			throw new IllegalMoveException(piece + " cannot move " + direction + " off the board");
 		}
-	
+		
 		if(piece instanceof Rabbit) {
+			Position newPos = BoardUtilities.findRabbitMove(board, pos, direction);
+			if(pos.equals(newPos)) {
+				throw new IllegalMoveException("Illegal move for " + piece);
+			}
+			board.updateBoard(pos, newPos);
+		} else if(piece instanceof Fox) {
 			
-		}	
+		}
 	}
 	
 }

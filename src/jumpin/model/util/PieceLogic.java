@@ -15,7 +15,18 @@ public class PieceLogic {
 	 * @return
 	 */
 	public static Position findFoxMove(Board board, Position pos, Direction direction) {
-		return null;
+		Position currentPos = pos;
+		currentPos = currentPos.nextPosition(direction);
+		if(!board.getTile(currentPos).isEmpty()) {
+			return pos;
+		}
+		while(BoardUtilities.isValidPosition(currentPos)) {
+			currentPos = currentPos.nextPosition(direction);
+			if(board.getTile(currentPos).isEmpty()) { //we found an empty tile on the board
+				return currentPos; 
+			}
+		}
+		return pos;
 	}
 
 	/**

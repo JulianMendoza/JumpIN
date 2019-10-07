@@ -5,7 +5,7 @@ import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
 import jumpin.model.pieces.Piece;
 import jumpin.model.pieces.Rabbit;
-import jumpin.model.pieces.fox.Fox;
+import jumpin.model.pieces.fox.FoxHead;
 import jumpin.model.util.BoardUtilities;
 
 public class Game {
@@ -40,7 +40,7 @@ public class Game {
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}
 			board.updateBoard(pos, newPos);
-		} else if(piece instanceof Fox) {
+		} else if(piece instanceof FoxHead) {
 			
 		}
 	}

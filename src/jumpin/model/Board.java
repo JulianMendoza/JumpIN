@@ -22,8 +22,4 @@ public class Board {
 		return board[pos.getX()][pos.getY()];
 	}
 	
-	public void setTile(Piece piece, Tile tile) {
-		
-	}
-	
 }

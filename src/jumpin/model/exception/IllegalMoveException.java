@@ -1,6 +1,8 @@
 package jumpin.model.exception;
 
-public class IllegalMoveException extends Exception {
+import jumpin.model.exception.main.JumpINException;
+
+public class IllegalMoveException extends JumpINException {
 
 	public IllegalMoveException(String message) {
 		super(message);

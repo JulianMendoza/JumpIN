@@ -45,4 +45,16 @@ public class Position {
 		return new Position(x, y);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if (o == this) {
+			return true;
+		} else {
+			Position pos = (Position) o;
+			return pos.getX() == this.getX() && pos.getY() == this.getY();
+		}
+	}
+	
 }

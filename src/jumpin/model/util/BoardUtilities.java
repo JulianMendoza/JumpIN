@@ -1,10 +1,17 @@
 package jumpin.model.util;
 
 import jumpin.model.Position;
+import jumpin.model.RabbitHole;
 import jumpin.model.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
 
+/**
+ * Utility class for operations with the board. Has knowledge of the default board model and other constants
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BoardUtilities {
 
 	public static Tile[][] createDefaultBoard() {
@@ -14,7 +21,11 @@ public class BoardUtilities {
 		Tile[][] board = new Tile[width][height];
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				board[i][j] = createTile();
+				if(isRabbitHole(i, j)) {
+					board[i][j] = createRabbitHole();
+				} else {
+					board[i][j] = createTile();
+				}
 			}
 		}
 		return board;
@@ -57,9 +68,23 @@ public class BoardUtilities {
 		}
 		return true; //gets here if the move is in the middle of the board
 	}
+	
+	private static boolean isRabbitHole(int x, int y) {
+		Position[] rabbitHoles = BoardConstants.RABBIT_HOLES;
+		for(int i = 0; i < rabbitHoles.length; i++) {
+			if(new Position(x,y).equals(rabbitHoles[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private static Tile createTile() {
 		return new Tile();
+	}
+	
+	private static RabbitHole createRabbitHole() {
+		return new RabbitHole();
 	}
 
 }

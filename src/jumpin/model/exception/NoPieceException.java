@@ -1,6 +1,8 @@
 package jumpin.model.exception;
 
-public class NoPieceException extends Exception{
+import jumpin.model.exception.main.JumpINException;
+
+public class NoPieceException extends JumpINException{
 
 	/**
 	 * 

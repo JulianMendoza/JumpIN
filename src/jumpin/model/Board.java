@@ -1,5 +1,6 @@
 package jumpin.model;
 
+import jumpin.model.pieces.Piece;
 import jumpin.model.util.BoardUtilities;
 
 public class Board {

@@ -1,4 +1,4 @@
-package jumpin.model;
+package jumpin.model.pieces;
 
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceConstants;

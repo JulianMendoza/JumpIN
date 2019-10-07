@@ -1,5 +1,7 @@
 package jumpin.model;
 
+import jumpin.model.pieces.Rabbit;
+
 public class RabbitHole extends Tile{
 
 	public RabbitHole() {

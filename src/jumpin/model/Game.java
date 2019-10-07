@@ -3,6 +3,9 @@ package jumpin.model;
 import jumpin.model.constants.Direction;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
+import jumpin.model.pieces.Piece;
+import jumpin.model.pieces.Rabbit;
+import jumpin.model.pieces.fox.Fox;
 import jumpin.model.util.BoardUtilities;
 
 public class Game {

@@ -1,5 +1,7 @@
 package jumpin.model;
 
+import jumpin.model.pieces.Piece;
+
 public class Tile {
 
 	private Piece piece;

@@ -69,6 +69,14 @@ public class BoardUtilities {
 		return true; //gets here if the move is in the middle of the board
 	}
 	
+	public static Tile findRabbitMove() {
+		return PieceLogic.findRabbitMove();
+	}
+	
+	public static Tile findFoxMove() {
+		return PieceLogic.findFoxMove();
+	}
+	
 	private static boolean isRabbitHole(int x, int y) {
 		Position[] rabbitHoles = BoardConstants.RABBIT_HOLES;
 		for(int i = 0; i < rabbitHoles.length; i++) {

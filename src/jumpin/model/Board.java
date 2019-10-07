@@ -9,10 +9,6 @@ public class Board {
 	public Board() {
 		board = BoardUtilities.createDefaultBoard();
 	}
-
-	public Tile[][] getBoard() {
-		return board;
-	}
 	
 	public Piece selectPiece(Position pos) {
 		return board[pos.getX()][pos.getY()].getPiece();

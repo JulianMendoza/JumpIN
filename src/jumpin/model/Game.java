@@ -43,8 +43,8 @@ public class Game {
 			}
 			board.updateBoard(move);
 		} else if(piece instanceof Fox) { //Have to move multiple pieces because fox is 2 pieces
-			List<Move> moves = BoardUtilities.findFoxMove();
-			if(moves.isEmpty()) {
+			List<Move> moves = BoardUtilities.findFoxMove(board, direction);
+			if(moves == null) {
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}
 			for(Move move : moves) {

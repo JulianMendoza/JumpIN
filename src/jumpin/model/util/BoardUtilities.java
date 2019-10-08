@@ -85,8 +85,8 @@ public class BoardUtilities {
 		return PieceLogic.findRabbitMove(board, direction);
 	}
 	
-	public static List<Move> findFoxMove() {
-		return PieceLogic.findFoxMove(null, null);
+	public static List<Move> findFoxMove(Board board, Direction direction) {
+		return PieceLogic.findFoxMove(board, direction);
 	}
 	
 	private static boolean isRabbitHole(int x, int y) {

@@ -25,4 +25,14 @@ public class Tile {
 		this.piece = piece;
 	}
 
+	public String toString() {
+		String pieceName = "NUL";
+		if(piece != null) {
+			StringBuilder s = new StringBuilder(piece.toString().toUpperCase());
+			s.setLength(3);
+			pieceName = s.toString();
+		}
+		return "[ " + pieceName +  " ]";
+	}
+	
 }

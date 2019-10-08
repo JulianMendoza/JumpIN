@@ -2,7 +2,7 @@ package jumpin.model;
 
 import jumpin.model.piece.pieces.Rabbit;
 
-public class RabbitHole extends Tile{
+public class RabbitHole extends Tile {
 
 	public RabbitHole() {
 		super();
@@ -13,7 +13,7 @@ public class RabbitHole extends Tile{
 	public boolean isFilled() {
 		return rabbit != null;
 	}
-	
+
 	public Rabbit getRabbit() {
 		return rabbit;
 	}
@@ -21,7 +21,14 @@ public class RabbitHole extends Tile{
 	public void setRabbit(Rabbit rabbit) {
 		this.rabbit = rabbit;
 	}
-	
-	
-	
+
+	public String toString() {
+		String rabbitHole = "ERH";
+		if (isFilled()) {
+			rabbitHole = "FRH";
+		}
+		return "[ " + rabbitHole + " ]";
+
+	}
+
 }

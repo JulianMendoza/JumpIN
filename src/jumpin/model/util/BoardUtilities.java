@@ -22,9 +22,9 @@ public class BoardUtilities {
 		int height = BoardConstants.HEIGHT;
 		int width = BoardConstants.WIDTH;
 
-		Tile[][] board = new Tile[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
+		Tile[][] board = new Tile[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				if(isRabbitHole(i, j)) {
 					board[i][j] = createRabbitHole();
 				} else {

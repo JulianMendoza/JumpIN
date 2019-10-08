@@ -1,6 +1,7 @@
 package jumpin.model.piece.pieces;
 
 import jumpin.model.constants.Orientation;
+import jumpin.model.constants.PieceConstants;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
@@ -34,5 +35,8 @@ public class Fox extends Piece implements UniquePiece{
 		}
 		return false;
 	}
-
+	
+	public String toString() {
+		return PieceConstants.FOX;
+	}
 }

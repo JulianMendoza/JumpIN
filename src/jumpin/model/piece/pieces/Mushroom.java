@@ -1,7 +1,8 @@
-package jumpin.model.pieces;
+package jumpin.model.piece.pieces;
 
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceConstants;
+import jumpin.model.piece.Piece;
 
 public class Mushroom extends Piece {
 

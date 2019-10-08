@@ -1,11 +1,13 @@
 package jumpin.model;
 
+import java.util.List;
+
 import jumpin.model.constants.Direction;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
-import jumpin.model.pieces.Piece;
-import jumpin.model.pieces.Rabbit;
-import jumpin.model.pieces.fox.FoxHead;
+import jumpin.model.piece.Piece;
+import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.BoardUtilities;
 
 public class Game {
@@ -35,13 +37,19 @@ public class Game {
 		}
 		
 		if(piece instanceof Rabbit) {
-			Position newPos = BoardUtilities.findRabbitMove(board, pos, direction);
-			if(pos.equals(newPos)) {
+			Move move = BoardUtilities.findRabbitMove(board, direction);
+			if(move == null) {
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}
-			board.updateBoard(pos, newPos);
-		} else if(piece instanceof FoxHead) {
-			
+			board.updateBoard(move);
+		} else if(piece instanceof Fox) { //Have to move multiple pieces because fox is 2 pieces
+			List<Move> moves = BoardUtilities.findFoxMove();
+			if(moves.isEmpty()) {
+				throw new IllegalMoveException("Illegal move for " + piece);
+			}
+			for(Move move : moves) {
+				board.updateBoard(move);
+			}
 		}
 	}
 	

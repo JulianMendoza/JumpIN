@@ -1,6 +1,6 @@
 package jumpin.model;
 
-import jumpin.model.pieces.Piece;
+import jumpin.model.piece.Piece;
 
 public class Tile {
 

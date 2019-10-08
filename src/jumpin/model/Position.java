@@ -45,6 +45,32 @@ public class Position {
 		return new Position(x, y);
 	}
 	
+	/**
+	 * Traverse backwards (If the direction is East move the position West)
+	 * @param direction
+	 * @return
+	 */
+	public Position prevPosition(Direction direction) {
+		int x = this.x;
+		int y = this.y;
+		if(direction.isEastWest()) {
+			if(BoardUtilities.isPositive(direction)) {
+				x--;
+			} else {
+				x++;
+			}
+		} else if(direction.isNorthSouth()) {
+			if(BoardUtilities.isPositive(direction)) {
+				y--;
+			} else {
+				y++;
+			}
+		}
+		return new Position(x, y);
+	}
+	
+	
+	
 	@Override
 	public boolean equals(Object o) {
 		if(o == null) {
@@ -52,8 +78,12 @@ public class Position {
 		} else if (o == this) {
 			return true;
 		} else {
-			Position pos = (Position) o;
-			return pos.getX() == this.getX() && pos.getY() == this.getY();
+			if(o instanceof Position) {
+				Position pos = (Position) o;
+				return pos.getX() == this.getX() && pos.getY() == this.getY();
+			} else {
+				return false;
+			}
 		}
 	}
 	

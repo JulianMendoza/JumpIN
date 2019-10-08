@@ -1,6 +1,9 @@
 package jumpin.model.util;
 
+import java.util.List;
+
 import jumpin.model.Board;
+import jumpin.model.Move;
 import jumpin.model.Position;
 import jumpin.model.RabbitHole;
 import jumpin.model.Tile;
@@ -78,12 +81,12 @@ public class BoardUtilities {
 		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
 	}
 	
-	public static Position findRabbitMove(Board board, Position pos, Direction direction) {
-		return PieceLogic.findRabbitMove(board, pos, direction);
+	public static Move findRabbitMove(Board board, Direction direction) {
+		return PieceLogic.findRabbitMove(board, direction);
 	}
 	
-	public static Position findFoxMove() {
-		return PieceLogic.findFoxMove(null, null, null);
+	public static List<Move> findFoxMove() {
+		return PieceLogic.findFoxMove(null, null);
 	}
 	
 	private static boolean isRabbitHole(int x, int y) {

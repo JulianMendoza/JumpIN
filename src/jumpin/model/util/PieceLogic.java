@@ -1,6 +1,9 @@
 package jumpin.model.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import jumpin.model.Board;
+import jumpin.model.Move;
 import jumpin.model.Position;
 import jumpin.model.constants.Direction;
 
@@ -14,19 +17,10 @@ public class PieceLogic {
 	 * @param direction
 	 * @return
 	 */
-	public static Position findFoxMove(Board board, Position pos, Direction direction) {
-		Position currentPos = pos;
-		currentPos = currentPos.nextPosition(direction);
-		if(!board.getTile(currentPos).isEmpty()) {
-			return pos;
-		}
-		while(BoardUtilities.isValidPosition(currentPos)) {
-			currentPos = currentPos.nextPosition(direction);
-			if(board.getTile(currentPos).isEmpty()) { //we found an empty tile on the board
-				return currentPos; 
-			}
-		}
-		return pos;
+	public static List<Move> findFoxMove(Board board, Direction direction) {
+		List<Move> moves = new ArrayList<Move>();
+		
+		return moves;
 	}
 
 	/**
@@ -36,19 +30,18 @@ public class PieceLogic {
 	 * @param direction
 	 * @return
 	 */
-	public static Position findRabbitMove(Board board, Position pos, Direction direction) {
-		Position currentPos = pos;
-		currentPos = currentPos.nextPosition(direction);
+	public static Move findRabbitMove(Board board, Direction direction) {
+		Position selectedPosition = board.getSelectedPosition();
+		Position currentPos = selectedPosition.nextPosition(direction);
 		if(board.getTile(currentPos).isEmpty()) { //nothing for rabbit to jump over
-			return pos;
+			return null;
 		}
 		while(BoardUtilities.isValidPosition(currentPos)) {
 			currentPos = currentPos.nextPosition(direction);
 			if(board.getTile(currentPos).isEmpty()) { //we found an empty tile on the board
-				return currentPos; 
+				return new Move(selectedPosition, currentPos); 
 			}
 		}
-		return pos;
+		return null;
 	}
-
 }

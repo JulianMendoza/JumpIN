@@ -52,7 +52,7 @@ public class Board {
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				str.append(getTile(new Position(i, j)).toString());
+				str.append(getTile(new Position(j, i)).toString());
 				if(j != width -1) {
 					str.append(" ");
 				}

@@ -10,8 +10,8 @@ public class Main {
 
 	public static void main(String args[]) throws NoPieceException, IllegalMoveException {
 		Game game = new Game();
-		game.movePiece(new Position(0, 1), Direction.EAST);
-		System.out.println(game.toString());
+		game.movePiece(new Position(1, 0), Direction.EAST);
+		System.out.println("\n" + game.toString());
 	}
 	
 	

@@ -28,14 +28,14 @@ public class PieceLogic {
 		
 		if(!currentTile.isEmpty()) {
 			if(fox.isSameFox(currentTile.getPiece())) {
-				board.selectPiece(currentPos); //set the front facing piece of the fox
+				board.selectPiece(currentPos); //set the board to select the direction facing piece of the fox
 				return findFoxSlide(board, direction);
 			} else {
 				return null;
 			}			
 		} 	
 		
-		return findFoxSlide(board, direction);
+		return findFoxSlide(board, direction); //direction facing piece of fox is already selected
 	} 
 	
 	private static List<Move> findFoxSlide(Board board, Direction direction) {
@@ -45,7 +45,7 @@ public class PieceLogic {
 			currentPos = currentPos.nextPosition(direction);
 		}
 		moves.add(new Move(board.getSelectedPosition(), currentPos));
-		moves.add(new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
+		moves.add(new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction))); //trailing piece of fox
 		
 		return moves;
 	}

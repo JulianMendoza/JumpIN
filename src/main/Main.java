@@ -11,6 +11,7 @@ public class Main {
 	public static void main(String args[]) throws NoPieceException, IllegalMoveException {
 		Game game = new Game();
 		game.movePiece(new Position(1, 0), Direction.EAST);
+		game.movePiece(new Position(4,0), Direction.WEST);
 		System.out.println("\n" + game.toString());
 	}
 	

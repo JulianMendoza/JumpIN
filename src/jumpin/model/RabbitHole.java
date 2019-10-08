@@ -23,11 +23,7 @@ public class RabbitHole extends Tile {
 	}
 
 	public String toString() {
-		String rabbitHole = "ERH";
-		if (isFilled()) {
-			rabbitHole = "FRH";
-		}
-		return "[ " + rabbitHole + " ]";
+		return super.toString().replace('[', '{').replace(']', '}');
 
 	}
 

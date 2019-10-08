@@ -17,5 +17,7 @@ public class PieceConstants {
 	public static final String RABBIT_ID_2 = RABBIT + "2";
 	
 	public static final String RABBIT_ID_3 = RABBIT + "3";
+		
+	public static final String EMPTY = "---";
 	
 }

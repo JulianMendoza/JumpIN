@@ -21,8 +21,10 @@ public class Game {
 		board = new Board();
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_1);
+		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
 		board.setTile(new Position(1,0), fox2);
 		board.setTile(new Position(2,0), fox);
+		board.setTile(new Position(4,0), rabbit);
 		System.out.println(board.toString());
 	}
 	

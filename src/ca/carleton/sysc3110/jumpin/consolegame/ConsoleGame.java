@@ -37,7 +37,7 @@ public class ConsoleGame extends Game {
 	}
 	
 	private Command parseCommand(String command) {
-		command = command.toLowerCase().strip();
+		command = command.toLowerCase().trim();
 		if(command.startsWith(Command.MOVE)) {
 			try {
 				return  new Move(command, this);

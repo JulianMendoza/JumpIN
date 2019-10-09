@@ -22,7 +22,7 @@ public class ConsoleGame extends Game {
 		printWelcome();
 		while(true) {
 			if(scanner.hasNext()) {
-				Command command = parseCommand(scanner.next());
+				Command command = parseCommand(scanner.nextLine());
 				if(command != null) {
 					try {
 						command.execute();

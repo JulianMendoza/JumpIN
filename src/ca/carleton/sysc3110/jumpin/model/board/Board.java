@@ -1,19 +1,25 @@
 package ca.carleton.sysc3110.jumpin.model.board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.carleton.sysc3110.jumpin.model.Move;
 import ca.carleton.sysc3110.jumpin.model.Position;
 import ca.carleton.sysc3110.jumpin.model.constants.BoardConstants;
 import ca.carleton.sysc3110.jumpin.model.piece.Piece;
 import ca.carleton.sysc3110.jumpin.model.util.BoardUtilities;
+import ca.carleton.sysc3110.jumpin.model.util.RabbitHoleListener;
 
 public class Board {
 
 	private Tile[][] board;
 	private Piece selectedPiece;
 	private Position selectedPosition;
+	private List<RabbitHoleListener> gameConditionListeners;
 
 	public Board() {
 		board = BoardUtilities.createDefaultBoard();
+		gameConditionListeners=new ArrayList<RabbitHoleListener>();
 	}
 
 	public Piece selectPiece(Position pos) {
@@ -36,6 +42,11 @@ public class Board {
 
 	public void updateBoard(Move move) {
 		Piece movePiece = getTile(move.getOldPos()).getPiece();
+		if(getTile(move.getNewPos()) instanceof RabbitHole) {
+			this.notify(new RabbitHoleEvent(true));
+		}else if(getTile(move.getOldPos()) instanceof RabbitHole) {
+			this.notify(new RabbitHoleEvent(false));
+		}
 		setTile(move.getNewPos(), movePiece);
 		clearTile(move.getOldPos());
 	}
@@ -64,6 +75,14 @@ public class Board {
 			}
 		}
 		return str.toString();
+	}
+	public void notify(RabbitHoleEvent e) {
+		for(RabbitHoleListener l:gameConditionListeners) {
+			l.update(e);
+		}
+	}
+	public void addListener(RabbitHoleListener listener) {
+		gameConditionListeners.add(listener);
 	}
 
 }

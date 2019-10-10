@@ -13,10 +13,12 @@ import ca.carleton.sysc3110.jumpin.model.piece.Piece;
 import ca.carleton.sysc3110.jumpin.model.piece.pieces.Fox;
 import ca.carleton.sysc3110.jumpin.model.piece.pieces.Rabbit;
 import ca.carleton.sysc3110.jumpin.model.util.BoardUtilities;
+import ca.carleton.sysc3110.jumpin.model.util.GameState;
 
 public class Game {
 	
 	private Board board;
+	private GameState gameState;
 	
 	public Game() {
 		board = new Board();
@@ -25,7 +27,9 @@ public class Game {
 		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
 		board.setTile(new Position(1,0), fox2);
 		board.setTile(new Position(2,0), fox);
-		board.setTile(new Position(4,0), rabbit);
+		board.setTile(new Position(3,0), rabbit);
+		gameState=new GameState(1,"IN_PROGRESS");
+		board.addListener(gameState);
 	}
 	
 	public void movePiece(Position pos, Direction direction) throws NoPieceException, IllegalMoveException {
@@ -64,7 +68,7 @@ public class Game {
 	}
 	
 	public String toString() {
-		return board.toString();
+		return gameState.toString() + board.toString();
 	}
 	
 }

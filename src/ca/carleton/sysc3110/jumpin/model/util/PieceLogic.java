@@ -6,6 +6,7 @@ import java.util.List;
 import ca.carleton.sysc3110.jumpin.model.Move;
 import ca.carleton.sysc3110.jumpin.model.Position;
 import ca.carleton.sysc3110.jumpin.model.board.Board;
+import ca.carleton.sysc3110.jumpin.model.board.RabbitHole;
 import ca.carleton.sysc3110.jumpin.model.board.Tile;
 import ca.carleton.sysc3110.jumpin.model.constants.Direction;
 import ca.carleton.sysc3110.jumpin.model.piece.pieces.Fox;
@@ -25,7 +26,12 @@ public class PieceLogic {
 		
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
 		Tile currentTile = board.getTile(currentPos);
-		
+		/*
+		 * Remove this if statement if foxes can block holes
+		 */
+		if (board.getTile(currentPos) instanceof RabbitHole) {
+			return null;
+		}
 		if(!currentTile.isEmpty()) {
 			if(fox.isSameFox(currentTile.getPiece())) {
 				board.selectPiece(currentPos); //set the board to select the direction facing piece of the fox
@@ -41,7 +47,8 @@ public class PieceLogic {
 	private static List<Move> findFoxSlide(Board board, Direction direction) {
 		List<Move> moves = new ArrayList<Move>();
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
-		while(BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty()) {
+		//remove !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) if rabbits can block holes
+		while(BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole)) {
 			currentPos = currentPos.nextPosition(direction);
 		}
 		moves.add(new Move(board.getSelectedPosition(), currentPos));

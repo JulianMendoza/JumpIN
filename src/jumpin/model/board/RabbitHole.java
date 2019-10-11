@@ -3,12 +3,11 @@ package jumpin.model.board;
 import jumpin.model.piece.pieces.Rabbit;
 
 public class RabbitHole extends Tile {
+	private Rabbit rabbit;
 
 	public RabbitHole() {
 		super();
 	}
-
-	private Rabbit rabbit;
 
 	public boolean isFilled() {
 		return rabbit != null;

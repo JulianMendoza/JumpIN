@@ -3,14 +3,14 @@ package jumpin.consolegame;
 import java.util.Scanner;
 
 import jumpin.consolegame.commands.Exit;
-import jumpin.consolegame.commands.Move;
+import jumpin.consolegame.commands.MoveCommand;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
 
 public class ConsoleGame extends Game {
 
 	private final String PREFIX = "JumpIN: ";
-		
+
 	private Scanner scanner;
 
 	public ConsoleGame() {
@@ -20,10 +20,10 @@ public class ConsoleGame extends Game {
 
 	public void start() {
 		printWelcome();
-		while(true) {
-			if(scanner.hasNext()) {
+		while (true) {
+			if (scanner.hasNext()) {
 				Command command = parseCommand(scanner.nextLine());
-				if(command != null) {
+				if (command != null) {
 					try {
 						command.execute();
 						print("Successful move!");
@@ -35,17 +35,17 @@ public class ConsoleGame extends Game {
 			}
 		}
 	}
-	
+
 	private Command parseCommand(String command) {
 		command = command.toLowerCase().trim();
-		if(command.startsWith(Command.MOVE)) {
+		if (command.startsWith(Command.MOVE)) {
 			try {
-				return  new Move(command, this);
+				return new MoveCommand(command,this);
 			} catch (InvalidCommandException e) {
 				printError(e.getMessage());
 				print("Have you tried \"move (x,y) direction\"");
 			}
-		} else if(command.startsWith(Command.EXIT)) {
+		} else if (command.startsWith(Command.EXIT)) {
 			try {
 				return new Exit(command);
 			} catch (InvalidCommandException e) {
@@ -58,19 +58,19 @@ public class ConsoleGame extends Game {
 		}
 		return null;
 	}
-	
+
 	private void printError(String s) {
 		System.err.println(PREFIX + s);
 	}
-	
+
 	private void print(String s) {
 		System.out.println(PREFIX + s);
 	}
-	
+
 	private void printBoard() {
 		print("Here's the board!\n" + toString());
 	}
-	
+
 	private void printWelcome() {
 		print("Welcome to JumpIN!");
 		printBoard();

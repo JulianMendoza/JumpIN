@@ -7,13 +7,13 @@ import jumpin.model.Game;
 import jumpin.model.Position;
 import jumpin.model.constants.Direction;
 
-public class Move implements Command {
+public class MoveCommand implements Command {
 
 	private Direction direction;
 	private Position position;
 	private Game game;
 	
-	public Move(String command, Game game) throws InvalidCommandException {
+	public MoveCommand(String command, Game game) throws InvalidCommandException {
 		parse(command);
 		this.game = game;
 	}

@@ -19,7 +19,7 @@ public class Board {
 
 	public Board() {
 		board = BoardUtilities.createDefaultBoard();
-		gameConditionListeners=new ArrayList<RabbitHoleListener>();
+		gameConditionListeners = new ArrayList<RabbitHoleListener>();
 	}
 
 	public Piece selectPiece(Position pos) {
@@ -42,9 +42,9 @@ public class Board {
 
 	public void updateBoard(Move move) {
 		Piece movePiece = getTile(move.getOldPos()).getPiece();
-		if(getTile(move.getNewPos()) instanceof RabbitHole) {
+		if (getTile(move.getNewPos()) instanceof RabbitHole) {
 			this.notify(new RabbitHoleEvent(true));
-		}else if(getTile(move.getOldPos()) instanceof RabbitHole) {
+		} else if (getTile(move.getOldPos()) instanceof RabbitHole) {
 			this.notify(new RabbitHoleEvent(false));
 		}
 		setTile(move.getNewPos(), movePiece);
@@ -59,6 +59,16 @@ public class Board {
 		return selectedPiece;
 	}
 
+	public void addListener(RabbitHoleListener listener) {
+		gameConditionListeners.add(listener);
+	}
+
+	public void notify(RabbitHoleEvent e) {
+		for (RabbitHoleListener l : gameConditionListeners) {
+			l.update(e);
+		}
+	}
+
 	public String toString() {
 		int width = BoardConstants.WIDTH;
 		int height = BoardConstants.HEIGHT;
@@ -66,7 +76,7 @@ public class Board {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				str.append(getTile(new Position(j, i)).toString());
-				if(j != width -1) {
+				if (j != width - 1) {
 					str.append(" ");
 				}
 			}
@@ -75,14 +85,6 @@ public class Board {
 			}
 		}
 		return str.toString();
-	}
-	public void notify(RabbitHoleEvent e) {
-		for(RabbitHoleListener l:gameConditionListeners) {
-			l.update(e);
-		}
-	}
-	public void addListener(RabbitHoleListener listener) {
-		gameConditionListeners.add(listener);
 	}
 
 }

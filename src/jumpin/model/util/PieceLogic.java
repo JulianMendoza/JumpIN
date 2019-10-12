@@ -41,7 +41,7 @@ public class PieceLogic {
 	}
 
 	private static FoxMove findFoxSlide(Board board, Direction direction, int moveTiles) {
-		Position currentPos = board.getSelectedPosition().nextPosition(direction);
+		Position currentPos = board.getSelectedPosition();
 		// remove !(board.getTile(currentPos.nextPosition(direction)) instanceof
 		// RabbitHole) if rabbits can block holes
 		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && moveTiles != 0) {
@@ -51,6 +51,8 @@ public class PieceLogic {
 		
 		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
 	}
+	
+	
 
 	/**
 	 * Returns pos if no move

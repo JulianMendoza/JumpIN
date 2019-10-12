@@ -7,7 +7,7 @@ public class BoardModel {
 	private Tile[][] model;
 	
 	public BoardModel(Tile[][] model) {
-		model = this.model;
+		this.model = model;
 	}
 	
 	public Tile getTile(int x, int y) {

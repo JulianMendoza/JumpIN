@@ -1,3 +1,4 @@
+
 package jumpin.model.util;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
 
 /**
- * Utility class for operations with the board. Has knowledge of the default board model and other constants
+ * Utility class for operations with the board. Has knowledge of the default
+ * board model and other constants
  * 
  * @author Giuseppe
  *
@@ -25,7 +27,7 @@ public class BoardUtilities {
 		Tile[][] board = new Tile[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				if(isRabbitHole(i, j)) {
+				if (isRabbitHole(i, j)) {
 					board[i][j] = createRabbitHole();
 				} else {
 					board[i][j] = createTile();
@@ -34,15 +36,16 @@ public class BoardUtilities {
 		}
 		return board;
 	}
-	
+
 	/**
-	 * Only east and south are considered positive directions when north west is (0,0)
+	 * Only east and south are considered positive directions when north west is
+	 * (0,0)
 	 *
 	 * @param direction
 	 * @return
 	 */
 	public static boolean isPositive(Direction direction) {
-		switch(direction) {
+		switch (direction) {
 		case EAST:
 		case SOUTH:
 			return true;
@@ -70,9 +73,9 @@ public class BoardUtilities {
 				return direction.equals(Direction.NORTH);
 			}
 		}
-		return true; //gets here if the move is in the middle of the board
+		return true; // gets here if the move is in the middle of the board
 	}
-	
+
 	public static boolean isValidPosition(Position pos) {
 		int maxPos = BoardConstants.MAX_POS;
 		int minPos = BoardConstants.MIN_POS;
@@ -80,19 +83,19 @@ public class BoardUtilities {
 		int y = pos.getY();
 		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
 	}
-	
+
 	public static Move findRabbitMove(Board board, Direction direction) {
 		return PieceLogic.findRabbitMove(board, direction);
 	}
-	
+
 	public static List<Move> findFoxMove(Board board, Direction direction) {
 		return PieceLogic.findFoxMove(board, direction);
 	}
-	
+
 	private static boolean isRabbitHole(int x, int y) {
 		Position[] rabbitHoles = BoardConstants.RABBIT_HOLES;
-		for(int i = 0; i < rabbitHoles.length; i++) {
-			if(new Position(x,y).equals(rabbitHoles[i])) {
+		for (int i = 0; i < rabbitHoles.length; i++) {
+			if (new Position(x, y).equals(rabbitHoles[i])) {
 				return true;
 			}
 		}
@@ -102,7 +105,7 @@ public class BoardUtilities {
 	private static Tile createTile() {
 		return new Tile();
 	}
-	
+
 	private static RabbitHole createRabbitHole() {
 		return new RabbitHole();
 	}

@@ -5,7 +5,7 @@ public enum Direction {
 	NORTH, SOUTH, EAST, WEST;
 
 	public boolean isEastWest() {
-		switch(this) {
+		switch (this) {
 		case WEST:
 		case EAST:
 			return true;
@@ -16,9 +16,9 @@ public enum Direction {
 			return false;
 		}
 	}
-	
+
 	public boolean isNorthSouth() {
-		switch(this) {
+		switch (this) {
 		case WEST:
 		case EAST:
 			return false;
@@ -29,7 +29,7 @@ public enum Direction {
 			return false;
 		}
 	}
-	
+
 	public static Direction parseString(String direction) {
 		switch (direction.toLowerCase()) {
 		case "north":
@@ -47,9 +47,9 @@ public enum Direction {
 		}
 		return null;
 	}
-	
+
 	public String toString() {
-		switch(this) {
+		switch (this) {
 		case EAST:
 			return "East";
 		case NORTH:
@@ -60,7 +60,7 @@ public enum Direction {
 			return "West";
 		default:
 			return "";
-		
+
 		}
 	}
 

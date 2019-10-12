@@ -40,7 +40,7 @@ public class ConsoleGame extends Game {
 		command = command.toLowerCase().trim();
 		if (command.startsWith(Command.MOVE)) {
 			try {
-				return new MoveCommand(command,this);
+				return new MoveCommand(command, this);
 			} catch (InvalidCommandException e) {
 				printError(e.getMessage());
 				print("Have you tried \"move (x,y) direction\"");

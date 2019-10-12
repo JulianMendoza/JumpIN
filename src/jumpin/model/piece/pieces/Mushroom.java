@@ -9,7 +9,7 @@ public class Mushroom extends Piece {
 	public Mushroom() {
 		super(Orientation.STATIC);
 	}
-	
+
 	public String toString() {
 		return PieceConstants.MUSHROOM;
 	}

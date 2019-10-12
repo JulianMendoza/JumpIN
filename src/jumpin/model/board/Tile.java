@@ -13,7 +13,7 @@ public class Tile {
 	public void clear() {
 		piece = null;
 	}
-	
+
 	public boolean isEmpty() {
 		return piece == null;
 	}
@@ -28,12 +28,12 @@ public class Tile {
 
 	public String toString() {
 		String pieceName = PieceConstants.EMPTY;
-		if(piece != null) {
+		if (piece != null) {
 			StringBuilder s = new StringBuilder(piece.toString().toUpperCase());
 			s.setLength(3);
 			pieceName = s.toString();
 		}
-		return "[ " + pieceName +  " ]";
+		return "[ " + pieceName + " ]";
 	}
-	
+
 }

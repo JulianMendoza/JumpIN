@@ -5,7 +5,7 @@ package jumpin.exception;
  * 
  * @author Giuseppe Papalia
  */
-public class JumpINException extends Exception{
+public class JumpINException extends Exception {
 
 	public JumpINException(String message) {
 		super(message);

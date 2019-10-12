@@ -13,6 +13,5 @@ public class Console {
 		ConsoleGame game = new ConsoleGame();
 		game.start();
 	}
-	
-	
+
 }

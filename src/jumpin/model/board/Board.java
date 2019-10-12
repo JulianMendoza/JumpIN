@@ -15,11 +15,11 @@ public class Board {
 	private BoardModel model;
 	private Piece selectedPiece;
 	private Position selectedPosition;
-	private List<RabbitHoleListener> gameConditionListeners;
+	private ListenerModel gameConditionListeners;
 
 	public Board() {
 		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
-		gameConditionListeners = new ArrayList<RabbitHoleListener>();
+		gameConditionListeners = new ListenerModel();
 	}
 
 	public Piece selectPiece(Position pos) {
@@ -64,7 +64,7 @@ public class Board {
 	}
 
 	public void notify(int e) {
-		for (RabbitHoleListener l : gameConditionListeners) {
+		for (RabbitHoleListener l : gameConditionListeners.getListeners()) {
 			l.update(e);
 		}
 	}

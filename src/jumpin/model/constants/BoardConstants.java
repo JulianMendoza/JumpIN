@@ -1,6 +1,6 @@
 package jumpin.model.constants;
 
-import jumpin.model.Position;
+import jumpin.model.util.Position;
 
 public class BoardConstants {
 

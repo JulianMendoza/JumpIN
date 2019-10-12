@@ -3,11 +3,11 @@ package jumpin.model.board;
 import java.util.ArrayList;
 import java.util.List;
 
-import jumpin.model.Move;
-import jumpin.model.Position;
 import jumpin.model.constants.BoardConstants;
+import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
 import jumpin.model.util.BoardUtilities;
+import jumpin.model.util.Position;
 import jumpin.model.util.RabbitHoleListener;
 
 public class Board {

@@ -1,7 +1,6 @@
-package jumpin.model;
+package jumpin.model.util;
 
 import jumpin.model.constants.Direction;
-import jumpin.model.util.BoardUtilities;
 
 public class Position {
 

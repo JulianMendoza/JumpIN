@@ -3,13 +3,13 @@ package jumpin.model.util;
 
 import java.util.List;
 
-import jumpin.model.Move;
-import jumpin.model.Position;
 import jumpin.model.board.Board;
 import jumpin.model.board.RabbitHole;
 import jumpin.model.board.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
+import jumpin.model.move.FoxMove;
+import jumpin.model.move.Move;
 
 /**
  * Utility class for operations with the board. Has knowledge of the default
@@ -88,8 +88,8 @@ public class BoardUtilities {
 		return PieceLogic.findRabbitMove(board, direction);
 	}
 
-	public static List<Move> findFoxMove(Board board, Direction direction) {
-		return PieceLogic.findFoxMove(board, direction);
+	public static FoxMove findFoxMove(Board board, Direction direction, int moveTiles) {
+		return PieceLogic.findFoxMove(board, direction, moveTiles);
 	}
 
 	private static boolean isRabbitHole(int x, int y) {

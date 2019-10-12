@@ -2,8 +2,10 @@ package jumpin.consolegame;
 
 import java.util.Scanner;
 
-import jumpin.consolegame.commands.Exit;
-import jumpin.consolegame.commands.MoveCommand;
+import jumpin.consolegame.command.Command;
+import jumpin.consolegame.command.commands.Exit;
+import jumpin.consolegame.command.commands.MoveCommand;
+import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
 

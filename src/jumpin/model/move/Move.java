@@ -1,4 +1,6 @@
-package jumpin.model;
+package jumpin.model.move;
+
+import jumpin.model.util.Position;
 
 public class Move {
 

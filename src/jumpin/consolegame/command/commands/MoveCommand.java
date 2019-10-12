@@ -1,19 +1,21 @@
-package jumpin.consolegame.commands;
+package jumpin.consolegame.command.commands;
 
-import jumpin.consolegame.Command;
-import jumpin.consolegame.InvalidCommandException;
+import jumpin.consolegame.command.Command;
+import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
-import jumpin.model.Position;
 import jumpin.model.constants.Direction;
+import jumpin.model.util.Position;
 
 public class MoveCommand implements Command {
 
 	private Direction direction;
 	private Position position;
+	private int tilesMoved;
 	private Game game;
 
 	public MoveCommand(String command, Game game) throws InvalidCommandException {
+		tilesMoved = -1;
 		parse(command);
 		this.game = game;
 	}
@@ -21,7 +23,7 @@ public class MoveCommand implements Command {
 	@Override
 	public void parse(String command) throws InvalidCommandException {
 		String args[] = command.split(" ");
-		if (args.length != 3) {
+		if (args.length < 3 || args.length > 4) {
 			throw new InvalidCommandException("Invalid number of args for move command");
 		}
 
@@ -35,12 +37,20 @@ public class MoveCommand implements Command {
 		if (direction == null) {
 			throw new InvalidCommandException("Invalid direction for move command");
 		}
+		
+		if(args.length == 4) {
+			try {
+				tilesMoved = Integer.parseInt(args[3]);
+			} catch(NumberFormatException e) {
+				throw new InvalidCommandException("Invalid move value for move command");
+			}
+		}
 
 	}
 
 	@Override
 	public void execute() throws JumpINException {
-		game.movePiece(position, direction);
+		game.movePiece(position, direction, tilesMoved);
 	}
 
 }

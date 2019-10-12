@@ -1,7 +1,7 @@
-package jumpin.consolegame.commands;
+package jumpin.consolegame.command.commands;
 
-import jumpin.consolegame.Command;
-import jumpin.consolegame.InvalidCommandException;
+import jumpin.consolegame.command.Command;
+import jumpin.consolegame.exception.InvalidCommandException;
 
 public class Exit implements Command {
 

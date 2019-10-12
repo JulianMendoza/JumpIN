@@ -3,12 +3,12 @@ package jumpin.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import jumpin.model.Move;
-import jumpin.model.Position;
 import jumpin.model.board.Board;
 import jumpin.model.board.RabbitHole;
 import jumpin.model.board.Tile;
 import jumpin.model.constants.Direction;
+import jumpin.model.move.FoxMove;
+import jumpin.model.move.Move;
 import jumpin.model.piece.pieces.Fox;
 
 public class PieceLogic {
@@ -20,7 +20,7 @@ public class PieceLogic {
 	 * @param direction
 	 * @return
 	 */
-	public static List<Move> findFoxMove(Board board, Direction direction) {
+	public static FoxMove findFoxMove(Board board, Direction direction, int moveTiles) {
 		Fox fox = (Fox) board.getSelectedPiece();
 
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
@@ -34,32 +34,25 @@ public class PieceLogic {
 		if (!currentTile.isEmpty()) {
 			if (fox.isSameFox(currentTile.getPiece())) {
 				board.selectPiece(currentPos); // set the board to select the direction facing piece of the fox
-				return findFoxSlide(board, direction);
+				return findFoxSlide(board, direction, moveTiles);
 			} else {
 				return null;
 			}
 		}
 
-		return findFoxSlide(board, direction); // direction facing piece of fox is already selected
+		return findFoxSlide(board, direction, moveTiles); // direction facing piece of fox is already selected
 	}
 
-	private static List<Move> findFoxSlide(Board board, Direction direction) {
-		List<Move> moves = new ArrayList<Move>();
+	private static FoxMove findFoxSlide(Board board, Direction direction, int moveTiles) {
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
 		// remove !(board.getTile(currentPos.nextPosition(direction)) instanceof
 		// RabbitHole) if rabbits can block holes
-		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction))
-				&& board.getTile(currentPos.nextPosition(direction)).isEmpty()
-				&& !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole)) {
+		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && moveTiles != 0) {
 			currentPos = currentPos.nextPosition(direction);
+			moveTiles--;
 		}
-		moves.add(new Move(board.getSelectedPosition(), currentPos));
-		moves.add(new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction))); // trailing
-																														// piece
-																														// of
-																														// fox
-
-		return moves;
+		
+		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
 	}
 
 	/**

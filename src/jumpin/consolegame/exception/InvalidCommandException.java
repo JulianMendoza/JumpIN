@@ -1,4 +1,4 @@
-package jumpin.consolegame;
+package jumpin.consolegame.exception;
 
 import jumpin.exception.JumpINException;
 

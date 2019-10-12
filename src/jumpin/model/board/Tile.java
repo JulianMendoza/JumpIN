@@ -7,9 +7,6 @@ public class Tile {
 
 	private Piece piece;
 
-	public Tile() {
-	}
-
 	public void clear() {
 		piece = null;
 	}

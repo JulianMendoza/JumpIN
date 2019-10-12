@@ -3,6 +3,7 @@ package jumpin.model;
 import jumpin.model.board.Board;
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.FoxPart;
+import jumpin.model.constants.MoveConstants;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceConstants;
 import jumpin.model.exception.IllegalMoveException;
@@ -33,7 +34,7 @@ public class Game {
 		board.addListener(gameState);
 	}
 
-	public void movePiece(Position pos, Direction direction, int tilesMoved) throws NoPieceException, IllegalMoveException {
+	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException {
 		Piece piece = board.selectPiece(pos);
 
 		// First check if a piece exists at a selected position
@@ -52,7 +53,7 @@ public class Game {
 		}
 
 		if (piece instanceof Rabbit) {
-			if(tilesMoved != -1) { //if the player tries to specify tiles rabbit moves
+			if(distance != MoveConstants.DEFAULT_DISTANCE) { //if the player tries to specify tiles rabbit moves
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}
 			Move move = BoardUtilities.findRabbitMove(board, direction);
@@ -61,7 +62,10 @@ public class Game {
 			}
 			board.updateBoard(move);
 		} else if (piece instanceof Fox) { // Have to move multiple pieces because fox is 2 pieces
-			FoxMove move = BoardUtilities.findFoxMove(board, direction, tilesMoved);
+			if(distance == MoveConstants.DEFAULT_DISTANCE) {
+				distance = MoveConstants.MIN_DISTANCE;
+			}
+			FoxMove move = BoardUtilities.findFoxMove(board, direction, distance);
 			if (move == null) {
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}

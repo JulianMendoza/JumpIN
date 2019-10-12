@@ -17,7 +17,7 @@ public class PieceLogic {
 	 * @param direction
 	 * @return
 	 */
-	public static FoxMove findFoxMove(Board board, Direction direction, int moveTiles) {
+	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
 		Fox fox = (Fox) board.getSelectedPiece();
 
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
@@ -31,22 +31,28 @@ public class PieceLogic {
 		if (!currentTile.isEmpty()) {
 			if (fox.isSameFox(currentTile.getPiece())) {
 				board.selectPiece(currentPos); // set the board to select the direction facing piece of the fox
-				return findFoxSlide(board, direction, moveTiles);
+				return slideFox(board, direction, distance);
 			} else {
 				return null;
 			}
 		}
 
-		return findFoxSlide(board, direction, moveTiles); // direction facing piece of fox is already selected
+		return slideFox(board, direction, distance); // direction facing piece of fox is already selected
 	}
 
-	private static FoxMove findFoxSlide(Board board, Direction direction, int moveTiles) {
+	private static FoxMove slideFox(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
-		// remove !(board.getTile(currentPos.nextPosition(direction)) instanceof
-		// RabbitHole) if rabbits can block holes
-		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && moveTiles != 0) {
+		
+		/*
+		 * Comment each condition in while loop
+		 */
+		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole)) {
 			currentPos = currentPos.nextPosition(direction);
-			moveTiles--;
+			distance--;
+		}
+		
+		if(distance < 0) { //tried to slide fox too far
+			return null;
 		}
 		
 		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));

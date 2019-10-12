@@ -1,8 +1,6 @@
 
 package jumpin.model.util;
 
-import java.util.List;
-
 import jumpin.model.board.Board;
 import jumpin.model.board.RabbitHole;
 import jumpin.model.board.Tile;
@@ -88,8 +86,8 @@ public class BoardUtilities {
 		return PieceLogic.findRabbitMove(board, direction);
 	}
 
-	public static FoxMove findFoxMove(Board board, Direction direction, int moveTiles) {
-		return PieceLogic.findFoxMove(board, direction, moveTiles);
+	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
+		return PieceLogic.findFoxMove(board, direction, distance);
 	}
 
 	private static boolean isRabbitHole(int x, int y) {

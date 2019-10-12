@@ -18,8 +18,8 @@ public class GameState implements RabbitHoleListener {
 	}
 
 	@Override
-	public void update(RabbitHoleEvent event) {
-		if (event.getEvent() == true) {
+	public void update(int event) {
+		if (event == RabbitHoleEvent.ON) {
 			rabbitsToWin--;
 		} else {
 			rabbitsToWin++;

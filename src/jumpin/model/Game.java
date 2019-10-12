@@ -26,9 +26,9 @@ public class Game {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
-		board.setTile(new Position(1, 0), fox2);
-		board.setTile(new Position(1, 1), fox);
-		board.setTile(new Position(3, 0), rabbit);
+		board.assignPiece(new Position(1, 0), fox2);
+		board.assignPiece(new Position(1, 1), fox);
+		board.assignPiece(new Position(3, 0), rabbit);
 		gameState = new GameState(1, "IN_PROGRESS");
 		board.addListener(gameState);
 	}

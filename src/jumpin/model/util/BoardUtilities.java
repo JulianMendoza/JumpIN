@@ -20,7 +20,7 @@ import jumpin.model.move.Move;
  */
 public class BoardUtilities {
 
-	public static Tile[][] createDefaultBoard() {
+	public static Tile[][] createDefaultBoardModel() {
 		int height = BoardConstants.HEIGHT;
 		int width = BoardConstants.WIDTH;
 

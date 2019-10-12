@@ -1,8 +1,5 @@
 package jumpin.model.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jumpin.model.board.Board;
 import jumpin.model.board.RabbitHole;
 import jumpin.model.board.Tile;

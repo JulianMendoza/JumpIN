@@ -12,28 +12,28 @@ import jumpin.model.util.RabbitHoleListener;
 
 public class Board {
 
-	private Tile[][] board;
+	private BoardModel model;
 	private Piece selectedPiece;
 	private Position selectedPosition;
 	private List<RabbitHoleListener> gameConditionListeners;
 
 	public Board() {
-		board = BoardUtilities.createDefaultBoard();
+		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
 		gameConditionListeners = new ArrayList<RabbitHoleListener>();
 	}
 
 	public Piece selectPiece(Position pos) {
 		selectedPosition = pos;
-		selectedPiece = board[pos.getY()][pos.getX()].getPiece();
+		selectedPiece = model.getTile(pos.getX(), pos.getY()).getPiece();
 		return selectedPiece;
 	}
 
 	public Tile getTile(Position pos) {
-		return board[pos.getY()][pos.getX()];
+		return model.getTile(pos.getX(), pos.getY());
 	}
 
-	public void setTile(Position pos, Piece piece) {
-		board[pos.getY()][pos.getX()].setPiece(piece);
+	public void assignPiece(Position pos, Piece piece) {
+		model.assignPiece(pos.getX(), pos.getY(), piece);
 	}
 
 	public void clearTile(Position pos) {
@@ -43,11 +43,11 @@ public class Board {
 	public void updateBoard(Move move) {
 		Piece movePiece = getTile(move.getOldPos()).getPiece();
 		if (getTile(move.getNewPos()) instanceof RabbitHole) {
-			this.notify(new RabbitHoleEvent(true));
+			this.notify(RabbitHoleEvent.ON);
 		} else if (getTile(move.getOldPos()) instanceof RabbitHole) {
-			this.notify(new RabbitHoleEvent(false));
+			this.notify(RabbitHoleEvent.OFF);
 		}
-		setTile(move.getNewPos(), movePiece);
+		assignPiece(move.getNewPos(), movePiece);
 		clearTile(move.getOldPos());
 	}
 
@@ -63,7 +63,7 @@ public class Board {
 		gameConditionListeners.add(listener);
 	}
 
-	public void notify(RabbitHoleEvent e) {
+	public void notify(int e) {
 		for (RabbitHoleListener l : gameConditionListeners) {
 			l.update(e);
 		}
@@ -85,6 +85,10 @@ public class Board {
 			}
 		}
 		return str.toString();
+	}
+	
+	public BoardModel getModel() {
+		return model;
 	}
 
 }

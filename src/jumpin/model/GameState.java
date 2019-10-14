@@ -2,6 +2,7 @@ package jumpin.model;
 
 import jumpin.model.board.BoardModelEvent;
 import jumpin.model.board.BoardModelListener;
+import jumpin.model.constants.StateOfGame;
 
 /**
  * Knowledge of the number of rabbits left and the current state of the game.
@@ -13,7 +14,7 @@ public class GameState implements BoardModelListener {
 	 * number of rabbits left
 	 */
 	private int rabbitsToWin;
-	private String gameState;
+	private StateOfGame gameState;
 	
 	/**
 	 * Constructor for the game's state
@@ -21,7 +22,7 @@ public class GameState implements BoardModelListener {
 	 * @param rabbitsToWin	amount of rabbits left
 	 * @param gameState		current state of the game
 	 */
-	public GameState(int rabbitsToWin, String gameState) {
+	public GameState(int rabbitsToWin, StateOfGame gameState) {
 		this.rabbitsToWin = rabbitsToWin;
 		this.gameState = gameState;
 	}
@@ -30,7 +31,7 @@ public class GameState implements BoardModelListener {
 	 * 
 	 * @return a string of the gameState
 	 */
-	public String getState() {
+	public StateOfGame getState() {
 		return this.gameState;
 	}
 
@@ -47,7 +48,7 @@ public class GameState implements BoardModelListener {
 			rabbitsToWin++;
 		}
 		if (rabbitsToWin == 0) {
-			gameState = "YOU WON!";
+			gameState = StateOfGame.YOU_WON;
 		}
 	}
 	
@@ -58,7 +59,7 @@ public class GameState implements BoardModelListener {
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append("Current # of rabbits on the board: " + rabbitsToWin + "\n");
-		str.append("Current state of the game: " + gameState + "\n");
+		str.append("Current state of the game: " + gameState.toString() + "\n");
 		return str.toString();
 	}
 }

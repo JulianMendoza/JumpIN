@@ -10,6 +10,7 @@ import jumpin.consolegame.command.commands.MoveCommand;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
+import jumpin.model.constants.StateOfGame;
 
 /**
  * A class for creating a console game
@@ -42,7 +43,7 @@ public class ConsoleGame extends Game {
 						command.execute();
 						Printer.print("Successful move!");
 						Printer.printBoard(toString());
-						if(this.getGameState().equals("YOU WON!")) {
+						if(this.getGameState().getState()==StateOfGame.YOU_WON) {
 							System.out.println("--------------END OF GAME--------------");
 							System.exit(0);
 						}

@@ -6,6 +6,7 @@ import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.MoveConstants;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
 import jumpin.model.move.FoxMove;
@@ -51,7 +52,7 @@ public class Game {
 		board.assignPiece(new Position(1, 4), rabbit2);
 		board.assignPiece(new Position(4, 2), rabbit3);
 		
-		gameState = new GameState(3, "IN_PROGRESS");
+		gameState = new GameState(3, StateOfGame.IN_PROGRESS);
 		board.addListener(gameState);
 	}
 	
@@ -103,8 +104,8 @@ public class Game {
 			board.updateBoard(move.getSecond());
 		}
 	}
-	public String getGameState() {
-		return this.gameState.getState();
+	public GameState getGameState() {
+		return this.gameState;
 	}
 
 	/**

@@ -14,7 +14,6 @@ import jumpin.model.piece.Piece;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.BoardUtilities;
-import jumpin.model.util.GameState;
 import jumpin.model.util.Position;
 
 public class Game {

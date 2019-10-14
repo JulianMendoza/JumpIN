@@ -1,14 +1,13 @@
 package jumpin.model.board;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.tile.RabbitHoleEvent;
+import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
 import jumpin.model.util.BoardUtilities;
 import jumpin.model.util.Position;
-import jumpin.model.util.RabbitHoleListener;
 
 public class Board {
 
@@ -57,12 +56,12 @@ public class Board {
 		return selectedPiece;
 	}
 
-	public void addListener(RabbitHoleListener listener) {
+	public void addListener(BoardModelListener listener) {
 		model.addListener(listener);
 	}
 
 	public void notify(int e) {
-		for (RabbitHoleListener l : model.getListeners()) {
+		for (BoardModelListener l : model.getListeners()) {
 			l.update(e);
 		}
 	}

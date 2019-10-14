@@ -1,4 +1,4 @@
-package jumpin.model.board;
+package jumpin.model.board.tile;
 
 import jumpin.model.piece.pieces.Rabbit;
 

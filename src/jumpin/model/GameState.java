@@ -1,6 +1,7 @@
-package jumpin.model.util;
+package jumpin.model;
 
-import jumpin.model.board.RabbitHoleEvent;
+import jumpin.model.board.BoardModelListener;
+import jumpin.model.board.tile.RabbitHoleEvent;
 
 /**
  * Knowledge of the number of rabbits left and the current state of the game.
@@ -8,7 +9,7 @@ import jumpin.model.board.RabbitHoleEvent;
  * @author Julian
  *
  */
-public class GameState implements RabbitHoleListener {
+public class GameState implements BoardModelListener {
 	private int rabbitsToWin;
 	private String gameState;
 

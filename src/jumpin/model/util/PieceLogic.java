@@ -1,8 +1,8 @@
 package jumpin.model.util;
 
 import jumpin.model.board.Board;
-import jumpin.model.board.RabbitHole;
-import jumpin.model.board.Tile;
+import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.Direction;
 import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
@@ -46,12 +46,12 @@ public class PieceLogic {
 		/*
 		 * Comment each condition in while loop
 		 */
-		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole)) {
+		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
 		}
 		
-		if(distance < 0) { //tried to slide fox too far
+		if(distance != 0) { 
 			return null;
 		}
 		

@@ -12,7 +12,6 @@ public class BoardConstants {
 
 	public static final int MIN_POS = 0;
 
-	public static final Position[] RABBIT_HOLES = { new Position(0, 0), new Position(0, 4), new Position(2, 2),
-			new Position(4, 0), new Position(4, 4) };
+	public static final Position[] RABBIT_HOLES = { new Position(0, 0), new Position(0, 4), new Position(2, 2), new Position(4, 0), new Position(4, 4) };
 
 }

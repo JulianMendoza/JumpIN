@@ -2,8 +2,8 @@
 package jumpin.model.util;
 
 import jumpin.model.board.Board;
-import jumpin.model.board.RabbitHole;
-import jumpin.model.board.Tile;
+import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
 import jumpin.model.move.FoxMove;

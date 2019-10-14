@@ -4,12 +4,17 @@ package jumpin.model.constants;
  * Enumeration for representing the (orientation) directions that foxes may move in
  * 
  * @author Giuseppe
- *
  */
 public enum Orientation {
 
 	NORTH_SOUTH, EAST_WEST, STATIC, DYNAMIC;
-
+	
+	/**
+	 * Checks if the specified direction the foxes move in is valid
+	 * 
+	 * @param direction direction the fox may move in
+	 * @return true if it is dynamic, east-west, or north-south, otherwise false
+	 */
 	public boolean isValidDirection(Direction direction) {
 		switch (this) {
 		case DYNAMIC:

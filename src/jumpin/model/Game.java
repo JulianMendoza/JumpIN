@@ -21,13 +21,15 @@ import jumpin.model.util.Position;
  * A class that constructs the game
  * 
  * @author Giuseppe
- *
  */
 public class Game {
 
 	private Board board;
 	private GameState gameState;
-
+	
+	/**
+	 * Default constructor for the Game
+	 */
 	public Game() {
 		board = new Board();
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -52,7 +54,16 @@ public class Game {
 		gameState = new GameState(3, "IN_PROGRESS");
 		board.addListener(gameState);
 	}
-
+	
+	/**
+	 * Moves a piece to a specified position if it is valid
+	 * 
+	 * @param pos		position of where to move the piece to
+	 * @param direction	orientation of the piece
+	 * @param distance	distance of the Fox piece move
+	 * @throws NoPieceException		if there is no piece to move at the specified position
+	 * @throws IllegalMoveException	if the board does not allow for the move
+	 */
 	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException {
 		Piece piece = board.selectPiece(pos);
 
@@ -96,6 +107,10 @@ public class Game {
 		return this.gameState.getState();
 	}
 
+	/**
+	 * Generates string representation of the game's state and board
+	 * @return string of game state and board
+	 */
 	public String toString() {
 		return gameState.toString() + board.toString();
 	}

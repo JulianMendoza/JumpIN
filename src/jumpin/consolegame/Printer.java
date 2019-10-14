@@ -6,17 +6,22 @@ import jumpin.consolegame.command.CommandHelper;
  * A class for printing all the console messages 
  * 
  * @author Giuseppe
- *
  */
 public class Printer {
-
+	/**
+	 * Game message prefix
+	 */
 	private static final String PREFIX = "JumpIN: ";	
 	
+	/**
+	 * Help message prefix
+	 */
 	private static final String HELP = "Here are the list of other commands:";
 	
 	/**
 	 * Prints a message to error stream with prefix
-	 * @param s
+	 * 
+	 * @param s	the message
 	 */
 	public static void printError(String s) {
 		System.err.println(PREFIX + s);
@@ -24,7 +29,8 @@ public class Printer {
 
 	/**
 	 * Prints a message to print stream with prefix
-	 * @param s
+	 * 
+	 * @param s	the message
 	 */
 	public static void print(String s) {
 		System.out.println(PREFIX + s);
@@ -32,7 +38,7 @@ public class Printer {
 
 	/**
 	 * Prints the board
-	 * @param board
+	 * @param board	string representation of the board
 	 */
 	public static void printBoard(String board) {
 		print("Here's the board!\n" + board);
@@ -40,7 +46,7 @@ public class Printer {
 
 	/**
 	 * Prints the welcome messages
-	 * @param board
+	 * @param board	string representation of the board
 	 */
 	public static void printWelcome(String board) {
 		print("Welcome to JumpIN!");
@@ -51,7 +57,7 @@ public class Printer {
 	
 	/**
 	 * Prints the help messages for each command
-	 * @param commands (CommandHelper)
+	 * @param commands string array of every command
 	 */
 	public static void printHelp(String[] commands) {
 		StringBuilder help = new StringBuilder(HELP);
@@ -63,7 +69,7 @@ public class Printer {
 	
 	/**
 	 * Prints a help message for the command
-	 * @param help
+	 * @param help	the help message
 	 */
 	public static void printHelpCommand(String help) {
 		print("Have you tried " + help);

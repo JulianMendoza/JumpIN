@@ -5,8 +5,8 @@ import jumpin.consolegame.exception.InvalidCommandException;
 
 /**
  * Command implementation for "Exit"
+ * 
  * @author Giuseppe
- *
  */
 public class Exit implements Command {
 	
@@ -14,8 +14,9 @@ public class Exit implements Command {
 	 * Constructor for Exit command
 	 * <p>
 	 * Parses the command
-	 * @param command
-	 * @throws InvalidCommandException
+	 * 
+	 * @param command	command to parse
+	 * @throws InvalidCommandException	if the specified command is not valid
 	 */
 	public Exit(String command) throws InvalidCommandException {
 		parse(command);

@@ -11,8 +11,8 @@ import jumpin.model.util.Position;
 
 /**
  * Command implementation for "Move"
+ * 
  * @author Giuseppe
- *
  */
 public class MoveCommand implements Command {
 	
@@ -25,6 +25,7 @@ public class MoveCommand implements Command {
 	 * Constructor for Move command
 	 * <p>
 	 * Parses the command
+	 * 
 	 * @param command
 	 * @param game - instance of the game this command is being parsed for
 	 * @throws InvalidCommandException

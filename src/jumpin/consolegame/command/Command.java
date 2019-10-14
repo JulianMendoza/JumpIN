@@ -7,10 +7,9 @@ import jumpin.exception.JumpINException;
  * Interface for all commands
  * 
  * @author Giuseppe
- *
  */
 public interface Command {
-
+	
 	public static final String EXIT = "exit";
 
 	public static final String MOVE = "move";
@@ -18,18 +17,17 @@ public interface Command {
 	public static final String HELP = "help";
 
 	/**
-	 * Method for parsing the a command
+	 * Parses the specified command
 	 * 
-	 * @param command
-	 * @throws InvalidCommandException
-	 * if parse fails
+	 * @param command command to parse
+	 * @throws InvalidCommandException	if the command is not valid
 	 */
 	public void parse(String command) throws InvalidCommandException;
 
 	/**
 	 * Method for executing the command
 	 * 
-	 * @throws JumpINException
+	 * @throws JumpINException if execution is unsuccessful
 	 */
 	public void execute() throws JumpINException;
 	

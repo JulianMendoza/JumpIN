@@ -30,7 +30,7 @@ public class ConsoleGame extends Game {
 	}
 
 	/**
-	 * Starts the game
+	 * Starts the game. Welcomes the player and continuously polls user commands.
 	 */
 	public void start() {
 		Printer.printWelcome(toString());
@@ -53,8 +53,8 @@ public class ConsoleGame extends Game {
 	/**
 	 * Attempts to parse the command
 	 * 
-	 * @param command
-	 * @return parsed command
+	 * @param command	command to parse
+	 * @return command that was parsed
 	 */
 	private Command parseCommand(String command) {
 		command = command.toLowerCase().trim();

@@ -2,6 +2,11 @@ package jumpin.consolegame.exception;
 
 import jumpin.exception.JumpINException;
 
+/**
+ * Exception for Invalid Commands
+ * @author Giuseppe
+ *
+ */
 public class InvalidCommandException extends JumpINException {
 
 	/**

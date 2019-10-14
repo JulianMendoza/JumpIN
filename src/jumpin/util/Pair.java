@@ -1,5 +1,12 @@
 package jumpin.util;
 
+/**
+ * Utility class for constructing a pair of type A and type B
+ * @author Giuseppe
+ *
+ * @param <A>
+ * @param <B>
+ */
 public class Pair<A, B> {
 	private A first;
 	private B second;

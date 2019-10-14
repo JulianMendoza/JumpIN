@@ -1,5 +1,12 @@
 package jumpin.model.constants;
 
+import java.text.ParseException;
+
+/**
+ * Enumeration for representing potential directions of pieces on the board
+ * @author Giuseppe
+ *
+ */
 public enum Direction {
 
 	NORTH, SOUTH, EAST, WEST;
@@ -30,7 +37,7 @@ public enum Direction {
 		}
 	}
 
-	public static Direction parseString(String direction) {
+	public static Direction parseString(String direction) throws ParseException {
 		switch (direction.toLowerCase()) {
 		case "north":
 		case "up":
@@ -45,7 +52,7 @@ public enum Direction {
 		case "right":
 			return EAST;
 		}
-		return null;
+		throw new ParseException("not a direction", 0);
 	}
 
 	public String toString() {

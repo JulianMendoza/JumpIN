@@ -1,7 +1,6 @@
 package jumpin.model.board;
 
 import jumpin.model.board.tile.RabbitHole;
-import jumpin.model.board.tile.RabbitHoleEvent;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.move.Move;
@@ -40,9 +39,9 @@ public class Board {
 	public void updateBoard(Move move) {
 		Piece movePiece = getTile(move.getOldPos()).getPiece();
 		if (getTile(move.getNewPos()) instanceof RabbitHole) {
-			this.notify(RabbitHoleEvent.ON);
+			this.notify(BoardModelEvent.ON_RABBIT_HOLE);
 		} else if (getTile(move.getOldPos()) instanceof RabbitHole) {
-			this.notify(RabbitHoleEvent.OFF);
+			this.notify(BoardModelEvent.OFF_RABBIT_HOLE);
 		}
 		assignPiece(move.getNewPos(), movePiece);
 		clearTile(move.getOldPos());

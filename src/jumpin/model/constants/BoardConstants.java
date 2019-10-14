@@ -2,6 +2,12 @@ package jumpin.model.constants;
 
 import jumpin.model.util.Position;
 
+/**
+ * Constants related to the game board
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BoardConstants {
 
 	public static final int HEIGHT = 5;

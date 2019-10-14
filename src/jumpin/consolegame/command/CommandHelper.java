@@ -1,5 +1,11 @@
 package jumpin.consolegame.command;
 
+/**
+ * Constants class for help messages
+ * 
+ * @author Giuseppe
+ *
+ */
 public class CommandHelper {
 
 	public static final String EXIT = "\"exit\"";

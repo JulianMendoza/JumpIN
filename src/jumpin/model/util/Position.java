@@ -1,7 +1,14 @@
 package jumpin.model.util;
 
+import java.text.ParseException;
+
 import jumpin.model.constants.Direction;
 
+/**
+ * A class for representing x and y positions on the board
+ * @author Giuseppe
+ *
+ */
 public class Position {
 
 	private int x;
@@ -90,22 +97,22 @@ public class Position {
 		return "(" + x + "," + y + ")";
 	}
 
-	public static Position parseString(String str) {
+	public static Position parseString(String str) throws ParseException {
 		if (str.startsWith("(") && str.endsWith(")")) {
 			str = str.replace("(", "").replace(")", "");
-		} else {
-			String[] points = str.split(",");
-			if (points.length == 2) {
-				try {
-					int x = Integer.parseInt(points[0]);
-					int y = Integer.parseInt(points[1]);
-					return new Position(x, y);
-				} catch (NumberFormatException e) {
-					return null;
-				}
-			}
-
 		}
-		return null;
+
+		String[] points = str.split(",");
+		if (points.length == 2) {
+			try {
+				int x = Integer.parseInt(points[0]);
+				int y = Integer.parseInt(points[1]);
+				return new Position(x, y);
+			} catch (NumberFormatException e) {
+				throw new ParseException("Not integers", 0);
+			}
+		}
+
+		throw new ParseException("Incorrect formatting", 0);
 	}
 }

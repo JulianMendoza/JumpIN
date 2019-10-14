@@ -6,8 +6,21 @@ import jumpin.consolegame.command.CommandHelper;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 
+/**
+ * Command implementation for "Help"
+ * @author Giuseppe
+ *
+ */
 public class Help implements Command {
 	
+	/**
+	 * Constructor for Help command
+	 * <p>
+	 * Parses the command
+	 * @param command
+	 * @throws InvalidCommandException
+	 * if parse fails
+	 */
 	public Help(String command) throws InvalidCommandException {
 		parse(command);
 	}

@@ -2,6 +2,11 @@ package jumpin.model.exception;
 
 import jumpin.exception.JumpINException;
 
+/**
+ * Exception for trying to select a tile with no piece
+ * @author Giuseppe
+ *
+ */
 public class NoPieceException extends JumpINException {
 
 	/**

@@ -16,6 +16,12 @@ import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.BoardUtilities;
 import jumpin.model.util.Position;
 
+/**
+ * A class that constructs the game
+ * 
+ * @author Giuseppe
+ *
+ */
 public class Game {
 
 	private Board board;

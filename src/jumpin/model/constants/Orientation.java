@@ -1,5 +1,11 @@
 package jumpin.model.constants;
 
+/**
+ * Enumeration for representing the (orientation) directions that foxes may move in
+ * 
+ * @author Giuseppe
+ *
+ */
 public enum Orientation {
 
 	NORTH_SOUTH, EAST_WEST, STATIC, DYNAMIC;

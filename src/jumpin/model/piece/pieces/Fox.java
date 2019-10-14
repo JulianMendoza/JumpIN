@@ -6,6 +6,11 @@ import jumpin.model.constants.PieceConstants;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
+/**
+ * A class for representing the fox piece
+ * @author Giuseppe
+ *
+ */
 public class Fox extends Piece implements UniquePiece {
 
 	private String pieceID;

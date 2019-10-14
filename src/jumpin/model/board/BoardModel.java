@@ -6,6 +6,7 @@ import java.util.List;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.piece.Piece;
 /**
+ * Model of the Tiles on the board and its listeners
  * 
  * @author Giuseppe, Julian
  *

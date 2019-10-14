@@ -1,5 +1,11 @@
 package jumpin.model.constants;
 
+/**
+ * Constants related to pieces
+ * 
+ * @author Giuseppe
+ *
+ */
 public class PieceConstants {
 
 	public static final String RABBIT = "Rabbit";

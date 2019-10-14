@@ -8,6 +8,11 @@ import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.pieces.Fox;
 
+/**
+ * A class with knowledge of the logic of various pieces on the board
+ * @author Giuseppe
+ *
+ */
 public class PieceLogic {
 
 	/**

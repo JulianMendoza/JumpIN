@@ -3,6 +3,11 @@ package jumpin.model.board.tile;
 import jumpin.model.constants.PieceConstants;
 import jumpin.model.piece.Piece;
 
+/**
+ * Parent class for all tiles on the board
+ * @author Giuseppe
+ *
+ */
 public class Tile {
 
 	private Piece piece;

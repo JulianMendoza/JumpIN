@@ -5,6 +5,11 @@ import jumpin.model.constants.PieceConstants;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
+/**
+ * A class for representing the rabbit piece
+ * @author Giuseppe
+ *
+ */
 public class Rabbit extends Piece implements UniquePiece {
 
 	private String pieceID;

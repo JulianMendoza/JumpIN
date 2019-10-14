@@ -1,7 +1,7 @@
 package jumpin.model;
 
+import jumpin.model.board.BoardModelEvent;
 import jumpin.model.board.BoardModelListener;
-import jumpin.model.board.tile.RabbitHoleEvent;
 
 /**
  * Knowledge of the number of rabbits left and the current state of the game.
@@ -20,7 +20,7 @@ public class GameState implements BoardModelListener {
 
 	@Override
 	public void update(int event) {
-		if (event == RabbitHoleEvent.ON) {
+		if (event == BoardModelEvent.ON_RABBIT_HOLE) {
 			rabbitsToWin--;
 		} else {
 			rabbitsToWin++;

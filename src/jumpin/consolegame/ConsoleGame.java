@@ -11,18 +11,30 @@ import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
 
+/**
+ * A class for creating a console game
+ * 
+ * @author Giuseppe
+ *
+ */
 public class ConsoleGame extends Game {
 
 	private Scanner scanner;
 
+	/**
+	 * Constructs a Console Game
+	 */
 	public ConsoleGame() {
 		super();
 		scanner = new Scanner(System.in);
 	}
 
+	/**
+	 * Starts the game
+	 */
 	public void start() {
 		Printer.printWelcome(toString());
-		while (true) {
+		while (true) { //Continuously parses commands
 			if (scanner.hasNext()) {
 				Command command = parseCommand(scanner.nextLine());
 				if (command != null) {
@@ -38,6 +50,12 @@ public class ConsoleGame extends Game {
 		}
 	}
 
+	/**
+	 * Attempts to parse the command
+	 * 
+	 * @param command
+	 * @return parsed command
+	 */
 	private Command parseCommand(String command) {
 		command = command.toLowerCase().trim();
 		if (command.startsWith(Command.MOVE)) {

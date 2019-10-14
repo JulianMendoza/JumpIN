@@ -12,6 +12,7 @@ import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.BoardUtilities;
 import jumpin.model.util.Position;
@@ -32,10 +33,23 @@ public class Game {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
+		Mushroom mushroom= new Mushroom();
+		Mushroom mushroom2= new Mushroom();
+		Fox foxb = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
+		Fox foxb2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
+		Rabbit rabbit2 = new Rabbit(PieceConstants.RABBIT_ID_2);
+		Rabbit rabbit3 = new Rabbit(PieceConstants.RABBIT_ID_3);
 		board.assignPiece(new Position(1, 0), fox2);
 		board.assignPiece(new Position(1, 1), fox);
 		board.assignPiece(new Position(3, 0), rabbit);
-		gameState = new GameState(1, "IN_PROGRESS");
+		board.assignPiece(new Position(3, 1), mushroom);
+		board.assignPiece(new Position(4, 3), foxb2);
+		board.assignPiece(new Position(3, 3), foxb);
+		board.assignPiece(new Position(2, 4), mushroom2);
+		board.assignPiece(new Position(1, 4), rabbit2);
+		board.assignPiece(new Position(4, 2), rabbit3);
+		
+		gameState = new GameState(3, "IN_PROGRESS");
 		board.addListener(gameState);
 	}
 
@@ -77,6 +91,9 @@ public class Game {
 			board.updateBoard(move.getFirst());
 			board.updateBoard(move.getSecond());
 		}
+	}
+	public String getGameState() {
+		return this.gameState.getState();
 	}
 
 	public String toString() {

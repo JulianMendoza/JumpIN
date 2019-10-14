@@ -5,9 +5,7 @@ import jumpin.model.constants.Orientation;
 
 /**
  * 
- * @author Giuseppe Papalia
- * @version text
- * @since 07/10/19
+ * @author Giuseppe 
  * 
  */
 public class Piece {

@@ -42,6 +42,10 @@ public class ConsoleGame extends Game {
 						command.execute();
 						Printer.print("Successful move!");
 						Printer.printBoard(toString());
+						if(this.getGameState().equals("YOU WON!")) {
+							System.out.println("--------------END OF GAME--------------");
+							System.exit(0);
+						}
 					} catch (JumpINException e) {
 						Printer.printError(e.getMessage());
 					}

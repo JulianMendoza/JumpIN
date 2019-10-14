@@ -10,7 +10,7 @@ import jumpin.model.piece.pieces.Fox;
 
 /**
  * A class with knowledge of the logic of various pieces on the board
- * @author Giuseppe
+ * @author Giuseppe, Julian
  *
  */
 public class PieceLogic {
@@ -49,7 +49,7 @@ public class PieceLogic {
 		Position currentPos = board.getSelectedPosition();
 		
 		/*
-		 * Comment each condition in while loop
+		 * 
 		 */
 		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
@@ -81,6 +81,9 @@ public class PieceLogic {
 		}
 		while (BoardUtilities.isValidPosition(currentPos)) {
 			currentPos = currentPos.nextPosition(direction);
+			if(!BoardUtilities.isValidPosition(currentPos)) { //edge conditions
+				break;
+			}
 			if (board.getTile(currentPos).isEmpty()) { // we found an empty tile on the board
 				return new Move(selectedPosition, currentPos);
 			}

@@ -17,6 +17,10 @@ public class GameState implements BoardModelListener {
 		this.rabbitsToWin = rabbitsToWin;
 		this.gameState = gameState;
 	}
+	
+	public String getState() {
+		return this.gameState;
+	}
 
 	@Override
 	public void update(int event) {
@@ -33,8 +37,8 @@ public class GameState implements BoardModelListener {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		str.append("Current # of rabbits on the board:" + rabbitsToWin + "\n");
-		str.append("Current state of the game:" + gameState + "\n");
+		str.append("Current # of rabbits on the board: " + rabbitsToWin + "\n");
+		str.append("Current state of the game: " + gameState + "\n");
 		return str.toString();
 	}
 }

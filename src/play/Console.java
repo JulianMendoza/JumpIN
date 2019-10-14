@@ -1,4 +1,4 @@
-package jumpin.play;
+package play;
 
 import jumpin.consolegame.ConsoleGame;
 import jumpin.model.exception.IllegalMoveException;

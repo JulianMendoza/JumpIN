@@ -93,6 +93,7 @@ public class Position {
 	public static Position parseString(String str) {
 		if (str.startsWith("(") && str.endsWith(")")) {
 			str = str.replace("(", "").replace(")", "");
+		} else {
 			String[] points = str.split(",");
 			if (points.length == 2) {
 				try {
@@ -103,9 +104,8 @@ public class Position {
 					return null;
 				}
 			}
-			return null;
+
 		}
 		return null;
 	}
-
 }

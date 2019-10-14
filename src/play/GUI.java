@@ -1,4 +1,4 @@
-package jumpin.play;
+package play;
 
 public class GUI {
 

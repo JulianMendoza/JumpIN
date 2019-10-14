@@ -3,15 +3,15 @@ package jumpin.consolegame;
 import java.util.Scanner;
 
 import jumpin.consolegame.command.Command;
+import jumpin.consolegame.command.CommandHelper;
 import jumpin.consolegame.command.commands.Exit;
+import jumpin.consolegame.command.commands.Help;
 import jumpin.consolegame.command.commands.MoveCommand;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.Game;
 
 public class ConsoleGame extends Game {
-
-	private final String PREFIX = "JumpIN: ";
 
 	private Scanner scanner;
 
@@ -21,17 +21,17 @@ public class ConsoleGame extends Game {
 	}
 
 	public void start() {
-		printWelcome();
+		Printer.printWelcome(toString());
 		while (true) {
 			if (scanner.hasNext()) {
 				Command command = parseCommand(scanner.nextLine());
 				if (command != null) {
 					try {
 						command.execute();
-						print("Successful move!");
-						printBoard();
+						Printer.print("Successful move!");
+						Printer.printBoard(toString());
 					} catch (JumpINException e) {
-						printError(e.getMessage());
+						Printer.printError(e.getMessage());
 					}
 				}
 			}
@@ -44,39 +44,28 @@ public class ConsoleGame extends Game {
 			try {
 				return new MoveCommand(command, this);
 			} catch (InvalidCommandException e) {
-				printError(e.getMessage());
-				print("Have you tried \"move (x,y) direction\"");
+				Printer.printError(e.getMessage());
+				Printer.printHelpCommand(CommandHelper.MOVE);
 			}
 		} else if (command.startsWith(Command.EXIT)) {
 			try {
 				return new Exit(command);
 			} catch (InvalidCommandException e) {
-				printError(e.getMessage());
-				print("Have you tried \"exit\"");
+				Printer.printError(e.getMessage());
+				Printer.printHelpCommand(CommandHelper.EXIT);
+			}
+		} else if (command.startsWith(Command.HELP)) {
+			try {
+				return new Help(command);
+			} catch (InvalidCommandException e) {
+				Printer.printError(e.getMessage());
+				Printer.printHelpCommand(CommandHelper.HELP);
 			}
 		} else {
-			printError("Invalid command");
-			print("Have you tried \"move (x,y) direction\" or \"exit\"");
+			Printer.printError("Invalid command");
+			Printer.printHelpCommand(CommandHelper.HELP);
 		}
 		return null;
-	}
-
-	private void printError(String s) {
-		System.err.println(PREFIX + s);
-	}
-
-	private void print(String s) {
-		System.out.println(PREFIX + s);
-	}
-
-	private void printBoard() {
-		print("Here's the board!\n" + toString());
-	}
-
-	private void printWelcome() {
-		print("Welcome to JumpIN!");
-		printBoard();
-		print("Try \"move (x,y) direction\"");
 	}
 
 }

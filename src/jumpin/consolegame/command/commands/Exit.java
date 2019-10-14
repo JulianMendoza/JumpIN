@@ -4,7 +4,7 @@ import jumpin.consolegame.command.Command;
 import jumpin.consolegame.exception.InvalidCommandException;
 
 public class Exit implements Command {
-
+	
 	public Exit(String command) throws InvalidCommandException {
 		parse(command);
 	}
@@ -20,5 +20,6 @@ public class Exit implements Command {
 	public void execute() {
 		System.exit(0);
 	}
+
 
 }

@@ -8,14 +8,14 @@ import jumpin.model.constants.Direction;
 import jumpin.model.util.Position;
 
 public class MoveCommand implements Command {
-
+	
 	private Direction direction;
 	private Position position;
-	private int tilesMoved;
+	private int distance;
 	private Game game;
 
 	public MoveCommand(String command, Game game) throws InvalidCommandException {
-		tilesMoved = -1;
+		distance = -1;
 		parse(command);
 		this.game = game;
 	}
@@ -40,7 +40,7 @@ public class MoveCommand implements Command {
 		
 		if(args.length == 4) {
 			try {
-				tilesMoved = Integer.parseInt(args[3]);
+				distance = Integer.parseInt(args[3]);
 			} catch(NumberFormatException e) {
 				throw new InvalidCommandException("Invalid move value for move command");
 			}
@@ -50,7 +50,8 @@ public class MoveCommand implements Command {
 
 	@Override
 	public void execute() throws JumpINException {
-		game.movePiece(position, direction, tilesMoved);
+		game.movePiece(position, direction, distance);
 	}
+
 
 }

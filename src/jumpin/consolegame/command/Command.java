@@ -15,9 +15,11 @@ public interface Command {
 	public static final String EXIT = "exit";
 
 	public static final String MOVE = "move";
+	
+	public static final String HELP = "help";
 
 	public void parse(String command) throws InvalidCommandException;
 
 	public void execute() throws JumpINException;
-
+	
 }

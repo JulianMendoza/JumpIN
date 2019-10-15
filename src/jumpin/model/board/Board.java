@@ -11,7 +11,7 @@ import jumpin.model.util.Position;
 /**
  * A class that gets and mutates attributes of the game board
  * 
- * @author Giuseppe, Julian
+ * @author Giuseppe
  */
 public class Board {
 

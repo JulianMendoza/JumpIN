@@ -9,9 +9,9 @@ package jumpin.model.piece;
 public interface UniquePiece {
 
 	/**
-	 * method for getting piece id
+	 * method for getting piece ID
 	 * 
-	 * @return piece id
+	 * @return piece ID
 	 */
 	public String getPieceID();
 

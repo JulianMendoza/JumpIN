@@ -10,15 +10,17 @@ import jumpin.model.constants.Direction;
  *
  */
 public class Position {
-
+	/**
+	 * 
+	 */
 	private int x;
 	private int y;
 
 	/**
 	 * Indexed from 0-5
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x position x of the board starting from the left
+	 * @param y position y of the board starting from the top
 	 */
 	public Position(int x, int y) {
 		this.x = x;
@@ -32,7 +34,11 @@ public class Position {
 	public int getY() {
 		return y;
 	}
-
+	/**
+	 * 
+	 * @param direction The direction of the piece
+	 * @return The position of the next position based on the piece's orientation.
+	 */
 	public Position nextPosition(Direction direction) {
 		int x = this.x;
 		int y = this.y;
@@ -55,8 +61,8 @@ public class Position {
 	/**
 	 * Traverse backwards (If the direction is East move the position West)
 	 * 
-	 * @param direction
-	 * @return
+	 * @param direction The direction of the piece
+	 * @return The position of the previous position based on the piece's orientation.
 	 */
 	public Position prevPosition(Direction direction) {
 		int x = this.x;
@@ -96,7 +102,13 @@ public class Position {
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
-
+	/**
+	 *
+	 * String parser that allows coordinates with or without brackets.
+	 * @param str Input string of the user. 
+	 * @return A position of the parsed string
+	 * @throws ParseException If the user did not use integers
+	 */
 	public static Position parseString(String str) throws ParseException {
 		if (str.startsWith("(") && str.endsWith(")")) {
 			str = str.replace("(", "").replace(")", "");

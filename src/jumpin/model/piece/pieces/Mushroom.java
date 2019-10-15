@@ -11,10 +11,18 @@ import jumpin.model.piece.Piece;
  */
 public class Mushroom extends Piece {
 
+	/**
+	 * Constructs a mushroom piece that has a static orientation
+	 */
 	public Mushroom() {
 		super(Orientation.STATIC);
 	}
 
+	/**
+	 * method to return PieceConstant for mushroom
+	 * 
+	 * @return string constant for mushroom
+	 */
 	public String toString() {
 		return PieceConstants.MUSHROOM;
 	}

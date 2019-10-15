@@ -18,7 +18,7 @@ public class Piece {
 	/**
 	 * Default constructor of a Piece
 	 * 
-	 * @param orientation
+	 * @param orientation Direction in which a piece can move
 	 */
 	public Piece(Orientation orientation) {
 		this.orientation = orientation;

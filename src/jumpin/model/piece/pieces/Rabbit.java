@@ -14,15 +14,30 @@ public class Rabbit extends Piece implements UniquePiece {
 
 	private String pieceID;
 
+	/**
+	 * Constructs rabbit piece
+	 * 
+	 * @param pieceID String representation of rabbit piece number
+	 */
 	public Rabbit(String pieceID) {
 		super(Orientation.DYNAMIC);
 		this.pieceID = pieceID;
 	}
 
+	/**
+	 * method to return string representation of rabbit piece
+	 * 
+	 * @return string constant for rabbit piece
+	 */
 	public String toString() {
 		return PieceConstants.RABBIT;
 	}
 
+	/**
+	 * method to return string representation of rabbit piece ID
+	 * 
+	 * @return ID for a rabbit piece
+	 */
 	@Override
 	public String getPieceID() {
 		return pieceID;

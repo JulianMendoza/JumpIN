@@ -18,6 +18,11 @@ import jumpin.model.move.Move;
  */
 public class BoardUtilities {
 
+	/**
+	 * method to create visual representation of game board
+	 * 
+	 * @return text representation of board
+	 */
 	public static Tile[][] createDefaultBoardModel() {
 		int height = BoardConstants.HEIGHT;
 		int width = BoardConstants.WIDTH;
@@ -39,8 +44,8 @@ public class BoardUtilities {
 	 * Only east and south are considered positive directions when north west is
 	 * (0,0)
 	 *
-	 * @param direction
-	 * @return
+	 * @param direction Direction of travel
+	 * @return True if direction is east and south otherwise false
 	 */
 	public static boolean isPositive(Direction direction) {
 		switch (direction) {
@@ -52,6 +57,13 @@ public class BoardUtilities {
 		}
 	}
 
+	/**
+	 * method to check if direction of travel
+	 * 
+	 * @param direction Direction a piece travels in
+	 * @param pos Position of a piece
+	 * @return True if direction of travel is valid otherwise false
+	 */
 	public static boolean allowsDirection(Direction direction, Position pos) {
 		int minPos = BoardConstants.MIN_POS;
 		int maxPos = BoardConstants.MAX_POS;

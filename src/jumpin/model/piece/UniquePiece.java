@@ -8,6 +8,11 @@ package jumpin.model.piece;
  */
 public interface UniquePiece {
 
+	/**
+	 * method for getting piece id
+	 * 
+	 * @return piece id
+	 */
 	public String getPieceID();
 
 }

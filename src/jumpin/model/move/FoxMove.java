@@ -10,6 +10,12 @@ import jumpin.util.Pair;
  */
 public class FoxMove extends Pair<Move, Move>{
 
+	/**
+	 * Constructs a FoxMove using 2 moves for head and tail
+	 * 
+	 * @param first Head of fox
+	 * @param second Tail of fox
+	 */
 	public FoxMove(Move first, Move second) {
 		super(first, second);
 	}

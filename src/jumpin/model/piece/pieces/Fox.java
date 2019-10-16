@@ -17,11 +17,11 @@ public class Fox extends Piece implements UniquePiece {
 	private FoxPart part;
 
 	/**
-	 * Constructs a fox piece 
+	 * Constructs a Fox piece 
 	 * 
-	 * @param part Represents the different parts of a fox
-	 * @param orientation Direction that a fox can move
-	 * @param pieceID String representation of fox piece number
+	 * @param part Represents the different parts of a Fox
+	 * @param orientation Direction that a Fox can move
+	 * @param pieceID String representation of Fox piece number
 	 */
 	public Fox(FoxPart part, Orientation orientation, String pieceID) {
 		super(orientation);
@@ -30,16 +30,16 @@ public class Fox extends Piece implements UniquePiece {
 	}
 
 	/**
-	 * method for getting part for fox piece
+	 * method for getting part for Fox piece
 	 * 
-	 * @return parts of fox piece
+	 * @return parts of Fox piece
 	 */
 	public FoxPart getPart() {
 		return part;
 	}
 
 	/**
-	 * method for getting fox piece id
+	 * method for getting Fox piece id
 	 * 
 	 * @return fox ID number
 	 */
@@ -49,10 +49,10 @@ public class Fox extends Piece implements UniquePiece {
 	}
 
 	/**
-	 * method to check if fox piece
+	 * method to check if Fox piece corresponds to head or to tail
 	 * 
 	 * @param piece 
-	 * @return true if fox piece is the same
+	 * @return true if Fox piece is the same
 	 */
 	public boolean isSameFox(Piece piece) {
 		if (piece instanceof Fox) {
@@ -63,9 +63,9 @@ public class Fox extends Piece implements UniquePiece {
 	}
 
 	/**
-	 * method to return PieceConstant for fox
+	 * method to return PieceConstant for Fox
 	 * 
-	 * @return string constant of fox
+	 * @return string constant of Fox
 	 */
 	public String toString() {
 		return PieceConstants.FOX;

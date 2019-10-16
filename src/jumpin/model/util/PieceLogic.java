@@ -17,10 +17,10 @@ public class PieceLogic {
 
 	/**
 	 * 
-	 * @param board
-	 * @param pos
-	 * @param direction
-	 * @return
+	 * @param board Board object
+	 * @param direction Direction of Fox Movement
+	 * @param distance Distance of fox movement
+	 * @return The movement of the fox
 	 */
 	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
 		Fox fox = (Fox) board.getSelectedPiece();
@@ -45,12 +45,17 @@ public class PieceLogic {
 		return slideFox(board, direction, distance); // direction facing piece of fox is already selected
 	}
 
+	/**
+	 * method to determine if fox can slide x number of distance in a direction
+	 * 
+	 * @param board Board object
+	 * @param direction 
+	 * @param distance
+	 * @return
+	 */
 	private static FoxMove slideFox(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
 		
-		/*
-		 * 
-		 */
 		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
@@ -63,15 +68,12 @@ public class PieceLogic {
 		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
 	}
 	
-	
-
 	/**
-	 * Returns pos if no move
+	 * method to get the movement of Rabbit
 	 * 
-	 * @param board
-	 * @param pos
-	 * @param direction
-	 * @return
+	 * @param board Object of Board
+	 * @param direction Direction of Rabbit movement
+	 * @return The movement of Rabbit on Board
 	 */
 	public static Move findRabbitMove(Board board, Direction direction) {
 		Position selectedPosition = board.getSelectedPosition();

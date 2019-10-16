@@ -17,7 +17,7 @@ public class Rabbit extends Piece implements UniquePiece {
 	/**
 	 * Constructs rabbit piece
 	 * 
-	 * @param pieceID String representation of rabbit piece number
+	 * @param pieceID String representation of Rabbit piece number
 	 */
 	public Rabbit(String pieceID) {
 		super(Orientation.DYNAMIC);
@@ -27,14 +27,14 @@ public class Rabbit extends Piece implements UniquePiece {
 	/**
 	 * method to return string representation of rabbit piece
 	 * 
-	 * @return string constant for rabbit piece
+	 * @return string constant for Rabbit piece
 	 */
 	public String toString() {
 		return PieceConstants.RABBIT;
 	}
 
 	/**
-	 * method to return string representation of rabbit piece ID
+	 * method to return string representation of Rabbit piece ID
 	 * 
 	 * @return ID for a rabbit piece
 	 */
@@ -43,6 +43,12 @@ public class Rabbit extends Piece implements UniquePiece {
 		return pieceID;
 	}
 
+	/**
+	 * method to compare two objects of type Rabbit
+	 * 
+	 * @param o Object
+	 * @return True if instance of rabbit is equal to an object of Rabbit otherwise false
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {

@@ -10,6 +10,7 @@ import jumpin.model.piece.pieces.Fox;
 
 /**
  * A class with knowledge of the logic of various pieces on the board
+ * 
  * @author Giuseppe, Julian
  *
  */
@@ -17,25 +18,27 @@ public class PieceLogic {
 
 	/**
 	 * 
-	 * @param board Board object
+	 * @param board     Board object
 	 * @param direction Direction of Fox Movement
-	 * @param distance Distance of fox movement
+	 * @param distance  Distance of fox movement
 	 * @return The movement of the fox
 	 */
 	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
 		Fox fox = (Fox) board.getSelectedPiece();
-
+		
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
-		Tile currentTile = board.getTile(currentPos);
-		/*
-		 * Remove this if statement if foxes can block holes
-		 */
-		if (board.getTile(currentPos) instanceof RabbitHole) {
+		
+		//Can't slide fox off the board or into rabbit hole
+		if(!board.isValidPosition(currentPos) || board.getTile(currentPos) instanceof RabbitHole) {
 			return null;
 		}
+		
+		Tile currentTile = board.getTile(currentPos);
+		
 		if (!currentTile.isEmpty()) {
 			if (fox.isSameFox(currentTile.getPiece())) {
-				board.selectPiece(currentPos); // set the board to select the direction facing piece of the fox
+				// set the board to select the direction facing piece of the fox
+				board.selectPiece(currentTile.getPiece(), currentPos);
 				return slideFox(board, direction, distance);
 			} else {
 				return null;
@@ -48,30 +51,33 @@ public class PieceLogic {
 	/**
 	 * method to determine if fox can slide x number of distance in a direction
 	 * 
-	 * @param board Board object
-	 * @param direction 
+	 * @param board     Board object
+	 * @param direction
 	 * @param distance
 	 * @return
 	 */
 	private static FoxMove slideFox(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
-		
-		while (BoardUtilities.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
+
+		while (board.isValidPosition(currentPos.nextPosition(direction))
+				&& board.getTile(currentPos.nextPosition(direction)).isEmpty()
+				&& !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
 		}
-		
-		if(distance != 0) { 
+
+		if (distance != 0) { // if the fox moved anything other than its total distance
 			return null;
 		}
-		
-		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
+
+		return new FoxMove(new Move(board.getSelectedPosition(), currentPos),
+				new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
 	}
-	
+
 	/**
 	 * method to get the movement of Rabbit
 	 * 
-	 * @param board Object of Board
+	 * @param board     Object of Board
 	 * @param direction Direction of Rabbit movement
 	 * @return The movement of Rabbit on Board
 	 */
@@ -81,12 +87,11 @@ public class PieceLogic {
 		if (board.getTile(currentPos).isEmpty()) { // nothing for rabbit to jump over
 			return null;
 		}
-		while (BoardUtilities.isValidPosition(currentPos)) {
+		while (board.isValidPosition(currentPos)) {
 			currentPos = currentPos.nextPosition(direction);
-			if(!BoardUtilities.isValidPosition(currentPos)) { //edge conditions
+			if (!board.isValidPosition(currentPos)) { // edge conditions
 				break;
-			}
-			if (board.getTile(currentPos).isEmpty()) { // we found an empty tile on the board
+			} else if (board.getTile(currentPos).isEmpty()) { // we found an empty tile on the board
 				return new Move(selectedPosition, currentPos);
 			}
 		}

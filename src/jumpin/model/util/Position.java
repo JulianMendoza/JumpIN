@@ -120,10 +120,6 @@ public class Position {
 				int x = Integer.parseInt(points[0]);
 				int y = Integer.parseInt(points[1]);
 				
-				if(x > 4 || y > 4) { //eliminates ArrayOutOfBoundsException
-					x = 0;
-					y = 0;
-				}
 				
 				return new Position(x, y);
 			} catch (NumberFormatException e) {

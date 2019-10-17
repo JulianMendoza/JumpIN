@@ -9,6 +9,7 @@ import jumpin.model.constants.PieceConstants;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
+import jumpin.model.exception.NoTileException;
 import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
@@ -64,9 +65,15 @@ public class Game {
 	 * @param distance	distance of the Fox piece move
 	 * @throws NoPieceException		if there is no piece to move at the specified position
 	 * @throws IllegalMoveException	if the board does not allow for the move
+	 * @throws NoTileException 
 	 */
-	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException {
-		Piece piece = board.selectPiece(pos);
+	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException, NoTileException {
+		Piece piece;
+		try {
+			piece = board.selectPiece(pos);
+		} catch (NoTileException e) { 
+			throw e;
+		}
 
 		// First check if a piece exists at a selected position
 		if (piece == null) {

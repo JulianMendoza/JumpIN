@@ -3,6 +3,7 @@ package jumpin.model.board;
 import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
+import jumpin.model.exception.NoTileException;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
 import jumpin.model.util.BoardUtilities;
@@ -37,11 +38,27 @@ public class Board {
 	 * 
 	 * @param pos	position of the piece
 	 * @return	piece in the specified position
+	 * @throws NoTileException 
 	 */
-	public Piece selectPiece(Position pos) {
+	public Piece selectPiece(Position pos) throws NoTileException {
+		Tile tile = model.getTile(pos.getX(), pos.getY());
+		if(tile == null) {
+			throw new NoTileException();
+		}
 		selectedPosition = pos;
-		selectedPiece = model.getTile(pos.getX(), pos.getY()).getPiece();
+		selectedPiece = tile.getPiece();
 		return selectedPiece;
+	}
+	
+	/**
+	 * Select the piece and position when they've already been found in another class
+	 * 
+	 * @param piece
+	 * @param pos
+	 */
+	public void selectPiece(Piece piece, Position pos) {
+		selectedPosition = pos;
+		selectedPiece = piece;
 	}
 	
 	/**
@@ -146,6 +163,10 @@ public class Board {
 			}
 		}
 		return str.toString();
+	}
+
+	public boolean isValidPosition(Position pos) {
+		return getTile(pos) != null;
 	}
 	
 	/**

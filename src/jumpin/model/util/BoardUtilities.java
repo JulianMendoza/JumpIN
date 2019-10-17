@@ -92,13 +92,13 @@ public class BoardUtilities {
 	 * @param pos Position to check 
 	 * @return True if position is valid otherwise false
 	 */
-	public static boolean isValidPosition(Position pos) {
-		int maxPos = BoardConstants.MAX_POS;
-		int minPos = BoardConstants.MIN_POS;
-		int x = pos.getX();
-		int y = pos.getY();
-		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
-	}
+//	public static boolean isValidPosition(Position pos) {
+//		int maxPos = BoardConstants.MAX_POS;
+//		int minPos = BoardConstants.MIN_POS;
+//		int x = pos.getX();
+//		int y = pos.getY();
+//		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
+//	}
 
 	/**
 	 * method to get the movement of Rabbit

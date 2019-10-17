@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jumpin.model.board.tile.Tile;
+import jumpin.model.exception.NoTileException;
 import jumpin.model.piece.Piece;
 
 /**
@@ -14,7 +15,7 @@ import jumpin.model.piece.Piece;
 public class BoardModel {
 	private List<BoardModelListener> listeners;
 	private Tile[][] model;
-	
+
 	/**
 	 * Constructs the board's model
 	 * 
@@ -24,7 +25,7 @@ public class BoardModel {
 		this.model = model;
 		listeners = new ArrayList<BoardModelListener>();
 	}
-	
+
 	/**
 	 * Gets the BoardModel listeners
 	 * 
@@ -33,7 +34,7 @@ public class BoardModel {
 	public List<BoardModelListener> getListeners() {
 		return listeners;
 	}
-	
+
 	/**
 	 * Add a BoardModel listener
 	 * 
@@ -42,28 +43,32 @@ public class BoardModel {
 	public void addListener(BoardModelListener l) {
 		listeners.add(l);
 	}
-	
+
 	/**
 	 * Gets the tile on the board at the specified position
 	 * 
-	 * @param x	x-coordinate of the tile
-	 * @param y	y-coordinate of the tile
-	 * @return	tile at specified position
+	 * @param x x-coordinate of the tile
+	 * @param y y-coordinate of the tile
+	 * @return tile at specified position
+	 * @throws NoTileException 
 	 */
-	public Tile getTile(int x, int y) {
-		return model[y][x];
+	public Tile getTile(int x, int y)  {
+		try {
+			return model[y][x];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return null;
+		}
 	}
-	
+
 	/**
 	 * Assigns a piece to the specified position on the board
 	 * 
-	 * @param x x-coordinate of position
-	 * @param y y-coordinate of position
+	 * @param x     x-coordinate of position
+	 * @param y     y-coordinate of position
 	 * @param piece the piece to be placed
 	 */
 	public void assignPiece(int x, int y, Piece piece) {
 		model[y][x].setPiece(piece);
 	}
-	
 
 }

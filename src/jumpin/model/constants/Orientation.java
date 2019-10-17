@@ -4,6 +4,7 @@ package jumpin.model.constants;
  * Enumeration for representing the (orientation) directions that foxes may move in
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public enum Orientation {
 

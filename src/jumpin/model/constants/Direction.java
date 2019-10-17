@@ -6,6 +6,7 @@ import java.text.ParseException;
  * Enumeration for representing potential directions of pieces on the board
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public enum Direction {
 

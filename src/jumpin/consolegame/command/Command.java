@@ -7,6 +7,7 @@ import jumpin.exception.JumpINException;
  * Interface for all commands
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public interface Command {
 	

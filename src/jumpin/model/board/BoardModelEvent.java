@@ -4,6 +4,7 @@ package jumpin.model.board;
  * Constants for identifying Board Model Events
  * 
  * @author Giuseppe, Julian
+ * @documentation Cameron Davis
  */
 public class BoardModelEvent {
 	/**

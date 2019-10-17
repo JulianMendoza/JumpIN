@@ -13,6 +13,7 @@ import jumpin.model.util.Position;
  * Command implementation for "Move"
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class MoveCommand implements Command {
 	

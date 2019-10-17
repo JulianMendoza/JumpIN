@@ -4,6 +4,7 @@ package jumpin.model.board;
  * Interface of the board model's listeners
  * 
  * @author Julian
+ * @documentation Cameron Davis
  */
 public interface BoardModelListener {
 	/**

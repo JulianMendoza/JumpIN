@@ -10,6 +10,7 @@ import jumpin.exception.JumpINException;
  * Command implementation for "Help"
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class Help implements Command {
 	

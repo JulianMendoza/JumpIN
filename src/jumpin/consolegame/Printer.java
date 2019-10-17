@@ -6,6 +6,7 @@ import jumpin.consolegame.command.CommandHelper;
  * A class for printing all the console messages 
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class Printer {
 	/**
@@ -38,6 +39,7 @@ public class Printer {
 
 	/**
 	 * Prints the board
+	 * 
 	 * @param board	string representation of the board
 	 */
 	public static void printBoard(String board) {
@@ -46,6 +48,7 @@ public class Printer {
 
 	/**
 	 * Prints the welcome messages
+	 * 
 	 * @param board	string representation of the board
 	 */
 	public static void printWelcome(String board) {
@@ -57,6 +60,7 @@ public class Printer {
 	
 	/**
 	 * Prints the help messages for each command
+	 * 
 	 * @param commands string array of every command
 	 */
 	public static void printHelp(String[] commands) {
@@ -69,6 +73,7 @@ public class Printer {
 	
 	/**
 	 * Prints a help message for the command
+	 * 
 	 * @param help	the help message
 	 */
 	public static void printHelpCommand(String help) {

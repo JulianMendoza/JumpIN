@@ -4,6 +4,7 @@ package jumpin.exception;
  * Parent Exception for all exceptions in JumpIN model
  * 
  * @author Giuseppe Papalia
+ * @Documentation Cameron Davis
  */
 public class JumpINException extends Exception {
 

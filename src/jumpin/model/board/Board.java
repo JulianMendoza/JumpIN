@@ -13,6 +13,7 @@ import jumpin.model.util.Position;
  * A class that gets and mutates attributes of the game board
  * 
  * @author Giuseppe, Julian
+ * @documentation Cameron
  */
 public class Board {
 
@@ -37,8 +38,8 @@ public class Board {
 	 * Gets the piece in the specified position
 	 * 
 	 * @param pos	position of the piece
-	 * @return	piece in the specified position
-	 * @throws NoTileException 
+	 * @return piece in the specified position
+	 * @throws NoTileException if the board model is given an invalid position
 	 */
 	public Piece selectPiece(Position pos) throws NoTileException {
 		Tile tile = model.getTile(pos.getX(), pos.getY());
@@ -53,8 +54,8 @@ public class Board {
 	/**
 	 * Select the piece and position when they've already been found in another class
 	 * 
-	 * @param piece
-	 * @param pos
+	 * @param piece the game piece
+	 * @param pos the position
 	 */
 	public void selectPiece(Piece piece, Position pos) {
 		selectedPosition = pos;
@@ -164,7 +165,13 @@ public class Board {
 		}
 		return str.toString();
 	}
-
+	
+	/**
+	 * Checks if the position on the Board is valid
+	 * 
+	 * @param pos the position on the Board
+	 * @return true if the tile at the position is not null, false otherwise
+	 */
 	public boolean isValidPosition(Position pos) {
 		return getTile(pos) != null;
 	}

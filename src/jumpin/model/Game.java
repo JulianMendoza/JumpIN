@@ -23,6 +23,7 @@ import jumpin.model.util.Position;
  * A class that constructs the game
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class Game {
 
@@ -65,7 +66,7 @@ public class Game {
 	 * @param distance	distance of the Fox piece move
 	 * @throws NoPieceException		if there is no piece to move at the specified position
 	 * @throws IllegalMoveException	if the board does not allow for the move
-	 * @throws NoTileException 
+	 * @throws NoTileException		if the board model is give an invalid position
 	 */
 	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException, NoTileException {
 		Piece piece;
@@ -111,12 +112,14 @@ public class Game {
 			board.updateBoard(move.getSecond());
 		}
 	}
+	
 	public GameState getGameState() {
 		return this.gameState;
 	}
 
 	/**
 	 * Generates string representation of the game's state and board
+	 * 
 	 * @return string of game state and board
 	 */
 	public String toString() {

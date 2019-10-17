@@ -8,10 +8,11 @@ import jumpin.model.constants.StateOfGame;
  * Knowledge of the number of rabbits left and the current state of the game.
  * 
  * @author Julian
+ * @documentation Cameron Davis
  */
 public class GameState implements BoardModelListener {
 	/**
-	 * number of rabbits left
+	 * Number of rabbits left
 	 */
 	private int rabbitsToWin;
 	private StateOfGame gameState;
@@ -26,10 +27,11 @@ public class GameState implements BoardModelListener {
 		this.rabbitsToWin = rabbitsToWin;
 		this.gameState = gameState;
 	}
+	
 	/**
-	 * Retrieves the string of the gameState
+	 * Gets the current game state
 	 * 
-	 * @return a string of the gameState
+	 * @return gameState
 	 */
 	public StateOfGame getState() {
 		return this.gameState;
@@ -39,7 +41,6 @@ public class GameState implements BoardModelListener {
 	 * Updates amount of rabbits left if they are on a hole or not and if none are 
 	 * left, the player has won the game.
 	 */
-
 	@Override
 	public void update(int event) {
 		if (event == BoardModelEvent.ON_RABBIT_HOLE) {

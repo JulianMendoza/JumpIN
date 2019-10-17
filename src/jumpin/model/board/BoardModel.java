@@ -11,6 +11,7 @@ import jumpin.model.piece.Piece;
  * Model of the Tiles on the board and its listeners
  * 
  * @author Giuseppe, Julian
+ * @documentation Cameron Davis
  */
 public class BoardModel {
 	private List<BoardModelListener> listeners;
@@ -50,7 +51,6 @@ public class BoardModel {
 	 * @param x x-coordinate of the tile
 	 * @param y y-coordinate of the tile
 	 * @return tile at specified position
-	 * @throws NoTileException 
 	 */
 	public Tile getTile(int x, int y)  {
 		try {

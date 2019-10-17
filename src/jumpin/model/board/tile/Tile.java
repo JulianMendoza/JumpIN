@@ -7,6 +7,7 @@ import jumpin.model.piece.Piece;
  * Parent class for all tiles on the board
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class Tile {
 	

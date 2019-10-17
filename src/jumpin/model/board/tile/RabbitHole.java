@@ -6,6 +6,7 @@ import jumpin.model.piece.pieces.Rabbit;
  * Child class for all rabbit holes on the board
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class RabbitHole extends Tile {
 	

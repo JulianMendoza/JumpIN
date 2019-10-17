@@ -7,6 +7,7 @@ import jumpin.consolegame.exception.InvalidCommandException;
  * Command implementation for "Exit"
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class Exit implements Command {
 	

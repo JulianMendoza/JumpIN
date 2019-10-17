@@ -6,6 +6,7 @@ import jumpin.exception.JumpINException;
  * Exception for Invalid Commands
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class InvalidCommandException extends JumpINException {
 

@@ -6,6 +6,7 @@ import jumpin.model.util.Position;
  * Constants related to the game board
  * 
  * @author Giuseppe
+ * @documentation Cameron Davis
  */
 public class BoardConstants {
 	

@@ -16,18 +16,18 @@ public class GameState implements BoardModelListener {
 	 */
 	private int rabbitsToWin;
 	private StateOfGame gameState;
-	
+
 	/**
 	 * Constructor for the game's state
 	 * 
-	 * @param rabbitsToWin	amount of rabbits left
-	 * @param gameState		current state of the game
+	 * @param rabbitsToWin amount of rabbits left
+	 * @param gameState    current state of the game
 	 */
 	public GameState(int rabbitsToWin, StateOfGame gameState) {
 		this.rabbitsToWin = rabbitsToWin;
 		this.gameState = gameState;
 	}
-	
+
 	/**
 	 * Gets the current game state
 	 * 
@@ -38,7 +38,7 @@ public class GameState implements BoardModelListener {
 	}
 
 	/**
-	 * Updates amount of rabbits left if they are on a hole or not and if none are 
+	 * Updates amount of rabbits left if they are on a hole or not and if none are
 	 * left, the player has won the game.
 	 */
 	@Override
@@ -52,7 +52,7 @@ public class GameState implements BoardModelListener {
 			gameState = StateOfGame.YOU_WON;
 		}
 	}
-	
+
 	/**
 	 * Prints the amount of rabbits left and the current state of the game
 	 */

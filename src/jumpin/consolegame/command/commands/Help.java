@@ -13,22 +13,22 @@ import jumpin.exception.JumpINException;
  * @documentation Cameron Davis
  */
 public class Help implements Command {
-	
+
 	/**
 	 * Constructor for Help command
 	 * <p>
 	 * Parses the command
 	 * 
-	 * @param command	command to parse
-	 * @throws InvalidCommandException	if the specified command is not valid
+	 * @param command command to parse
+	 * @throws InvalidCommandException if the specified command is not valid
 	 */
 	public Help(String command) throws InvalidCommandException {
 		parse(command);
 	}
-	
+
 	@Override
 	public void parse(String command) throws InvalidCommandException {
-		if(!command.equals(HELP)) {
+		if (!command.equals(HELP)) {
 			throw new InvalidCommandException("Invalid help command");
 		}
 	}
@@ -37,6 +37,5 @@ public class Help implements Command {
 	public void execute() throws JumpINException {
 		Printer.printHelp(CommandHelper.HELPER);
 	}
-
 
 }

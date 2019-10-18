@@ -10,18 +10,18 @@ import jumpin.exception.JumpINException;
  * @documentation Cameron Davis
  */
 public interface Command {
-	
+
 	public static final String EXIT = "exit";
 
 	public static final String MOVE = "move";
-	
+
 	public static final String HELP = "help";
 
 	/**
 	 * Parses the specified command
 	 * 
 	 * @param command command to parse
-	 * @throws InvalidCommandException	if the command is not valid
+	 * @throws InvalidCommandException if the command is not valid
 	 */
 	public void parse(String command) throws InvalidCommandException;
 
@@ -31,5 +31,5 @@ public interface Command {
 	 * @throws JumpINException if execution is unsuccessful
 	 */
 	public void execute() throws JumpINException;
-	
+
 }

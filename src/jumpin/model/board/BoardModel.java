@@ -52,7 +52,7 @@ public class BoardModel {
 	 * @param y y-coordinate of the tile
 	 * @return tile at specified position
 	 */
-	public Tile getTile(int x, int y)  {
+	public Tile getTile(int x, int y) {
 		try {
 			return model[y][x];
 		} catch (ArrayIndexOutOfBoundsException e) {

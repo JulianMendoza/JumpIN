@@ -6,6 +6,7 @@ import jumpin.model.constants.Direction;
 
 /**
  * A class for representing x and y positions on the board
+ * 
  * @author Giuseppe
  *
  */
@@ -34,6 +35,7 @@ public class Position {
 	public int getY() {
 		return y;
 	}
+
 	/**
 	 * 
 	 * @param direction The direction of the piece
@@ -62,7 +64,8 @@ public class Position {
 	 * Traverse backwards (If the direction is East move the position West)
 	 * 
 	 * @param direction The direction of the piece
-	 * @return The position of the previous position based on the piece's orientation.
+	 * @return The position of the previous position based on the piece's
+	 *         orientation.
 	 */
 	public Position prevPosition(Direction direction) {
 		int x = this.x;
@@ -102,10 +105,12 @@ public class Position {
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
+
 	/**
 	 *
 	 * String parser that allows coordinates with or without brackets.
-	 * @param str Input string of the user. 
+	 * 
+	 * @param str Input string of the user.
 	 * @return A position of the parsed string
 	 * @throws ParseException If the user did not use integers
 	 */
@@ -119,8 +124,7 @@ public class Position {
 			try {
 				int x = Integer.parseInt(points[0]);
 				int y = Integer.parseInt(points[1]);
-				
-				
+
 				return new Position(x, y);
 			} catch (NumberFormatException e) {
 				throw new ParseException("Not integers", 0);

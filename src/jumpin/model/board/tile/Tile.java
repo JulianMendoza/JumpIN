@@ -10,19 +10,19 @@ import jumpin.model.piece.Piece;
  * @documentation Cameron Davis
  */
 public class Tile {
-	
+
 	/**
 	 * The piece in this tile
 	 */
 	private Piece piece;
-	
+
 	/**
 	 * Clears the piece in this tile
 	 */
 	public void clear() {
 		piece = null;
 	}
-	
+
 	/**
 	 * Checks if the tile is empty
 	 * 
@@ -31,16 +31,16 @@ public class Tile {
 	public boolean isEmpty() {
 		return piece == null;
 	}
-	
+
 	/**
 	 * Gets the piece in this tile
 	 * 
-	 * @return	piece in this tile
+	 * @return piece in this tile
 	 */
 	public Piece getPiece() {
 		return piece;
 	}
-	
+
 	/**
 	 * Assigns a piece to this tile
 	 * 
@@ -49,7 +49,7 @@ public class Tile {
 	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
-	
+
 	/**
 	 * Generates string representation of this tile
 	 */

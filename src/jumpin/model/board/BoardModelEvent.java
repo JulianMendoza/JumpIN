@@ -11,7 +11,7 @@ public class BoardModelEvent {
 	 * event for rabbit not in a hole
 	 */
 	public static final int OFF_RABBIT_HOLE = 0;
-	
+
 	/**
 	 * event for rabbit in a hole
 	 */

@@ -9,11 +9,8 @@ import jumpin.exception.JumpINException;
  */
 public class NoTileException extends JumpINException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2356793417164924405L;
-	
+
 	/**
 	 * Construct a NoTileException message
 	 */

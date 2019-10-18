@@ -16,21 +16,20 @@ import jumpin.model.util.Position;
  * @documentation Cameron Davis
  */
 public class MoveCommand implements Command {
-	
+
 	private Direction direction;
 	private Position position;
 	private int distance;
 	private Game game;
-	
+
 	/**
 	 * Constructor for Move command
 	 * <p>
 	 * Parses the command
 	 * 
 	 * @param command
-	 * @param game - instance of the game this command is being parsed for
-	 * @throws InvalidCommandException
-	 * if parse fails
+	 * @param game    - instance of the game this command is being parsed for
+	 * @throws InvalidCommandException if parse fails
 	 */
 	public MoveCommand(String command, Game game) throws InvalidCommandException {
 		distance = -1;
@@ -41,7 +40,7 @@ public class MoveCommand implements Command {
 	@Override
 	public void parse(String command) throws InvalidCommandException {
 		String args[] = command.split(" ");
-		if (args.length < 3 || args.length > 4) { //3 or 4 arguments are valid for the move command
+		if (args.length < 3 || args.length > 4) { // 3 or 4 arguments are valid for the move command
 			throw new InvalidCommandException("Invalid number of args for move command");
 		}
 
@@ -56,11 +55,11 @@ public class MoveCommand implements Command {
 		} catch (ParseException e) {
 			throw new InvalidCommandException("Invalid direction (" + e.getMessage() + ") for move command");
 		}
-		
-		if(args.length == 4) {
+
+		if (args.length == 4) {
 			try {
 				distance = Integer.parseInt(args[3]);
-			} catch(NumberFormatException e) {
+			} catch (NumberFormatException e) {
 				throw new InvalidCommandException("Invalid move value for move command");
 			}
 		}
@@ -71,6 +70,5 @@ public class MoveCommand implements Command {
 	public void execute() throws JumpINException {
 		game.movePiece(position, direction, distance);
 	}
-
 
 }

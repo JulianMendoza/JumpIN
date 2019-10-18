@@ -10,14 +10,14 @@ import jumpin.consolegame.exception.InvalidCommandException;
  * @documentation Cameron Davis
  */
 public class Exit implements Command {
-	
+
 	/**
 	 * Constructor for Exit command
 	 * <p>
 	 * Parses the command
 	 * 
-	 * @param command	command to parse
-	 * @throws InvalidCommandException	if the specified command is not valid
+	 * @param command command to parse
+	 * @throws InvalidCommandException if the specified command is not valid
 	 */
 	public Exit(String command) throws InvalidCommandException {
 		parse(command);
@@ -34,6 +34,5 @@ public class Exit implements Command {
 	public void execute() {
 		System.exit(0);
 	}
-
 
 }

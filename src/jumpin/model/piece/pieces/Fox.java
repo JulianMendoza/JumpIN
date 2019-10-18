@@ -8,6 +8,7 @@ import jumpin.model.piece.UniquePiece;
 
 /**
  * A class for representing the fox piece
+ * 
  * @author Giuseppe
  *
  */
@@ -17,11 +18,11 @@ public class Fox extends Piece implements UniquePiece {
 	private FoxPart part;
 
 	/**
-	 * Constructs a Fox piece 
+	 * Constructs a Fox piece
 	 * 
-	 * @param part Represents the different parts of a Fox
+	 * @param part        Represents the different parts of a Fox
 	 * @param orientation Direction that a Fox can move
-	 * @param pieceID String representation of Fox piece number
+	 * @param pieceID     String representation of Fox piece number
 	 */
 	public Fox(FoxPart part, Orientation orientation, String pieceID) {
 		super(orientation);
@@ -51,7 +52,7 @@ public class Fox extends Piece implements UniquePiece {
 	/**
 	 * method to check if Fox piece corresponds to head or to tail
 	 * 
-	 * @param piece 
+	 * @param piece
 	 * @return true if Fox piece is the same
 	 */
 	public boolean isSameFox(Piece piece) {

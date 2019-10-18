@@ -11,11 +11,11 @@ import java.text.ParseException;
 public enum Direction {
 
 	NORTH, SOUTH, EAST, WEST;
-	
+
 	/**
 	 * Checks if the direction of this piece is East or West
 	 * 
-	 * @return	true if the piece points east or west, otherwise false
+	 * @return true if the piece points east or west, otherwise false
 	 */
 	public boolean isEastWest() {
 		switch (this) {
@@ -29,7 +29,7 @@ public enum Direction {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Checks if the direction of this piece is North or South
 	 * 
@@ -47,13 +47,13 @@ public enum Direction {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Parses the pieces direction
 	 * 
-	 * @param direction	direction that this piece points
-	 * @return	enum direction corresponding to the string
-	 * @throws ParseException	if the string is an invalid direction
+	 * @param direction direction that this piece points
+	 * @return enum direction corresponding to the string
+	 * @throws ParseException if the string is an invalid direction
 	 */
 	public static Direction parseString(String direction) throws ParseException {
 		switch (direction.toLowerCase()) {

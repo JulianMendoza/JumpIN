@@ -1,7 +1,8 @@
 package jumpin.model.constants;
 
 /**
- * Enumeration for representing the (orientation) directions that foxes may move in
+ * Enumeration for representing the (orientation) directions that foxes may move
+ * in
  * 
  * @author Giuseppe
  * @documentation Cameron Davis
@@ -9,7 +10,7 @@ package jumpin.model.constants;
 public enum Orientation {
 
 	NORTH_SOUTH, EAST_WEST, STATIC, DYNAMIC;
-	
+
 	/**
 	 * Checks if the specified direction the foxes move in is valid
 	 * 

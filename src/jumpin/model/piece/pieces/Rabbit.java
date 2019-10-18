@@ -7,6 +7,7 @@ import jumpin.model.piece.UniquePiece;
 
 /**
  * A class for representing the rabbit piece
+ * 
  * @author Giuseppe
  *
  */
@@ -47,7 +48,8 @@ public class Rabbit extends Piece implements UniquePiece {
 	 * method to compare two objects of type Rabbit
 	 * 
 	 * @param o Object
-	 * @return True if instance of rabbit is equal to an object of Rabbit otherwise false
+	 * @return True if instance of rabbit is equal to an object of Rabbit otherwise
+	 *         false
 	 */
 	@Override
 	public boolean equals(Object o) {

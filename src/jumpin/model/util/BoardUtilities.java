@@ -1,4 +1,3 @@
-
 package jumpin.model.util;
 
 import jumpin.model.board.Board;
@@ -61,7 +60,7 @@ public class BoardUtilities {
 	 * method to check if direction of travel is valid
 	 * 
 	 * @param direction Direction a piece travels in
-	 * @param pos Position of a piece
+	 * @param pos       Position of a piece
 	 * @return True if direction of travel is valid otherwise false
 	 */
 	public static boolean allowsDirection(Direction direction, Position pos) {
@@ -87,9 +86,9 @@ public class BoardUtilities {
 	}
 
 	/**
-	 * method to check if position is valid within board 
+	 * method to check if position is valid within board
 	 * 
-	 * @param pos Position to check 
+	 * @param pos Position to check
 	 * @return True if position is valid otherwise false
 	 */
 //	public static boolean isValidPosition(Position pos) {
@@ -103,7 +102,7 @@ public class BoardUtilities {
 	/**
 	 * method to get the movement of Rabbit
 	 * 
-	 * @param board Object of Board
+	 * @param board     Object of Board
 	 * @param direction Direction of Rabbit movement
 	 * @return The movement of Rabbit on Board
 	 */
@@ -114,9 +113,9 @@ public class BoardUtilities {
 	/**
 	 * method to get the movement of Fox
 	 * 
-	 * @param board Object of Board
+	 * @param board     Object of Board
 	 * @param direction Direction of Fox Movement
-	 * @param distance Integer Distance of Fox movement
+	 * @param distance  Integer Distance of Fox movement
 	 * @return The movement of Fox on Board
 	 */
 	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
@@ -141,14 +140,14 @@ public class BoardUtilities {
 	}
 
 	/**
-	 * method to create a new Tile 
+	 * method to create a new Tile
 	 * 
 	 * @return New tile
 	 */
 	private static Tile createTile() {
 		return new Tile();
 	}
-	
+
 	/**
 	 * method to create a new RabbitHol
 	 * 

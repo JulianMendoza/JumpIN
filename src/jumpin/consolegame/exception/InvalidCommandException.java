@@ -11,7 +11,7 @@ import jumpin.exception.JumpINException;
 public class InvalidCommandException extends JumpINException {
 
 	private static final long serialVersionUID = -9008364331848936548L;
-	
+
 	/**
 	 * Constructs a InvalidCommandException with the specified message
 	 * 

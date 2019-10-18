@@ -6,6 +6,7 @@ import jumpin.model.piece.Piece;
 
 /**
  * A class for representing the mushroom piece
+ * 
  * @author Giuseppe
  *
  */

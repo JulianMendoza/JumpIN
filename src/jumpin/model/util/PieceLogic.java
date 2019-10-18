@@ -25,16 +25,16 @@ public class PieceLogic {
 	 */
 	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
 		Fox fox = (Fox) board.getSelectedPiece();
-		
+
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
-		
-		//Can't slide fox off the board or into rabbit hole
-		if(!board.isValidPosition(currentPos) || board.getTile(currentPos) instanceof RabbitHole) {
+
+		// Can't slide fox off the board or into rabbit hole
+		if (!board.isValidPosition(currentPos) || board.getTile(currentPos) instanceof RabbitHole) {
 			return null;
 		}
-		
+
 		Tile currentTile = board.getTile(currentPos);
-		
+
 		if (!currentTile.isEmpty()) {
 			if (fox.isSameFox(currentTile.getPiece())) {
 				// set the board to select the direction facing piece of the fox

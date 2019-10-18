@@ -29,7 +29,7 @@ public class Game {
 
 	private Board board;
 	private GameState gameState;
-	
+
 	/**
 	 * Default constructor for the Game
 	 */
@@ -38,8 +38,8 @@ public class Game {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
-		Mushroom mushroom= new Mushroom();
-		Mushroom mushroom2= new Mushroom();
+		Mushroom mushroom = new Mushroom();
+		Mushroom mushroom2 = new Mushroom();
 		Fox foxb = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
 		Fox foxb2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
 		Rabbit rabbit2 = new Rabbit(PieceConstants.RABBIT_ID_2);
@@ -53,26 +53,28 @@ public class Game {
 		board.assignPiece(new Position(2, 4), mushroom2);
 		board.assignPiece(new Position(1, 4), rabbit2);
 		board.assignPiece(new Position(4, 2), rabbit3);
-		
+
 		gameState = new GameState(3, StateOfGame.IN_PROGRESS);
 		board.addListener(gameState);
 	}
-	
+
 	/**
 	 * Moves a piece to a specified position if it is valid
 	 * 
-	 * @param pos		position of where to move the piece to
-	 * @param direction	orientation of the piece
-	 * @param distance	distance of the Fox piece move
-	 * @throws NoPieceException		if there is no piece to move at the specified position
-	 * @throws IllegalMoveException	if the board does not allow for the move
-	 * @throws NoTileException		if the board model is give an invalid position
+	 * @param pos       position of where to move the piece to
+	 * @param direction orientation of the piece
+	 * @param distance  distance of the Fox piece move
+	 * @throws NoPieceException     if there is no piece to move at the specified
+	 *                              position
+	 * @throws IllegalMoveException if the board does not allow for the move
+	 * @throws NoTileException      if the board model is give an invalid position
 	 */
-	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException, NoTileException {
+	public void movePiece(Position pos, Direction direction, int distance)
+			throws NoPieceException, IllegalMoveException, NoTileException {
 		Piece piece;
 		try {
 			piece = board.selectPiece(pos);
-		} catch (NoTileException e) { 
+		} catch (NoTileException e) {
 			throw e;
 		}
 
@@ -92,7 +94,7 @@ public class Game {
 		}
 
 		if (piece instanceof Rabbit) {
-			if(distance != MoveConstants.DEFAULT_DISTANCE) { //if the player tries to specify tiles rabbit moves
+			if (distance != MoveConstants.DEFAULT_DISTANCE) { // if the player tries to specify tiles rabbit moves
 				throw new IllegalMoveException("Illegal move for " + piece);
 			}
 			Move move = BoardUtilities.findRabbitMove(board, direction);
@@ -101,7 +103,7 @@ public class Game {
 			}
 			board.updateBoard(move);
 		} else if (piece instanceof Fox) { // Have to move multiple pieces because fox is 2 pieces
-			if(distance == MoveConstants.DEFAULT_DISTANCE) {
+			if (distance == MoveConstants.DEFAULT_DISTANCE) {
 				distance = MoveConstants.MIN_DISTANCE;
 			}
 			FoxMove move = BoardUtilities.findFoxMove(board, direction, distance);
@@ -112,7 +114,7 @@ public class Game {
 			board.updateBoard(move.getSecond());
 		}
 	}
-	
+
 	public GameState getGameState() {
 		return this.gameState;
 	}

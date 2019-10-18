@@ -34,7 +34,7 @@ public class ConsoleGame extends Game {
 	 */
 	public void start() {
 		Printer.printWelcome(toString());
-		while (true) { //Continuously parses commands
+		while (true) { // Continuously parses commands
 			if (scanner.hasNext()) {
 				Command command = parseCommand(scanner.nextLine());
 				if (command != null) {

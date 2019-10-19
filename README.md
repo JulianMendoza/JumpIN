@@ -18,12 +18,17 @@ There are a maximum of three mushrooms on the board. Mushrooms cannot be moved.
 **Rabbits**
 
 There are a maximum of three rabbits on the board. Rabbits can only hop over objects.
+
+**For more information, view our game manual at: Deliverables/GameManual.txt**
 ## Progress
-**PLEASE WORK ON ISSUES IF POSSIBLE**
 
 Current UML
 <p align="center">
-<img src="src/GameUMLFINAL.png" height="100%" width="100%">
+<img src="Deliverables/GameUMLFINAL.png" height="100%" width="100%">
+ </p>
+ Current Sequence Diagram
+ <p align="center">
+<img src="Deliverables/Sequence_Diagram.jpg" height="100%" width="100%">
  </p>
  
 ## Copyright ©

@@ -40,8 +40,10 @@ public class ConsoleGame extends Game {
 				if (command != null) {
 					try {
 						command.execute();
-						Printer.print("Successful move!");
-						Printer.printBoard(toString());
+						if(!(command instanceof Help)) {
+							Printer.print("Successful move!");
+							Printer.printBoard(toString());
+						}
 					} catch (JumpINException e) {
 						Printer.printError(e.getMessage());
 					}

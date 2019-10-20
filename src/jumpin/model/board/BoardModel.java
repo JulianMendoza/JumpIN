@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jumpin.model.board.tile.Tile;
-import jumpin.model.exception.NoTileException;
 import jumpin.model.piece.Piece;
 
 /**

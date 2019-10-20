@@ -25,7 +25,7 @@ import jumpin.model.util.Position;
  * @author Giuseppe
  * @documentation Cameron Davis
  */
-public class Game {
+public class GameModel {
 
 	private Board board;
 	private GameState gameState;
@@ -33,7 +33,7 @@ public class Game {
 	/**
 	 * Default constructor for the Game
 	 */
-	public Game() {
+	public GameModel() {
 		board = new Board();
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);

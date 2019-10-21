@@ -26,6 +26,7 @@ public class ConsoleGame extends GameModel {
 	 */
 	public ConsoleGame() {
 		super();
+		this.getGenerator().createLevel1();
 		scanner = new Scanner(System.in);
 	}
 

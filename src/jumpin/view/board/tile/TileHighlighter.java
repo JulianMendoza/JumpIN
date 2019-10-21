@@ -9,14 +9,14 @@ import javax.swing.border.LineBorder;
 
 public class TileHighlighter extends SwingWorker<Void, Void> {
 
-	private final int MAX_VAL = 250;
-	private final int MIN_VAL = 170;
+	private final int MAX_VAL = 255;
+	private final int MIN_VAL = 175;
 	private final int RED = 255;
 	private final int BLUE = 0;
 	private final int GREEN = 0;
 
-	private List<TileView> tiles;
-	private TileView selectTile;
+	private List<TileView> highlightTiles;
+	private List<TileView> selectTiles;
 	private boolean isPaused;
 
 	public TileHighlighter() {
@@ -24,24 +24,26 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 		execute();
 	}
 
-	public void highlight(List<TileView> highlightTiles, TileView selectTile) {
-		this.tiles = new ArrayList<TileView>(highlightTiles);
-		this.selectTile = selectTile;
+	public void highlight(List<TileView> highlightTiles, List<TileView> selectTiles) {
+		this.highlightTiles = new ArrayList<TileView>(highlightTiles);
+		this.selectTiles = new ArrayList<TileView>(selectTiles);
 		isPaused = false;
 	}
 
 	public void stopHighlighting() {
 		isPaused = true;
-		if (tiles != null) {
-			for (TileView tile : tiles) {
+		if (highlightTiles != null) {
+			for (TileView tile : highlightTiles) {
 				tile.setDefaultBorder();
 			}
-			tiles = null;
+			highlightTiles = null;
 		}
 
-		if (selectTile != null) {
-			selectTile.setDefaultBorder();
-			selectTile = null;
+		if (selectTiles != null) {
+			for (TileView tile : selectTiles) {
+				tile.setDefaultBorder();
+			}
+			selectTiles = null;
 		}
 	}
 
@@ -62,11 +64,13 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 	}
 
 	private void updateAndWait(int i) {
-		for (TileView tile : tiles) {
+		for (TileView tile : highlightTiles) {
 			tile.setBorder(new LineBorder(new Color(RED, i, BLUE), 4));
 		}
 
-		selectTile.setBorder(new LineBorder(new Color(i, GREEN, BLUE), 4));
+		for (TileView tile : selectTiles) {
+			tile.setBorder(new LineBorder(new Color(i, GREEN, BLUE), 4));
+		}
 
 		try {
 			Thread.sleep(25);

@@ -56,6 +56,20 @@ public class FoxLogic {
 		}
 	}
 
+	public static Position getOtherFoxPosition(Board board, Fox fox) {
+		for (Direction direction : fox.getOrientation().getValidDirections()) {
+			Position currentPos = board.getSelectedPosition().nextPosition(direction);
+			Tile currentTile = board.getTile(currentPos);
+
+			if (currentTile != null && !currentTile.isEmpty()) {
+				if (fox.isSameFox(currentTile.getPiece())) {
+					return currentPos;
+				}
+			}
+		}
+		return null; // should never return null
+	}
+
 	private static boolean isValidMove(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
 
@@ -64,7 +78,7 @@ public class FoxLogic {
 			distance--;
 		}
 
-		return distance != 0; // if the fox moved anything other than its total distance
+		return distance == 0; // if the fox moved anything other than its total distance
 
 	}
 

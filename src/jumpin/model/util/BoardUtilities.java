@@ -34,9 +34,9 @@ public class BoardUtilities {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				if (isDefaultRabbitHole(y, x)) {
-					board[y][x] = TileFactory.createRabbitHole(Position.parseIndex(x, y));
+					board[y][x] = TileFactory.createRabbitHole(new Position(x, y));
 				} else {
-					board[y][x] = TileFactory.createTile(Position.parseIndex(x, y));
+					board[y][x] = TileFactory.createTile(new Position(x, y));
 				}
 			}
 		}

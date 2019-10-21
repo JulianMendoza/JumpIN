@@ -75,7 +75,7 @@ public class BoardModel {
 	 * @param piece the piece to be placed
 	 */
 	public void assignPiece(int x, int y, Piece piece) {
-		model[x][y].setPiece(piece);
+		model[y][x].setPiece(piece);
 	}
 
 }

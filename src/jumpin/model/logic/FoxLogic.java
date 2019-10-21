@@ -48,7 +48,7 @@ public class FoxLogic {
 		Position currentPos = board.getSelectedPosition().nextPosition(direction);
 		Tile currentTile = board.getTile(currentPos);
 
-		if (!currentTile.isEmpty()) {
+		if (currentTile != null && !currentTile.isEmpty()) {
 			if (fox.isSameFox(currentTile.getPiece())) {
 				// set the board to select the direction facing piece of the fox
 				board.selectPiece(currentTile.getPiece(), currentPos);

@@ -33,6 +33,7 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 		tileMap = new HashMap<Position, TileView>();
 		populate();
 		highlighter = new TileHighlighter();
+		// highlighter.execute();
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 			for (int x = 0; x < model.getWidth(); x++) {
 				TileView view = ComponentFactory.createTileView(model.getTile(x, y));
 				add(view);
-				tileMap.put(Position.parseIndex(x, y), view);
+				tileMap.put(model.getTile(x, y).getPosition(), view);
 			}
 		}
 	}

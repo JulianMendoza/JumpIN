@@ -96,7 +96,6 @@ public class GameModel {
 	}
 
 	public List<Move> getValidMoves(Position position) throws NoTileException, NoPieceException {
-		List<Move> validMoves = new ArrayList<Move>();
 		Piece piece;
 		try {
 			piece = board.selectPiece(position);
@@ -108,7 +107,7 @@ public class GameModel {
 			throw new NoPieceException();
 		}
 
-		return validMoves;
+		return BoardUtilities.getValidMoves(board);
 	}
 
 	public Board getBoard() {

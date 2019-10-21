@@ -18,7 +18,7 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 
 	public TileHighlighter() {
 		isPaused = true;
-		this.execute();
+		execute();
 	}
 
 	public void highlight(List<TileView> tiles) {
@@ -47,6 +47,7 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 					updateAndWait(i);
 				}
 			}
+			Thread.sleep(100);
 		}
 	}
 

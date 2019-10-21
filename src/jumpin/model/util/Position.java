@@ -123,6 +123,14 @@ public class Position {
 	}
 
 	@Override
+	public int hashCode() {
+		int hashCode = 1;
+		hashCode = 31 * hashCode + x;
+		hashCode = 31 * hashCode + y;
+		return hashCode;
+	}
+
+	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
@@ -153,9 +161,5 @@ public class Position {
 		}
 
 		throw new ParseException("Incorrect formatting", 0);
-	}
-
-	public static Position parseIndex(int x, int y) {
-		return new Position(x + 1, y + 1);
 	}
 }

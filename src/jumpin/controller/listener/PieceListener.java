@@ -39,7 +39,6 @@ public class PieceListener implements MouseListener {
 						tiles.add(view.getTileView(move.getNewPos()));
 					}
 				} catch (NoTileException | NoPieceException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				view.highlight(tiles);

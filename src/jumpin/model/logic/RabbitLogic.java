@@ -15,7 +15,7 @@ public class RabbitLogic {
 		for (Direction direction : Direction.values()) {
 			Position selectedPosition = board.getSelectedPosition();
 			Position currentPos = selectedPosition.nextPosition(direction);
-			if (board.getTile(currentPos).isEmpty()) { // nothing for rabbit to jump over
+			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()) { // nothing for rabbit to jump over
 				continue;
 			}
 			while (board.isValidPosition(currentPos)) {
@@ -24,6 +24,7 @@ public class RabbitLogic {
 					break;
 				} else if (board.getTile(currentPos).isEmpty()) { // we found an empty tile on the board
 					rabbitMoves.add(new Move(selectedPosition, currentPos));
+					break;
 				}
 			}
 		}

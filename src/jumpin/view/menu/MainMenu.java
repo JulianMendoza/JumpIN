@@ -1,6 +1,8 @@
 package jumpin.view.menu;
 
-import javax.swing.JButton;
+import java.awt.Color;
+
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import jumpin.view.constants.ComponentSize;
@@ -15,8 +17,8 @@ public class MainMenu extends JPanel {
 	public MainMenu() {
 		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
 		setMaximumSize(getSize());
-
-		add(new JButton());
+		setBackground(new Color(2, 145, 55));
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 	}
 
 }

@@ -3,7 +3,10 @@ package jumpin.view.piece;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import jumpin.model.constants.Orientation;
 import jumpin.model.piece.Piece;
+import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Rabbit;
 import jumpin.view.constants.ImageConstants;
 
 public class PieceView extends JLabel {
@@ -25,7 +28,29 @@ public class PieceView extends JLabel {
 	}
 
 	private String getImageLocation() {
-		return ImageConstants.RABBIT_1;
+		if (model instanceof Fox) {
+			Fox fox = (Fox) model;
+			switch (fox.getPart()) {
+			case HEAD:
+				if (fox.getOrientation().equals(Orientation.NORTH_SOUTH)) {
+					return ImageConstants.FOX_HEAD_NORTHSOUTH;
+				} else {
+					return ImageConstants.FOX_HEAD_EASTWEST;
+				}
+			case TAIL:
+				if (fox.getOrientation().equals(Orientation.NORTH_SOUTH)) {
+					return ImageConstants.FOX_TAIL_NORTHSOUTH;
+				} else {
+					return ImageConstants.FOX_TAIL_EASTWEST;
+				}
+			default:
+				break;
+
+			}
+		} else if (model instanceof Rabbit) {
+			return ImageConstants.RABBIT_1;
+		}
+		return ImageConstants.MUSHROOM;
 	}
 
 }

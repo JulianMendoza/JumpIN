@@ -34,4 +34,8 @@ public class Piece {
 		return orientation.isValidDirection(direction);
 	}
 
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
 }

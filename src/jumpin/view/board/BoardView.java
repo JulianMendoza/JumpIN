@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 import jumpin.model.board.BoardModel;
 import jumpin.view.board.tile.TileHighlighter;
@@ -12,7 +12,7 @@ import jumpin.view.board.tile.TileView;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.factory.ComponentFactory;
 
-public class BoardView extends JPanel implements JumpINContainer {
+public class BoardView extends JLayeredPane implements JumpINContainer {
 
 	private BoardModel model;
 

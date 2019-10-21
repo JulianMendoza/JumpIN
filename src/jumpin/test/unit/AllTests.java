@@ -13,6 +13,8 @@ public class AllTests extends TestSuite {
 		TestSuite suite = new TestSuite("Test for JumpIN application");
 		suite.addTest(new TestSuite(GameModelTest.class));
 		suite.addTest(new TestSuite(FoxTest.class));
+		suite.addTest(new TestSuite(MushroomTest.class));
+		suite.addTest(new TestSuite(RabbitTest.class));
 		return suite;
 	}
 

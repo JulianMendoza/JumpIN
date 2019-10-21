@@ -12,9 +12,9 @@ public enum Orientation {
 	NORTH_SOUTH, EAST_WEST, STATIC, DYNAMIC;
 
 	/**
-	 * Checks if the specified direction the foxes move in is valid
+	 * Checks if the specified direction is valid
 	 * 
-	 * @param direction direction the fox may move in
+	 * @param direction direction the piece may move in
 	 * @return true if it is dynamic, east-west, or north-south, otherwise false
 	 */
 	public boolean isValidDirection(Direction direction) {

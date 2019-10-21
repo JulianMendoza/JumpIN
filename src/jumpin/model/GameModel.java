@@ -1,15 +1,19 @@
 package jumpin.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jumpin.model.board.Board;
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.MoveConstants;
 import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.PieceID;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
 import jumpin.model.exception.NoTileException;
+import jumpin.model.factory.PieceFactory;
 import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
@@ -35,15 +39,15 @@ public class GameModel {
 	 */
 	public GameModel() {
 		board = new Board();
-		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
-		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
-		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
-		Mushroom mushroom = new Mushroom();
-		Mushroom mushroom2 = new Mushroom();
-		Fox foxb = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
-		Fox foxb2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
-		Rabbit rabbit2 = new Rabbit(PieceConstants.RABBIT_ID_2);
-		Rabbit rabbit3 = new Rabbit(PieceConstants.RABBIT_ID_3);
+		Fox fox = PieceFactory.createFox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Fox fox2 = PieceFactory.createFox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Rabbit rabbit = PieceFactory.createRabbit(PieceID.RABBIT_ID_1);
+		Mushroom mushroom = PieceFactory.createMushroom();
+		Mushroom mushroom2 = PieceFactory.createMushroom();
+		Fox foxb = PieceFactory.createFox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox foxb2 = PieceFactory.createFox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Rabbit rabbit2 = new Rabbit(PieceID.RABBIT_ID_2);
+		Rabbit rabbit3 = new Rabbit(PieceID.RABBIT_ID_3);
 		board.assignPiece(new Position(1, 0), fox2);
 		board.assignPiece(new Position(1, 1), fox);
 		board.assignPiece(new Position(3, 0), rabbit);
@@ -69,8 +73,7 @@ public class GameModel {
 	 * @throws IllegalMoveException if the board does not allow for the move
 	 * @throws NoTileException      if the board model is give an invalid position
 	 */
-	public void movePiece(Position pos, Direction direction, int distance)
-			throws NoPieceException, IllegalMoveException, NoTileException {
+	public void movePiece(Position pos, Direction direction, int distance) throws NoPieceException, IllegalMoveException, NoTileException {
 		Piece piece;
 		try {
 			piece = board.selectPiece(pos);
@@ -115,10 +118,26 @@ public class GameModel {
 		}
 	}
 
+	public List<Move> getValidMoves(Position position) throws NoTileException, NoPieceException {
+		List<Move> validMoves = new ArrayList<Move>();
+		Piece piece;
+		try {
+			piece = board.selectPiece(position);
+		} catch (NoTileException e) {
+			throw e;
+		}
+
+		if (piece == null) {
+			throw new NoPieceException();
+		}
+
+		return validMoves;
+	}
+
 	public Board getBoard() {
 		return board;
 	}
-	
+
 	public GameState getGameState() {
 		return this.gameState;
 	}
@@ -128,6 +147,7 @@ public class GameModel {
 	 * 
 	 * @return string of game state and board
 	 */
+	@Override
 	public String toString() {
 		return gameState.toString() + board.toString();
 	}

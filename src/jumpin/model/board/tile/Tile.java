@@ -1,7 +1,8 @@
 package jumpin.model.board.tile;
 
-import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
+import jumpin.model.util.Position;
 
 /**
  * Parent class for all tiles on the board
@@ -11,10 +12,15 @@ import jumpin.model.piece.Piece;
  */
 public class Tile {
 
+	public Tile(Position position) {
+		this.position = position;
+	}
+
 	/**
 	 * The piece in this tile
 	 */
 	private Piece piece;
+	private final Position position; // tiles are immutable on the board and won't move
 
 	/**
 	 * Clears the piece in this tile
@@ -53,14 +59,19 @@ public class Tile {
 	/**
 	 * Generates string representation of this tile
 	 */
+	@Override
 	public String toString() {
-		String pieceName = PieceConstants.EMPTY;
+		String pieceName = PieceID.EMPTY;
 		if (piece != null) {
 			StringBuilder s = new StringBuilder(piece.toString().toUpperCase());
 			s.setLength(3);
 			pieceName = s.toString();
 		}
 		return "[ " + pieceName + " ]";
+	}
+
+	public Position getPosition() {
+		return position;
 	}
 
 }

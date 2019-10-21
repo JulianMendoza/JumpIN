@@ -1,4 +1,4 @@
-package jumpin.model.util;
+package jumpin.model.logic;
 
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.RabbitHole;
@@ -7,6 +7,7 @@ import jumpin.model.constants.Direction;
 import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.pieces.Fox;
+import jumpin.model.util.Position;
 
 /**
  * A class with knowledge of the logic of various pieces on the board
@@ -59,9 +60,7 @@ public class PieceLogic {
 	private static FoxMove slideFox(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
 
-		while (board.isValidPosition(currentPos.nextPosition(direction))
-				&& board.getTile(currentPos.nextPosition(direction)).isEmpty()
-				&& !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
+		while (board.isValidPosition(currentPos.nextPosition(direction)) && board.getTile(currentPos.nextPosition(direction)).isEmpty() && !(board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole) && distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
 		}
@@ -70,8 +69,7 @@ public class PieceLogic {
 			return null;
 		}
 
-		return new FoxMove(new Move(board.getSelectedPosition(), currentPos),
-				new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
+		return new FoxMove(new Move(board.getSelectedPosition(), currentPos), new Move(board.getSelectedPosition().prevPosition(direction), currentPos.prevPosition(direction)));
 	}
 
 	/**

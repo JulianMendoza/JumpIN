@@ -42,19 +42,39 @@ public class Position {
 	 * @return The position of the next position based on the piece's orientation.
 	 */
 	public Position nextPosition(Direction direction) {
+		return nextPosition(direction, 1);
+	}
+
+	/**
+	 * Traverse backwards (If the direction is East move the position West)
+	 * 
+	 * @param direction The direction of the piece
+	 * @return The position of the previous position based on the piece's
+	 *         orientation.
+	 */
+	public Position prevPosition(Direction direction) {
+		return prevPosition(direction, 1);
+	}
+
+	/**
+	 * 
+	 * @param direction The direction of the piece
+	 * @return The position of the next position based on the piece's orientation.
+	 */
+	public Position nextPosition(Direction direction, int distance) {
 		int x = this.x;
 		int y = this.y;
 		if (direction.isEastWest()) {
 			if (BoardUtilities.isPositive(direction)) {
-				x++;
+				x += distance;
 			} else {
-				x--;
+				x -= distance;
 			}
 		} else if (direction.isNorthSouth()) {
 			if (BoardUtilities.isPositive(direction)) {
-				y++;
+				y += distance;
 			} else {
-				y--;
+				y -= distance;
 			}
 		}
 		return new Position(x, y);
@@ -67,20 +87,20 @@ public class Position {
 	 * @return The position of the previous position based on the piece's
 	 *         orientation.
 	 */
-	public Position prevPosition(Direction direction) {
+	public Position prevPosition(Direction direction, int distance) {
 		int x = this.x;
 		int y = this.y;
 		if (direction.isEastWest()) {
 			if (BoardUtilities.isPositive(direction)) {
-				x--;
+				x += distance;
 			} else {
-				x++;
+				x += distance;
 			}
 		} else if (direction.isNorthSouth()) {
 			if (BoardUtilities.isPositive(direction)) {
-				y--;
+				y -= distance;
 			} else {
-				y++;
+				y += distance;
 			}
 		}
 		return new Position(x, y);
@@ -102,6 +122,7 @@ public class Position {
 		}
 	}
 
+	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
@@ -132,5 +153,9 @@ public class Position {
 		}
 
 		throw new ParseException("Incorrect formatting", 0);
+	}
+
+	public static Position parseIndex(int x, int y) {
+		return new Position(x + 1, y + 1);
 	}
 }

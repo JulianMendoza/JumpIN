@@ -1,7 +1,7 @@
 package jumpin.model.piece.pieces;
 
 import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
 
 /**
@@ -25,7 +25,7 @@ public class Mushroom extends Piece {
 	 * @return string constant for mushroom
 	 */
 	public String toString() {
-		return PieceConstants.MUSHROOM;
+		return PieceID.MUSHROOM;
 	}
 
 }

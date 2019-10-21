@@ -5,7 +5,7 @@ package jumpin.model.constants;
  * 
  * @author Giuseppe
  */
-public class PieceConstants {
+public class PieceID {
 
 	public static final String RABBIT = "Rabbit";
 

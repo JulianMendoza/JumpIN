@@ -1,5 +1,9 @@
 package jumpin.model.constants;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Enumeration for representing the (orientation) directions that foxes may move
  * in
@@ -37,5 +41,27 @@ public enum Orientation {
 			break;
 		}
 		return false;
+	}
+
+	public List<Direction> getValidDirections() {
+		List<Direction> validDirections = new ArrayList<Direction>();
+
+		switch (this) {
+		case DYNAMIC:
+			validDirections.addAll(Arrays.asList(Direction.values()));
+			break;
+		case EAST_WEST:
+			validDirections.add(Direction.EAST);
+			validDirections.add(Direction.WEST);
+			break;
+		case NORTH_SOUTH:
+			validDirections.add(Direction.NORTH);
+			validDirections.add(Direction.SOUTH);
+			break;
+		default:
+			break;
+		}
+
+		return validDirections;
 	}
 }

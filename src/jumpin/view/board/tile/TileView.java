@@ -23,6 +23,7 @@ public class TileView extends JPanel implements JumpINContainer {
 	private static final long serialVersionUID = 9177793025684748087L;
 
 	private Tile model;
+	private PieceView pieceView;
 
 	public TileView(Tile model) {
 		setDefaultBorder();
@@ -41,16 +42,26 @@ public class TileView extends JPanel implements JumpINContainer {
 
 	public void setPiece(PieceView pieceView) {
 		add(pieceView);
+		this.pieceView = pieceView;
 	}
 
 	public void clearPiece() {
-		removeAll();
+		if (pieceView != null) {
+			remove(pieceView);
+			pieceView = null;
+		}
+	}
+
+	public PieceView getPieceView() {
+		return pieceView;
 	}
 
 	@Override
 	public void populate() {
 		if (!model.isEmpty()) {
-			add(ComponentFactory.createPieceView(model.getPiece()));
+			setPiece(ComponentFactory.createPieceView(model.getPiece()));
+		} else {
+			clearPiece();
 		}
 
 	}
@@ -73,6 +84,15 @@ public class TileView extends JPanel implements JumpINContainer {
 
 	public void setDefaultBorder() {
 		setBorder(new LineBorder(Color.WHITE, 2));
+	}
+
+	@Override
+	public void repopulate() {
+		populate();
+	}
+
+	public Tile getModel() {
+		return model;
 	}
 
 }

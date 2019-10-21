@@ -40,7 +40,7 @@ public class ConsoleGame extends GameModel {
 				if (command != null) {
 					try {
 						command.execute();
-						if(!(command instanceof Help)) {
+						if (!(command instanceof Help)) {
 							Printer.print("Successful move!");
 							Printer.printBoard(toString());
 						}

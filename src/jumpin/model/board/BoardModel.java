@@ -58,11 +58,11 @@ public class BoardModel {
 			return null;
 		}
 	}
-	
+
 	public int getWidth() {
 		return model.length;
 	}
-	
+
 	public int getHeight() {
 		return model[0].length;
 	}
@@ -75,7 +75,7 @@ public class BoardModel {
 	 * @param piece the piece to be placed
 	 */
 	public void assignPiece(int x, int y, Piece piece) {
-		model[y][x].setPiece(piece);
+		model[x][y].setPiece(piece);
 	}
 
 }

@@ -12,17 +12,17 @@ public class ImageFactory {
 	public static Image generateRabbit() {
 		return generateImage(ImageConstants.RABBIT_1);
 	}
-	
+
 	public static List<Image> generateRabbitMove() {
 		List<Image> rabbitMove = new ArrayList<Image>();
-		for(String filename : ImageConstants.RABBIT_MOVES) {
+		for (String filename : ImageConstants.RABBIT_MOVES) {
 			rabbitMove.add(generateImage(filename));
 		}
 		return rabbitMove;
 	}
-	
+
 	public static Image generateImage(String filename) {
 		return Toolkit.getDefaultToolkit().createImage(filename);
 	}
-	
+
 }

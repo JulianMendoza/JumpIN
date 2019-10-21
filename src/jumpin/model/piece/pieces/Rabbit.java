@@ -1,7 +1,7 @@
 package jumpin.model.piece.pieces;
 
 import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
@@ -31,7 +31,7 @@ public class Rabbit extends Piece implements UniquePiece {
 	 * @return string constant for Rabbit piece
 	 */
 	public String toString() {
-		return PieceConstants.RABBIT;
+		return PieceID.RABBIT;
 	}
 
 	/**

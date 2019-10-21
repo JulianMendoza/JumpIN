@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import jumpin.model.constants.Orientation;
+import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
@@ -48,9 +49,20 @@ public class PieceView extends JLabel {
 
 			}
 		} else if (model instanceof Rabbit) {
-			return ImageConstants.RABBIT_1;
+			switch (((Rabbit) model).getPieceID()) {
+			case PieceID.RABBIT_ID_1:
+				return ImageConstants.RABBIT_1;
+			case PieceID.RABBIT_ID_2:
+				return ImageConstants.RABBIT_2;
+			case PieceID.RABBIT_ID_3:
+				return ImageConstants.RABBIT_3;
+			}
 		}
 		return ImageConstants.MUSHROOM;
+	}
+
+	public Piece getModel() {
+		return model;
 	}
 
 }

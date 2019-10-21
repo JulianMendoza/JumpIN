@@ -8,6 +8,10 @@ public class ImageConstants {
 
 	public static final String RABBIT_1 = "images/rabbit1.png";
 
+	public static final String RABBIT_2 = "images/rabbit1.png";
+
+	public static final String RABBIT_3 = "images/rabbit1.png";
+
 	public static final String FOX_HEAD_EASTWEST = "images/fox/head_eastwest.png";
 
 	public static final String FOX_HEAD_NORTHSOUTH = "images/fox/head_northsouth.png";

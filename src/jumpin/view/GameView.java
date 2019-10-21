@@ -35,6 +35,7 @@ public class GameView extends JFrame implements JumpINContainer {
 	@SuppressWarnings("unused")
 	public static void main(String args[]) {
 		GameModel model = new GameModel();
+		model.getGenerator().createLevel1();
 		GameView view = new GameView(model);
 		GameController controller = new GameController(model, view);
 		System.out.println(model);

@@ -29,7 +29,12 @@ public class FoxTest extends TestCase {
 		game = new GameModel();
 		board = game.getBoard();
 	}
-
+	/**
+	 * Tests the behavior of a fox placed in a vertical orientation
+	 * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */ 
 	public void testVerticalFox() throws NoTileException, NoPieceException, IllegalMoveException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -57,7 +62,12 @@ public class FoxTest extends TestCase {
 		assertTrue(board.selectPiece(new Position(1, 0)) instanceof Fox);
 		assertTrue(board.selectPiece(new Position(1, 1)) instanceof Fox);
 	}
-
+	/**
+	  * Tests the behavior of a fox placed in a horizontal orientation
+ * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testHorizontalFox() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_1);
@@ -85,6 +95,14 @@ public class FoxTest extends TestCase {
 		assertTrue(board.selectPiece(new Position(0, 1)) instanceof Fox);
 		assertTrue(board.selectPiece(new Position(1, 1)) instanceof Fox);
 	}
+	/**
+	 * Tests the edge exceptions for the foxes
+	 *  Assures that "Illegal move for Fox" is not the error message
+	 *  
+	 * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testFoxEdgeMoves() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -135,7 +153,7 @@ public class FoxTest extends TestCase {
 		try {
 			game.movePiece(new Position(1, 4), Direction.EAST, 1);
 		}catch(IllegalMoveException e) {
-			assertEquals("Fox cannot move EAST off the board" ,e.getMessage());
+			assertEquals("Fox is not allowed to move East" ,e.getMessage());
 		}
 		/*
 		 try {
@@ -145,7 +163,12 @@ public class FoxTest extends TestCase {
 		}
 		*/
 	}
-
+	/**
+	 * Test for the Fox interaction with a Mushroom
+ * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testFoxCollisonMushroom() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -161,7 +184,12 @@ public class FoxTest extends TestCase {
 			}
 		}
 	}
-
+	/**
+	 * Test for the Fox interaction with a Rabbit
+ * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testFoxCollisonRabbit() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -177,7 +205,12 @@ public class FoxTest extends TestCase {
 			}
 		}
 	}
-
+	/**
+	 * Test for the Fox interaction with another Fox
+ * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testFoxCollisonFox() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
@@ -195,7 +228,12 @@ public class FoxTest extends TestCase {
 			}
 		}
 	}
-
+	/**
+	 * Test for the Fox interaction with a RabbitHole
+ * @throws NoTileException if no tile exists at the specific position
+	 * @throws NoPieceException if there is no Fox at the position
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testFoxCollisonRabbitHole() throws NoPieceException, IllegalMoveException, NoTileException {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);

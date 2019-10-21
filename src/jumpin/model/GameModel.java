@@ -2,11 +2,7 @@ package jumpin.model;
 
 import jumpin.model.board.Board;
 import jumpin.model.constants.Direction;
-import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.MoveConstants;
-import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceConstants;
-import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
 import jumpin.model.exception.NoTileException;
@@ -14,9 +10,9 @@ import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.pieces.Fox;
-import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.BoardUtilities;
+import jumpin.model.util.LevelGenerator;
 import jumpin.model.util.Position;
 
 /**
@@ -29,33 +25,15 @@ public class GameModel {
 
 	private Board board;
 	private GameState gameState;
+	private LevelGenerator generator;
 
 	/**
 	 * Default constructor for the Game
 	 */
 	public GameModel() {
 		board = new Board();
-		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
-		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceConstants.FOX_ID_1);
-		Rabbit rabbit = new Rabbit(PieceConstants.RABBIT_ID_1);
-		Mushroom mushroom = new Mushroom();
-		Mushroom mushroom2 = new Mushroom();
-		Fox foxb = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
-		Fox foxb2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceConstants.FOX_ID_2);
-		Rabbit rabbit2 = new Rabbit(PieceConstants.RABBIT_ID_2);
-		Rabbit rabbit3 = new Rabbit(PieceConstants.RABBIT_ID_3);
-		board.assignPiece(new Position(1, 0), fox2);
-		board.assignPiece(new Position(1, 1), fox);
-		board.assignPiece(new Position(3, 0), rabbit);
-		board.assignPiece(new Position(3, 1), mushroom);
-		board.assignPiece(new Position(4, 3), foxb2);
-		board.assignPiece(new Position(3, 3), foxb);
-		board.assignPiece(new Position(2, 4), mushroom2);
-		board.assignPiece(new Position(1, 4), rabbit2);
-		board.assignPiece(new Position(4, 2), rabbit3);
-
-		gameState = new GameState(3, StateOfGame.IN_PROGRESS);
-		board.addListener(gameState);
+		gameState = new GameState();
+		generator = new LevelGenerator(this.board, this.gameState);
 	}
 
 	/**
@@ -118,9 +96,13 @@ public class GameModel {
 	public Board getBoard() {
 		return board;
 	}
-	
+
 	public GameState getGameState() {
 		return this.gameState;
+	}
+
+	public LevelGenerator getGenerator() {
+		return generator;
 	}
 
 	/**

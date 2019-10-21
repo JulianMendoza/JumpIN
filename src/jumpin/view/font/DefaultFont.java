@@ -4,7 +4,7 @@ import java.awt.Font;
 
 import jumpin.view.constants.FontConstants;
 
-public class DefaultFont extends Font{
+public class DefaultFont extends Font {
 
 	/**
 	 * 
@@ -14,7 +14,5 @@ public class DefaultFont extends Font{
 	public DefaultFont() {
 		super(FontConstants.DEFAULT_FONT, Font.PLAIN, 12);
 	}
-	
-	
-	
+
 }

@@ -26,6 +26,7 @@ public class ConsoleGame extends GameModel {
 	 */
 	public ConsoleGame() {
 		super();
+		this.getGenerator().createLevel1();
 		scanner = new Scanner(System.in);
 	}
 
@@ -40,7 +41,7 @@ public class ConsoleGame extends GameModel {
 				if (command != null) {
 					try {
 						command.execute();
-						if(!(command instanceof Help)) {
+						if (!(command instanceof Help)) {
 							Printer.print("Successful move!");
 							Printer.printBoard(toString());
 						}

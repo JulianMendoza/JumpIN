@@ -1,6 +1,7 @@
 package jumpin.view.board.tile;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingWorker;
@@ -22,17 +23,18 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 	}
 
 	public void highlight(List<TileView> tiles) {
-		this.tiles = tiles;
+		this.tiles = new ArrayList<TileView>(tiles);
 		isPaused = false;
 	}
 
 	public void stopHighlighting() {
 		isPaused = true;
-		for (TileView tile : tiles) {
-			tile.setDefaultBorder();
+		if (tiles != null) {
+			for (TileView tile : tiles) {
+				tile.setDefaultBorder();
+			}
+			tiles = null;
 		}
-		tiles = null;
-
 	}
 
 	@Override
@@ -53,7 +55,7 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 
 	private void updateAndWait(int green) {
 		for (TileView tile : tiles) {
-			tile.setBorder(new LineBorder(new Color(RED, green, BLUE), 2));
+			tile.setBorder(new LineBorder(new Color(RED, green, BLUE), 4));
 		}
 		try {
 			Thread.sleep(50);

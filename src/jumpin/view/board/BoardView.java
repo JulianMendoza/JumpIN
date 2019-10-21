@@ -56,6 +56,7 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 	}
 
 	public void highlight(List<TileView> tiles) {
+		highlighter.stopHighlighting();
 		highlighter.highlight(tiles);
 	}
 

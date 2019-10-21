@@ -30,18 +30,18 @@ public class PieceListener implements MouseListener {
 		if (e.getSource() instanceof PieceView) {
 			PieceView pieceView = (PieceView) e.getSource();
 			if (pieceView.getParent() instanceof TileView) {
-				TileView tileView = (TileView) pieceView.getParent();
-				Position pos = tileView.getModel().getPosition();
+				TileView selectTile = (TileView) pieceView.getParent();
+				Position pos = selectTile.getModel().getPosition();
 				model.getBoard().selectPiece(pieceView.getModel(), pos);
-				List<TileView> tiles = new ArrayList<TileView>();
+				List<TileView> highlightTiles = new ArrayList<TileView>();
 				try {
 					for (Move move : model.getValidMoves(pos)) {
-						tiles.add(view.getTileView(move.getNewPos()));
+						highlightTiles.add(view.getTileView(move.getNewPos()));
 					}
 				} catch (NoTileException | NoPieceException e1) {
 					e1.printStackTrace();
 				}
-				view.highlight(tiles);
+				view.highlight(highlightTiles, selectTile);
 			}
 		}
 	}

@@ -9,12 +9,14 @@ import javax.swing.border.LineBorder;
 
 public class TileHighlighter extends SwingWorker<Void, Void> {
 
-	private final int MAX_GREEN = 250;
-	private final int MIN_GREEN = 170;
+	private final int MAX_VAL = 250;
+	private final int MIN_VAL = 170;
 	private final int RED = 255;
 	private final int BLUE = 0;
+	private final int GREEN = 0;
 
 	private List<TileView> tiles;
+	private TileView selectTile;
 	private boolean isPaused;
 
 	public TileHighlighter() {
@@ -22,8 +24,9 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 		execute();
 	}
 
-	public void highlight(List<TileView> tiles) {
-		this.tiles = new ArrayList<TileView>(tiles);
+	public void highlight(List<TileView> highlightTiles, TileView selectTile) {
+		this.tiles = new ArrayList<TileView>(highlightTiles);
+		this.selectTile = selectTile;
 		isPaused = false;
 	}
 
@@ -35,17 +38,22 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 			}
 			tiles = null;
 		}
+
+		if (selectTile != null) {
+			selectTile.setDefaultBorder();
+			selectTile = null;
+		}
 	}
 
 	@Override
 	protected Void doInBackground() throws Exception {
 		while (true) {
 			if (!isPaused) {
-				for (int i = MIN_GREEN; i < MAX_GREEN; i += 5) { // count up
+				for (int i = MIN_VAL; i < MAX_VAL; i += 5) { // count up
 					updateAndWait(i);
 				}
 
-				for (int i = MAX_GREEN; i > MIN_GREEN; i -= 5) { // count down
+				for (int i = MAX_VAL; i > MIN_VAL; i -= 5) { // count down
 					updateAndWait(i);
 				}
 			}
@@ -53,12 +61,15 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 		}
 	}
 
-	private void updateAndWait(int green) {
+	private void updateAndWait(int i) {
 		for (TileView tile : tiles) {
-			tile.setBorder(new LineBorder(new Color(RED, green, BLUE), 4));
+			tile.setBorder(new LineBorder(new Color(RED, i, BLUE), 4));
 		}
+
+		selectTile.setBorder(new LineBorder(new Color(i, GREEN, BLUE), 4));
+
 		try {
-			Thread.sleep(50);
+			Thread.sleep(25);
 		} catch (InterruptedException e) {
 		}
 	}

@@ -27,8 +27,8 @@ public class FoxLogic {
 		}
 
 		for (Direction direction : fox.getOrientation().getValidDirections()) {
+			selectCorrectFox(board, direction, fox);
 			for (int i = 1; i < maxMove; i++) {
-				selectCorrectFox(board, direction, fox);
 				if (isValidMove(board, direction, i)) {
 					foxMoves.add(new Move(board.getSelectedPosition(), board.getSelectedPosition().nextPosition(direction, i)));
 				}

@@ -115,6 +115,10 @@ public class GameModel {
 		}
 	}
 
+	public Board getBoard() {
+		return board;
+	}
+	
 	public GameState getGameState() {
 		return this.gameState;
 	}

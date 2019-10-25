@@ -29,6 +29,11 @@ public class PieceListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		if (e.getSource() instanceof PieceView) {
 			PieceView pieceView = (PieceView) e.getSource();
 			if (pieceView.getParent() instanceof TileView) {
@@ -55,12 +60,6 @@ public class PieceListener implements MouseListener {
 				view.highlight(highlightTiles, selectTiles);
 			}
 		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

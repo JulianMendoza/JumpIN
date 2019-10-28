@@ -149,6 +149,7 @@ public class Board {
 	/**
 	 * Returns text representation of the board
 	 */
+	@Override
 	public String toString() {
 		int width = BoardConstants.WIDTH;
 		int height = BoardConstants.HEIGHT;

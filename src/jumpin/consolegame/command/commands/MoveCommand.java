@@ -5,7 +5,7 @@ import java.text.ParseException;
 import jumpin.consolegame.command.Command;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
-import jumpin.model.Game;
+import jumpin.model.GameModel;
 import jumpin.model.constants.Direction;
 import jumpin.model.util.Position;
 
@@ -20,7 +20,7 @@ public class MoveCommand implements Command {
 	private Direction direction;
 	private Position position;
 	private int distance;
-	private Game game;
+	private GameModel game;
 
 	/**
 	 * Constructor for Move command
@@ -31,7 +31,7 @@ public class MoveCommand implements Command {
 	 * @param game    - instance of the game this command is being parsed for
 	 * @throws InvalidCommandException if parse fails
 	 */
-	public MoveCommand(String command, Game game) throws InvalidCommandException {
+	public MoveCommand(String command, GameModel game) throws InvalidCommandException {
 		distance = -1;
 		parse(command);
 		this.game = game;

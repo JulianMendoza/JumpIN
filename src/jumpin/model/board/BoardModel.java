@@ -59,6 +59,14 @@ public class BoardModel {
 		}
 	}
 
+	public int getWidth() {
+		return model.length;
+	}
+
+	public int getHeight() {
+		return model[0].length;
+	}
+
 	/**
 	 * Assigns a piece to the specified position on the board
 	 * 

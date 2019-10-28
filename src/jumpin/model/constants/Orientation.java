@@ -1,5 +1,9 @@
 package jumpin.model.constants;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Enumeration for representing the (orientation) directions that foxes may move
  * in
@@ -12,9 +16,9 @@ public enum Orientation {
 	NORTH_SOUTH, EAST_WEST, STATIC, DYNAMIC;
 
 	/**
-	 * Checks if the specified direction the foxes move in is valid
+	 * Checks if the specified direction is valid
 	 * 
-	 * @param direction direction the fox may move in
+	 * @param direction direction the piece may move in
 	 * @return true if it is dynamic, east-west, or north-south, otherwise false
 	 */
 	public boolean isValidDirection(Direction direction) {
@@ -37,5 +41,27 @@ public enum Orientation {
 			break;
 		}
 		return false;
+	}
+
+	public List<Direction> getValidDirections() {
+		List<Direction> validDirections = new ArrayList<Direction>();
+
+		switch (this) {
+		case DYNAMIC:
+			validDirections.addAll(Arrays.asList(Direction.values()));
+			break;
+		case EAST_WEST:
+			validDirections.add(Direction.EAST);
+			validDirections.add(Direction.WEST);
+			break;
+		case NORTH_SOUTH:
+			validDirections.add(Direction.NORTH);
+			validDirections.add(Direction.SOUTH);
+			break;
+		default:
+			break;
+		}
+
+		return validDirections;
 	}
 }

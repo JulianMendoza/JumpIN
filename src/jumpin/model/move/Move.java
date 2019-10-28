@@ -42,4 +42,16 @@ public class Move {
 		return oldPos;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) {
+			return false;
+		} else if (o instanceof Move) {
+			Move move = (Move) o;
+			return move.getNewPos() == this.getNewPos() && move.getOldPos() == this.getOldPos();
+		} else {
+			return false;
+		}
+	}
+
 }

@@ -2,7 +2,7 @@ package jumpin.model.piece.pieces;
 
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceConstants;
+import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
@@ -69,6 +69,6 @@ public class Fox extends Piece implements UniquePiece {
 	 * @return string constant of Fox
 	 */
 	public String toString() {
-		return PieceConstants.FOX;
+		return PieceID.FOX;
 	}
 }

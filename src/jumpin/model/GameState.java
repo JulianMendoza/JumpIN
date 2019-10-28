@@ -17,6 +17,11 @@ public class GameState implements BoardModelListener {
 	private int rabbitsToWin;
 	private StateOfGame gameState;
 
+	public GameState() {
+		this.rabbitsToWin = -1;
+		this.gameState = null;
+	}
+
 	/**
 	 * Constructor for the game's state
 	 * 
@@ -28,6 +33,14 @@ public class GameState implements BoardModelListener {
 		this.gameState = gameState;
 	}
 
+	public void setState(StateOfGame state) {
+		this.gameState = state;
+	}
+
+	public void setNumToWin(int num) {
+		this.rabbitsToWin = num;
+	}
+
 	/**
 	 * Gets the current game state
 	 * 
@@ -35,6 +48,15 @@ public class GameState implements BoardModelListener {
 	 */
 	public StateOfGame getState() {
 		return this.gameState;
+	}
+
+	/**
+	 * Gets how many rabbits to win
+	 * 
+	 * @return rabbitsToWin
+	 */
+	public int getNumToWin() {
+		return this.rabbitsToWin;
 	}
 
 	/**

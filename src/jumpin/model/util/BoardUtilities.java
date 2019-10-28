@@ -1,10 +1,14 @@
 package jumpin.model.util;
 
+import java.util.List;
+
 import jumpin.model.board.Board;
-import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
+import jumpin.model.factory.TileFactory;
+import jumpin.model.logic.BoardLogic;
+import jumpin.model.logic.PieceLogic;
 import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
 
@@ -27,12 +31,12 @@ public class BoardUtilities {
 		int width = BoardConstants.WIDTH;
 
 		Tile[][] board = new Tile[height][width];
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				if (isRabbitHole(i, j)) {
-					board[i][j] = createRabbitHole();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if (isDefaultRabbitHole(y, x)) {
+					board[y][x] = TileFactory.createRabbitHole(new Position(x, y));
 				} else {
-					board[i][j] = createTile();
+					board[y][x] = TileFactory.createTile(new Position(x, y));
 				}
 			}
 		}
@@ -86,20 +90,6 @@ public class BoardUtilities {
 	}
 
 	/**
-	 * method to check if position is valid within board
-	 * 
-	 * @param pos Position to check
-	 * @return True if position is valid otherwise false
-	 */
-//	public static boolean isValidPosition(Position pos) {
-//		int maxPos = BoardConstants.MAX_POS;
-//		int minPos = BoardConstants.MIN_POS;
-//		int x = pos.getX();
-//		int y = pos.getY();
-//		return x <= maxPos && x >= minPos && y <= maxPos && y >= minPos;
-//	}
-
-	/**
 	 * method to get the movement of Rabbit
 	 * 
 	 * @param board     Object of Board
@@ -122,6 +112,10 @@ public class BoardUtilities {
 		return PieceLogic.findFoxMove(board, direction, distance);
 	}
 
+	public static List<Move> getValidMoves(Board board) {
+		return BoardLogic.getValidMoves(board);
+	}
+
 	/**
 	 * method to check for rabbit hole on board
 	 * 
@@ -129,7 +123,7 @@ public class BoardUtilities {
 	 * @param y Y position on Board
 	 * @return True if Rabbit hole exists in x,y otherwise false
 	 */
-	private static boolean isRabbitHole(int x, int y) {
+	private static boolean isDefaultRabbitHole(int x, int y) {
 		Position[] rabbitHoles = BoardConstants.RABBIT_HOLES;
 		for (int i = 0; i < rabbitHoles.length; i++) {
 			if (new Position(x, y).equals(rabbitHoles[i])) {
@@ -137,24 +131,6 @@ public class BoardUtilities {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * method to create a new Tile
-	 * 
-	 * @return New tile
-	 */
-	private static Tile createTile() {
-		return new Tile();
-	}
-
-	/**
-	 * method to create a new RabbitHol
-	 * 
-	 * @return New RabbitHole
-	 */
-	private static RabbitHole createRabbitHole() {
-		return new RabbitHole();
 	}
 
 }

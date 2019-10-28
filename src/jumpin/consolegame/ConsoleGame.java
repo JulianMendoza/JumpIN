@@ -9,7 +9,7 @@ import jumpin.consolegame.command.commands.Help;
 import jumpin.consolegame.command.commands.MoveCommand;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
-import jumpin.model.Game;
+import jumpin.model.GameModel;
 
 /**
  * A class for creating a console game
@@ -17,7 +17,7 @@ import jumpin.model.Game;
  * @author Giuseppe
  * @documentation Cameron Davis
  */
-public class ConsoleGame extends Game {
+public class ConsoleGame extends GameModel {
 
 	private Scanner scanner;
 
@@ -26,6 +26,7 @@ public class ConsoleGame extends Game {
 	 */
 	public ConsoleGame() {
 		super();
+		this.getGenerator().createLevel1();
 		scanner = new Scanner(System.in);
 	}
 
@@ -40,7 +41,7 @@ public class ConsoleGame extends Game {
 				if (command != null) {
 					try {
 						command.execute();
-						if(!(command instanceof Help)) {
+						if (!(command instanceof Help)) {
 							Printer.print("Successful move!");
 							Printer.printBoard(toString());
 						}

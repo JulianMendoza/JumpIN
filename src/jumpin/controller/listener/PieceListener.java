@@ -27,6 +27,7 @@ public class PieceListener implements MouseListener {
 		this.view = view.getBoardView();
 	}
 
+	// A comment
 	@Override
 	public void mouseClicked(MouseEvent e) {
 

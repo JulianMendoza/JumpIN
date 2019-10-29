@@ -65,7 +65,7 @@ public class FoxLogic {
 	private static boolean isValidMove(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
 
-		while (board.isValidPosition(currentPos.nextPosition(direction)) && (board.getTile(currentPos.nextPosition(direction)).isEmpty() || isNextSameFox(board, direction)) && !isNextRabbitHole(board,direction) &&  distance > 0) {
+		while (isNextValid(board,direction) && (isNextEmpty(board,direction) || isNextSameFox(board, direction)) && !isNextRabbitHole(board,direction) &&  distance > 0) {
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
 		}
@@ -73,10 +73,16 @@ public class FoxLogic {
 		return distance == 0; // if the fox moved anything other than its total distance
 		
 	}
+	
 	private static boolean isNextRabbitHole(Board board,Direction direction) {
 		return (board.getTile(board.getSelectedPosition().nextPosition(direction)) instanceof RabbitHole);
 	}
-	
+	private static boolean isNextValid(Board board,Direction direction) {
+		return board.isValidPosition(board.getSelectedPosition().nextPosition(direction));
+	}
+	private static boolean isNextEmpty(Board board,Direction direction) {
+		return board.getTile(board.getSelectedPosition().nextPosition(direction)).isEmpty();
+	}
 	private static boolean isNextSameFox(Board board,Direction direction) {
 		Position nextPos = board.getSelectedPosition().nextPosition(direction);
 		if(board.getTile(nextPos).getPiece() instanceof Fox) {

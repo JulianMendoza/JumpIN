@@ -49,17 +49,13 @@ public class Board {
 	 * @throws NoTileException if the board model is given an invalid position
 	 * @throws NoPieceException 
 	 */
-	public void selectPiece(Position pos) throws NoTileException, NoPieceException {
+	public void selectPiece(Position pos)  {
 		Tile tile = model.getTile(pos.getX(), pos.getY());
-		if (tile == null) {
-			throw new NoTileException();
+		if (tile != null && tile.getPiece() != null) {
+			selectedPosition = pos;
+			selectedPiece = tile.getPiece();
+			validMoveSets = BoardLogic.getValidMoves(this);
 		}
-		selectedPosition = pos;
-		if(tile.getPiece() == null) {
-			throw new NoPieceException();
-		}
-		selectedPiece = tile.getPiece();
-		validMoveSets = BoardLogic.getValidMoves(this);
 	}
 	
 	public void deselectPiece() { 
@@ -121,6 +117,10 @@ public class Board {
 		} else {
 			throw new IllegalMoveException();
 		}
+	}
+	
+	public List<MoveSet> getValidMoveSets() {
+		return validMoveSets;
 	}
 
 	/**

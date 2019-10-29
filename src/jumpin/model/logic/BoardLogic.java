@@ -23,8 +23,13 @@ public class BoardLogic {
 	
 	public static MoveSet generateMoveSet(Move move, Board board) {
 		if(board.getSelectedPiece() instanceof Rabbit) {
-			return 
+			return MoveSet.createSingleMoveSet(move);
+		} else if(board.getSelectedPiece() instanceof Fox) {
+			  return FoxLogic.createMoveSet(move, board);
+		} else {
+			return new MoveSet();
 		}
+		
 	}
 
 }

@@ -10,6 +10,7 @@ import jumpin.model.exception.NoPieceException;
 import jumpin.model.exception.NoTileException;
 import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
+import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.Position;
 import jumpin.view.GameView;
@@ -40,7 +41,7 @@ public class PieceListener implements MouseListener {
 				TileView selectTile = (TileView) pieceView.getParent();
 				Position pos = selectTile.getModel().getPosition();
 
-				model.getBoard().selectPiece(pieceView.getModel(), pos);
+				model.getBoard().selectPiece(pos);
 
 				List<TileView> selectTiles = new ArrayList<TileView>();
 				selectTiles.add(selectTile); // most pieces only have one tile to highlight
@@ -49,12 +50,10 @@ public class PieceListener implements MouseListener {
 				}
 
 				List<TileView> highlightTiles = new ArrayList<TileView>();
-				try {
-					for (Move move : model.getValidMoves(pos)) {
+				for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
+					for(Move move : validMoveSets) {
 						highlightTiles.add(view.getTileView(move.getNewPos()));
 					}
-				} catch (NoTileException | NoPieceException e1) {
-					e1.printStackTrace();
 				}
 
 				view.highlight(highlightTiles, selectTiles);

@@ -36,7 +36,7 @@ public class MoveSet extends ArrayList<Move> {
 	
 	@Override
 	public int hashCode() {
-		int hashCode;
+		int hashCode = 0;
 		for(Move move : this) {
 			hashCode += move.hashCode();
 		}

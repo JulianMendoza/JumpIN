@@ -9,13 +9,14 @@ import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.Orientation;
 import jumpin.model.move.Move;
+import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.Position;
 
 public class FoxLogic {
 
-	public static List<Move> findFoxMoves(Board board) {
-		List<Move> foxMoves = new ArrayList<Move>();
+	public static List<MoveSet> findFoxMoves(Board board) {
+		List<MoveSet> foxMoves = new ArrayList<MoveSet>();
 
 		Fox fox = (Fox) board.getSelectedPiece();
 
@@ -27,7 +28,6 @@ public class FoxLogic {
 		}
 
 		for (Direction direction : fox.getOrientation().getValidDirections()) {
-			selectCorrectFox(board, direction, fox);
 			for (int i = 1; i < maxMove; i++) {
 				if (isValidMove(board, direction, i)) {
 					foxMoves.add(new Move(board.getSelectedPosition(), board.getSelectedPosition().nextPosition(direction, i)));
@@ -35,25 +35,6 @@ public class FoxLogic {
 			}
 		}
 		return foxMoves;
-	}
-
-	/**
-	 * Ensures the front facing fox part is selected
-	 * 
-	 * @param board
-	 * @param direction
-	 * @param fox
-	 */
-	private static void selectCorrectFox(Board board, Direction direction, Fox fox) {
-		Position currentPos = board.getSelectedPosition().nextPosition(direction);
-		Tile currentTile = board.getTile(currentPos);
-
-		if (currentTile != null && !currentTile.isEmpty()) {
-			if (fox.isSameFox(currentTile.getPiece())) {
-				// set the board to select the direction facing piece of the fox
-				board.selectPiece(currentTile.getPiece(), currentPos);
-			}
-		}
 	}
 
 	public static Position getOtherFoxPosition(Board board, Fox fox) {

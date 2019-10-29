@@ -53,5 +53,10 @@ public class Move {
 			return false;
 		}
 	}
+	
+	@Override
+	public int hashCode() {
+		return oldPos.hashCode() * 37 + newPos.hashCode() * 17;
+	}
 
 }

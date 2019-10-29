@@ -19,9 +19,6 @@ public class BoardListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() instanceof TileView) {
-
-		}
 	}
 
 	@Override

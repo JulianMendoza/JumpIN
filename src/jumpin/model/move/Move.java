@@ -1,6 +1,7 @@
 package jumpin.model.move;
 
 import jumpin.model.util.Position;
+import jumpin.util.Pair;
 
 /**
  * A class for representing the positional moves
@@ -23,7 +24,11 @@ public class Move {
 		this.oldPos = oldPos;
 		this.newPos = newPos;
 	}
-
+	public Pair<Integer,Integer> getIncrement(){
+		Pair<Integer,Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(), newPos.getY() - oldPos.getY());
+		return increment;
+		
+	}
 	/**
 	 * method for getting new position of a piece
 	 * 

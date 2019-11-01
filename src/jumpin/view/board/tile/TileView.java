@@ -59,6 +59,9 @@ public class TileView extends JPanel implements JumpINContainer {
 	@Override
 	public void populate() {
 		if (!model.isEmpty()) {
+			PieceView copy=pieceView;
+			clearPiece();
+			pieceView=copy;
 			setPiece(ComponentFactory.createPieceView(model.getPiece()));
 		} else {
 			clearPiece();

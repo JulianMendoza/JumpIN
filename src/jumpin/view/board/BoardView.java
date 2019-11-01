@@ -63,7 +63,7 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 	public void stopHighlighting() {
 		highlighter.stopHighlighting();
 	}
-
+	
 	@Override
 	public void repopulate() {
 		for (TileView tile : tileMap.values()) {

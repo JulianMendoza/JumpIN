@@ -29,7 +29,7 @@ public class FoxLogic {
 		}
 
 		for (Direction direction : fox.getOrientation().getValidDirections()) {
-			for (int i = 1; i < maxMove; i++) {
+			for (int i = 1; i <= maxMove; i++) {
 				if (isValidMove(board, direction, i)) {
 					Move move = new Move(board.getSelectedPosition(), board.getSelectedPosition().nextPosition(direction, i));
 					foxMoves.add(createMoveSet(move, board));
@@ -65,7 +65,8 @@ public class FoxLogic {
 	private static boolean isValidMove(Board board, Direction direction, int distance) {
 		Position currentPos = board.getSelectedPosition();
 
-		while (isNextValid(board,direction) && (isNextEmpty(board,direction) || isNextSameFox(board, direction)) && !isNextRabbitHole(board,direction) &&  distance > 0) {
+		while (isNextValid(board,currentPos,direction) && (isNextEmpty(board,currentPos,direction) || isNextSameFox(board,currentPos, direction)) && !isNextRabbitHole(board,currentPos,direction) &&  distance > 0&&!isOnEdge(board,currentPos,direction)) {
+			
 			currentPos = currentPos.nextPosition(direction);
 			distance--;
 		}
@@ -74,21 +75,49 @@ public class FoxLogic {
 		
 	}
 	
-	private static boolean isNextRabbitHole(Board board,Direction direction) {
-		return (board.getTile(board.getSelectedPosition().nextPosition(direction)) instanceof RabbitHole);
+	private static boolean isNextRabbitHole(Board board,Position currentPos,Direction direction) {
+		return (board.getTile(currentPos.nextPosition(direction)) instanceof RabbitHole);
 	}
-	private static boolean isNextValid(Board board,Direction direction) {
-		return board.isValidPosition(board.getSelectedPosition().nextPosition(direction));
+	private static boolean isNextValid(Board board,Position currentPos,Direction direction) {
+		return board.isValidPosition(currentPos.nextPosition(direction));
 	}
-	private static boolean isNextEmpty(Board board,Direction direction) {
-		return board.getTile(board.getSelectedPosition().nextPosition(direction)).isEmpty();
+	private static boolean isNextEmpty(Board board,Position currentPos,Direction direction) {
+		return board.getTile(currentPos.nextPosition(direction)).isEmpty();
 	}
-	private static boolean isNextSameFox(Board board,Direction direction) {
-		Position nextPos = board.getSelectedPosition().nextPosition(direction);
+	private static boolean isNextSameFox(Board board,Position currentPos,Direction direction) {
+		Position nextPos = currentPos.nextPosition(direction);
 		if(board.getTile(nextPos).getPiece() instanceof Fox) {
 			return ((Fox) board.getTile(nextPos).getPiece()).isSameFox(board.getSelectedPiece());
 		}
 		return false;
 	}
-
+	/**
+	 * @TODO calling position from tile indexed from 1-5 Calling index from board indexed 0-4
+	 * @param board
+	 * @param currentPos
+	 * @param direction
+	 * @return
+	 */
+	private static boolean isOnEdge(Board board,Position currentPos,Direction direction) {
+		Fox fox = (Fox) board.getSelectedPiece();
+		Position fox2=getOtherFoxPosition(board,fox);
+		int check;
+		switch(fox.getOrientation()) {
+		case EAST_WEST: 
+			check=board.getSelectedPosition().getX()-fox2.getX();
+			if(direction==Direction.EAST) {
+				return board.getSelectedPosition().getX()==4 || fox2.getX()==5||(check==-1)?currentPos.getX()==3:currentPos.getX()==4;
+			}else {
+				return board.getSelectedPosition().getX()==0||fox2.getX()==1||(check==-1)?currentPos.getX()==1:currentPos.getX()==0;
+			}
+		case NORTH_SOUTH:
+			check=board.getSelectedPosition().getY()-fox2.getY();
+			if(direction==Direction.SOUTH) {
+				return board.getSelectedPosition().getY()==4 || fox2.getY()==5||(check==-1)?currentPos.getY()==3:currentPos.getY()==4;
+			}else {
+				return board.getSelectedPosition().getY()==0||fox2.getY()==1||(check==-1)?currentPos.getY()==0:currentPos.getY()==1;
+			}
+		default: return false;
+		}
+	}
 }

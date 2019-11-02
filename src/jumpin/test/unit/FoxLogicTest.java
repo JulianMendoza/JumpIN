@@ -32,7 +32,7 @@ public class FoxLogicTest extends TestCase {
 		fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		board.assignPiece(new Position(1, 1), fox2);
-		board.assignPiece(new Position(1, 2), fox);
+		board.assignPiece(new Position(1, 0), fox);
 		board.selectPiece(new Position(1, 1));
 		moves = FoxLogic.findFoxMoves(board);
 

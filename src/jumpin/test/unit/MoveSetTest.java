@@ -11,6 +11,7 @@ import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.Position;
 import jumpin.view.GameView;
 import junit.framework.TestCase;
@@ -23,6 +24,7 @@ import junit.framework.TestCase;
 		private Fox fox4;
 		private List<MoveSet> moves;
 		private GameView view;
+		private Rabbit rabbit;
 		/**System.out.println(moves.size());
 		for(MoveSet ms:moves) {
 			for(Move m:ms) {
@@ -40,20 +42,87 @@ import junit.framework.TestCase;
 			fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			fox3=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
 			fox4=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+			rabbit = new Rabbit(PieceID.RABBIT_ID_1);
 			
 		}
 		public void testFindFoxMoves() {
-		board.assignPiece(new Position(1, 1), fox2);
-		board.assignPiece(new Position(1, 2), fox);
+		board.assignPiece(new Position(1, 2), fox2);
+		board.assignPiece(new Position(1, 1), fox);
 		board.selectPiece(new Position(1,1));
 		moves=FoxLogic.findFoxMoves(board);
-		assertTrue(moves.size()==3);
-		//assertTrue(moves[0].getNewPos())
+		System.out.println("Test 1");
 		for(MoveSet ms:moves) {
 			for(Move m:ms) {
-				
+				System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
 			}
 			}
+		assertTrue(moves.size()==3);
 		}
-	
+		public void testFindFoxMoves2() {
+			board.assignPiece(new Position(1, 2), fox2);
+			board.assignPiece(new Position(1, 1), fox);
+			board.selectPiece(new Position(1,2));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 2");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		public void testFindFoxMoves3() {
+			board.assignPiece(new Position(0,1 ), fox3);
+			board.assignPiece(new Position(1,1), fox4);
+			board.selectPiece(new Position(1,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 3");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		public void testFindFoxMoves4() {
+			board.assignPiece(new Position(0,1 ), fox3);
+			board.assignPiece(new Position(1,1), fox4);
+			board.selectPiece(new Position(0,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 4");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		public void testFindFoxMoves5() {
+			board.assignPiece(new Position(1, 0), fox);
+			board.assignPiece(new Position(1, 1), fox2);
+			board.assignPiece(new Position(1,4),rabbit);
+			board.selectPiece(new Position(1,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 5");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==2);
+		}
+		public void testFindFoxMoves6() {
+			board.assignPiece(new Position(1, 0), fox);
+			board.assignPiece(new Position(1, 1), fox2);
+			board.assignPiece(new Position(1,4),rabbit);
+			board.selectPiece(new Position(1,0));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 6");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==2);
+		}
 }

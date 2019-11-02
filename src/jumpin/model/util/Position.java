@@ -18,7 +18,7 @@ public class Position {
 	private int y;
 
 	/**
-	 * Indexed from 0-5
+	 * Indexed from 0-4
 	 * 
 	 * @param x position x of the board starting from the left
 	 * @param y position y of the board starting from the top

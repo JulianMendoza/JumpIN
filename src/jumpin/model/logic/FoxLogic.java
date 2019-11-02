@@ -129,6 +129,8 @@ public class FoxLogic {
 	}
 
 	private static boolean isNextEmpty(Board board, Position currentPos, Direction direction) {
+		if (board.getTile(currentPos.nextPosition(direction)) == null)
+			return false;
 		return board.getTile(currentPos.nextPosition(direction)).isEmpty();
 	}
 
@@ -154,26 +156,113 @@ public class FoxLogic {
 		int check;// used to determine which fox is placed infront
 		switch (fox.getOrientation()) {
 		case EAST_WEST:
-			check = board.getSelectedPosition().getX() - fox2.getX(); // -1 if tail is selected
 			if (direction == Direction.EAST) {
-				return board.getSelectedPosition().getX() == 4 || fox2.getX() == 5 || (check == -1)
+				check = board.getSelectedPosition().getX() - fox2.getX(); // -1 if tail is selected
+				if (check == -1) {
+					if (isNextEmpty(board, currentPos, direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
+																												// is
+																												// selected
+																												// so we
+																												// must
+																												// make
+																												// sure
+																												// there's
+																												// nothing
+																												// in
+																												// front
+																												// of it
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
+								? currentPos.getX() == 3
+								: currentPos.getX() == 4;
+					} else {
+						return true;
+					}
+				}
+				return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
 						? currentPos.getX() == 3
 						: currentPos.getX() == 4;
 			} else {
-				return board.getSelectedPosition().getX() == 0 || fox2.getX() == 1 || (check == -1)
+				check = board.getSelectedPosition().getX() - fox2.getX(); // 1 if tail is selected
+				if (check == 1) {
+					if (isNextEmpty(board, currentPos, direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
+																												// is
+																												// selected
+																												// so we
+																												// must
+																												// make
+																												// sure
+																												// there's
+																												// nothing
+																												// in
+																												// front
+																												// of it
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
+								? currentPos.getX() == 1
+								: currentPos.getX() == 0;
+					} else {
+						return true;
+					}
+				}
+				return board.getSelectedPosition().getX() == 0 || fox2.getX() == 0 || (check == 1)
 						? currentPos.getX() == 1
 						: currentPos.getX() == 0;
 			}
 		case NORTH_SOUTH:
-			check = board.getSelectedPosition().getY() - fox2.getY(); // -1 if tail is selected
 			if (direction == Direction.SOUTH) {
-				return board.getSelectedPosition().getY() == 4 || fox2.getY() == 5 || (check == -1)
+				check = board.getSelectedPosition().getY() - fox2.getY(); // -1 if tail is selected
+				if (check == -1) {
+					System.out.println(currentPos.toString());
+					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
+																												// is
+																												// selected
+																												// so we
+																												// must
+																												// make
+																												// sure
+																												// there's
+																												// nothing
+																												// in
+																												// front
+																												// of it
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
+								? currentPos.getY() == 3
+								: currentPos.getY() == 4;
+					} else {
+						return true;
+					}
+				}
+				return board.getSelectedPosition().getY() == 4 || fox2.getY() == 4 || (check == -1)
 						? currentPos.getY() == 3
 						: currentPos.getY() == 4;
 			} else {
-				return board.getSelectedPosition().getY() == 0 || fox2.getY() == 1 || (check == -1)
-						? currentPos.getY() == 0
-						: currentPos.getY() == 1;
+				check = board.getSelectedPosition().getY() - fox2.getY(); // 1 if tail is selected
+				if (check == 1) {
+					if (isNextEmpty(board, currentPos, direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
+																												// is
+																												// selected
+																												// so we
+																												// must
+																												// make
+																												// sure
+																												// there's
+																												// nothing
+																												// in
+																												// front
+																												// of it
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
+								? currentPos.getY() == 1
+								: currentPos.getY() == 0;
+					} else {
+						return true;
+					}
+				}
+				return board.getSelectedPosition().getY() == 0 || fox2.getY() == 0 || (check == 1)
+						? currentPos.getY() == 1
+						: currentPos.getY() == 0;
 			}
 		default:
 			return false;

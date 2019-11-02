@@ -1,4 +1,5 @@
 package jumpin.test.unit;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.Position;
 import jumpin.view.GameView;
 import junit.framework.TestCase;
+
 public class FoxLogicTest extends TestCase {
 	private GameModel game;
 	private Board board;
@@ -23,7 +25,7 @@ public class FoxLogicTest extends TestCase {
 	private GameView view;
 
 	@Override
-	protected void setUp() {	
+	protected void setUp() {
 		game = new GameModel();
 		board = game.getBoard();
 		view = new GameView(game);
@@ -31,29 +33,34 @@ public class FoxLogicTest extends TestCase {
 		fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		board.assignPiece(new Position(1, 1), fox2);
 		board.assignPiece(new Position(1, 2), fox);
-		board.selectPiece(new Position(1,1));
-		moves=FoxLogic.findFoxMoves(board);
-		
+		board.selectPiece(new Position(1, 1));
+		moves = FoxLogic.findFoxMoves(board);
+
 	}
+
 	public void testCreateMoveset() {
-		MoveSet test=FoxLogic.createMoveSet(new Move(board.getSelectedPosition(),new Position(1,4)),board);
-		assertTrue(test.size()==2);
-		assertTrue(test.contains(new Move(new Position(1,1),new Position(1,4))));
-		assertTrue(test.contains(new Move(new Position(1,0), new Position(1,3))));
-		
+		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
+		assertTrue(test.size() == 2);
+		assertTrue(test.contains(new Move(new Position(1, 1), new Position(1, 4))));
+		assertTrue(test.contains(new Move(new Position(1, 0), new Position(1, 3))));
+
 	}
+
 	public void testGetOtherFoxPosition() {
-		Position fox2pos=FoxLogic.getOtherFoxPosition(board,fox);
-		assertEquals(fox2pos,new Position(1,0));
+		Position fox2pos = FoxLogic.getOtherFoxPosition(board, fox);
+		assertEquals(fox2pos, new Position(1, 0));
 	}
+
 	public void testFindFoxMoves() {
+
 		System.out.println(moves.size());
-		for(MoveSet ms:moves) {
-			for(Move m:ms) {
-				System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+		for (MoveSet ms : moves) {
+			for (Move m : ms) {
+				System.out.println("Old Pos:" + m.getOldPos().getX() + "," + m.getOldPos().getY() + "New Pos:"
+						+ m.getNewPos().getX() + "," + m.getNewPos().getY());
 			}
 		}
-		assertTrue(moves.size()==3);
+		assertTrue(moves.size() == 3);
 
 	}
 }

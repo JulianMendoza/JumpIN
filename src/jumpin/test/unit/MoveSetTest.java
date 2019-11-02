@@ -125,4 +125,60 @@ import junit.framework.TestCase;
 				}
 			assertTrue(moves.size()==2);
 		}
+		public void testFindFoxMoves7() {
+			board.assignPiece(new Position(1, 3), fox);
+			board.assignPiece(new Position(1, 4), fox2);
+			board.assignPiece(new Position(1,0),rabbit);
+			board.selectPiece(new Position(1,4));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 7");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==2);
+		}
+		public void testFindFoxMoves8() {
+			board.assignPiece(new Position(0, 1), fox3);
+			board.assignPiece(new Position(1, 1), fox4);
+			board.assignPiece(new Position(4,1),rabbit);
+			board.selectPiece(new Position(0,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 8");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==2);
+		}
+		public void testFindFoxMoves9() {
+			board.assignPiece(new Position(0, 1), fox3);
+			board.assignPiece(new Position(1, 1), fox4);
+			board.assignPiece(new Position(4,1),rabbit);
+			board.selectPiece(new Position(1,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 9");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==2);
+		}
+		public void testFindFoxMoves10() {
+			board.assignPiece(new Position(0, 1), fox3);
+			board.assignPiece(new Position(1, 1), fox4);
+			board.assignPiece(new Position(3,1),rabbit);
+			board.selectPiece(new Position(1,1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 10");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==1);
+		}
 }

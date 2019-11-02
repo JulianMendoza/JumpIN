@@ -159,19 +159,9 @@ public class FoxLogic {
 			if (direction == Direction.EAST) {
 				check = board.getSelectedPosition().getX() - fox2.getX(); // -1 if tail is selected
 				if (check == -1) {
-					if (isNextEmpty(board, currentPos, direction)
-							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
-																												// is
-																												// selected
-																												// so we
-																												// must
-																												// make
-																												// sure
-																												// there's
-																												// nothing
-																												// in
-																												// front
-																												// of it
+					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { 
+						// tail is selected so we must make sure there's nothing in front of it
 						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
 								? currentPos.getX() == 3
 								: currentPos.getX() == 4;
@@ -185,19 +175,9 @@ public class FoxLogic {
 			} else {
 				check = board.getSelectedPosition().getX() - fox2.getX(); // 1 if tail is selected
 				if (check == 1) {
-					if (isNextEmpty(board, currentPos, direction)
-							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
-																												// is
-																												// selected
-																												// so we
-																												// must
-																												// make
-																												// sure
-																												// there's
-																												// nothing
-																												// in
-																												// front
-																												// of it
+					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
+						// tail is selected so we must make sure there's nothing in front of it
 						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
 								? currentPos.getX() == 1
 								: currentPos.getX() == 0;
@@ -213,20 +193,9 @@ public class FoxLogic {
 			if (direction == Direction.SOUTH) {
 				check = board.getSelectedPosition().getY() - fox2.getY(); // -1 if tail is selected
 				if (check == -1) {
-					System.out.println(currentPos.toString());
 					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
-							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
-																												// is
-																												// selected
-																												// so we
-																												// must
-																												// make
-																												// sure
-																												// there's
-																												// nothing
-																												// in
-																												// front
-																												// of it
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
+						// tail is selected so we must make sure there's nothing in front of it
 						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
 								? currentPos.getY() == 3
 								: currentPos.getY() == 4;
@@ -240,19 +209,9 @@ public class FoxLogic {
 			} else {
 				check = board.getSelectedPosition().getY() - fox2.getY(); // 1 if tail is selected
 				if (check == 1) {
-					if (isNextEmpty(board, currentPos, direction)
-							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { // tail
-																												// is
-																												// selected
-																												// so we
-																												// must
-																												// make
-																												// sure
-																												// there's
-																												// nothing
-																												// in
-																												// front
-																												// of it
+					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
+						// tail is selected so we must make sure there's nothing in front of it
 						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
 								? currentPos.getY() == 1
 								: currentPos.getY() == 0;

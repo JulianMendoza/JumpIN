@@ -53,7 +53,6 @@ public class FoxLogicTest extends TestCase {
 
 	public void testFindFoxMoves() {
 
-		System.out.println(moves.size());
 		for (MoveSet ms : moves) {
 			for (Move m : ms) {
 				System.out.println("Old Pos:" + m.getOldPos().getX() + "," + m.getOldPos().getY() + "New Pos:"

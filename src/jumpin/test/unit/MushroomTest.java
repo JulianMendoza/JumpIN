@@ -35,33 +35,6 @@ public class MushroomTest extends TestCase {
 		board.selectPiece(new Position(0,1));
 		assertTrue( board.getSelectedPiece() instanceof Mushroom);
 	}
-	/**
-	 * Test if mushroom can move in any direction
-	 * @throws NoPieceException if there is no mushroom on the board
-	 * @throws NoTileException if no tile exists at the specific position
-	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
-	 */
-	public void testMushroomMove() throws IllegalMoveException {
-		board.assignPiece(new Position(1, 1), mushroom);
-		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(0,1)));
-		}catch(IllegalMoveException e) {
-			assertEquals("Mushroom is not allowed to move West" ,e.getMessage());
-		}
-		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(2,1)));
-		}catch(IllegalMoveException e) {
-			assertEquals("Mushroom is not allowed to move East" ,e.getMessage());
-		}
-		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(1,2)));
-		}catch(IllegalMoveException e) {
-			assertEquals("Mushroom is not allowed to move North" ,e.getMessage());
-		}
-		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(1,0)));
-		}catch(IllegalMoveException e) {
-			assertEquals("Mushroom is not allowed to move South" ,e.getMessage());
-		}
-	}
+	
+
 }

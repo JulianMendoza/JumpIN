@@ -23,8 +23,7 @@ import junit.framework.TestCase;
 public class FoxLogicTest extends TestCase {
 	private GameModel game;
 	private Board board;
-	private Fox fox;
-	private Fox fox2;
+	private Fox fox, fox2;
 	private List<MoveSet> moves;
 	private GameView view;
 
@@ -40,6 +39,9 @@ public class FoxLogicTest extends TestCase {
 		board.selectPiece(new Position(1, 1));
 		moves = FoxLogic.findFoxMoves(board);
 	}
+	/**
+	 * Test if Fox's move set contains the correct moves
+	 */
 	public void testCreateMoveset() {
 		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
 		assertTrue(test.size() == 2);

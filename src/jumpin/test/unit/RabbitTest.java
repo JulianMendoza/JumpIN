@@ -20,7 +20,6 @@ import junit.framework.TestCase;
  * Test for rabbit moves and placements
  * 
  * @author Julian
- *
  */
 public class RabbitTest extends TestCase {
 	private GameModel game;

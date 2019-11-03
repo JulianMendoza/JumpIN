@@ -19,7 +19,6 @@ import junit.framework.TestCase;
  * Test for fox moves and placements
  * 
  * @author Julian
- *
  */
 public class FoxTest extends TestCase {
 	private GameModel game;

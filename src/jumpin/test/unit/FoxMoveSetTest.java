@@ -256,4 +256,19 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,4),new Position(1,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		public void testFindFoxMovesSouthWithRabbit() {
+			board.assignPiece(new Position(1, 2), fox);
+			board.assignPiece(new Position(1, 3), fox2);
+			board.assignPiece(new Position(1,4),rabbit);
+			board.selectPiece(new Position(1, 2));
+			moves=FoxLogic.findFoxMoves(board);
+			assertTrue(moves.size()==2);
+			moveset.add(new Move(new Position(1,2),new Position(1,1)));
+			moveset.add(new Move(new Position(1,3),new Position(1,2)));
+			assertTrue(moves.contains(moveset));
+			moveset=new MoveSet();
+			moveset.add(new Move(new Position(1,2),new Position(1,0)));
+			moveset.add(new Move(new Position(1,3),new Position(1,1)));
+			assertTrue(moves.contains(moveset));
+		}
 }

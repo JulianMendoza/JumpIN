@@ -9,6 +9,11 @@ import junit.framework.*;
  *
  */
 public class AllTests extends TestSuite {
+	/**
+	 * The main tests for the game
+	 * 
+	 * @return suite
+	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for JumpIN application");
 		suite.addTest(new TestSuite(GameModelTest.class));

@@ -1,7 +1,6 @@
 package jumpin.model.board.tile;
 
 import jumpin.model.piece.pieces.Rabbit;
-import jumpin.model.util.Position;
 
 /**
  * Child class for all rabbit holes on the board
@@ -10,13 +9,6 @@ import jumpin.model.util.Position;
  * @documentation Cameron Davis
  */
 public class RabbitHole extends Tile {
-
-	/**
-	 * Constructs a rabbit hole
-	 */
-	public RabbitHole(Position position) {
-		super(position);
-	}
 
 	/**
 	 * Checks if the hole has a rabbit in it

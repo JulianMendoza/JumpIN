@@ -71,7 +71,7 @@ public class GameState implements BoardModelListener {
 			rabbitsToWin++;
 		}
 		if (rabbitsToWin == 0) {
-			gameState = StateOfGame.YOU_WON;
+			gameState = StateOfGame.WON;
 		}
 	}
 

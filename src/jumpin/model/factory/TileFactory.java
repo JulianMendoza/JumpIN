@@ -2,7 +2,6 @@ package jumpin.model.factory;
 
 import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
-import jumpin.model.util.Position;
 
 /**
  * <b>Factory for creating tile components</b>
@@ -21,8 +20,8 @@ public class TileFactory {
 	 * 
 	 * @return New tile
 	 */
-	public static Tile createTile(Position position) {
-		return new Tile(position);
+	public static Tile createTile() {
+		return new Tile();
 	}
 
 	/**
@@ -30,8 +29,8 @@ public class TileFactory {
 	 * 
 	 * @return New RabbitHole
 	 */
-	public static RabbitHole createRabbitHole(Position position) {
-		return new RabbitHole(position);
+	public static RabbitHole createRabbitHole() {
+		return new RabbitHole();
 	}
 
 }

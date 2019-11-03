@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import jumpin.model.GameModel;
 import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
@@ -36,44 +37,32 @@ public class PieceListener implements MouseListener {
 			PieceView pieceView = (PieceView) e.getSource();
 			if (pieceView.getParent() instanceof TileView) {
 				TileView selectTile = (TileView) pieceView.getParent();
-				Position pos = selectTile.getModel().getPosition();
+				Position pos = view.getPosition(selectTile);
 				model.getBoard().selectPiece(pos);
-				List<TileView> selectTiles = highLightPiece(selectTile);
-				highLightAvailableMoves(selectTiles);
-			}
-		}
-		if (e.getSource() instanceof TileView) {
-			if (model.getBoard().getValidMoveSets() != null) {
-				if (!model.getBoard().getValidMoveSets().isEmpty())
-					for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
-						if (validMoveSets.contains(new Move(model.getBoard().getSelectedPosition(),
-								((TileView) (e.getSource())).getModel().getPosition()))) {
-							model.getBoard().update(validMoveSets);
-							System.out.println(model);
-						}
-					}
+				List<TileView> selectTiles = tilesToSelect(selectTile);
+				List<TileView> highlightTiles = tilesToHighlight();
+				view.highlight(highlightTiles, selectTiles);
 			}
 		}
 	}
 
-	private List<TileView> highLightPiece(TileView selectTile) {
+	private List<TileView> tilesToSelect(TileView selectTile) {
 		List<TileView> selectTiles = new ArrayList<TileView>();
 		selectTiles.add(selectTile); // most pieces only have one tile to highlight
 		if (selectTile.getModel().getPiece() instanceof Fox) { // except fox - find its other piece
-			selectTiles.add(view.getTileView(
-					FoxLogic.getOtherFoxPosition(model.getBoard(), (Fox) selectTile.getModel().getPiece())));
+			selectTiles.add(view.getTileView(FoxLogic.getOtherFoxPosition(model.getBoard(), (Fox) selectTile.getModel().getPiece())));
 		}
 		return selectTiles;
 	}
 
-	private void highLightAvailableMoves(List<TileView> selectTiles) {
+	private List<TileView> tilesToHighlight() {
 		List<TileView> highlightTiles = new ArrayList<TileView>();
 		for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
 			for (Move move : validMoveSets) {
 				highlightTiles.add(view.getTileView(move.getNewPos()));
 			}
 		}
-		view.highlight(highlightTiles, selectTiles);
+		return highlightTiles;
 	}
 
 	@Override

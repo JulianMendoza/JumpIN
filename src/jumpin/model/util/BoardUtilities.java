@@ -33,9 +33,9 @@ public class BoardUtilities {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				if (isDefaultRabbitHole(y, x)) {
-					board[y][x] = TileFactory.createRabbitHole(new Position(x, y));
+					board[y][x] = TileFactory.createRabbitHole();
 				} else {
-					board[y][x] = TileFactory.createTile(new Position(x, y));
+					board[y][x] = TileFactory.createTile();
 				}
 			}
 		}
@@ -108,7 +108,6 @@ public class BoardUtilities {
 		}
 		return false;
 	}
-	
 
 	public static MoveSet generateMoveSet(Move move, Board board) {
 		return BoardLogic.generateMoveSet(move, board);

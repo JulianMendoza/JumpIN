@@ -1,6 +1,6 @@
-package jumpin.view.board;
+package jumpin.view;
 
-public interface JumpINContainer {
+public interface AbstractFrame {
 
 	public void populate();
 

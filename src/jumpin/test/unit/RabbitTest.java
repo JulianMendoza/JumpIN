@@ -9,6 +9,7 @@ import jumpin.model.constants.PieceID;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.exception.NoPieceException;
 import jumpin.model.exception.NoTileException;
+import jumpin.model.move.Move;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
@@ -19,7 +20,6 @@ import junit.framework.TestCase;
  * Test for rabbit moves and placements
  * 
  * @author Julian
- *
  */
 public class RabbitTest extends TestCase {
 	private GameModel game;
@@ -41,7 +41,8 @@ public class RabbitTest extends TestCase {
 	 */
 	public void testRabbitExists() throws NoTileException, NoPieceException {
 		board.assignPiece(new Position(1, 0), rabbit);
-		assertTrue(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
 	}
 
 	/**
@@ -54,59 +55,24 @@ public class RabbitTest extends TestCase {
 	public void testRabbitMoveAlone() throws NoPieceException, NoTileException, IllegalMoveException {
 		board.assignPiece(new Position(1, 1), rabbit);
 		try {
-			game.movePiece(new Position(1, 1), Direction.WEST, -1);
+			board.movePiece(new Move(new Position(1, 1),new Position(0,1)));
 		} catch (IllegalMoveException e) {
 			assertEquals("Illegal move for Rabbit", e.getMessage());
 		}
 		try {
-			game.movePiece(new Position(1, 1), Direction.EAST, -1);
+			board.movePiece(new Move(new Position(1, 1), new Position(1,2)));
 		} catch (IllegalMoveException e) {
 			assertEquals("Illegal move for Rabbit", e.getMessage());
 		}
 		try {
-			game.movePiece(new Position(1, 1), Direction.NORTH, -1);
+			board.movePiece(new Move(new Position(1, 1), new Position(2,1)));
 		} catch (IllegalMoveException e) {
 			assertEquals("Illegal move for Rabbit", e.getMessage());
 		}
 		try {
-			game.movePiece(new Position(1, 1), Direction.SOUTH, -1);
+			board.movePiece(new Move(new Position(1, 1), new Position(0,1)));
 		} catch (IllegalMoveException e) {
 			assertEquals("Illegal move for Rabbit", e.getMessage());
-		}
-	}
-
-	/**
-	 * Test to determine the correct error message when a rabbit attempts to jump
-	 * off the board
-	 * 
-	 * @throws NoTileException      if no tile exists at the specific position
-	 * @throws NoPieceException     if there is no Rabbit at the position
-	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
-	 */
-	public void testRabbitMoveEdge() throws NoPieceException, NoTileException, IllegalMoveException {
-		board.assignPiece(new Position(0, 0), rabbit);
-		try {
-			game.movePiece(new Position(0, 0), Direction.NORTH, -1);
-		} catch (IllegalMoveException e) {
-			assertEquals("Rabbit cannot move North off the board", e.getMessage());
-		}
-		board.assignPiece(new Position(0, 1), rabbit);
-		try {
-			game.movePiece(new Position(0, 1), Direction.WEST, -1);
-		} catch (IllegalMoveException e) {
-			assertEquals("Rabbit cannot move West off the board", e.getMessage());
-		}
-		board.assignPiece(new Position(4, 1), rabbit);
-		try {
-			game.movePiece(new Position(4, 1), Direction.EAST, -1);
-		} catch (IllegalMoveException e) {
-			assertEquals("Rabbit cannot move East off the board", e.getMessage());
-		}
-		board.assignPiece(new Position(1, 4), rabbit);
-		try {
-			game.movePiece(new Position(1, 4), Direction.SOUTH, -1);
-		} catch (IllegalMoveException e) {
-			assertEquals("Rabbit cannot move South off the board", e.getMessage());
 		}
 	}
 
@@ -121,27 +87,25 @@ public class RabbitTest extends TestCase {
 		board.assignPiece(new Position(1, 0), rabbit);
 		Mushroom mushroom = new Mushroom();
 		board.assignPiece(new Position(1, 1), mushroom);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 2)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 2), Direction.NORTH, -1);
+		board.movePiece(new Move(new Position(1, 0), new Position(1,2)));
+		board.selectPiece(new Position(1, 2));
+		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
+		board.movePiece(new Move(new Position(1, 2), new Position(1,0)));
 		board.assignPiece(new Position(1, 2), mushroom);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 3)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 3), Direction.NORTH, -1);
+		board.movePiece(new Move(new Position(1, 0), new Position(1,3)));
+		board.selectPiece(new Position(1, 3));
+		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
+		board.movePiece(new Move(new Position(1, 3), new Position(1,0)));
 		board.assignPiece(new Position(1, 3), mushroom);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 4)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 4), Direction.NORTH, -1);
-		board.assignPiece(new Position(1, 4), mushroom);
-		try {
-			game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		} catch (IllegalMoveException e) {
-			// assertEquals("Rabbit cannot move South off the board",e.getMessage());
-			assertEquals("Illegal move for Rabbit", e.getMessage());
-		}
+		board.movePiece(new Move(new Position(1, 0), new Position(1,4)));
+		board.selectPiece(new Position(1, 4));
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
 	}
 
 	/**
@@ -157,18 +121,11 @@ public class RabbitTest extends TestCase {
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		board.assignPiece(new Position(1, 1), fox);
 		board.assignPiece(new Position(1, 2), fox2);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 3)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 3), Direction.NORTH, -1);
-		board.assignPiece(new Position(1, 3), fox);
-		board.assignPiece(new Position(1, 4), fox2);
-		try {
-			game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		} catch (IllegalMoveException e) {
-			// assertEquals("Rabbit cannot move South off the board",e.getMessage());
-			assertEquals("Illegal move for Rabbit", e.getMessage());
-		}
+		board.movePiece(new Move(new Position(1, 0), new Position(1,3)));
+		board.selectPiece(new Position(1, 3));
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
 	}
 
 	/**
@@ -181,26 +138,25 @@ public class RabbitTest extends TestCase {
 	public void testRabbitRabbit() throws NoPieceException, NoTileException, IllegalMoveException {
 		board.assignPiece(new Position(1, 0), rabbit);
 		board.assignPiece(new Position(1, 1), rabbit);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 2)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 2), Direction.NORTH, -1);
+		board.movePiece(new Move(new Position(1, 0), new Position(1,2)));
+		board.selectPiece(new Position(1, 2));
+		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
+		board.movePiece(new Move(new Position(1, 2), new Position(1,0)));
 		board.assignPiece(new Position(1, 2), rabbit);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 3)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 3), Direction.NORTH, -1);
+		board.movePiece(new Move(new Position(1, 0),new Position(1,3)));
+		board.selectPiece(new Position(1, 3));
+		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
+		board.movePiece(new Move(new Position(1, 3), new Position(1,0)));
 		board.assignPiece(new Position(1, 3), rabbit);
-		game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		assertTrue(board.selectPiece(new Position(1, 4)) instanceof Rabbit);
-		assertFalse(board.selectPiece(new Position(1, 0)) instanceof Rabbit);
-		game.movePiece(new Position(1, 4), Direction.NORTH, -1);
-		board.assignPiece(new Position(1, 4), rabbit);
-		try {
-			game.movePiece(new Position(1, 0), Direction.SOUTH, -1);
-		} catch (IllegalMoveException e) {
-			// assertEquals("Rabbit cannot move South off the board",e.getMessage());
-			assertEquals("Illegal move for Rabbit", e.getMessage());
-		}
+		board.movePiece(new Move(new Position(1, 0),new Position(1,4)));
+		board.selectPiece(new Position(1, 4));
+		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.selectPiece(new Position(1, 0));
+		assertFalse(board.getSelectedPiece() instanceof Rabbit);
+
 	}
 }

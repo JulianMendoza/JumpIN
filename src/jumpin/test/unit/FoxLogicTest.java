@@ -15,12 +15,15 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.Position;
 import jumpin.view.GameView;
 import junit.framework.TestCase;
-
+/**
+ * 
+ * @author Julian
+ *	TestCase for The FoxLogic Class
+ */
 public class FoxLogicTest extends TestCase {
 	private GameModel game;
 	private Board board;
-	private Fox fox;
-	private Fox fox2;
+	private Fox fox, fox2;
 	private List<MoveSet> moves;
 	private GameView view;
 
@@ -35,9 +38,18 @@ public class FoxLogicTest extends TestCase {
 		board.assignPiece(new Position(1, 0), fox);
 		board.selectPiece(new Position(1, 1));
 		moves = FoxLogic.findFoxMoves(board);
-
 	}
-
+	/**
+	 * Test if Fox's move set contains the correct moves
+	 */
+	public void testFoxExists() {
+		board.assignPiece(new Position(1, 0), fox2);
+		board.assignPiece(new Position(1, 1), fox);
+		board.selectPiece(new Position(1, 1));
+		assertTrue(board.getSelectedPiece() instanceof Fox);
+		board.selectPiece(new Position(1, 0));
+		assertTrue(board.getSelectedPiece()  instanceof Fox);
+	}
 	public void testCreateMoveset() {
 		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
 		assertTrue(test.size() == 2);
@@ -45,21 +57,8 @@ public class FoxLogicTest extends TestCase {
 		assertTrue(test.contains(new Move(new Position(1, 0), new Position(1, 3))));
 
 	}
-
 	public void testGetOtherFoxPosition() {
 		Position fox2pos = FoxLogic.getOtherFoxPosition(board, fox);
 		assertEquals(fox2pos, new Position(1, 0));
-	}
-
-	public void testFindFoxMoves() {
-
-		for (MoveSet ms : moves) {
-			for (Move m : ms) {
-				System.out.println("Old Pos:" + m.getOldPos().getX() + "," + m.getOldPos().getY() + "New Pos:"
-						+ m.getNewPos().getX() + "," + m.getNewPos().getY());
-			}
-		}
-		assertTrue(moves.size() == 3);
-
 	}
 }

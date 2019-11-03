@@ -16,7 +16,7 @@ public class RabbitLogic {
 		for (Direction direction : Direction.values()) {
 			Position selectedPosition = board.getSelectedPosition();
 			Position currentPos = selectedPosition.nextPosition(direction);
-			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()) { // nothing for rabbit to jump over
+			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()||currentPos==null) { // nothing for rabbit to jump over
 				continue;
 			}
 			while (board.isValidPosition(currentPos)) {

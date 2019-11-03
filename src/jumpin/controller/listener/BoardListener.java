@@ -43,7 +43,7 @@ public class BoardListener implements MouseListener {
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();
 		}
-		// view.getBoardView().stopHighlighting();
+		view.getBoardView().stopHighlighting();
 	}
 
 	@Override

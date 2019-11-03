@@ -63,6 +63,8 @@ public class GameView extends JFrame implements JumpINContainer {
 		for (TileView view : boardView.getTileMap().values()) {
 			if (view.getPieceView() != null) {
 				view.getPieceView().addMouseListener(l);
+			}else {
+				view.addMouseListener(l);
 			}
 		}
 	}

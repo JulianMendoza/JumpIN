@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JLayeredPane;
 
 import jumpin.model.board.BoardModel;
+import jumpin.model.move.Move;
 import jumpin.model.util.Position;
 import jumpin.view.board.tile.TileHighlighter;
 import jumpin.view.board.tile.TileView;

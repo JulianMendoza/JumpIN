@@ -24,11 +24,14 @@ public class Move {
 		this.oldPos = oldPos;
 		this.newPos = newPos;
 	}
-	public Pair<Integer,Integer> getIncrement(){
-		Pair<Integer,Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(), newPos.getY() - oldPos.getY());
+
+	public Pair<Integer, Integer> getIncrement() {
+		Pair<Integer, Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(),
+				newPos.getY() - oldPos.getY());
 		return increment;
-		
+
 	}
+
 	/**
 	 * method for getting new position of a piece
 	 * 
@@ -58,7 +61,7 @@ public class Move {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return oldPos.hashCode() * 37 + newPos.hashCode() * 17;

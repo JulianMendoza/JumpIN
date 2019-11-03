@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class MoveSet extends ArrayList<Move> {
 
-	
-	
 	/**
 	 * 
 	 */
@@ -16,47 +14,49 @@ public class MoveSet extends ArrayList<Move> {
 		moveSet.add(move);
 		return moveSet;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		if(o == null) {
+		if (o == null) {
 			return false;
-		} else if(o == this) {
+		} else if (o == this) {
 			return true;
-		} else if (o instanceof MoveSet){
+		} else if (o instanceof MoveSet) {
 			MoveSet set = (MoveSet) o;
-			for(Move move : set) {
-				if(!contains(move)) {
+			for (Move move : set) {
+				if (!contains(move)) {
 					return false;
 				}
 			}
 		}
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int hashCode = 0;
-		for(Move move : this) {
+		for (Move move : this) {
 			hashCode += move.hashCode();
 		}
 		return hashCode;
 	}
+
 	@Override
 	public boolean contains(Object o) {
-		if(o instanceof Move) {
-		Move m=(Move)o;
+		if (o instanceof Move) {
+			Move m = (Move) o;
 
-		for(Move m2:this) {
-		
-			if((m2.getNewPos().getX()==m.getNewPos().getX())&&(m2.getNewPos().getY()==m.getNewPos().getY())&&(m2.getOldPos().getX()==m.getOldPos().getX())&&
-					(m2.getOldPos().getY()==m.getOldPos().getY()))	{
-				return true;
+			for (Move m2 : this) {
+
+				if ((m2.getNewPos().getX() == m.getNewPos().getX()) && (m2.getNewPos().getY() == m.getNewPos().getY())
+						&& (m2.getOldPos().getX() == m.getOldPos().getX())
+						&& (m2.getOldPos().getY() == m.getOldPos().getY())) {
+					return true;
+				}
 			}
 		}
-		}
 		return false;
-		
+
 	}
-	
+
 }

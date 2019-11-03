@@ -143,8 +143,8 @@ public class FoxLogic {
 	}
 
 	/**
-	 * @TODO calling position from tile indexed from 1-5 Calling index from board
-	 *       indexed 0-4
+	 *  IsOnEdge determines whether the fox is on the edge of the board.
+	 *  Also checks if the tail has one unit free in front so that the head cannot no clip.
 	 * @param board
 	 * @param currentPos
 	 * @param direction
@@ -160,11 +160,9 @@ public class FoxLogic {
 				check = board.getSelectedPosition().getX() - fox2.getX(); // -1 if tail is selected
 				if (check == -1) {
 					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
-							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) { 
+							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
 						// tail is selected so we must make sure there's nothing in front of it
-						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
-								? currentPos.getX() == 3
-								: currentPos.getX() == 4;
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || currentPos.getX() == 3;
 					} else {
 						return true;
 					}
@@ -178,9 +176,7 @@ public class FoxLogic {
 					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
 							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
 						// tail is selected so we must make sure there's nothing in front of it
-						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
-								? currentPos.getX() == 1
-								: currentPos.getX() == 0;
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || currentPos.getX() == 1;
 					} else {
 						return true;
 					}
@@ -196,9 +192,7 @@ public class FoxLogic {
 					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
 							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
 						// tail is selected so we must make sure there's nothing in front of it
-						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == -1)
-								? currentPos.getY() == 3
-								: currentPos.getY() == 4;
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || currentPos.getY() == 3;
 					} else {
 						return true;
 					}
@@ -212,9 +206,7 @@ public class FoxLogic {
 					if (isNextEmpty(board, currentPos.nextPosition(direction), direction)
 							|| (board.getTile(currentPos.nextPosition(direction)).getPiece() instanceof Fox)) {
 						// tail is selected so we must make sure there's nothing in front of it
-						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || (check == 1)
-								? currentPos.getY() == 1
-								: currentPos.getY() == 0;
+						return board.getSelectedPosition().getX() == 4 || fox2.getX() == 4 || currentPos.getY() == 1;
 					} else {
 						return true;
 					}

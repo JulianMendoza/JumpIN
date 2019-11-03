@@ -4,10 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import jumpin.model.GameModel;
-import jumpin.model.exception.NoPieceException;
-import jumpin.model.exception.NoTileException;
 import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
@@ -45,24 +42,40 @@ public class PieceListener implements MouseListener {
 				highLightAvailableMoves(selectTiles);
 			}
 		}
+		if (e.getSource() instanceof TileView) {
+			if (model.getBoard().getValidMoveSets() != null) {
+				if (!model.getBoard().getValidMoveSets().isEmpty())
+					for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
+						if (validMoveSets.contains(new Move(model.getBoard().getSelectedPosition(),
+								((TileView) (e.getSource())).getModel().getPosition()))) {
+							model.getBoard().update(validMoveSets);
+							System.out.println(model);
+						}
+					}
+			}
+		}
 	}
+
 	private List<TileView> highLightPiece(TileView selectTile) {
 		List<TileView> selectTiles = new ArrayList<TileView>();
 		selectTiles.add(selectTile); // most pieces only have one tile to highlight
 		if (selectTile.getModel().getPiece() instanceof Fox) { // except fox - find its other piece
-			selectTiles.add(view.getTileView(FoxLogic.getOtherFoxPosition(model.getBoard(), (Fox) selectTile.getModel().getPiece())));
+			selectTiles.add(view.getTileView(
+					FoxLogic.getOtherFoxPosition(model.getBoard(), (Fox) selectTile.getModel().getPiece())));
 		}
 		return selectTiles;
 	}
+
 	private void highLightAvailableMoves(List<TileView> selectTiles) {
 		List<TileView> highlightTiles = new ArrayList<TileView>();
 		for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
-			for(Move move : validMoveSets) {
+			for (Move move : validMoveSets) {
 				highlightTiles.add(view.getTileView(move.getNewPos()));
 			}
 		}
 		view.highlight(highlightTiles, selectTiles);
 	}
+
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub

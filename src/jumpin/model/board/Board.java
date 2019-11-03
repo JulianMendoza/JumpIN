@@ -97,7 +97,7 @@ public class Board {
 	 * 
 	 * @param move move of a piece
 	 */
-	private void update(List<Move> moves) {
+	public void update(List<Move> moves) {
 		for(Move move : moves) {
 			Piece movePiece = getTile(move.getOldPos()).getPiece();
 			if (getTile(move.getNewPos()) instanceof RabbitHole) {

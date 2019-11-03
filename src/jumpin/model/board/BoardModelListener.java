@@ -1,5 +1,7 @@
 package jumpin.model.board;
 
+import jumpin.model.board.event.BoardModelEvent;
+
 /**
  * Interface of the board model's listeners
  * 
@@ -12,5 +14,5 @@ public interface BoardModelListener {
 	 * 
 	 * @param event the update event
 	 */
-	public void update(int event);
+	public void update(BoardModelEvent e);
 }

@@ -65,4 +65,8 @@ public class PieceView extends JLabel {
 		return model;
 	}
 
+	public void dispose() {
+		this.dispose();
+	}
+
 }

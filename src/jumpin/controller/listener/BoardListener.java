@@ -4,6 +4,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import jumpin.model.GameModel;
+import jumpin.model.board.Board;
+import jumpin.model.exception.IllegalMoveException;
+import jumpin.model.move.Move;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
 
@@ -23,8 +26,24 @@ public class BoardListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println(e.getSource());
+		Board board = model.getBoard();
+		if (e.getSource() instanceof TileView) {
+			TileView tileView = (TileView) e.getSource();
 
+			Move move = new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView));
+			if (tileView.getModel().isEmpty() && board.getSelectedPiece() != null) {
+				doMove(move);
+			}
+		}
+	}
+
+	private void doMove(Move move) {
+		try {
+			model.getBoard().movePiece(move);
+		} catch (IllegalMoveException e) {
+			model.getBoard().deselectPiece();
+		}
+		// view.getBoardView().stopHighlighting();
 	}
 
 	@Override

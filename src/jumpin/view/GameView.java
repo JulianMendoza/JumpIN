@@ -73,6 +73,6 @@ public class GameView extends JFrame implements AbstractFrame {
 
 	@Override
 	public void repopulate() {
-		boardView.populate();
+		boardView.repopulate();
 	}
 }

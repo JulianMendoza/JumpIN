@@ -2,12 +2,11 @@ package jumpin.model.board;
 
 import java.util.List;
 
-import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.event.BoardModelEvent;
+import jumpin.model.board.event.EventFactory;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.exception.IllegalMoveException;
-import jumpin.model.exception.NoPieceException;
-import jumpin.model.exception.NoTileException;
 import jumpin.model.logic.BoardLogic;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
@@ -32,7 +31,7 @@ public class Board {
 	 * Currently selected position on the board
 	 */
 	private Position selectedPosition;
-	
+
 	private List<MoveSet> validMoveSets;
 
 	/**
@@ -46,10 +45,10 @@ public class Board {
 	 * Gets the piece in the specified position
 	 * 
 	 * @param pos position of the piece
-	 * @throws NoTileException if the board model is given an invalid position
-	 * @throws NoPieceException 
+	 * @throws NoTileException  if the board model is given an invalid position
+	 * @throws NoPieceException
 	 */
-	public void selectPiece(Position pos)  {
+	public void selectPiece(Position pos) {
 		Tile tile = model.getTile(pos.getX(), pos.getY());
 		if (tile != null && tile.getPiece() != null) {
 			selectedPosition = pos;
@@ -57,8 +56,8 @@ public class Board {
 			validMoveSets = BoardLogic.getValidMoves(this);
 		}
 	}
-	
-	public void deselectPiece() { 
+
+	public void deselectPiece() {
 		selectedPiece = null;
 		validMoveSets = null;
 	}
@@ -97,28 +96,24 @@ public class Board {
 	 * 
 	 * @param move move of a piece
 	 */
-	public void update(List<Move> moves) {
-		for(Move move : moves) {
+	private void update(MoveSet moveSet) {
+		notify(EventFactory.generateBoardModelEvent(moveSet, this));
+		for (Move move : moveSet) {
 			Piece movePiece = getTile(move.getOldPos()).getPiece();
-			if (getTile(move.getNewPos()) instanceof RabbitHole) {
-				this.notify(BoardModelEvent.ON_RABBIT_HOLE);
-			} else if (getTile(move.getOldPos()) instanceof RabbitHole) {
-				this.notify(BoardModelEvent.OFF_RABBIT_HOLE);
-			}
 			assignPiece(move.getNewPos(), movePiece);
 			clearTile(move.getOldPos());
 		}
 	}
-	
+
 	public void movePiece(Move move) throws IllegalMoveException {
 		MoveSet moves = BoardUtilities.generateMoveSet(move, this);
-		if(validMoveSets.contains(moves)) {
+		if (validMoveSets.contains(moves)) {
 			update(moves);
 		} else {
 			throw new IllegalMoveException();
 		}
 	}
-	
+
 	public List<MoveSet> getValidMoveSets() {
 		return validMoveSets;
 	}
@@ -146,7 +141,7 @@ public class Board {
 	 * 
 	 * @param listener listener of Board
 	 */
-	public void addListener(BoardModelListener listener) {
+	public void addModelListener(BoardModelListener listener) {
 		model.addListener(listener);
 	}
 
@@ -155,7 +150,7 @@ public class Board {
 	 * 
 	 * @param e the event
 	 */
-	public void notify(int e) {
+	public void notify(BoardModelEvent e) {
 		for (BoardModelListener l : model.getListeners()) {
 			l.update(e);
 		}

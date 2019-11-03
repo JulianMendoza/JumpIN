@@ -1,7 +1,8 @@
 package jumpin.model;
 
-import jumpin.model.board.BoardModelEvent;
 import jumpin.model.board.BoardModelListener;
+import jumpin.model.board.event.BoardModelEvent;
+import jumpin.model.board.event.BoardModelEventID;
 import jumpin.model.constants.StateOfGame;
 
 /**
@@ -64,10 +65,10 @@ public class GameState implements BoardModelListener {
 	 * left, the player has won the game.
 	 */
 	@Override
-	public void update(int event) {
-		if (event == BoardModelEvent.ON_RABBIT_HOLE) {
+	public void update(BoardModelEvent e) {
+		if (e.getID() == BoardModelEventID.MOVE_ON_RABBIT_HOLE) {
 			rabbitsToWin--;
-		} else {
+		} else if (e.getID() == BoardModelEventID.MOVE_OFF_RABBIT_HOLE) {
 			rabbitsToWin++;
 		}
 		if (rabbitsToWin == 0) {

@@ -44,11 +44,14 @@ public class TileView extends JPanel implements AbstractFrame {
 		this.pieceView = pieceView;
 	}
 
-	public void clearPiece() {
+	public PieceView clearPiece() {
 		if (pieceView != null) {
+			PieceView clearedPiece = pieceView;
 			remove(pieceView);
 			pieceView = null;
+			return clearedPiece;
 		}
+		return null;
 	}
 
 	public PieceView getPieceView() {

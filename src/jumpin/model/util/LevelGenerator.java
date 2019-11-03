@@ -46,7 +46,7 @@ public class LevelGenerator {
 		board.assignPiece(new Position(4, 2), rabbit3);
 		gameState.setNumToWin(3);
 		gameState.setState(StateOfGame.IN_PROGRESS);
-		board.addListener(gameState);
+		board.addModelListener(gameState);
 	}
 
 }

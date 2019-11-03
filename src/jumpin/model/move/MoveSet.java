@@ -41,22 +41,4 @@ public class MoveSet extends ArrayList<Move> {
 		return hashCode;
 	}
 
-	@Override
-	public boolean contains(Object o) {
-		if (o instanceof Move) {
-			Move m = (Move) o;
-
-			for (Move m2 : this) {
-
-				if ((m2.getNewPos().getX() == m.getNewPos().getX()) && (m2.getNewPos().getY() == m.getNewPos().getY())
-						&& (m2.getOldPos().getX() == m.getOldPos().getX())
-						&& (m2.getOldPos().getY() == m.getOldPos().getY())) {
-					return true;
-				}
-			}
-		}
-		return false;
-
-	}
-
 }

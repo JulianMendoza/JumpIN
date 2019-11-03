@@ -73,8 +73,8 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 
 	@Override
 	public void repopulate() {
-		for (TileView tile : tileMap.values()) {
-			tile.repopulate();
+		for (TileView tileView : getTileViews()) {
+			tileView.repopulate();
 		}
 
 	}

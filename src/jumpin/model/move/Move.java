@@ -26,8 +26,7 @@ public class Move {
 	}
 
 	public Pair<Integer, Integer> getIncrement() {
-		Pair<Integer, Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(),
-				newPos.getY() - oldPos.getY());
+		Pair<Integer, Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(), newPos.getY() - oldPos.getY());
 		return increment;
 
 	}
@@ -56,7 +55,7 @@ public class Move {
 			return false;
 		} else if (o instanceof Move) {
 			Move move = (Move) o;
-			return move.getNewPos() == this.getNewPos() && move.getOldPos() == this.getOldPos();
+			return move.getNewPos().equals(this.getNewPos()) && move.getOldPos().equals(this.getOldPos());
 		} else {
 			return false;
 		}

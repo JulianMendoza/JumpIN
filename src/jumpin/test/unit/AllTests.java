@@ -15,6 +15,9 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(FoxTest.class));
 		suite.addTest(new TestSuite(MushroomTest.class));
 		suite.addTest(new TestSuite(RabbitTest.class));
+		suite.addTest(new TestSuite(FoxLogicTest.class));
+		suite.addTest(new TestSuite(FoxMoveSetTest.class));
+		suite.addTest(new TestSuite(RabbitMoveSetTest.class));
 		return suite;
 	}
 

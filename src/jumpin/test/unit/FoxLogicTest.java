@@ -42,6 +42,14 @@ public class FoxLogicTest extends TestCase {
 	/**
 	 * Test if Fox's move set contains the correct moves
 	 */
+	public void testFoxExists() {
+		board.assignPiece(new Position(1, 0), fox2);
+		board.assignPiece(new Position(1, 1), fox);
+		board.selectPiece(new Position(1, 1));
+		assertTrue(board.getSelectedPiece() instanceof Fox);
+		board.selectPiece(new Position(1, 0));
+		assertTrue(board.getSelectedPiece()  instanceof Fox);
+	}
 	public void testCreateMoveset() {
 		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
 		assertTrue(test.size() == 2);

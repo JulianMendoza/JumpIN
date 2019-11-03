@@ -50,13 +50,19 @@ import junit.framework.TestCase;
 		board.assignPiece(new Position(1, 1), fox);
 		board.selectPiece(new Position(1,1));
 		moves=FoxLogic.findFoxMoves(board);
-		System.out.println("Test 1");
 		for(MoveSet ms:moves) {
 			for(Move m:ms) {
 				System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
 			}
 			}
 		assertTrue(moves.size()==3);
+		assertTrue(moves.contains(new Move(new Position(1,1),new Position(1,2))));
+		assertTrue(moves.contains(new Move(new Position(1,1),new Position(1,3))));
+		assertTrue(moves.contains(new Move(new Position(1,1),new Position(1,0))));
+		assertTrue(moves.contains(new Move(new Position(1,2),new Position(1,1))));
+		assertTrue(moves.contains(new Move(new Position(1,2),new Position(1,3))));
+		assertTrue(moves.contains(new Move(new Position(1,2),new Position(1,4))));
+		
 		}
 		public void testFindFoxMoves2() {
 			board.assignPiece(new Position(1, 2), fox2);
@@ -180,5 +186,61 @@ import junit.framework.TestCase;
 				}
 				}
 			assertTrue(moves.size()==1);
+		}
+		//EAST GOING WEST
+		public void testFindFoxMoves11() {
+			board.assignPiece(new Position(3, 1), fox3);
+			board.assignPiece(new Position(4, 1), fox4);
+			board.selectPiece(new Position(4, 1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 11");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		//WEST GOING EAST
+		public void testFindFoxMoves12() {
+			board.assignPiece(new Position(0, 1), fox3);
+			board.assignPiece(new Position(1, 1), fox4);
+			board.selectPiece(new Position(1, 1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 12");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		//NORTH GOING SOUTH
+		public void testFindFoxMoves13() {
+			board.assignPiece(new Position(1, 1), fox);
+			board.assignPiece(new Position(1, 2), fox2);
+			board.selectPiece(new Position(1, 1));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 13");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
+		}
+		//SOUTH GOING NORTH
+		public void testFindFoxMoves14() {
+			board.assignPiece(new Position(1, 3), fox);
+			board.assignPiece(new Position(1, 4), fox2);
+			board.selectPiece(new Position(1, 4));
+			moves=FoxLogic.findFoxMoves(board);
+			System.out.println("Test 14");
+			for(MoveSet ms:moves) {
+				for(Move m:ms) {
+					System.out.println("Old Pos:"+m.getOldPos().getX()+","+m.getOldPos().getY()+"New Pos:"+m.getNewPos().getX()+","+m.getNewPos().getY());
+				}
+				}
+			assertTrue(moves.size()==3);
 		}
 }

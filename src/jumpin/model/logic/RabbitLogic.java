@@ -15,12 +15,7 @@ public class RabbitLogic {
 		List<MoveSet> rabbitMoves = new ArrayList<MoveSet>();
 		for (Direction direction : Direction.values()) {
 			Position selectedPosition = board.getSelectedPosition();
-			Position currentPos;
-			if(selectedPosition.nextPosition(direction)==null) {
-				 continue;
-			}else {
-				 currentPos = selectedPosition.nextPosition(direction);
-			}
+			Position currentPos = selectedPosition.nextPosition(direction);
 			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()||currentPos==null) { // nothing for rabbit to jump over
 				continue;
 			}

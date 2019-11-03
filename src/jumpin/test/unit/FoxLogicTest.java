@@ -19,8 +19,7 @@ import junit.framework.TestCase;
 public class FoxLogicTest extends TestCase {
 	private GameModel game;
 	private Board board;
-	private Fox fox;
-	private Fox fox2;
+	private Fox fox, fox2;
 	private List<MoveSet> moves;
 	private GameView view;
 
@@ -35,24 +34,30 @@ public class FoxLogicTest extends TestCase {
 		board.assignPiece(new Position(1, 0), fox);
 		board.selectPiece(new Position(1, 1));
 		moves = FoxLogic.findFoxMoves(board);
-
 	}
 
+	/**
+	 * Test if Fox's move set contains the correct moves
+	 */
 	public void testCreateMoveset() {
 		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
 		assertTrue(test.size() == 2);
 		assertTrue(test.contains(new Move(new Position(1, 1), new Position(1, 4))));
 		assertTrue(test.contains(new Move(new Position(1, 0), new Position(1, 3))));
-
 	}
 
+	/**
+	 * Test if position of the other Fox is correct
+	 */
 	public void testGetOtherFoxPosition() {
 		Position fox2pos = FoxLogic.getOtherFoxPosition(board, fox);
 		assertEquals(fox2pos, new Position(1, 0));
 	}
 
+	/**
+	 * Test if the number of valid Fox moves is 3
+	 */
 	public void testFindFoxMoves() {
-
 		for (MoveSet ms : moves) {
 			for (Move m : ms) {
 				System.out.println("Old Pos:" + m.getOldPos().getX() + "," + m.getOldPos().getY() + "New Pos:"
@@ -60,6 +65,5 @@ public class FoxLogicTest extends TestCase {
 			}
 		}
 		assertTrue(moves.size() == 3);
-
 	}
 }

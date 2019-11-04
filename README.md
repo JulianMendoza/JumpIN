@@ -34,7 +34,7 @@ There are a maximum of three rabbits on the board. Rabbits can only hop over obj
 
 **For more information, view our game manual at: Deliverables/GameManual.txt**
 ## Progress
-
+Current UML
 <p align="center">
 <img src="Deliverables/Milestone_2_FinalUML.png" height="100%" width="100%">
  </p>

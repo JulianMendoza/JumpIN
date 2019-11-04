@@ -1,8 +1,5 @@
 package jumpin.test.unit;
 
-import java.util.Arrays;
-import java.util.List;
-
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.constants.FoxPart;
@@ -13,7 +10,6 @@ import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.Position;
-import jumpin.view.GameView;
 import junit.framework.TestCase;
 /**
  * 
@@ -24,20 +20,17 @@ public class FoxLogicTest extends TestCase {
 	private GameModel game;
 	private Board board;
 	private Fox fox, fox2;
-	private List<MoveSet> moves;
-	private GameView view;
+
 
 	@Override
 	protected void setUp() {
 		game = new GameModel();
 		board = game.getBoard();
-		view = new GameView(game);
 		fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		board.assignPiece(new Position(1, 1), fox2);
 		board.assignPiece(new Position(1, 0), fox);
 		board.selectPiece(new Position(1, 1));
-		moves = FoxLogic.findFoxMoves(board);
 	}
 	/**
 	 * Test if Fox's move set contains the correct moves

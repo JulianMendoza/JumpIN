@@ -1,0 +1,68 @@
+UML Changes for Milestone 2:
+
+BoardListener.java
+PieceListener.java
+ViewModelListener.java
+
+These listeneres were added to check for for user input during the game.
+
+
+GameModel.java - constructs the game
+
+Board.java - gets and mutates attributes of the game board
+BoardModel.java - Model of the Tiles on the board and its listeners
+BoardModelListener.java - Interface of board model listener
+
+BoardModelEvent.java - Constants for identifying Board Model Events
+BoardModelEventID.java - Event IDs
+EventFactory.java - generates board model events
+
+PieceFactory.java - Factory for creating piece components
+TileFactory.java - Factory for creating tile components
+
+BoardConstants.java - Constants related to the game board
+
+BoardLogic.java - Identifies valid moves on board
+FoxLogic.java - compute a list of valid moves for fox
+RabbitLogic.java - Method to implement the logic for rabbit movement
+
+Move.java - Represents the positional moves
+MoveSet.java - ArrayList of possible moves
+
+BoardUtilities.java - Operations with the board
+LevelGenerator.java - Class to generate levels on load
+
+AbstractFrame.java - Used to implement game interface
+GameView.java - Game representation
+BoardView.java - Layered Pane that represents the board
+
+TileHighlighter.java - SwingWorker for highlighting and selecting tiles in background
+TileView.java - Panel that represents a tile
+
+ComponentSize.java - Constants for component sizes
+FontConstants.java - Font constant
+ImageConstants.java - Directory path for image constants
+ViewConstants.java - Contains game constants
+
+ComponentFactory.java - Factory for creating components
+FontFactory.java - Factory for creating font
+ImageFactory.java - Factory for creating images
+
+DefaultFont.java - Contains default font
+
+MainMenu.java - Sets the layout where the main menu will be implemented
+
+PieceView.java - Gets the image for a specific piece
+
+GUI.java - Launches the gui game
+
+
+AllTests.java
+FoxLogicTest.java
+FoxMoveSetTest.java
+GameModelTest.java
+MushroomTest.java
+RabbitMoveSetTest.java
+RabbitTest.java
+
+These are Junit tests used to test each piece, its movements, and its logic

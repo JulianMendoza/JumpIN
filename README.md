@@ -1,6 +1,19 @@
 # JumpIN
 A remade version of rabbit and foxes. Software Development Project 2019.
+
+## Showcase
+
+| <img src="gifs/PlayableGame.gif" height="50%" width="100%" title="Game being played" alt="gif of game being played">  | <img src="gifs/FoxShowCase.gif" height="50%" width="100%" title="Fox being moved" alt="gif of fox being moved"> |
+| --- | --- |
+ 
+**Features**
+
+* Highlights available moves for selected piece
+* Fox can slide on either piece clicked and the correct amount of units moved
+* **Visually stunning**
+
 ## Rules
+
 JumpIN is played on a 5x5 board that consists of rabbit holes and tiles which you can move on. The game starts by positioning different pieces on the board. Each piece follows a unique set of movements which can be read below. The goal of the game is to have all of the rabbits into a rabbithole.
 
 **Rabbit Holes**
@@ -22,7 +35,6 @@ There are a maximum of three rabbits on the board. Rabbits can only hop over obj
 **For more information, view our game manual at: Deliverables/GameManual.txt**
 ## Progress
 
-Current UML
 <p align="center">
 <img src="Deliverables/GameUMLFINAL.png" height="100%" width="100%">
  </p>

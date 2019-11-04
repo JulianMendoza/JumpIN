@@ -6,7 +6,12 @@ import java.awt.event.MouseListener;
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.exception.IllegalMoveException;
+import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
+import jumpin.model.move.MoveSet;
+import jumpin.model.piece.pieces.Fox;
+import jumpin.model.util.BoardUtilities;
+import jumpin.model.util.Position;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
 
@@ -31,10 +36,25 @@ public class BoardListener implements MouseListener {
 			TileView tileView = (TileView) e.getSource();
 
 			Move move = new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView));
-			if (tileView.getModel().isEmpty() && board.getSelectedPiece() != null) {
+			if(tileView.getModel().isEmpty() && board.getSelectedPiece() != null) {
+				if(board.getSelectedPiece() instanceof Fox) {
+					for(MoveSet m:BoardUtilities.getValidMoves(board)) {
+						if(m.contains(new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView)))) {
+							doMove(move);
+							break;
+						}else if(m.contains(new Move(FoxLogic.getOtherFoxPosition(board, (Fox)board.getSelectedPiece()),view.getBoardView().getPosition(tileView)))) {
+							model.getBoard().selectPiece(FoxLogic.getOtherFoxPosition(board, (Fox)board.getSelectedPiece()));
+							doMove(new Move(board.getSelectedPosition(),view.getBoardView().getPosition(tileView)));
+							break;
+						}
+					}
+			}else {
 				doMove(move);
 			}
+			
 		}
+		}
+		System.out.println(model);
 	}
 
 	private void doMove(Move move) {
@@ -43,7 +63,7 @@ public class BoardListener implements MouseListener {
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();
 		}
-		view.getBoardView().stopHighlighting();
+			view.getBoardView().stopHighlighting();
 	}
 
 	@Override

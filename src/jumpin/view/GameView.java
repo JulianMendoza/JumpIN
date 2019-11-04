@@ -31,7 +31,6 @@ public class GameView extends JFrame implements AbstractFrame {
 	public BoardView getBoardView() {
 		return boardView;
 	}
-
 	public static void main(String args[]) {
 		GameModel model = new GameModel();
 		model.getGenerator().createLevel1();

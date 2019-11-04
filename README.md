@@ -36,11 +36,11 @@ There are a maximum of three rabbits on the board. Rabbits can only hop over obj
 ## Progress
 
 <p align="center">
-<img src="Deliverables/GameUMLFINAL.png" height="100%" width="100%">
+<img src="Deliverables/Milestone_2_FinalUML.png" height="100%" width="100%">
  </p>
  Current Sequence Diagram
  <p align="center">
-<img src="Deliverables/Sequence_Diagram.jpg" height="100%" width="100%">
+<img src="Deliverables/Milestone_2_FinalSequenceDiagram.png" height="100%" width="100%">
  </p>
  
 ## Copyright ©

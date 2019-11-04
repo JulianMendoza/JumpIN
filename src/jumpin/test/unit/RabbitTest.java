@@ -2,7 +2,6 @@ package jumpin.test.unit;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
-import jumpin.model.constants.Direction;
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;

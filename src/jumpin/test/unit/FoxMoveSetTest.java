@@ -13,7 +13,6 @@ import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.util.Position;
-import jumpin.view.GameView;
 import junit.framework.TestCase;
 /**
  * 
@@ -28,14 +27,12 @@ import junit.framework.TestCase;
 		private Fox fox3;
 		private Fox fox4;
 		private List<MoveSet> moves;
-		private GameView view;
 		private Rabbit rabbit;
 		private MoveSet moveset;
 	@Override
 	protected void setUp() {	
 			game = new GameModel();
 			board = game.getBoard();
-			view = new GameView(game);
 			fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			fox3=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);

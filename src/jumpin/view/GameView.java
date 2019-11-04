@@ -3,7 +3,6 @@ package jumpin.view;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import jumpin.controller.GameController;
 import jumpin.controller.listener.BoardListener;
 import jumpin.controller.listener.PieceListener;
 import jumpin.model.GameModel;
@@ -14,6 +13,10 @@ import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.FontFactory;
 import jumpin.view.menu.MainMenu;
 
+/**
+ * 
+ * @author Giuseppe
+ */
 public class GameView extends JFrame implements AbstractFrame {
 
 	/**
@@ -30,13 +33,6 @@ public class GameView extends JFrame implements AbstractFrame {
 
 	public BoardView getBoardView() {
 		return boardView;
-	}
-	public static void main(String args[]) {
-		GameModel model = new GameModel();
-		model.getGenerator().createLevel1();
-		GameView view = new GameView(model);
-		GameController controller = new GameController(model, view);
-		controller.launch();
 	}
 
 	@Override
@@ -70,8 +66,4 @@ public class GameView extends JFrame implements AbstractFrame {
 		}
 	}
 
-	@Override
-	public void repopulate() {
-		boardView.repopulate();
-	}
 }

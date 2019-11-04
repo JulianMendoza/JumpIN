@@ -6,6 +6,11 @@ import jumpin.controller.listener.ViewModelListener;
 import jumpin.model.GameModel;
 import jumpin.view.GameView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class GameController {
 
 	private GameModel model;

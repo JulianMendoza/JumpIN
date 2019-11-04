@@ -94,11 +94,6 @@ public class TileView extends JPanel implements AbstractFrame {
 		setBorder(ViewConstants.DEFAULT_TILE_BORDER);
 	}
 
-	@Override
-	public void repopulate() {
-		populate();
-	}
-
 	public Tile getModel() {
 		return model;
 	}

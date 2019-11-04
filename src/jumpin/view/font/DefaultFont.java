@@ -4,6 +4,11 @@ import java.awt.Font;
 
 import jumpin.view.constants.FontConstants;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class DefaultFont extends Font {
 
 	/**

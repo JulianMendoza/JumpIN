@@ -10,6 +10,11 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.view.constants.ImageConstants;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class PieceView extends JLabel {
 
 	private Piece model;

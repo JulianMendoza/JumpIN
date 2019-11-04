@@ -5,6 +5,11 @@ import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class EventFactory {
 
 	public static BoardModelEvent generateBoardModelEvent(MoveSet moveSet, Board board) {

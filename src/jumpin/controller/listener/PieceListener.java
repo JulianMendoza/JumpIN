@@ -16,6 +16,11 @@ import jumpin.view.board.BoardView;
 import jumpin.view.board.tile.TileView;
 import jumpin.view.piece.PieceView;
 
+/**
+ * 
+ * @author Giuseppe, Julian
+ *
+ */
 public class PieceListener implements MouseListener {
 
 	private GameModel model;

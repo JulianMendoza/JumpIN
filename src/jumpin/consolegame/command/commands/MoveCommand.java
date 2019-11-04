@@ -68,7 +68,7 @@ public class MoveCommand implements Command {
 
 	@Override
 	public void execute() throws JumpINException {
-		game.movePiece(position, direction, distance);
+		game.getBoard().selectPiece(position);
 	}
 
 }

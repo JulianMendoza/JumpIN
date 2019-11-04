@@ -1,5 +1,10 @@
 package jumpin.model.board.event;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BoardModelEventID {
 
 	public static final int MOVE_GENERIC = 0;

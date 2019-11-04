@@ -7,6 +7,11 @@ import javax.swing.JPanel;
 
 import jumpin.view.constants.ComponentSize;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class MainMenu extends JPanel {
 
 	/**

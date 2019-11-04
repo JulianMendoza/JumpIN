@@ -7,6 +7,15 @@ import java.util.List;
 
 import jumpin.view.constants.ImageConstants;
 
+/**
+ * <b>Factory for creating images</b>
+ * <p>
+ * if there is extra work to do to create an image it goes here
+ * <p>
+ * 
+ * @author Giuseppe
+ *
+ */
 public class ImageFactory {
 
 	public static Image generateRabbit() {

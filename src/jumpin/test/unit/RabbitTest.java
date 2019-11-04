@@ -2,6 +2,7 @@ package jumpin.test.unit;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
+import jumpin.model.constants.Direction;
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
@@ -39,7 +40,7 @@ public class RabbitTest extends TestCase {
 	public void testRabbitExists() {
 		board.assignPiece(new Position(1, 0), rabbit);
 		board.selectPiece(new Position(1, 0));
-		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
 	}
 
 	/**
@@ -51,25 +52,26 @@ public class RabbitTest extends TestCase {
 	 */
 	public void testRabbitMoveAlone() throws IllegalMoveException {
 		board.assignPiece(new Position(1, 1), rabbit);
+		board.selectPiece(new Position (1,1));
 		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(0, 1)));
+			board.movePiece(new Move(new Position(1, 1), new Position(1,0)));
 		} catch (IllegalMoveException e) {
-			assertEquals("Illegal move for Rabbit", e.getMessage());
+			assertEquals("Cannot perform illegal move!", e.getMessage());
 		}
 		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(1, 2)));
+			board.movePiece(new Move(new Position(1, 1), new Position(1,2)));
 		} catch (IllegalMoveException e) {
-			assertEquals("Illegal move for Rabbit", e.getMessage());
+			assertEquals("Cannot perform illegal move!", e.getMessage());
 		}
 		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(2, 1)));
+			board.movePiece(new Move(new Position(1, 1), new Position(2,1)));
 		} catch (IllegalMoveException e) {
-			assertEquals("Illegal move for Rabbit", e.getMessage());
+			assertEquals("Cannot perform illegal move!", e.getMessage());
 		}
 		try {
-			board.movePiece(new Move(new Position(1, 1), new Position(0, 1)));
+			board.movePiece(new Move(new Position(1, 1), new Position(0,1)));
 		} catch (IllegalMoveException e) {
-			assertEquals("Illegal move for Rabbit", e.getMessage());
+			assertEquals("Cannot perform illegal move!", e.getMessage());
 		}
 	}
 
@@ -84,23 +86,37 @@ public class RabbitTest extends TestCase {
 		board.assignPiece(new Position(1, 0), rabbit);
 		Mushroom mushroom = new Mushroom();
 		board.assignPiece(new Position(1, 1), mushroom);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 2)));
-		board.selectPiece(new Position(1, 2));
+		board.selectPiece(new Position (1,0));
+		board.movePiece(new Move(new Position(1, 0), new Position(1,2)));
+		board.deselectPiece();
+		board.selectPiece(new Position(1,2));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
-		board.selectPiece(new Position(1, 0));
+		board.deselectPiece();
+		board.selectPiece(new Position(1,0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
-		board.movePiece(new Move(new Position(1, 2), new Position(1, 0)));
+		board.deselectPiece();
+		board.selectPiece(new Position(1,2));
+		board.movePiece(new Move(new Position(1, 2), new Position(1,0)));
 		board.assignPiece(new Position(1, 2), mushroom);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 3)));
+		board.deselectPiece();
+		board.selectPiece(new Position(1,0));
+		board.movePiece(new Move(new Position(1, 0), new Position(1,3)));
 		board.selectPiece(new Position(1, 3));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
-		board.movePiece(new Move(new Position(1, 3), new Position(1, 0)));
+		board.deselectPiece();
+		board.selectPiece(new Position(1, 3));
+		board.movePiece(new Move(new Position(1, 3), new Position(1,0)));
 		board.assignPiece(new Position(1, 3), mushroom);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 4)));
+		board.deselectPiece();
+		board.selectPiece(new Position(1, 0));
+		board.movePiece(new Move(new Position(1, 0), new Position(1,4)));
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 4));
-		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
 	}
@@ -118,9 +134,11 @@ public class RabbitTest extends TestCase {
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		board.assignPiece(new Position(1, 1), fox);
 		board.assignPiece(new Position(1, 2), fox2);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 3)));
+		board.selectPiece(new Position (1,0));
+		board.movePiece(new Move(new Position(1, 0), new Position(1,3)));
 		board.selectPiece(new Position(1, 3));
-		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		assertTrue( board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
 	}
@@ -134,25 +152,39 @@ public class RabbitTest extends TestCase {
 	 */
 	public void testRabbitRabbit() throws IllegalMoveException {
 		board.assignPiece(new Position(1, 0), rabbit);
-		board.selectPiece(new Position(1, 0));
 		board.assignPiece(new Position(1, 1), rabbit);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 2)));
+		board.selectPiece(new Position (1,0));
+		board.movePiece(new Move(new Position(1, 0), new Position(1,2)));
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 2));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
-		board.movePiece(new Move(new Position(1, 2), new Position(1, 0)));
+		board.deselectPiece();
+		board.selectPiece(new Position (1,2));
+		board.movePiece(new Move(new Position(1, 2), new Position(1,0)));
 		board.assignPiece(new Position(1, 2), rabbit);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 3)));
+		board.deselectPiece();
+		board.selectPiece(new Position (1,0));
+		board.movePiece(new Move(new Position(1, 0),new Position(1,3)));
+	    board.deselectPiece();
 		board.selectPiece(new Position(1, 3));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
-		board.movePiece(new Move(new Position(1, 3), new Position(1, 0)));
+		board.deselectPiece();
+		board.selectPiece(new Position (1,3));
+		board.movePiece(new Move(new Position(1, 3), new Position(1,0)));
 		board.assignPiece(new Position(1, 3), rabbit);
-		board.movePiece(new Move(new Position(1, 0), new Position(1, 4)));
+		board.deselectPiece();
+		board.selectPiece(new Position (1,0));
+		board.movePiece(new Move(new Position(1, 0),new Position(1,4)));
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 4));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
+		board.deselectPiece();
 		board.selectPiece(new Position(1, 0));
 		assertFalse(board.getSelectedPiece() instanceof Rabbit);
 

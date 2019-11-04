@@ -17,6 +17,11 @@ import jumpin.model.util.BoardUtilities;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
 
+/**
+ * 
+ * @author Giuseppe, Julian
+ *
+ */
 public class BoardListener implements MouseListener {
 
 	private GameModel model;
@@ -37,14 +42,14 @@ public class BoardListener implements MouseListener {
 		if (e.getSource() instanceof TileView) {
 			TileView tileView = (TileView) e.getSource();
 
-			Move move = new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView));
-			if (tileView.getModel().isEmpty() && board.getSelectedPiece() != null) {
+			Move move = new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView)); // try an initial move
+			if (tileView.getModel().isEmpty() && board.getSelectedPiece() != null) { // can't click on an empty tile
 				if (board.getSelectedPiece() instanceof Fox) {
-					for (MoveSet m : BoardUtilities.getValidMoves(board)) {
+					for (MoveSet m : BoardUtilities.getValidMoves(board)) { // find a valid moveset
 						if (m.contains(new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView)))) {
-							doMove(move);
+							doMove(move); // no refactoring needs to be done
 							break;
-						} else if (m.contains(new Move(FoxLogic.getOtherFoxPosition(board, (Fox) board.getSelectedPiece()), view.getBoardView().getPosition(tileView)))) {
+						} else if (m.contains(new Move(FoxLogic.getOtherFoxPosition(board, (Fox) board.getSelectedPiece()), view.getBoardView().getPosition(tileView)))) { // try the other fox piece
 							model.getBoard().selectPiece(FoxLogic.getOtherFoxPosition(board, (Fox) board.getSelectedPiece()));
 							doMove(new Move(board.getSelectedPosition(), view.getBoardView().getPosition(tileView)));
 							break;
@@ -56,7 +61,6 @@ public class BoardListener implements MouseListener {
 
 			}
 		}
-		System.out.println(model);
 	}
 
 	private void doMove(Move move) {
@@ -73,7 +77,7 @@ public class BoardListener implements MouseListener {
 	private void checkGameState() {
 		if (model.getGameState().getState().equals(StateOfGame.WON)) {
 			JOptionPane.showMessageDialog(view, "GAME WON");
-
+			System.exit(0);
 		}
 	}
 

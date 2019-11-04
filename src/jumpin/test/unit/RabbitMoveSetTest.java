@@ -50,6 +50,9 @@ public class RabbitMoveSetTest extends TestCase{
 		moves=new ArrayList<MoveSet>();
 		moveset=new MoveSet();
 	}
+	/**
+	 * Test if rabbit can move with no pieces near it
+	 */
 	public void testRabbitMovesNone() {
 		board.assignPiece(new Position(1,2), fox3);
 		board.assignPiece(new Position(1,1), fox4);
@@ -59,6 +62,11 @@ public class RabbitMoveSetTest extends TestCase{
 		assertTrue(moves.isEmpty());
 		
 	}
+	/**
+	 * Test rabbit movement over mushroom
+	 * 
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testRabbitOverMushroom() throws IllegalMoveException{
 		board.assignPiece(new Position(1,2), mushroom);
 		board.assignPiece(new Position(2,1), mushroom);
@@ -73,6 +81,11 @@ public class RabbitMoveSetTest extends TestCase{
 		assertTrue(moves.contains(moveset));
 	}
 	
+	/**
+	 * Test rabbit movement over different objects
+	 * 
+	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
+	 */
 	public void testRabbitOverObj() throws IllegalMoveException{
 		board.assignPiece(new Position(3,2), fox);
 		board.assignPiece(new Position(4,2), fox2);

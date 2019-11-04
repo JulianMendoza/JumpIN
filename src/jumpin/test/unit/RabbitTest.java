@@ -33,8 +33,6 @@ public class RabbitTest extends TestCase {
 	/**
 	 * Test to see if a rabbit exists
 	 * 
-	 * @throws NoTileException  if no tile exists at the specific position
-	 * @throws NoPieceException if there is no piece at the position
 	 */
 	public void testRabbitExists() {
 		board.assignPiece(new Position(1, 0), rabbit);
@@ -45,8 +43,6 @@ public class RabbitTest extends TestCase {
 	/**
 	 * Test to see if a rabbit can move with no pieces next to it
 	 * 
-	 * @throws NoTileException      if no tile exists at the specific position
-	 * @throws NoPieceException     if there is no Rabbit at the position
 	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
 	 */
 	public void testRabbitMoveAlone() throws IllegalMoveException {
@@ -77,8 +73,6 @@ public class RabbitTest extends TestCase {
 	/**
 	 * Test to determine if a rabbit behaves as intended with mushrooms
 	 * 
-	 * @throws NoTileException      if no tile exists at the specific position
-	 * @throws NoPieceException     if there is no Rabbit at the position
 	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
 	 */
 	public void testRabbitMushroom() throws IllegalMoveException {
@@ -123,8 +117,6 @@ public class RabbitTest extends TestCase {
 	/**
 	 * Test to determine if a rabbit behaves as intended with foxes
 	 * 
-	 * @throws NoTileException      if no tile exists at the specific position
-	 * @throws NoPieceException     if there is no Rabbit at the position
 	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
 	 */
 	public void testRabbitFoxes() throws IllegalMoveException {
@@ -145,8 +137,6 @@ public class RabbitTest extends TestCase {
 	/**
 	 * Test to determine if a rabbit behaves as intended with other rabbits
 	 * 
-	 * @throws NoTileException      if no tile exists at the specific position
-	 * @throws NoPieceException     if there is no Rabbit at the position
 	 * @throws IllegalMoveException if the piece cannot move in a specific behavior
 	 */
 	public void testRabbitRabbit() throws IllegalMoveException {

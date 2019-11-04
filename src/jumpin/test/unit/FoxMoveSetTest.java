@@ -40,7 +40,12 @@ import junit.framework.TestCase;
 			rabbit = new Rabbit(PieceID.RABBIT_ID_1);
 			moveset=new MoveSet();
 		}
-		public void testFindFoxMovesMiddleOfBoardHeal() {
+        
+	    /**
+	     * Test for movement of fox head 
+	     * 
+	     */
+		public void testFindFoxMovesMiddleOfBoardHead() {
 			board.assignPiece(new Position(1, 2), fox2);
 			board.assignPiece(new Position(1, 1), fox);
 			board.selectPiece(new Position(1,1));
@@ -58,6 +63,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,2),new Position(1,4)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test for movement of fox tail
+		 * 
+		 */
 		public void testFindFoxMovesMiddleOfBoardTail() {
 			board.assignPiece(new Position(1, 2), fox2);
 			board.assignPiece(new Position(1, 1), fox);
@@ -76,6 +86,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,2),new Position(1,4)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement east for head
+		 * 
+		 */
 		public void testFindFoxMovesEdgeCaseWestGoingEastHead() {
 			board.assignPiece(new Position(0,1 ), fox3);
 			board.assignPiece(new Position(1,1), fox4);
@@ -94,6 +109,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(4,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement east for tail
+		 * 
+		 */
 		public void testFindFoxMovesEdgeCaseWestGoingEastTail() {
 			board.assignPiece(new Position(0,1 ), fox3);
 			board.assignPiece(new Position(1,1), fox4);
@@ -112,6 +132,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(4,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with south collision for head
+		 * 
+		 */
 		public void testFindFoxMovesCollisionWithRabbitSouthHead() {
 			board.assignPiece(new Position(1, 0), fox);
 			board.assignPiece(new Position(1, 1), fox2);
@@ -127,6 +152,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(1,3)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with south collision for tail
+		 * 
+		 */
 		public void  testFindFoxMovesCollisionWithRabbitSouthTail() {
 			board.assignPiece(new Position(1, 0), fox);
 			board.assignPiece(new Position(1, 1), fox2);
@@ -142,6 +172,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(1,3)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with north collision for tail
+		 * 
+		 */
 		public void testFindFoxMovesCollisionWithRabbitNorthTail() {
 			board.assignPiece(new Position(1, 3), fox);
 			board.assignPiece(new Position(1, 4), fox2);
@@ -157,6 +192,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,4),new Position(1,2)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with west collision for tail
+		 * 
+		 */
 		public void testFindFoxMovesCollisionWithRabbitWestTail() {
 			board.assignPiece(new Position(0, 1), fox3);
 			board.assignPiece(new Position(1, 1), fox4);
@@ -172,6 +212,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(3,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with east collision for tail
+		 * 
+		 */
 		public void testFindFoxMovesCollisionWithRabbitEastTail() {
 			board.assignPiece(new Position(0, 1), fox3);
 			board.assignPiece(new Position(1, 1), fox4);
@@ -187,6 +232,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(3,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement with collision of piece not on edge 
+		 * 
+		 */
 		public void testFindFoxMovesCollisionWithRabbitNotOnEdge() {
 			board.assignPiece(new Position(0, 1), fox3);
 			board.assignPiece(new Position(1, 1), fox4);
@@ -198,6 +248,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(2,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement west
+		 * 
+		 */
 		public void testFindFoxMovesGoingWest() {
 			board.assignPiece(new Position(3, 1), fox3);
 			board.assignPiece(new Position(4, 1), fox4);
@@ -216,7 +271,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(4,1),new Position(1,1)));
 			assertTrue(moves.contains(moveset));
 		}
-		//WEST GOING EAST
+		
+		/**
+		 * Test fox movement east
+		 * 
+		 */
 		public void testFindFoxMovesGoingEast() {
 			board.assignPiece(new Position(0, 1), fox3);
 			board.assignPiece(new Position(1, 1), fox4);
@@ -235,6 +294,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,1),new Position(4,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement north
+		 * 
+		 */
 		public void testFindFoxMovesSouthGoingNorth() {
 			board.assignPiece(new Position(1, 3), fox);
 			board.assignPiece(new Position(1, 4), fox2);
@@ -253,6 +317,11 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,4),new Position(1,1)));
 			assertTrue(moves.contains(moveset));
 		}
+		
+		/**
+		 * Test fox movement south with rabbit
+		 * 
+		 */
 		public void testFindFoxMovesSouthWithRabbit() {
 			board.assignPiece(new Position(1, 2), fox);
 			board.assignPiece(new Position(1, 3), fox2);

@@ -32,8 +32,10 @@ public class FoxLogicTest extends TestCase {
 		board.assignPiece(new Position(1, 0), fox);
 		board.selectPiece(new Position(1, 1));
 	}
+	
 	/**
-	 * Test if Fox's move set contains the correct moves
+	 * Test if fox piece exists
+	 * 
 	 */
 	public void testFoxExists() {
 		board.assignPiece(new Position(1, 0), fox2);
@@ -43,6 +45,11 @@ public class FoxLogicTest extends TestCase {
 		board.selectPiece(new Position(1, 0));
 		assertTrue(board.getSelectedPiece()  instanceof Fox);
 	}
+	
+	/**
+	 * Test if Fox's move set contains the correct moves
+	 * 
+	 */
 	public void testCreateMoveset() {
 		MoveSet test = FoxLogic.createMoveSet(new Move(board.getSelectedPosition(), new Position(1, 4)), board);
 		assertTrue(test.size() == 2);
@@ -50,6 +57,11 @@ public class FoxLogicTest extends TestCase {
 		assertTrue(test.contains(new Move(new Position(1, 0), new Position(1, 3))));
 
 	}
+	
+	/**
+	 * Test if other fox position on board is correcet
+	 * 
+	 */
 	public void testGetOtherFoxPosition() {
 		Position fox2pos = FoxLogic.getOtherFoxPosition(board, fox);
 		assertEquals(fox2pos, new Position(1, 0));

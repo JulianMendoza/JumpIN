@@ -20,11 +20,21 @@ public class LevelGenerator {
 	private Board board;
 	private GameState gameState;
 
+	/**
+	 * Default constructor for LevelGenerator
+	 * 
+	 * @param board 
+	 * @param gameState
+	 */
 	public LevelGenerator(Board board, GameState gameState) {
 		this.board = board;
 		this.gameState = gameState;
 	}
 
+	/**
+	 * method to create the first level of the game
+	 * 
+	 */
 	public void createLevel1() {
 		Fox fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);

@@ -26,6 +26,12 @@ public class PieceListener implements MouseListener {
 	private GameModel model;
 	private BoardView view;
 
+	/**
+	 * Default constructor for PieceListener 
+	 * 
+	 * @param model
+	 * @param view
+	 */
 	public PieceListener(GameModel model, GameView view) {
 		this.model = model;
 		this.view = view.getBoardView();
@@ -52,6 +58,12 @@ public class PieceListener implements MouseListener {
 		}
 	}
 
+	/**
+	 * Method to return select tiles
+	 * 
+	 * @param selectTile
+	 * @return select tiles
+	 */
 	private List<TileView> tilesToSelect(TileView selectTile) {
 		List<TileView> selectTiles = new ArrayList<TileView>();
 		selectTiles.add(selectTile); // most pieces only have one tile to highlight
@@ -61,6 +73,11 @@ public class PieceListener implements MouseListener {
 		return selectTiles;
 	}
 
+	/**
+	 * Method to return the tiles to highlight
+	 * 
+	 * @return highlightable tiles
+	 */
 	private List<TileView> tilesToHighlight() {
 		List<TileView> highlightTiles = new ArrayList<TileView>();
 		for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {

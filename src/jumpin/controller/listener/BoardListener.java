@@ -27,6 +27,12 @@ public class BoardListener implements MouseListener {
 	private GameModel model;
 	private GameView view;
 
+	/**
+	 * Default Constructor for BoardListener
+	 * 
+	 * @param model
+	 * @param view
+	 */
 	public BoardListener(GameModel model, GameView view) {
 		this.model = model;
 		this.view = view;
@@ -74,6 +80,10 @@ public class BoardListener implements MouseListener {
 		view.getBoardView().stopHighlighting();
 	}
 
+	/**
+	 * Method to check the state of the game
+	 * 
+	 */
 	private void checkGameState() {
 		if (model.getGameState().getState().equals(StateOfGame.WON)) {
 			JOptionPane.showMessageDialog(view, "GAME WON");

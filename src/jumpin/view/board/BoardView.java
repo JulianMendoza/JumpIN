@@ -37,6 +37,11 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 	private static final long serialVersionUID = -5069662942928656921L;
 	private TileHighlighter highlighter;
 
+	/**
+	 * Default Constructor that initializes board
+	 *
+	 * @param model
+	 */
 	public BoardView(BoardModel model) {
 		setBounds(0, 0, ComponentSize.BOARD_WIDTH, ComponentSize.BOARD_HEIGHT);
 		setLayout(new GridLayout(model.getWidth(), model.getHeight(), 0, 0));
@@ -46,6 +51,10 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 		populate();
 	}
 
+	/**
+	 * Method to populate board
+	 * 
+	 */
 	@Override
 	public void populate() {
 		for (int y = 0; y < model.getHeight(); y++) {
@@ -57,24 +66,51 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 		}
 	}
 
+	/**
+	 * Method to return tile based on position
+	 * 
+	 * @param position x and y position
+	 * @return TileView
+	 */
 	public TileView getTileView(Position position) {
 		return tileMap.get(position);
 	}
 
+	/**
+	 * Method to return position of tile 
+	 * 
+	 * @param tileView board tile
+	 * @return x and y position of tile
+	 */
 	public Position getPosition(TileView tileView) {
 		return tileMap.getKey(tileView);
 	}
 
+	/**
+	 * Method to return TileViews
+	 * 
+	 * @return ArrayList of tiles
+	 */
 	public List<TileView> getTileViews() {
 		return new ArrayList<TileView>(tileMap.values());
 	}
 
+	/**
+	 * Method to implement highlighting 
+	 * 
+	 * @param highlightTiles
+	 * @param selectTiles
+	 */
 	public void highlight(List<TileView> highlightTiles, List<TileView> selectTiles) {
 		stopHighlighting();
 		highlighter = new TileHighlighter(highlightTiles, selectTiles);
 		highlighter.execute();
 	}
 
+	/**
+	 * Method to stop highlighting
+	 * 
+	 */
 	public void stopHighlighting() {
 		if (highlighter != null && !highlighter.isCancelled()) {
 			highlighter.cancel(true); // if we use done instead of cancel(interrupt), there is a visual delay

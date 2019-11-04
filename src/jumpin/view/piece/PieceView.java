@@ -19,11 +19,12 @@ public class PieceView extends JLabel {
 
 	private Piece model;
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 159673643052373533L;
 
+	/**
+	 * Default Constructor 
+	 * @param model
+	 */
 	public PieceView(Piece model) {
 		setBounds(0, 0, 75, 75);
 		setMaximumSize(getSize());
@@ -33,6 +34,11 @@ public class PieceView extends JLabel {
 		setIcon(imageIcon);
 	}
 
+	/**]
+	 * Method to check images against the constants
+	 * 
+	 * @return location of image path
+	 */
 	private String getImageLocation() {
 		if (model instanceof Fox) {
 			Fox fox = (Fox) model;

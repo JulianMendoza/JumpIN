@@ -18,6 +18,11 @@ public class ViewModelListener implements BoardModelListener {
 
 	private BoardView boardView;
 
+	/**
+	 * Default constructor for ViewModelListener
+	 * 
+	 * @param boardView
+	 */
 	public ViewModelListener(BoardView boardView) {
 		this.boardView = boardView;
 	}

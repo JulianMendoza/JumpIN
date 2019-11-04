@@ -16,6 +16,11 @@ import jumpin.view.font.DefaultFont;
  */
 public class FontFactory {
 
+	/**
+	 * Method to return default font
+	 * 
+	 * @return the default font
+	 */
 	public static Font createDefaultFont() {
 		return new DefaultFont();
 	}

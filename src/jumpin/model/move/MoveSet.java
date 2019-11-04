@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class MoveSet extends ArrayList<Move> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3982025784054049899L;
 
+	/**
+	 * method to create move set given move
+	 * @param move
+	 * @return
+	 */
 	public static MoveSet createSingleMoveSet(Move move) {
 		MoveSet moveSet = new MoveSet();
 		moveSet.add(move);

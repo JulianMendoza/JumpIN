@@ -11,6 +11,12 @@ import jumpin.model.piece.pieces.Rabbit;
 
 public class BoardLogic {
 
+	/**
+	 * Method to return valid moves on board
+	 * 
+	 * @param board
+	 * @return valid moves
+	 */
 	public static List<MoveSet> getValidMoves(Board board) {
 		List<MoveSet> validMoves = new ArrayList<MoveSet>();
 		if (board.getSelectedPiece() instanceof Rabbit) {
@@ -21,6 +27,13 @@ public class BoardLogic {
 		return validMoves;
 	}
 	
+	/**
+	 * Method to generate moveset based on a move for a piece
+	 * 
+	 * @param move
+	 * @param board
+	 * @return moveset for selected piece
+	 */
 	public static MoveSet generateMoveSet(Move move, Board board) {
 		if(board.getSelectedPiece() instanceof Rabbit) {
 			return MoveSet.createSingleMoveSet(move);

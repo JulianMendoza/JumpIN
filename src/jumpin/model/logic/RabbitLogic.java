@@ -11,6 +11,12 @@ import jumpin.model.util.Position;
 
 public class RabbitLogic {
 
+	/**
+	 * Method to implement the logic for rabbit movement
+	 * 
+	 * @param board
+	 * @return possible rabbit moves
+	 */
 	public static List<MoveSet> findRabbitMoves(Board board) {
 		List<MoveSet> rabbitMoves = new ArrayList<MoveSet>();
 		for (Direction direction : Direction.values()) {

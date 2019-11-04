@@ -18,10 +18,20 @@ import jumpin.view.constants.ImageConstants;
  */
 public class ImageFactory {
 
+	/**
+	 * Method to generate rabbit Image
+	 * 
+	 * @return a rabbit image from ImageConstants
+	 */
 	public static Image generateRabbit() {
 		return generateImage(ImageConstants.RABBIT_1);
 	}
 
+	/**
+	 * Method to generate image for rabbit movement
+	 * 
+	 * @return images for rabbit movement
+	 */
 	public static List<Image> generateRabbitMove() {
 		List<Image> rabbitMove = new ArrayList<Image>();
 		for (String filename : ImageConstants.RABBIT_MOVES) {
@@ -30,6 +40,11 @@ public class ImageFactory {
 		return rabbitMove;
 	}
 
+	/**
+	 * Method to generate an image given a string representation
+	 * @param filename string of image
+	 * @return generated image
+	 */
 	public static Image generateImage(String filename) {
 		return Toolkit.getDefaultToolkit().createImage(filename);
 	}

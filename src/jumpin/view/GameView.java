@@ -19,22 +19,31 @@ import jumpin.view.menu.MainMenu;
  */
 public class GameView extends JFrame implements AbstractFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5089660197653181626L;
 	private GameModel model;
 	private BoardView boardView;
 
+	/** 
+	 * Default constructor that initializes the game
+	 * @param model game
+	 */
 	public GameView(GameModel model) {
 		this.model = model;
 		populate();
 	}
 
+	/**
+	 * Method to return constructed board
+	 * 
+	 * @return constructed board
+	 */
 	public BoardView getBoardView() {
 		return boardView;
 	}
 
+	/**
+	 * Method to set up the game
+	 */
 	@Override
 	public void populate() {
 		setFont(FontFactory.createDefaultFont());
@@ -52,6 +61,11 @@ public class GameView extends JFrame implements AbstractFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * Method to add a piece listener
+	 * 
+	 * @param l
+	 */
 	public void addPieceListener(PieceListener l) {
 		for (TileView view : boardView.getTileViews()) {
 			if (view.getPieceView() != null) {
@@ -60,6 +74,11 @@ public class GameView extends JFrame implements AbstractFrame {
 		}
 	}
 
+	/**
+	 * Method to add a board listener
+	 * 
+	 * @param l
+	 */
 	public void addBoardListener(BoardListener l) {
 		for (TileView view : boardView.getTileViews()) {
 			view.addMouseListener(l);

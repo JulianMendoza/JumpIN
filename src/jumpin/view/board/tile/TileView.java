@@ -30,6 +30,11 @@ public class TileView extends JPanel implements AbstractFrame {
 	private Tile model;
 	private PieceView pieceView;
 
+	/**
+	 * Default constructor to initialize board tiles
+	 * 
+	 * @param model
+	 */
 	public TileView(Tile model) {
 		setDefaultBorder();
 
@@ -45,11 +50,21 @@ public class TileView extends JPanel implements AbstractFrame {
 		populate();
 	}
 
+	/**
+	 * Method to set piece on tile
+	 * 
+	 * @param pieceView selected piece
+	 */
 	public void setPiece(PieceView pieceView) {
 		add(pieceView);
 		this.pieceView = pieceView;
 	}
 
+	/**
+	 * Method to clear tile from piece
+	 * 
+	 * @return cleared tile
+	 */
 	public PieceView clearPiece() {
 		if (pieceView != null) {
 			PieceView clearedPiece = pieceView;
@@ -82,6 +97,11 @@ public class TileView extends JPanel implements AbstractFrame {
 
 	}
 
+	/**
+	 * Method to get location path for image
+	 * 
+	 * @return the location path
+	 */
 	private String getImageLocation() {
 		if (model instanceof RabbitHole) {
 			return ImageConstants.RABBIT_HOLE;
@@ -90,6 +110,10 @@ public class TileView extends JPanel implements AbstractFrame {
 		}
 	}
 
+	/**
+	 * Method to set color around tile
+	 * 
+	 */
 	public void setDefaultBorder() {
 		setBorder(ViewConstants.DEFAULT_TILE_BORDER);
 	}

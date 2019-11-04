@@ -59,6 +59,7 @@ public class Board {
 
 	public void deselectPiece() {
 		selectedPiece = null;
+		selectedPosition = null;
 		validMoveSets = null;
 	}
 
@@ -107,7 +108,7 @@ public class Board {
 
 	public void movePiece(Move move) throws IllegalMoveException {
 		MoveSet moves = BoardUtilities.generateMoveSet(move, this);
-		if (validMoveSets.contains(moves)) {
+		if (validMoveSets != null && validMoveSets.contains(moves)) {
 			update(moves);
 		} else {
 			throw new IllegalMoveException();

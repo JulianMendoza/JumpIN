@@ -17,6 +17,15 @@ import jumpin.view.board.tile.TileView;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.factory.ComponentFactory;
 
+/**
+ * Layered Pane that represents the board
+ * 
+ * (Used layered pane if we ever want to stack animations overtop of the tile
+ * panel)
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BoardView extends JLayeredPane implements AbstractFrame {
 
 	private BoardModel model;
@@ -35,8 +44,6 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 		this.model = model;
 		tileMap = new DualHashBidiMap<Position, TileView>();
 		populate();
-		highlighter = new TileHighlighter();
-		// highlighter.execute();
 	}
 
 	@Override
@@ -63,12 +70,16 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 	}
 
 	public void highlight(List<TileView> highlightTiles, List<TileView> selectTiles) {
-		highlighter.stopHighlighting();
-		highlighter.highlight(highlightTiles, selectTiles);
+		stopHighlighting();
+		highlighter = new TileHighlighter(highlightTiles, selectTiles);
+		highlighter.execute();
 	}
 
 	public void stopHighlighting() {
-		highlighter.stopHighlighting();
+		if (highlighter != null && !highlighter.isCancelled()) {
+			highlighter.cancel(true); // if we use done instead of cancel(interrupt), there is a visual delay
+			highlighter.stopHighlighting(this);
+		}
 	}
 
 	@Override

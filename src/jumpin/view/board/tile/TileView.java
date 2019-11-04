@@ -15,6 +15,12 @@ import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
 import jumpin.view.piece.PieceView;
 
+/**
+ * Panel that represents a tile
+ * 
+ * @author Giuseppe
+ *
+ */
 public class TileView extends JPanel implements AbstractFrame {
 	/**
 	 * 

@@ -8,9 +8,8 @@ import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
 import jumpin.model.factory.TileFactory;
 import jumpin.model.logic.BoardLogic;
-import jumpin.model.logic.PieceLogic;
-import jumpin.model.move.FoxMove;
 import jumpin.model.move.Move;
+import jumpin.model.move.MoveSet;
 
 /**
  * Utility class for operations with the board. Has knowledge of the default
@@ -34,9 +33,9 @@ public class BoardUtilities {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				if (isDefaultRabbitHole(y, x)) {
-					board[y][x] = TileFactory.createRabbitHole(new Position(x, y));
+					board[y][x] = TileFactory.createRabbitHole();
 				} else {
-					board[y][x] = TileFactory.createTile(new Position(x, y));
+					board[y][x] = TileFactory.createTile();
 				}
 			}
 		}
@@ -89,30 +88,7 @@ public class BoardUtilities {
 		return true; // gets here if the move is in the middle of the board
 	}
 
-	/**
-	 * method to get the movement of Rabbit
-	 * 
-	 * @param board     Object of Board
-	 * @param direction Direction of Rabbit movement
-	 * @return The movement of Rabbit on Board
-	 */
-	public static Move findRabbitMove(Board board, Direction direction) {
-		return PieceLogic.findRabbitMove(board, direction);
-	}
-
-	/**
-	 * method to get the movement of Fox
-	 * 
-	 * @param board     Object of Board
-	 * @param direction Direction of Fox Movement
-	 * @param distance  Integer Distance of Fox movement
-	 * @return The movement of Fox on Board
-	 */
-	public static FoxMove findFoxMove(Board board, Direction direction, int distance) {
-		return PieceLogic.findFoxMove(board, direction, distance);
-	}
-
-	public static List<Move> getValidMoves(Board board) {
+	public static List<MoveSet> getValidMoves(Board board) {
 		return BoardLogic.getValidMoves(board);
 	}
 
@@ -131,6 +107,10 @@ public class BoardUtilities {
 			}
 		}
 		return false;
+	}
+
+	public static MoveSet generateMoveSet(Move move, Board board) {
+		return BoardLogic.generateMoveSet(move, board);
 	}
 
 }

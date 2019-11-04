@@ -1,5 +1,10 @@
 package jumpin.view.constants;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class ImageConstants {
 
 	public static final String TILE = "images/tile.jpg";

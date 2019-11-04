@@ -17,8 +17,8 @@ public class IllegalMoveException extends JumpINException {
 	 * 
 	 * @param message the exception detail message
 	 */
-	public IllegalMoveException(String message) {
-		super(message);
+	public IllegalMoveException() {
+		super("Cannot perform illegal move!");
 	}
 
 }

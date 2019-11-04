@@ -1,23 +1,35 @@
 package jumpin.view.board;
 
 import java.awt.GridLayout;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JLayeredPane;
 
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
+
 import jumpin.model.board.BoardModel;
 import jumpin.model.util.Position;
+import jumpin.view.AbstractFrame;
 import jumpin.view.board.tile.TileHighlighter;
 import jumpin.view.board.tile.TileView;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.factory.ComponentFactory;
 
-public class BoardView extends JLayeredPane implements JumpINContainer {
+/**
+ * Layered Pane that represents the board
+ * 
+ * (Used layered pane if we ever want to stack animations overtop of the tile
+ * panel)
+ * 
+ * @author Giuseppe
+ *
+ */
+public class BoardView extends JLayeredPane implements AbstractFrame {
 
 	private BoardModel model;
-	private Map<Position, TileView> tileMap;
+	private BidiMap<Position, TileView> tileMap;
 
 	/**
 	 * 
@@ -30,10 +42,8 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 		setLayout(new GridLayout(model.getWidth(), model.getHeight(), 0, 0));
 		setMaximumSize(getSize());
 		this.model = model;
-		tileMap = new HashMap<Position, TileView>();
+		tileMap = new DualHashBidiMap<Position, TileView>();
 		populate();
-		highlighter = new TileHighlighter();
-		// highlighter.execute();
 	}
 
 	@Override
@@ -42,34 +52,34 @@ public class BoardView extends JLayeredPane implements JumpINContainer {
 			for (int x = 0; x < model.getWidth(); x++) {
 				TileView view = ComponentFactory.createTileView(model.getTile(x, y));
 				add(view);
-				tileMap.put(model.getTile(x, y).getPosition(), view);
+				tileMap.put(new Position(x, y), view);
 			}
 		}
-	}
-
-	public Map<Position, TileView> getTileMap() {
-		return tileMap;
 	}
 
 	public TileView getTileView(Position position) {
 		return tileMap.get(position);
 	}
 
+	public Position getPosition(TileView tileView) {
+		return tileMap.getKey(tileView);
+	}
+
+	public List<TileView> getTileViews() {
+		return new ArrayList<TileView>(tileMap.values());
+	}
+
 	public void highlight(List<TileView> highlightTiles, List<TileView> selectTiles) {
-		highlighter.stopHighlighting();
-		highlighter.highlight(highlightTiles, selectTiles);
+		stopHighlighting();
+		highlighter = new TileHighlighter(highlightTiles, selectTiles);
+		highlighter.execute();
 	}
 
 	public void stopHighlighting() {
-		highlighter.stopHighlighting();
-	}
-
-	@Override
-	public void repopulate() {
-		for (TileView tile : tileMap.values()) {
-			tile.repopulate();
+		if (highlighter != null && !highlighter.isCancelled()) {
+			highlighter.cancel(true); // if we use done instead of cancel(interrupt), there is a visual delay
+			highlighter.stopHighlighting(this);
 		}
-
 	}
 
 }

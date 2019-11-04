@@ -6,16 +6,17 @@ import java.util.List;
 import jumpin.model.board.Board;
 import jumpin.model.constants.Direction;
 import jumpin.model.move.Move;
+import jumpin.model.move.MoveSet;
 import jumpin.model.util.Position;
 
 public class RabbitLogic {
 
-	public static List<Move> findRabbitMoves(Board board) {
-		List<Move> rabbitMoves = new ArrayList<Move>();
+	public static List<MoveSet> findRabbitMoves(Board board) {
+		List<MoveSet> rabbitMoves = new ArrayList<MoveSet>();
 		for (Direction direction : Direction.values()) {
 			Position selectedPosition = board.getSelectedPosition();
 			Position currentPos = selectedPosition.nextPosition(direction);
-			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()) { // nothing for rabbit to jump over
+			if (board.getTile(currentPos) == null || board.getTile(currentPos).isEmpty()||currentPos==null) { // nothing for rabbit to jump over
 				continue;
 			}
 			while (board.isValidPosition(currentPos)) {
@@ -23,7 +24,7 @@ public class RabbitLogic {
 				if (!board.isValidPosition(currentPos)) { // edge conditions
 					break;
 				} else if (board.getTile(currentPos).isEmpty()) { // we found an empty tile on the board
-					rabbitMoves.add(new Move(selectedPosition, currentPos));
+					rabbitMoves.add(MoveSet.createSingleMoveSet(new Move(selectedPosition, currentPos)));
 					break;
 				}
 			}

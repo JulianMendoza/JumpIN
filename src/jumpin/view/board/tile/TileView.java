@@ -1,22 +1,27 @@
 package jumpin.view.board.tile;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
-import jumpin.view.board.JumpINContainer;
+import jumpin.view.AbstractFrame;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ImageConstants;
+import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
 import jumpin.view.piece.PieceView;
 
-public class TileView extends JPanel implements JumpINContainer {
+/**
+ * Panel that represents a tile
+ * 
+ * @author Giuseppe
+ *
+ */
+public class TileView extends JPanel implements AbstractFrame {
 	/**
 	 * 
 	 */
@@ -45,11 +50,14 @@ public class TileView extends JPanel implements JumpINContainer {
 		this.pieceView = pieceView;
 	}
 
-	public void clearPiece() {
+	public PieceView clearPiece() {
 		if (pieceView != null) {
+			PieceView clearedPiece = pieceView;
 			remove(pieceView);
 			pieceView = null;
+			return clearedPiece;
 		}
+		return null;
 	}
 
 	public PieceView getPieceView() {
@@ -83,16 +91,16 @@ public class TileView extends JPanel implements JumpINContainer {
 	}
 
 	public void setDefaultBorder() {
-		setBorder(new LineBorder(Color.WHITE, 2));
-	}
-
-	@Override
-	public void repopulate() {
-		populate();
+		setBorder(ViewConstants.DEFAULT_TILE_BORDER);
 	}
 
 	public Tile getModel() {
 		return model;
+	}
+
+	@Override
+	public int hashCode() {
+		return model.hashCode() * 37 | super.hashCode() * 17;
 	}
 
 }

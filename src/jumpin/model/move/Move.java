@@ -1,6 +1,7 @@
 package jumpin.model.move;
 
 import jumpin.model.util.Position;
+import jumpin.util.Pair;
 
 /**
  * A class for representing the positional moves
@@ -22,6 +23,12 @@ public class Move {
 	public Move(Position oldPos, Position newPos) {
 		this.oldPos = oldPos;
 		this.newPos = newPos;
+	}
+
+	public Pair<Integer, Integer> getIncrement() {
+		Pair<Integer, Integer> increment = new Pair<Integer, Integer>(newPos.getX() - oldPos.getX(), newPos.getY() - oldPos.getY());
+		return increment;
+
 	}
 
 	/**
@@ -48,10 +55,15 @@ public class Move {
 			return false;
 		} else if (o instanceof Move) {
 			Move move = (Move) o;
-			return move.getNewPos() == this.getNewPos() && move.getOldPos() == this.getOldPos();
+			return move.getNewPos().equals(this.getNewPos()) && move.getOldPos().equals(this.getOldPos());
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return oldPos.hashCode() * 37 + newPos.hashCode() * 17;
 	}
 
 }

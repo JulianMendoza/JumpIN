@@ -1,5 +1,11 @@
 package jumpin.view.constants;
 
+/**
+ * Constants for component sizes
+ * 
+ * @author Giuseppe
+ *
+ */
 public class ComponentSize {
 
 	public static final int BOARD_WIDTH = 750;

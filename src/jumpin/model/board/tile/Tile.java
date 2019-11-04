@@ -2,7 +2,6 @@ package jumpin.model.board.tile;
 
 import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
-import jumpin.model.util.Position;
 
 /**
  * Parent class for all tiles on the board
@@ -12,15 +11,10 @@ import jumpin.model.util.Position;
  */
 public class Tile {
 
-	public Tile(Position position) {
-		this.position = position;
-	}
-
 	/**
 	 * The piece in this tile
 	 */
 	private Piece piece;
-	private final Position position; // tiles are immutable on the board and won't move
 
 	/**
 	 * Clears the piece in this tile
@@ -69,9 +63,4 @@ public class Tile {
 		}
 		return "[ " + pieceName + " ]";
 	}
-
-	public Position getPosition() {
-		return position;
-	}
-
 }

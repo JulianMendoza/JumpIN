@@ -30,7 +30,7 @@ public class GameController {
 	private void initializeListeners() {
 		view.addPieceListener(new PieceListener(model, view));
 		view.addBoardListener(new BoardListener(model, view));
-		model.getBoard().addModelListener(new ViewModelListener(view.getBoardView()));
+		model.getBoard().addModelListener(new ViewModelListener(model, view));
 	}
 
 }

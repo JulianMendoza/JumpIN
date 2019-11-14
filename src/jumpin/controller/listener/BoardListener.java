@@ -75,11 +75,9 @@ public class BoardListener implements MouseListener {
 		try {
 			model.getBoard().movePiece(move);
 			checkGameState();
-			updateMenu();
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();
 		}
-		view.getBoardView().stopHighlighting();
 	}
 
 	/**
@@ -93,13 +91,7 @@ public class BoardListener implements MouseListener {
 		}
 	}
 	
-	private void updateMenu() {
-		MainMenu menu = view.getMainMenu();
-		BoardHistory history = model.getBoard().getHistory();
-		
-		menu.setRedo(history.hasRedo());
-		menu.setUndo(history.hasUndo());
-	}
+
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

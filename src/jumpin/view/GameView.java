@@ -53,7 +53,7 @@ public class GameView extends JFrame implements AbstractFrame {
 		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-		menu = new MainMenu();
+		menu = new MainMenu(model);
 		getContentPane().add(menu);
 
 		boardView = new BoardView(model.getBoard().getModel());

@@ -1,6 +1,7 @@
 package jumpin.model.move;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MoveSet extends ArrayList<Move> {
 
@@ -48,7 +49,9 @@ public class MoveSet extends ArrayList<Move> {
 		for(Move move : this) {
 			invertedSet.add(move.invert());
 		}
+		Collections.reverse(invertedSet);
 		return invertedSet;
 	}
+	
 
 }

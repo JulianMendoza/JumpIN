@@ -65,5 +65,9 @@ public class Move {
 	public int hashCode() {
 		return oldPos.hashCode() * 37 + newPos.hashCode() * 17;
 	}
+	
+	public Move invert() {
+		return new Move(newPos, oldPos);
+	}
 
 }

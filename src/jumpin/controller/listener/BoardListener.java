@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
+import jumpin.model.board.BoardHistory;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.FoxLogic;
@@ -16,6 +17,7 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.BoardUtilities;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
+import jumpin.view.menu.MainMenu;
 
 /**
  * 
@@ -73,7 +75,7 @@ public class BoardListener implements MouseListener {
 		try {
 			model.getBoard().movePiece(move);
 			checkGameState();
-
+			updateMenu();
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();
 		}
@@ -89,6 +91,14 @@ public class BoardListener implements MouseListener {
 			JOptionPane.showMessageDialog(view, "GAME WON");
 			System.exit(0);
 		}
+	}
+	
+	private void updateMenu() {
+		MainMenu menu = view.getMainMenu();
+		BoardHistory history = model.getBoard().getHistory();
+		
+		menu.setRedo(history.hasRedo());
+		menu.setUndo(history.hasUndo());
 	}
 
 	@Override
@@ -108,5 +118,6 @@ public class BoardListener implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
+
 
 }

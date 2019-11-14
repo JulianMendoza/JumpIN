@@ -42,5 +42,13 @@ public class MoveSet extends ArrayList<Move> {
 		}
 		return hashCode;
 	}
+	
+	public MoveSet invert() {
+		MoveSet invertedSet = new MoveSet();
+		for(Move move : this) {
+			invertedSet.add(move.invert());
+		}
+		return invertedSet;
+	}
 
 }

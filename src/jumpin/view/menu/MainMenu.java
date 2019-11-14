@@ -28,6 +28,8 @@ public class MainMenu extends JPanel {
 	public MainMenu() {
 		undoButton = new JButton("UNDO");
 		redoButton = new JButton("REDO");
+		undoButton.setEnabled(false);
+		redoButton.setEnabled(false);
 		gameStateField = new JTextField();
 		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
 		setMaximumSize(getSize());
@@ -36,5 +38,13 @@ public class MainMenu extends JPanel {
 		add(undoButton, BorderLayout.WEST);
 		add(redoButton, BorderLayout.WEST);
 	}
+	
+	public void setRedo(boolean enabled) {
+		redoButton.setEnabled(enabled);
+	}
 
+	public void setUndo(boolean enabled) {
+		undoButton.setEnabled(enabled);
+	}
+	
 }

@@ -24,7 +24,7 @@ import jumpin.view.piece.PieceView;
 public class PieceListener implements MouseListener {
 
 	private GameModel model;
-	private BoardView view;
+	private GameView view;
 
 	/**
 	 * Default constructor for PieceListener 
@@ -34,7 +34,7 @@ public class PieceListener implements MouseListener {
 	 */
 	public PieceListener(GameModel model, GameView view) {
 		this.model = model;
-		this.view = view.getBoardView();
+		this.view = view;
 	}
 
 	// A comment
@@ -45,6 +45,7 @@ public class PieceListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		BoardView view = this.view.getBoardView();
 		if (e.getSource() instanceof PieceView) {
 			PieceView pieceView = (PieceView) e.getSource();
 			if (pieceView.getParent() instanceof TileView) {
@@ -65,6 +66,8 @@ public class PieceListener implements MouseListener {
 	 * @return select tiles
 	 */
 	private List<TileView> tilesToSelect(TileView selectTile) {
+		BoardView view = this.view.getBoardView();
+
 		List<TileView> selectTiles = new ArrayList<TileView>();
 		selectTiles.add(selectTile); // most pieces only have one tile to highlight
 		if (selectTile.getModel().getPiece() instanceof Fox) { // except fox - find its other piece
@@ -79,6 +82,8 @@ public class PieceListener implements MouseListener {
 	 * @return highlightable tiles
 	 */
 	private List<TileView> tilesToHighlight() {
+		BoardView view = this.view.getBoardView();
+
 		List<TileView> highlightTiles = new ArrayList<TileView>();
 		for (MoveSet validMoveSets : model.getBoard().getValidMoveSets()) {
 			for (Move move : validMoveSets) {

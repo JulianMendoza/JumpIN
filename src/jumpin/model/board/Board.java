@@ -33,12 +33,17 @@ public class Board {
 	private Position selectedPosition;
 
 	private List<MoveSet> validMoveSets;
+	
+	private BoardHistory history;
 
+	
+	
 	/**
 	 * Constructs the board
 	 */
 	public Board() {
 		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
+		history = new BoardHistory();
 	}
 
 	/**
@@ -110,9 +115,18 @@ public class Board {
 		MoveSet moves = BoardUtilities.generateMoveSet(move, this);
 		if (validMoveSets != null && validMoveSets.contains(moves)) {
 			update(moves);
+			history.add(moves);
 		} else {
 			throw new IllegalMoveException();
 		}
+	}
+	
+	public void undoMove() {
+		update(history.undo());
+	}
+	
+	public void redoMove() {
+		update(history.redo());
 	}
 
 	public List<MoveSet> getValidMoveSets() {
@@ -196,6 +210,10 @@ public class Board {
 	 */
 	public BoardModel getModel() {
 		return model;
+	}
+	
+	public BoardHistory getHistory() {
+		return history;
 	}
 
 }

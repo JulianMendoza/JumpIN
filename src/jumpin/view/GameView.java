@@ -22,6 +22,7 @@ public class GameView extends JFrame implements AbstractFrame {
 	private static final long serialVersionUID = -5089660197653181626L;
 	private GameModel model;
 	private BoardView boardView;
+	private MainMenu menu;
 
 	/** 
 	 * Default constructor that initializes the game
@@ -52,7 +53,7 @@ public class GameView extends JFrame implements AbstractFrame {
 		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-		MainMenu menu = new MainMenu();
+		menu = new MainMenu();
 		getContentPane().add(menu);
 
 		boardView = new BoardView(model.getBoard().getModel());
@@ -83,6 +84,10 @@ public class GameView extends JFrame implements AbstractFrame {
 		for (TileView view : boardView.getTileViews()) {
 			view.addMouseListener(l);
 		}
+	}
+	
+	public MainMenu getMainMenu() {
+		return menu;
 	}
 
 }

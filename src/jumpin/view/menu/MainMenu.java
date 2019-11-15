@@ -1,32 +1,18 @@
 package jumpin.view.menu;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
+import javax.swing.*;
 import jumpin.model.GameModel;
 import jumpin.view.constants.ComponentSize;
-import javax.swing.JToggleButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JRadioButton;
+import javax.swing.GroupLayout.*;
+import javax.swing.LayoutStyle.*;
 
 /**
+ * GUI Components for the main menu (undo, redo, state, etc.)
  * 
  * @author Giuseppe, Cameron Davis
- *
  */
 public class MainMenu extends JPanel {
 
@@ -37,6 +23,7 @@ public class MainMenu extends JPanel {
 	private GameModel model;
 	private JButton undoButton, redoButton;
 	private JLabel gameStateLabel;
+	private JRadioButton rdbtnNewRadioButton;
 	
 	public MainMenu(GameModel model) {
 		this.model = model;
@@ -49,14 +36,14 @@ public class MainMenu extends JPanel {
 		
 		gameStateLabel = new JLabel();
 		gameStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		setStateLabelText();
 		gameStateLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		setStateLabelText();
 		
 		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
 		setMaximumSize(getSize());
 		setBackground(new Color(2, 145, 55));
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Toggle");
+		rdbtnNewRadioButton = new JRadioButton("Toggle");
 		rdbtnNewRadioButton.setBackground(Color.GREEN);
 		
 		GroupLayout groupLayout = new GroupLayout(this);

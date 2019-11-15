@@ -3,6 +3,7 @@ package jumpin.model.util;
 import java.util.List;
 
 import jumpin.model.board.Board;
+import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
@@ -10,6 +11,7 @@ import jumpin.model.factory.TileFactory;
 import jumpin.model.logic.BoardLogic;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
+import jumpin.model.piece.pieces.Rabbit;
 
 /**
  * Utility class for operations with the board. Has knowledge of the default
@@ -111,6 +113,22 @@ public class BoardUtilities {
 
 	public static MoveSet generateMoveSet(Move move, Board board) {
 		return BoardLogic.generateMoveSet(move, board);
+	}
+	
+	public static int getRabbitsToWin(Board board) {
+		int height = board.getModel().getHeight();
+		int width = board.getModel().getWidth();
+		int rabbitsToWin = 0;
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				Position pos = new Position(j, i);
+				Tile tile = board.getTile(pos);
+				if(tile.getPiece() != null && tile.getPiece() instanceof Rabbit && !(tile instanceof RabbitHole)) {
+					rabbitsToWin++;
+				}
+			}
+		}
+		return rabbitsToWin;
 	}
 
 }

@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
-import jumpin.model.board.BoardHistory;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.FoxLogic;
@@ -17,7 +16,6 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.util.BoardUtilities;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
-import jumpin.view.menu.MainMenu;
 
 /**
  * 

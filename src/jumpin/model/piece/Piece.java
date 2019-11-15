@@ -13,7 +13,7 @@ public class Piece {
 	 * The orientation of the piece . NORTH_SOUTH/EAST_WEST if it is a fox. STATIC
 	 * if it is a mushroom DYNAMIC if i is a rabbit
 	 */
-	private Orientation orientation;
+	private final Orientation orientation;
 
 	/**
 	 * Default constructor of a Piece

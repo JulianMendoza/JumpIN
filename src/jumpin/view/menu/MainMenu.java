@@ -27,7 +27,6 @@ public class MainMenu extends JPanel {
 	
 	public MainMenu(GameModel model) {
 		this.model = model;
-		
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
 		addListeners();
@@ -46,35 +45,40 @@ public class MainMenu extends JPanel {
 		rdbtnNewRadioButton = new JRadioButton("Toggle");
 		rdbtnNewRadioButton.setBackground(Color.GREEN);
 		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(239)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(gameStateLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(rdbtnNewRadioButton)
-							.addGap(18)
-							.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addContainerGap(249, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-						.addComponent(rdbtnNewRadioButton)
-						.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(gameStateLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		this.add(undoButton);
+		this.add(gameStateLabel);
+		this.add(redoButton);
+		this.add(rdbtnNewRadioButton);
+		
+//		GroupLayout groupLayout = new GroupLayout(this);
+//		groupLayout.setHorizontalGroup(
+//			groupLayout.createParallelGroup(Alignment.LEADING)
+//				.addGroup(groupLayout.createSequentialGroup()
+//					.addGap(239)
+//					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+//						.addComponent(gameStateLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//						.addGroup(groupLayout.createSequentialGroup()
+//							.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+//							.addGap(18)
+//							.addComponent(rdbtnNewRadioButton)
+//							.addGap(18)
+//							.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+//							.addPreferredGap(ComponentPlacement.RELATED)))
+//					.addContainerGap(249, Short.MAX_VALUE))
+//		);
+//		groupLayout.setVerticalGroup(
+//			groupLayout.createParallelGroup(Alignment.LEADING)
+//				.addGroup(groupLayout.createSequentialGroup()
+//					.addGap(19)
+//					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+//						.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+//						.addComponent(rdbtnNewRadioButton)
+//						.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+//					.addPreferredGap(ComponentPlacement.UNRELATED)
+//					.addComponent(gameStateLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+//					.addContainerGap(22, Short.MAX_VALUE))
+//		);
+//		setLayout(groupLayout);
 	}
 	
 	public void setStateLabelText() {

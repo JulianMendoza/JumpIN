@@ -11,6 +11,7 @@ import jumpin.model.logic.BoardLogic;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.model.piece.Piece;
+import jumpin.model.solver.Solver;
 import jumpin.model.util.BoardUtilities;
 import jumpin.model.util.Position;
 
@@ -36,7 +37,7 @@ public class Board {
 	
 	private BoardHistory history;
 
-	
+	private Solver solver;
 	
 	/**
 	 * Constructs the board
@@ -44,6 +45,22 @@ public class Board {
 	public Board() {
 		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
 		history = new BoardHistory();
+		solver = new Solver(this);
+	}
+	
+	public void stuff() {
+		solver.populateMoveTree();
+	}
+
+	/**
+	 * Copy constructor
+	 */
+	public Board(Board board) {
+		this.model = board.model;
+		this.selectedPiece = board.selectedPiece;
+		this.selectedPosition = board.selectedPosition;
+		this.validMoveSets = board.validMoveSets;
+		this.history = board.history;
 	}
 
 	/**
@@ -215,5 +232,6 @@ public class Board {
 	public BoardHistory getHistory() {
 		return history;
 	}
+	
 
 }

@@ -69,5 +69,9 @@ public class Move {
 	public Move invert() {
 		return new Move(newPos, oldPos);
 	}
+	
+	public String toString() {
+		return oldPos.toString() + "->" + newPos.toString();
+	}
 
 }

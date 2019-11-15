@@ -66,11 +66,19 @@ public class FoxLogic {
 	 */
 	public static MoveSet createMoveSet(Move move, Board board) {
 		MoveSet moveSet = new MoveSet();
-		moveSet.add(move);
 		Position oldPos = getOtherFoxPosition(board, (Fox) board.getSelectedPiece());
 		Pair<Integer, Integer> inc = move.getIncrement();
 		Position newPos = new Position(oldPos.getX() + inc.getFirst(), oldPos.getY() + inc.getSecond());
-		moveSet.add(new Move(oldPos, newPos));
+		
+		if(move.getNewPos().equals(oldPos)) {
+			moveSet.add(new Move(oldPos, newPos));
+			moveSet.add(move);
+		} else {
+			moveSet.add(move);
+			moveSet.add(new Move(oldPos, newPos));
+		}
+		
+		
 		return moveSet;
 	}
 

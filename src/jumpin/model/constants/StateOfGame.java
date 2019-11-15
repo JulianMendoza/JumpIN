@@ -16,7 +16,7 @@ public enum StateOfGame {
 		if (this == WON) {
 			return "YOU_WON";
 		} else if (this == IN_PROGRESS) {
-			return "IN_PROGRESS.";
+			return "IN_PROGRESS";
 		} else {
 			return "";
 		}

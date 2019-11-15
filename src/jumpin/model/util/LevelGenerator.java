@@ -58,5 +58,20 @@ public class LevelGenerator {
 		gameState.setState(StateOfGame.IN_PROGRESS);
 		board.addModelListener(gameState);
 	}
+	public void createLevelTest() {
+		Fox fox = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Mushroom mushroom = new Mushroom();
+		Mushroom mushroom2 = new Mushroom();
+		Rabbit rabbit = new Rabbit(PieceID.RABBIT_ID_1);
+		board.assignPiece(new Position(3,2),rabbit);
+		board.assignPiece(new Position(3,3),fox);
+		board.assignPiece(new Position(4,3),fox2);
+		board.assignPiece(new Position(2,4), mushroom);
+		board.assignPiece(new Position(1,4), mushroom2);
+		gameState.setNumToWin(1);
+		gameState.setState(StateOfGame.IN_PROGRESS);
+		board.addModelListener(gameState);
+	}
 
 }

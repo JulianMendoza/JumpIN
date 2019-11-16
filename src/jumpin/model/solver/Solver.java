@@ -21,7 +21,7 @@ public class Solver {
 	}
 
 	public void populateMoveTree() {
-		TreeNode<MoveState> root = new TreeNode<MoveState>(new MoveState(null, BoardUtilities.getRabbitsToWin(board)), null);
+		TreeNode<MoveState> root = new TreeNode<MoveState>(new MoveState(null, BoardUtilities.getRabbitsToWin(board), 10), null);
 		int height = board.getModel().getHeight();
 		int width = board.getModel().getWidth();
 		for(int i = 0; i < height; i++) {
@@ -30,15 +30,15 @@ public class Solver {
 				if(board.getTile(pos).getPiece() != null && !(board.getTile(pos) instanceof RabbitHole)) {
 					board.selectPiece(pos);
 					for(MoveSet moveSet : board.getValidMoveSets()) {
-						System.out.println(moveSet);
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						if(changesOtherMoves(moveSet)) {
-							TreeNode<MoveState> branch = root.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(board)));
+						if(changesOtherMoves(moveSet) || movesToRabbitHole(moveSet)) {
+							System.out.println(moveSet);
+							TreeNode<MoveState> branch = root.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(board), 9));
 							populateChildren(branch);
 						}
 					}
@@ -49,7 +49,18 @@ public class Solver {
 	}
 	
 	private void populateChildren(TreeNode<MoveState> parent) {
-		Board boardCopy = new Board(board);
+		if(parent.data().getRabbitsToWin() == 0 || parent.data().getDepth() == 0) {
+			return;  
+		}
+		
+		Board boardCopy = board.clone();
+		boardCopy.selectPiece(parent.data().getMoveSet().get(0).getOldPos());
+		try {
+			boardCopy.movePiece(parent.data().getMoveSet().get(0));
+		} catch (IllegalMoveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int height = boardCopy.getModel().getHeight();
 		int width = boardCopy.getModel().getWidth();
 		for(int i = 0; i < height; i++) {
@@ -58,8 +69,8 @@ public class Solver {
 				if(boardCopy.getTile(pos).getPiece() != null && !(boardCopy.getTile(pos) instanceof RabbitHole)) {
 					boardCopy.selectPiece(pos);
 					for(MoveSet moveSet : boardCopy.getValidMoveSets()) {
-						if(changesOtherMoves(moveSet)) {
-							TreeNode<MoveState> branch = parent.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(boardCopy)));
+						if(changesOtherMoves(moveSet) || movesToRabbitHole(moveSet)) {
+							TreeNode<MoveState> branch = parent.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(boardCopy), parent.data().getDepth()-1));
 							populateChildren(branch);
 						}
 					}
@@ -69,51 +80,59 @@ public class Solver {
 		
 	}
 	
-	private boolean changesOtherMoves(MoveSet moveSet) {
-		Board boardCopy = new Board(board);
-		List<MoveSet> otherMoves = new ArrayList<MoveSet>();
-		List<MoveSet> newOtherMoves = new ArrayList<MoveSet>();
-		int height = boardCopy.getModel().getHeight();
-		int width = boardCopy.getModel().getWidth();
-		for(int i = 0; i < height; i++) {
-			Loop : for(int j = 0; j < width; j++) {
-				Position pos = new Position(j, i);
-				for(Move move : moveSet) {
-					if(pos.equals(move.getNewPos()) || pos.equals(move.getOldPos())) {
-						continue Loop;
-					}
-				}
-				if(boardCopy.getTile(pos).getPiece() != null && !(boardCopy.getTile(pos) instanceof RabbitHole)) {
-					boardCopy.selectPiece(pos);
-					otherMoves.addAll(boardCopy.getValidMoveSets());
-				}
-			}
+	private boolean changesOtherMoves(MoveSet selfMoveSet) {
+		Board boardCopy = board.clone();
+		List<Position> toOmit = new ArrayList<Position>();
+		for(Move move : selfMoveSet) {
+			toOmit.add(move.getOldPos());
 		}
+		List<MoveSet> otherMoves = boardCopy.getAllValidMoveSets(toOmit);
+		
 		try {
-			boardCopy.selectPiece(moveSet.get(0).getOldPos());
-			System.out.println(board);
-			boardCopy.movePiece(moveSet.get(0));
+			boardCopy.selectPiece(selfMoveSet.get(0).getOldPos());
+			boardCopy.movePiece(selfMoveSet.get(0));
 		} catch (IllegalMoveException e) {
 			e.printStackTrace();
 		}
 		
-		for(int i = 0; i < height; i++) {
-			Loop : for(int j = 0; j < width; j++) {
-				Position pos = new Position(j, i);
-				for(Move move : moveSet) {
-					if(pos.equals(move.getNewPos()) || pos.equals(move.getOldPos())) {
-						continue Loop;
+		toOmit.clear();
+		for(Move move : selfMoveSet) {
+			toOmit.add(move.getNewPos());
+		}
+		List<MoveSet> newOtherMoves = boardCopy.getAllValidMoveSets(toOmit);
+		return !newOtherMoves.containsAll(otherMoves);// && newOtherMoves.size() < otherMoves.size()
+	}
+	
+	/**
+	 * When you move a piece, its own moves will always change, so remove them
+	 * 
+	 * @param selfMove
+	 * @param moveSets
+	 * @return
+	 */
+	private List<MoveSet> stripSelfMoves(MoveSet selfMove, List<MoveSet> moveSets) {
+		List<MoveSet> toRemove = new ArrayList<MoveSet>();
+		for(MoveSet moveSet : moveSets) {
+			for(Move move : selfMove) {
+				for(Move newMove : moveSet) {
+					if(newMove.getOldPos().equals(move.getNewPos()) || move.equals(newMove)) {
+						toRemove.add(moveSet);
 					}
-				}
-				if(boardCopy.getTile(pos).getPiece() != null && !(board.getTile(pos) instanceof RabbitHole)) {
-					boardCopy.selectPiece(pos);
-					newOtherMoves.addAll(boardCopy.getValidMoveSets());
 				}
 			}
 		}
-		
-		
-		return !newOtherMoves.equals(otherMoves);
+		moveSets.removeAll(toRemove);
+		return moveSets;
 	}
+	
+	private boolean movesToRabbitHole(MoveSet moveSet) {
+		for(Move move : moveSet) {
+			if(board.getTile(move.getNewPos()) instanceof RabbitHole) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	
 }

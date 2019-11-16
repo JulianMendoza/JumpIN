@@ -6,10 +6,12 @@ public class MoveState {
 
 	private final int rabbitsToWin;
 	private final MoveSet moveSet;
+	private final int depth;
 	
-	public MoveState(MoveSet moveSet, int rabbitsToWin) {
+	public MoveState(MoveSet moveSet, int rabbitsToWin, int depth) {
 		this.rabbitsToWin = rabbitsToWin;
 		this.moveSet = moveSet;
+		this.depth = depth;
 	}
 
 	public MoveSet getMoveSet() {
@@ -22,6 +24,10 @@ public class MoveState {
 	
 	public String toString() {
 		return "Rabbits: " + rabbitsToWin + " MoveSet: " + moveSet;
+	}
+
+	public int getDepth() {
+		return depth;
 	}
 	
 }

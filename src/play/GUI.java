@@ -9,9 +9,9 @@ public class GUI {
 
 	public static void main(String args[]) {
 		GameModel model = new GameModel();
-		model.getGenerator().createLevel1();
-		//model.getBoard().stuff();
+		//model.getGenerator().createLevel1();
 		model.getGenerator().createLevelTest();
+		model.getBoard().stuff();
 		GameView view = new GameView(model);
 		GameController controller = new GameController(model, view);
 		controller.launch();

@@ -1,5 +1,6 @@
 package jumpin.model.board;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jumpin.model.board.event.BoardModelEvent;
@@ -21,7 +22,7 @@ import jumpin.model.util.Position;
  * @author Giuseppe, Julian
  * @documentation Cameron
  */
-public class Board {
+public class Board implements Cloneable{
 
 	private BoardModel model;
 	/**
@@ -233,5 +234,49 @@ public class Board {
 		return history;
 	}
 	
+	public Board clone() {
+		Board boardCopy = new Board();
+		int height = model.getHeight();
+		int width = model.getWidth();
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				Position pos = new Position(j, i);
+				if(!getTile(pos).isEmpty()) {
+					boardCopy.assignPiece(pos, getTile(pos).getPiece());
+				}
+				
+			}
+		}
+		
+		boardCopy.selectPiece(selectedPosition);
+		//TODO Copy history
+		return boardCopy;
+	}
+	
+	
+	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) {
+		List<MoveSet> allValidMoveSets = new ArrayList<MoveSet>();
+		Board boardCopy = clone();
+		int height = model.getHeight();
+		int width = model.getWidth();
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				Position pos = new Position(j, i);
+				if(toOmit.contains(pos)) {
+					continue;
+				}
+				if(!getTile(pos).isEmpty()) {
+					boardCopy.selectPiece(pos);
+					for(MoveSet moveSet : boardCopy.getValidMoveSets()) {
+						if(!allValidMoveSets.contains(moveSet)) { //dont add duplicate movesets for both pieces of the fox
+							allValidMoveSets.add(moveSet);
+						}
+					}
+				}
+				
+			}
+		}
+		return allValidMoveSets;
+	}
 
 }

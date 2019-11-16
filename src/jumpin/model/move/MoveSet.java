@@ -3,6 +3,8 @@ package jumpin.model.move;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import jumpin.model.board.BoardHistory;
+
 public class MoveSet extends ArrayList<Move> {
 
 	private static final long serialVersionUID = 3982025784054049899L;
@@ -52,6 +54,9 @@ public class MoveSet extends ArrayList<Move> {
 		Collections.reverse(invertedSet);
 		return invertedSet;
 	}
-	
+	public MoveSet clone() {
+		return (MoveSet)super.clone();
+		
+	}
 
 }

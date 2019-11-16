@@ -7,7 +7,7 @@ import jumpin.view.GameView;
 
 public class GUI {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws CloneNotSupportedException {
 		GameModel model = new GameModel();
 		//model.getGenerator().createLevel1();
 		model.getGenerator().createLevelTest();

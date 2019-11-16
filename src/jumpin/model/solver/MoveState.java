@@ -1,21 +1,27 @@
 package jumpin.model.solver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jumpin.model.board.Board;
 import jumpin.model.move.MoveSet;
 
 public class MoveState {
 
 	private final int rabbitsToWin;
-	private final MoveSet moveSet;
+	private final List<MoveSet> moveSets;
 	private final int depth;
+	private final Board board;
 	
-	public MoveState(MoveSet moveSet, int rabbitsToWin, int depth) {
+	public MoveState(ArrayList<MoveSet> moveSet, int rabbitsToWin, Board b,int depth) {
 		this.rabbitsToWin = rabbitsToWin;
-		this.moveSet = moveSet;
+		this.moveSets=moveSet;
 		this.depth = depth;
+		board=b;
 	}
 
-	public MoveSet getMoveSet() {
-		return moveSet;
+	public List<MoveSet> getMoveSet() {
+		return moveSets;
 	}
 
 	public int getRabbitsToWin() {
@@ -23,7 +29,11 @@ public class MoveState {
 	}
 	
 	public String toString() {
-		return "Rabbits: " + rabbitsToWin + " MoveSet: " + moveSet;
+		String s="Rabbits: " + rabbitsToWin+"\n Depth: "+depth+"\n";
+		for(MoveSet m:moveSets) {
+			s+=m.toString();
+		}
+		return s;
 	}
 
 	public int getDepth() {

@@ -17,8 +17,9 @@ public class GameModel {
 
 	/**
 	 * Default constructor for the Game
+	 * @throws CloneNotSupportedException 
 	 */
-	public GameModel() {
+	public GameModel() throws CloneNotSupportedException {
 		board = new Board();
 		gameState = new GameState();
 		generator = new LevelGenerator(this.board, this.gameState);

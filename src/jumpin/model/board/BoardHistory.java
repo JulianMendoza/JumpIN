@@ -4,7 +4,7 @@ import java.util.Stack;
 
 import jumpin.model.move.MoveSet;
 
-public class BoardHistory {
+public class BoardHistory implements Cloneable{
 	
 	private Stack<MoveSet> undoMoves;
 	private Stack<MoveSet> redoMoves;
@@ -40,5 +40,8 @@ public class BoardHistory {
 	public boolean hasRedo() {
 		return !redoMoves.isEmpty();
 	}
-	
+	public BoardHistory clone() throws CloneNotSupportedException {
+		return (BoardHistory)super.clone();
+		
+	}
 }

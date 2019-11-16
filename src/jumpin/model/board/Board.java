@@ -42,14 +42,15 @@ public class Board implements Cloneable{
 	
 	/**
 	 * Constructs the board
+	 * @throws CloneNotSupportedException 
 	 */
-	public Board() {
+	public Board() throws CloneNotSupportedException {
 		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
 		history = new BoardHistory();
 		solver = new Solver(this);
 	}
 	
-	public void stuff() {
+	public void stuff() throws CloneNotSupportedException {
 		solver.populateMoveTree();
 	}
 
@@ -233,8 +234,11 @@ public class Board implements Cloneable{
 	public BoardHistory getHistory() {
 		return history;
 	}
+	public void setHistory(BoardHistory history) {
+		this.history=history;
+	}
 	
-	public Board clone() {
+	public Board clone() throws CloneNotSupportedException {
 		Board boardCopy = new Board();
 		int height = model.getHeight();
 		int width = model.getWidth();
@@ -247,14 +251,15 @@ public class Board implements Cloneable{
 				
 			}
 		}
-		
+		if(selectedPosition!=null) {
 		boardCopy.selectPiece(selectedPosition);
-		//TODO Copy history
+		}
+		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
 	
 	
-	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) {
+	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) throws CloneNotSupportedException {
 		List<MoveSet> allValidMoveSets = new ArrayList<MoveSet>();
 		Board boardCopy = clone();
 		int height = model.getHeight();

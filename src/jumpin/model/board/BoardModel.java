@@ -12,7 +12,7 @@ import jumpin.model.piece.Piece;
  * @author Giuseppe, Julian
  * @documentation Cameron Davis
  */
-public class BoardModel {
+public class BoardModel implements Cloneable {
 	private List<BoardModelListener> listeners;
 	private Tile[][] model;
 
@@ -76,6 +76,10 @@ public class BoardModel {
 	 */
 	public void assignPiece(int x, int y, Piece piece) {
 		model[y][x].setPiece(piece);
+	}
+	public BoardModel clone() throws CloneNotSupportedException {
+		return (BoardModel)super.clone();
+		
 	}
 
 }

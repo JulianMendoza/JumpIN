@@ -23,8 +23,9 @@ public class ConsoleGame extends GameModel {
 
 	/**
 	 * Constructs a Console Game
+	 * @throws CloneNotSupportedException 
 	 */
-	public ConsoleGame() {
+	public ConsoleGame() throws CloneNotSupportedException {
 		super();
 		this.getGenerator().createLevel1();
 		scanner = new Scanner(System.in);

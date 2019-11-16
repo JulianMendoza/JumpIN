@@ -15,52 +15,57 @@ import jumpin.util.TreeNode;
 public class Solver {
 
 	private Board board;
-	
-	public Solver(Board board) {
-		this.board = new Board(board);
+	private TreeNode<MoveState> root;
+	public Solver(Board board) throws CloneNotSupportedException {
+		this.board = board;
+		root =new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),board, 0), null);
 	}
 
-	public void populateMoveTree() {
-		TreeNode<MoveState> root = new TreeNode<MoveState>(new MoveState(null, BoardUtilities.getRabbitsToWin(board), 10), null);
-		int height = board.getModel().getHeight();
-		int width = board.getModel().getWidth();
+	public void populateMoveTree() throws CloneNotSupportedException {
+		hereWeGo(root,board,0);
+		System.out.println(root);
+	}
+	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
+		Board newboard=board.clone();
+		if(depth==3||BoardUtilities.getRabbitsToWin(newboard)==0) {
+			return;
+		}
+		depth++;
+		int height = newboard.getModel().getHeight();
+		int width = newboard.getModel().getWidth();
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Position pos = new Position(j, i);
-				if(board.getTile(pos).getPiece() != null && !(board.getTile(pos) instanceof RabbitHole)) {
-					board.selectPiece(pos);
-					for(MoveSet moveSet : board.getValidMoveSets()) {
+				if(newboard.getTile(pos).getPiece() != null && !(newboard.getTile(pos) instanceof RabbitHole)) {
+					newboard.selectPiece(pos);
+					for(MoveSet moveSet : newboard.getValidMoveSets()) {
+						//newboard.selectPiece(pos);
 						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						if(changesOtherMoves(moveSet) || movesToRabbitHole(moveSet)) {
-							System.out.println(moveSet);
-							TreeNode<MoveState> branch = root.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(board), 9));
-							populateChildren(branch);
+							newboard.movePiece(moveSet.get(0));
+							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(),BoardUtilities.getRabbitsToWin(newboard),newboard,depth),node);
+							newboard.getHistory().undo();
+							hereWeGo(t,newboard,depth);
+						}catch (IllegalMoveException e) {
+								e.printStackTrace();
 						}
 					}
 				}
 			}
 		}
-		System.out.println(root);
 	}
-	
-	private void populateChildren(TreeNode<MoveState> parent) {
+	private void populateChildren(TreeNode<MoveState> parent) throws CloneNotSupportedException {
 		if(parent.data().getRabbitsToWin() == 0 || parent.data().getDepth() == 0) {
 			return;  
 		}
 		
 		Board boardCopy = board.clone();
-		boardCopy.selectPiece(parent.data().getMoveSet().get(0).getOldPos());
-		try {
-			boardCopy.movePiece(parent.data().getMoveSet().get(0));
-		} catch (IllegalMoveException e) {
+		//boardCopy.selectPiece(parent.data().getMoveSet().get(0).getOldPos());
+		//try {
+			//boardCopy.movePiece(parent.data().getMoveSet().get(0));
+		//} catch (IllegalMoveException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		int height = boardCopy.getModel().getHeight();
 		int width = boardCopy.getModel().getWidth();
 		for(int i = 0; i < height; i++) {
@@ -70,8 +75,8 @@ public class Solver {
 					boardCopy.selectPiece(pos);
 					for(MoveSet moveSet : boardCopy.getValidMoveSets()) {
 						if(changesOtherMoves(moveSet) || movesToRabbitHole(moveSet)) {
-							TreeNode<MoveState> branch = parent.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(boardCopy), parent.data().getDepth()-1));
-							populateChildren(branch);
+						//	TreeNode<MoveState> branch = parent.addChild(new MoveState(moveSet, BoardUtilities.getRabbitsToWin(boardCopy), parent.data().getDepth()-1));
+						//	populateChildren(branch);
 						}
 					}
 				}
@@ -80,7 +85,7 @@ public class Solver {
 		
 	}
 	
-	private boolean changesOtherMoves(MoveSet selfMoveSet) {
+	private boolean changesOtherMoves(MoveSet selfMoveSet) throws CloneNotSupportedException {
 		Board boardCopy = board.clone();
 		List<Position> toOmit = new ArrayList<Position>();
 		for(Move move : selfMoveSet) {

@@ -2,15 +2,14 @@ package jumpin.view.menu;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.text.NumberFormat;
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import jumpin.model.GameModel;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
-import jumpin.model.move.MoveSet;
 import jumpin.view.constants.ComponentSize;
-import javax.swing.GroupLayout.*;
-import javax.swing.LayoutStyle.*;
+
 
 /**
  * GUI Components for the main menu (undo, redo, state, etc.)
@@ -26,6 +25,8 @@ public class MainMenu extends JPanel {
 	private GameModel model;
 	private JButton undoButton, redoButton, solveButton, bestMoves, showBestMoves;
 	private JLabel gameStateLabel;
+	private JPanel threshold;
+	private JTextField thresholdField;
 	
 	public MainMenu(GameModel model) {
 		this.model = model;
@@ -40,6 +41,15 @@ public class MainMenu extends JPanel {
 		redoButton.setEnabled(false);
 		solveButton.setEnabled(false);
 		showBestMoves.setEnabled(false);
+		
+		/**
+		 * Option pane
+		 */
+
+		threshold = new JPanel();
+		thresholdField = new JTextField(15);
+		threshold.add(new JLabel("Please enter a threshold (3-6 recommendation):"));
+		threshold.add(thresholdField);
 		
 		gameStateLabel = new JLabel();
 		gameStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,14 +131,22 @@ public class MainMenu extends JPanel {
 					e1.printStackTrace();
 				} 
 			}else if(e.getSource().equals(bestMoves)){
-				solveButton.setEnabled(true);
-				showBestMoves.setEnabled(true);
-				bestMoves.setEnabled(false);
-				try {
-					model.getBoard().computeSolution();
-				} catch (CloneNotSupportedException e1) {
-					e1.printStackTrace();
+				int result = JOptionPane.showConfirmDialog(null, threshold, "Search threshold",
+						JOptionPane.OK_CANCEL_OPTION);
+				if (result == JOptionPane.OK_OPTION) {
+					try {
+						Integer.parseInt(thresholdField.getText());
+						solveButton.setEnabled(true);
+						showBestMoves.setEnabled(true);
+						bestMoves.setEnabled(false);
+						model.getBoard().computeSolution(Integer.parseInt(thresholdField.getText()));
+					}catch(Exception x) {
+						JOptionPane.showMessageDialog(null, "Please only enter integers","Invalid entry!", JOptionPane.ERROR_MESSAGE);
+	                    thresholdField.setText("");
+	                    return;
+					}
 				}
+
 			}else if(e.getSource().equals(showBestMoves)){
 				JOptionPane.showMessageDialog(null, model.getBoard().getBestMoves().toString(), "Current Best Solution",JOptionPane.PLAIN_MESSAGE);
 			}

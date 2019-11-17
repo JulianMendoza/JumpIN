@@ -50,8 +50,8 @@ public class Board implements Cloneable{
 		solver = new Solver(this);
 	}
 	
-	public void computeSolution() throws CloneNotSupportedException {
-		solver.populateMoveTree();
+	public void computeSolution(int threshHold) throws CloneNotSupportedException {
+		solver.populateMoveTree(threshHold);
 	}
 
 	/**

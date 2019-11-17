@@ -23,11 +23,11 @@ public class Solver {
 		this.board = board;
 	}
 
-	public void populateMoveTree() throws CloneNotSupportedException {
+	public void populateMoveTree(int threshold) throws CloneNotSupportedException {
 		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),0), null);
 		childNodes=new ArrayList<TreeNode<MoveState>>();
-		hereWeGo(root,board,0);
-		bestMoves=getBestMove(6);
+		hereWeGo(root,board,0,threshold);
+		bestMoves=getBestMove(threshold);
 		System.out.println("Number of branches: " + childNodes.size()+"\nBest move: \n"+bestMoves);
 	}
 	public List<MoveSet> getBestMoves() {
@@ -53,9 +53,9 @@ public class Solver {
 	/**
 	 * Can call other methods to reduce search space
 	 */
-	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
+	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth,int threshold) throws CloneNotSupportedException {
 		Board newboard=board.clone();
-		if(depth==6||BoardUtilities.getRabbitsToWin(newboard)==0) { 
+		if(depth==threshold||BoardUtilities.getRabbitsToWin(newboard)==0) { 
 			childNodes.add(node);
 			return;
 		}
@@ -75,7 +75,7 @@ public class Solver {
 							movesTogetHere.add(moveSet);
 							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(movesTogetHere,BoardUtilities.getRabbitsToWin(newboard),depth),node);
 							node.addChild(t);
-							hereWeGo(t,newboard,depth);
+							hereWeGo(t,newboard,depth,threshold);
 							newboard.undoMove();
 						}catch (IllegalMoveException e) {
 								e.printStackTrace();

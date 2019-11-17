@@ -100,8 +100,8 @@ public class MainMenu extends JPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				redoButton.setEnabled(enabled);
-				solveButton.setEnabled(false);
-				showBestMoves.setEnabled(false);
+				//solveButton.setEnabled(false);
+				//showBestMoves.setEnabled(false);
 			}
 		});
 	}
@@ -130,9 +130,11 @@ public class MainMenu extends JPanel {
 			if(e.getSource().equals(undoButton)) {
 				model.getBoard().undoMove();
 				solveButton.setEnabled(false);
+				bestMoves.setEnabled(true);
 			} else if(e.getSource().equals(redoButton)) {
 				model.getBoard().redoMove();
 				solveButton.setEnabled(false);
+				bestMoves.setEnabled(true);
 			}else if(e.getSource().equals(solveButton)) {
 				try {
 					model.getBoard().solve();
@@ -142,6 +144,7 @@ public class MainMenu extends JPanel {
 			}else if(e.getSource().equals(bestMoves)){
 				solveButton.setEnabled(true);
 				showBestMoves.setEnabled(true);
+				bestMoves.setEnabled(false);
 				try {
 					model.getBoard().computeSolution();
 				} catch (CloneNotSupportedException e1) {

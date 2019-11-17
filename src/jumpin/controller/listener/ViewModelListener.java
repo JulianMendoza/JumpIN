@@ -37,15 +37,15 @@ public class ViewModelListener implements BoardModelListener {
 	public void update(BoardModelEvent e) {
 		updateBoard(e);
 		updateMenu();
-		view.repaint();
 	}
 
 	private void updateMenu() {
 		MainMenu menu = view.getMainMenu();
-		menu.setStateLabelText();
 		BoardHistory history = model.getBoard().getHistory();
 		menu.setRedo(history.hasRedo());
 		menu.setUndo(history.hasUndo());
+		menu.setStateLabelText();
+		view.repaint();
 	}
 	
 	private void updateBoard(BoardModelEvent e) {
@@ -61,6 +61,6 @@ public class ViewModelListener implements BoardModelListener {
 			});
 		}
 		boardView.stopHighlighting();
+		view.repaint();
 	}
- 	
 }

@@ -64,7 +64,6 @@ public class Board implements Cloneable{
 		this.validMoveSets = board.validMoveSets;
 		this.history = board.history;
 	}
-
 	/**
 	 * Gets the piece in the specified position
 	 * 
@@ -258,12 +257,11 @@ public class Board implements Cloneable{
 		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
-	public void solve() throws IllegalMoveException {
-		System.out.println(this);
-		for(MoveSet m:solver.getBestMoves()) {
-			this.movePiece(m.get(0));
+	public void solve() throws IllegalMoveException, InterruptedException {
+			this.movePiece(solver.getBestMoves().get(0).get(0));
+			solver.getBestMoves().remove(0);
 			System.out.println(this);
-		}
+
 	}
 	
 	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) throws CloneNotSupportedException {

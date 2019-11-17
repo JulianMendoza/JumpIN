@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
+import jumpin.model.move.MoveSet;
 import jumpin.view.constants.ComponentSize;
 import javax.swing.GroupLayout.*;
 import javax.swing.LayoutStyle.*;
@@ -30,7 +31,7 @@ public class MainMenu extends JPanel {
 		this.model = model;
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
-		solveButton = new JButton("Solve");
+		solveButton = new JButton("Do best move");
 		addListeners();
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
@@ -123,6 +124,9 @@ public class MainMenu extends JPanel {
 				try {
 					model.getBoard().solve();
 				} catch (IllegalMoveException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

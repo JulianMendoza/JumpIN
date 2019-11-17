@@ -1,6 +1,7 @@
 package jumpin.model.solver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import jumpin.model.board.Board;
@@ -18,17 +19,16 @@ public class Solver {
 	private TreeNode<MoveState> root;
 	public Solver(Board board) throws CloneNotSupportedException {
 		this.board = board;
-		root =new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),board, 0), null);
 	}
 
 	public void populateMoveTree() throws CloneNotSupportedException {
+		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),board, 0), null);
 		hereWeGo(root,board,0);
 		System.out.println(root);
 	}
-	static int i=0;
 	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
 		Board newboard=board.clone();
-		if(depth==3||BoardUtilities.getRabbitsToWin(newboard)==0) {
+		if(depth==6||BoardUtilities.getRabbitsToWin(newboard)==0) {
 			return;
 		}
 		depth++;
@@ -42,7 +42,10 @@ public class Solver {
 					for(MoveSet moveSet : newboard.getValidMoveSets()) {
 						try {
 							newboard.movePiece(moveSet.get(0));
-							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(),BoardUtilities.getRabbitsToWin(newboard),newboard,depth),node);
+							List<MoveSet> movesTogetHere=new ArrayList<MoveSet>(((MoveState)node.data()).getMoveSet());
+							Collections.copy(movesTogetHere,((MoveState)node.data()).getMoveSet());
+							movesTogetHere.add(moveSet);
+							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(movesTogetHere,BoardUtilities.getRabbitsToWin(newboard),newboard,depth),node);
 							node.addChild(t);
 							hereWeGo(t,newboard,depth);
 							newboard.undoMove();

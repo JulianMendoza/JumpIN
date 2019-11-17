@@ -13,9 +13,9 @@ public class MoveState {
 	private final int depth;
 	private final Board board;
 	
-	public MoveState(ArrayList<MoveSet> moveSet, int rabbitsToWin, Board b,int depth) {
+	public MoveState(List<MoveSet> movesTogetHere, int rabbitsToWin, Board b,int depth) {
 		this.rabbitsToWin = rabbitsToWin;
-		this.moveSets=moveSet;
+		this.moveSets=movesTogetHere;
 		this.depth = depth;
 		board=b;
 	}
@@ -29,9 +29,10 @@ public class MoveState {
 	}
 	
 	public String toString() {
-		String s="Rabbits: " + rabbitsToWin+"\n Depth: "+depth+"\n";
+		String s="Rabbits: " + rabbitsToWin+"\n Depth: "+depth+"\nHistory:";
+		
 		for(MoveSet m:moveSets) {
-			s+=m.toString();
+			s+= m.toString();
 		}
 		return s;
 	}

@@ -47,6 +47,9 @@ public class TreeNode<T> {
     	}
     	return toString;
     }
+    /**
+     * FIX ME
+     */
     public void addChildNodes(){
     	for(TreeNode<T> child : children) {
     		if(!child.hasChildren()) {

@@ -26,6 +26,10 @@ public class Solver {
 		hereWeGo(root,board,0);
 		System.out.println(getBestMove(3));
 	}
+	/**
+	 * FIXME
+	 *
+	 */
 	private List<MoveSet> getBestMove(int leastDepth) {
 		root.addChildNodes();
 		List<TreeNode<MoveState>> childNodes=root.getChildNodes();

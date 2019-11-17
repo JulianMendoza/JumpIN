@@ -22,13 +22,27 @@ public class Solver {
 	}
 
 	public void populateMoveTree() throws CloneNotSupportedException {
-		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),board, 0), null);
+		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),0), null);
 		hereWeGo(root,board,0);
-		System.out.println(root);
+		System.out.println(getBestMove(3));
+	}
+	private List<MoveSet> getBestMove(int leastDepth) {
+		root.addChildNodes();
+		List<TreeNode<MoveState>> childNodes=root.getChildNodes();
+		List<MoveSet> bestmoves=null;
+		for(TreeNode<MoveState> node:childNodes) {
+			MoveState data=(MoveState)node.data();
+			System.out.println(node);
+			if(data.getRabbitsToWin()==0&&data.getDepth()<leastDepth) {
+				leastDepth=data.getDepth();
+				bestmoves=data.getMoveSet();
+			}
+		}
+		return bestmoves;
 	}
 	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
 		Board newboard=board.clone();
-		if(depth==6||BoardUtilities.getRabbitsToWin(newboard)==0) {
+		if(depth==3||BoardUtilities.getRabbitsToWin(newboard)==0) { 
 			return;
 		}
 		depth++;
@@ -45,7 +59,7 @@ public class Solver {
 							List<MoveSet> movesTogetHere=new ArrayList<MoveSet>(((MoveState)node.data()).getMoveSet());
 							Collections.copy(movesTogetHere,((MoveState)node.data()).getMoveSet());
 							movesTogetHere.add(moveSet);
-							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(movesTogetHere,BoardUtilities.getRabbitsToWin(newboard),newboard,depth),node);
+							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(movesTogetHere,BoardUtilities.getRabbitsToWin(newboard),depth),node);
 							node.addChild(t);
 							hereWeGo(t,newboard,depth);
 							newboard.undoMove();

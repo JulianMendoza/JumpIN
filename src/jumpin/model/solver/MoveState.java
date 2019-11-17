@@ -11,13 +11,11 @@ public class MoveState {
 	private final int rabbitsToWin;
 	private final List<MoveSet> moveSets;
 	private final int depth;
-	private final Board board;
 	
-	public MoveState(List<MoveSet> movesTogetHere, int rabbitsToWin, Board b,int depth) {
+	public MoveState(List<MoveSet> movesTogetHere, int rabbitsToWin,int depth) {
 		this.rabbitsToWin = rabbitsToWin;
 		this.moveSets=movesTogetHere;
 		this.depth = depth;
-		board=b;
 	}
 
 	public List<MoveSet> getMoveSet() {

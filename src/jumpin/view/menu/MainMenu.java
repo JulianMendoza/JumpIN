@@ -136,10 +136,16 @@ public class MainMenu extends JPanel {
 				if (result == JOptionPane.OK_OPTION) {
 					try {
 						Integer.parseInt(thresholdField.getText());
-						solveButton.setEnabled(true);
-						showBestMoves.setEnabled(true);
-						bestMoves.setEnabled(false);
 						model.getBoard().computeSolution(Integer.parseInt(thresholdField.getText()));
+						if(model.getBoard().getBestMoves()==null) {
+							JOptionPane.showMessageDialog(null, "No Solutions found!","Invalid entry!", JOptionPane.ERROR_MESSAGE);
+		                    thresholdField.setText("");
+		                    return;
+						}else {
+							solveButton.setEnabled(true);
+							showBestMoves.setEnabled(true);
+							bestMoves.setEnabled(false);
+						}
 					}catch(Exception x) {
 						JOptionPane.showMessageDialog(null, "Please only enter integers","Invalid entry!", JOptionPane.ERROR_MESSAGE);
 	                    thresholdField.setText("");

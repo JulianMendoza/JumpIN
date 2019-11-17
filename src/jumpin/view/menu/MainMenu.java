@@ -23,7 +23,7 @@ public class MainMenu extends JPanel {
 	 */
 	private static final long serialVersionUID = -436968148338186761L;
 	private GameModel model;
-	private JButton undoButton, redoButton, solveButton, bestMove, anyMove;
+	private JButton undoButton, redoButton, solveButton, bestMoves, showBestMoves;
 	private JLabel gameStateLabel;
 	//private JRadioButton rdbtnNewRadioButton;
 	
@@ -32,8 +32,9 @@ public class MainMenu extends JPanel {
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
 		solveButton = new JButton("Do best move");
-		bestMove = new JButton("Find Best Moves");
-		anyMove = new JButton("Any Move");
+		bestMoves = new JButton("Find Best Moves");
+		showBestMoves = new JButton("Show Button Moves");
+		
 		addListeners();
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
@@ -56,8 +57,8 @@ public class MainMenu extends JPanel {
 		this.add(redoButton);
 	//	this.add(rdbtnNewRadioButton);
 		this.add(solveButton);
-		this.add(bestMove);
-		this.add(anyMove);
+		this.add(bestMoves);
+		this.add(showBestMoves);
 //		GroupLayout groupLayout = new GroupLayout(this);
 //		groupLayout.setHorizontalGroup(
 //			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -98,6 +99,7 @@ public class MainMenu extends JPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				redoButton.setEnabled(enabled);
+				solveButton.setEnabled(false);
 			}
 		});
 	}
@@ -115,8 +117,7 @@ public class MainMenu extends JPanel {
 		undoButton.addActionListener(l);
 		redoButton.addActionListener(l);
 		solveButton.addActionListener(l);
-		bestMove.addActionListener(l);
-		anyMove.addActionListener(l);
+		bestMoves.addActionListener(l);
 	}
 
 	class ButtonListener implements ActionListener {
@@ -125,8 +126,10 @@ public class MainMenu extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(undoButton)) {
 				model.getBoard().undoMove();
+				solveButton.setEnabled(false);
 			} else if(e.getSource().equals(redoButton)) {
 				model.getBoard().redoMove();
+				solveButton.setEnabled(false);
 			}else if(e.getSource().equals(solveButton)) {
 				try {
 					model.getBoard().solve();
@@ -137,10 +140,10 @@ public class MainMenu extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}else if(e.getSource().equals(bestMove)){
+			}else if(e.getSource().equals(bestMoves)){
 				solveButton.setEnabled(true);
-			}else if(e.getSource().equals(anyMove)){
-				solveButton.setEnabled(false);
+			}else if(e.getSource().equals(showBestMoves)){
+				
 			}
 			setStateLabelText();
 		}

@@ -24,7 +24,7 @@ public class RabbitTest extends TestCase {
 	private Rabbit rabbit;
 
 	@Override
-	protected void setUp() {
+	protected void setUp() throws CloneNotSupportedException {
 		game = new GameModel();
 		board = game.getBoard();
 		rabbit = new Rabbit(PieceID.RABBIT_ID_1);

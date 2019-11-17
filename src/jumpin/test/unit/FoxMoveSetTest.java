@@ -30,7 +30,7 @@ import junit.framework.TestCase;
 		private Rabbit rabbit;
 		private MoveSet moveset;
 	@Override
-	protected void setUp() {	
+	protected void setUp() throws CloneNotSupportedException {	
 			game = new GameModel();
 			board = game.getBoard();
 			fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);

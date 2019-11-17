@@ -16,7 +16,7 @@ public class MushroomTest extends TestCase {
 	private Board board;
 	private Mushroom mushroom;
 	@Override
-	protected void setUp() {
+	protected void setUp() throws CloneNotSupportedException {
 		game = new GameModel();
 		board = game.getBoard();
 		mushroom=new Mushroom();

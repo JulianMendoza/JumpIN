@@ -37,7 +37,7 @@ public class RabbitMoveSetTest extends TestCase{
 	private MoveSet moveset;
 
 	@Override
-	protected void setUp() {	
+	protected void setUp() throws CloneNotSupportedException {	
 		game = new GameModel();
 		board = game.getBoard();
 		view = new GameView(game);

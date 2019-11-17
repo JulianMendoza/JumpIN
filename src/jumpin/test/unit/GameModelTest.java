@@ -16,7 +16,7 @@ public class GameModelTest extends TestCase {
 	private GameModel game;
 
 	@Override
-	protected void setUp() {
+	protected void setUp() throws CloneNotSupportedException {
 		game = new GameModel();
 	}
 

@@ -50,7 +50,7 @@ public class Board implements Cloneable{
 		solver = new Solver(this);
 	}
 	
-	public void stuff() throws CloneNotSupportedException {
+	public void computeSolution() throws CloneNotSupportedException {
 		solver.populateMoveTree();
 	}
 
@@ -257,11 +257,12 @@ public class Board implements Cloneable{
 		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
-	public void solve() throws IllegalMoveException, InterruptedException {
+	public List<MoveSet> getBestMoves(){
+		return solver.getBestMoves();
+	}
+	public void solve() throws IllegalMoveException {
 			this.movePiece(solver.getBestMoves().get(0).get(0));
 			solver.getBestMoves().remove(0);
-			System.out.println(this);
-
 	}
 	
 	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) throws CloneNotSupportedException {

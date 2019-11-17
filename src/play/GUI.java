@@ -9,12 +9,10 @@ public class GUI {
 
 	public static void main(String args[]) throws CloneNotSupportedException {
 		GameModel model = new GameModel();
-		//model.getGenerator().createLevelTest();
 		model.getGenerator().createLevel1();
 		GameView view = new GameView(model);
 		GameController controller = new GameController(model, view);
 		controller.launch();
-		model.getBoard().stuff();
 	}
 
 }

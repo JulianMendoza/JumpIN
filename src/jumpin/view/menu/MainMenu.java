@@ -32,13 +32,14 @@ public class MainMenu extends JPanel {
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
 		solveButton = new JButton("Do best move");
-		bestMoves = new JButton("Find Best Moves");
-		showBestMoves = new JButton("Show Button Moves");
+		bestMoves = new JButton("Find best moves");
+		showBestMoves = new JButton("Show best moves");
 		
 		addListeners();
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
 		solveButton.setEnabled(false);
+		showBestMoves.setEnabled(false);
 		
 		gameStateLabel = new JLabel();
 		gameStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,6 +101,7 @@ public class MainMenu extends JPanel {
 			public void run() {
 				redoButton.setEnabled(enabled);
 				solveButton.setEnabled(false);
+				showBestMoves.setEnabled(false);
 			}
 		});
 	}
@@ -118,6 +120,7 @@ public class MainMenu extends JPanel {
 		redoButton.addActionListener(l);
 		solveButton.addActionListener(l);
 		bestMoves.addActionListener(l);
+		showBestMoves.addActionListener(l);
 	}
 
 	class ButtonListener implements ActionListener {
@@ -134,16 +137,19 @@ public class MainMenu extends JPanel {
 				try {
 					model.getBoard().solve();
 				} catch (IllegalMoveException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (InterruptedException e1) {
+				} 
+			}else if(e.getSource().equals(bestMoves)){
+				solveButton.setEnabled(true);
+				showBestMoves.setEnabled(true);
+				try {
+					model.getBoard().computeSolution();
+				} catch (CloneNotSupportedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}else if(e.getSource().equals(bestMoves)){
-				solveButton.setEnabled(true);
 			}else if(e.getSource().equals(showBestMoves)){
-				
+				JOptionPane.showMessageDialog(null, model.getBoard().getBestMoves().toString(), "Current Best Solution",JOptionPane.PLAIN_MESSAGE);
 			}
 			setStateLabelText();
 		}

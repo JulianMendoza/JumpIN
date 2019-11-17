@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import jumpin.model.GameModel;
+import jumpin.model.exception.IllegalMoveException;
 import jumpin.view.constants.ComponentSize;
 import javax.swing.GroupLayout.*;
 import javax.swing.LayoutStyle.*;
@@ -21,7 +22,7 @@ public class MainMenu extends JPanel {
 	 */
 	private static final long serialVersionUID = -436968148338186761L;
 	private GameModel model;
-	private JButton undoButton, redoButton;
+	private JButton undoButton, redoButton, solveButton;
 	private JLabel gameStateLabel;
 	private JRadioButton rdbtnNewRadioButton;
 	
@@ -29,6 +30,7 @@ public class MainMenu extends JPanel {
 		this.model = model;
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
+		solveButton = new JButton("Solve");
 		addListeners();
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
@@ -49,7 +51,7 @@ public class MainMenu extends JPanel {
 		this.add(gameStateLabel);
 		this.add(redoButton);
 		this.add(rdbtnNewRadioButton);
-		
+		this.add(solveButton);
 //		GroupLayout groupLayout = new GroupLayout(this);
 //		groupLayout.setHorizontalGroup(
 //			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -106,6 +108,7 @@ public class MainMenu extends JPanel {
 		ButtonListener l = new ButtonListener();
 		undoButton.addActionListener(l);
 		redoButton.addActionListener(l);
+		solveButton.addActionListener(l);
 	}
 
 	class ButtonListener implements ActionListener {
@@ -116,6 +119,13 @@ public class MainMenu extends JPanel {
 				model.getBoard().undoMove();
 			} else if(e.getSource().equals(redoButton)) {
 				model.getBoard().redoMove();
+			}else if(e.getSource().equals(solveButton)) {
+				try {
+					model.getBoard().solve();
+				} catch (IllegalMoveException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			setStateLabelText();
 		}

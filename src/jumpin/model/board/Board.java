@@ -258,7 +258,13 @@ public class Board implements Cloneable{
 		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
-	
+	public void solve() throws IllegalMoveException {
+		System.out.println(this);
+		for(MoveSet m:solver.getBestMoves()) {
+			this.movePiece(m.get(0));
+			System.out.println(this);
+		}
+	}
 	
 	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) throws CloneNotSupportedException {
 		List<MoveSet> allValidMoveSets = new ArrayList<MoveSet>();

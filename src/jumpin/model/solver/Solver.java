@@ -18,6 +18,7 @@ public class Solver {
 	private Board board;
 	private TreeNode<MoveState> root;
 	private List<TreeNode<MoveState>> childNodes;
+	private List<MoveSet> bestMoves;
 	public Solver(Board board) throws CloneNotSupportedException {
 		this.board = board;
 	}
@@ -26,8 +27,11 @@ public class Solver {
 		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),0), null);
 		childNodes=new ArrayList<TreeNode<MoveState>>();
 		hereWeGo(root,board,0);
-		
-		System.out.println("Number of branches: " + childNodes.size()+"\nBest move: \n"+getBestMove(6));
+		bestMoves=getBestMove(6);
+		System.out.println("Number of branches: " + childNodes.size()+"\nBest move: \n"+bestMoves);
+	}
+	public List<MoveSet> getBestMoves() {
+		return bestMoves;
 	}
 	/**
 	 * Incorporate a tree search to find all the child nodes

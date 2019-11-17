@@ -131,6 +131,7 @@ public class Board implements Cloneable{
 	}
 
 	public void movePiece(Move move) throws IllegalMoveException {
+		this.selectPiece(move.getOldPos());
 		MoveSet moves = BoardUtilities.generateMoveSet(move, this);
 		if (validMoveSets != null && validMoveSets.contains(moves)) {
 			history.add(moves);

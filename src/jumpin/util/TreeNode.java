@@ -26,10 +26,8 @@ public class TreeNode<T> {
     	return parent;
     }
     
-    public TreeNode<T> addChild(T data) {
-    	TreeNode<T> child = new TreeNode<T>(data, this);
-    	children.add(child);
-    	return child;
+    public void addChild(TreeNode<T> t) {
+    	children.add(t);
     }
     
     public String toString() {

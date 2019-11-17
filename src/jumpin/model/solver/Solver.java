@@ -25,6 +25,7 @@ public class Solver {
 		hereWeGo(root,board,0);
 		System.out.println(root);
 	}
+	static int i=0;
 	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
 		Board newboard=board.clone();
 		if(depth==3||BoardUtilities.getRabbitsToWin(newboard)==0) {
@@ -39,12 +40,12 @@ public class Solver {
 				if(newboard.getTile(pos).getPiece() != null && !(newboard.getTile(pos) instanceof RabbitHole)) {
 					newboard.selectPiece(pos);
 					for(MoveSet moveSet : newboard.getValidMoveSets()) {
-						//newboard.selectPiece(pos);
 						try {
 							newboard.movePiece(moveSet.get(0));
 							TreeNode<MoveState> t= new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(),BoardUtilities.getRabbitsToWin(newboard),newboard,depth),node);
-							newboard.getHistory().undo();
+							node.addChild(t);
 							hereWeGo(t,newboard,depth);
+							newboard.undoMove();
 						}catch (IllegalMoveException e) {
 								e.printStackTrace();
 						}

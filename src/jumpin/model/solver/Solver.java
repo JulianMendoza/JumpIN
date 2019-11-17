@@ -17,36 +17,42 @@ public class Solver {
 
 	private Board board;
 	private TreeNode<MoveState> root;
+	private List<TreeNode<MoveState>> childNodes;
 	public Solver(Board board) throws CloneNotSupportedException {
 		this.board = board;
 	}
 
 	public void populateMoveTree() throws CloneNotSupportedException {
 		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board),0), null);
+		childNodes=new ArrayList<TreeNode<MoveState>>();
 		hereWeGo(root,board,0);
-		System.out.println(getBestMove(3));
+		
+		System.out.println("Number of branches: " + childNodes.size()+"\nBest move: \n"+getBestMove(6));
 	}
 	/**
-	 * FIXME
+	 * Incorporate a tree search to find all the child nodes
 	 *
 	 */
 	private List<MoveSet> getBestMove(int leastDepth) {
-		root.addChildNodes();
-		List<TreeNode<MoveState>> childNodes=root.getChildNodes();
+		//root.addChildNodes();
+		//List<TreeNode<MoveState>> childNodes=root.getChildNodes();
 		List<MoveSet> bestmoves=null;
 		for(TreeNode<MoveState> node:childNodes) {
 			MoveState data=(MoveState)node.data();
-			System.out.println(node);
-			if(data.getRabbitsToWin()==0&&data.getDepth()<leastDepth) {
+			if(data.getRabbitsToWin()==0&&data.getDepth()<=leastDepth) {
 				leastDepth=data.getDepth();
 				bestmoves=data.getMoveSet();
 			}
 		}
 		return bestmoves;
 	}
+	/**
+	 * Can call other methods to reduce search space
+	 */
 	private void hereWeGo(TreeNode<MoveState> node,Board board,int depth) throws CloneNotSupportedException {
 		Board newboard=board.clone();
-		if(depth==3||BoardUtilities.getRabbitsToWin(newboard)==0) { 
+		if(depth==6||BoardUtilities.getRabbitsToWin(newboard)==0) { 
+			childNodes.add(node);
 			return;
 		}
 		depth++;

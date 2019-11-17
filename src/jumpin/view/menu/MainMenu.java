@@ -23,18 +23,21 @@ public class MainMenu extends JPanel {
 	 */
 	private static final long serialVersionUID = -436968148338186761L;
 	private GameModel model;
-	private JButton undoButton, redoButton, solveButton;
+	private JButton undoButton, redoButton, solveButton, bestMove, anyMove;
 	private JLabel gameStateLabel;
-	private JRadioButton rdbtnNewRadioButton;
+	//private JRadioButton rdbtnNewRadioButton;
 	
 	public MainMenu(GameModel model) {
 		this.model = model;
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
 		solveButton = new JButton("Do best move");
+		bestMove = new JButton("Find Best Moves");
+		anyMove = new JButton("Any Move");
 		addListeners();
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
+		solveButton.setEnabled(false);
 		
 		gameStateLabel = new JLabel();
 		gameStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,14 +48,16 @@ public class MainMenu extends JPanel {
 		setMaximumSize(getSize());
 		setBackground(new Color(2, 145, 55));
 		
-		rdbtnNewRadioButton = new JRadioButton("Toggle");
-		rdbtnNewRadioButton.setBackground(Color.GREEN);
+		//rdbtnNewRadioButton = new JRadioButton("Toggle");
+		//rdbtnNewRadioButton.setBackground(Color.GREEN);
 		
 		this.add(undoButton);
 		this.add(gameStateLabel);
 		this.add(redoButton);
-		this.add(rdbtnNewRadioButton);
+	//	this.add(rdbtnNewRadioButton);
 		this.add(solveButton);
+		this.add(bestMove);
+		this.add(anyMove);
 //		GroupLayout groupLayout = new GroupLayout(this);
 //		groupLayout.setHorizontalGroup(
 //			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -110,6 +115,8 @@ public class MainMenu extends JPanel {
 		undoButton.addActionListener(l);
 		redoButton.addActionListener(l);
 		solveButton.addActionListener(l);
+		bestMove.addActionListener(l);
+		anyMove.addActionListener(l);
 	}
 
 	class ButtonListener implements ActionListener {
@@ -130,6 +137,10 @@ public class MainMenu extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}else if(e.getSource().equals(bestMove)){
+				solveButton.setEnabled(true);
+			}else if(e.getSource().equals(anyMove)){
+				solveButton.setEnabled(false);
 			}
 			setStateLabelText();
 		}

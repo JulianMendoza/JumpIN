@@ -42,8 +42,8 @@ public class ViewModelListener implements BoardModelListener {
 
 	private void updateMenu() {
 		MainMenu menu = view.getMainMenu();
+		menu.setStateLabelText();
 		BoardHistory history = model.getBoard().getHistory();
-		
 		menu.setRedo(history.hasRedo());
 		menu.setUndo(history.hasUndo());
 	}

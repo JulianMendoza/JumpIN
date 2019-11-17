@@ -72,6 +72,8 @@ public class BoardListener implements MouseListener {
 	private void doMove(Move move) {
 		try {
 			model.getBoard().movePiece(move);
+		//	view.getMainMenu().disableShowBestMoves();
+			view.getMainMenu().enableFindBestMoves();
 			checkGameState();
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();

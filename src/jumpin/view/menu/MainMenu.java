@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import jumpin.model.GameModel;
+import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.move.MoveSet;
 import jumpin.view.constants.ComponentSize;
@@ -25,7 +26,6 @@ public class MainMenu extends JPanel {
 	private GameModel model;
 	private JButton undoButton, redoButton, solveButton, bestMoves, showBestMoves;
 	private JLabel gameStateLabel;
-	//private JRadioButton rdbtnNewRadioButton;
 	
 	public MainMenu(GameModel model) {
 		this.model = model;
@@ -50,58 +50,31 @@ public class MainMenu extends JPanel {
 		setMaximumSize(getSize());
 		setBackground(new Color(2, 145, 55));
 		
-		//rdbtnNewRadioButton = new JRadioButton("Toggle");
-		//rdbtnNewRadioButton.setBackground(Color.GREEN);
-		
 		this.add(undoButton);
 		this.add(gameStateLabel);
 		this.add(redoButton);
-	//	this.add(rdbtnNewRadioButton);
 		this.add(solveButton);
 		this.add(bestMoves);
 		this.add(showBestMoves);
-//		GroupLayout groupLayout = new GroupLayout(this);
-//		groupLayout.setHorizontalGroup(
-//			groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup()
-//					.addGap(239)
-//					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-//						.addComponent(gameStateLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-//						.addGroup(groupLayout.createSequentialGroup()
-//							.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-//							.addGap(18)
-//							.addComponent(rdbtnNewRadioButton)
-//							.addGap(18)
-//							.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-//							.addPreferredGap(ComponentPlacement.RELATED)))
-//					.addContainerGap(249, Short.MAX_VALUE))
-//		);
-//		groupLayout.setVerticalGroup(
-//			groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup()
-//					.addGap(19)
-//					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-//						.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-//						.addComponent(rdbtnNewRadioButton)
-//						.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-//					.addPreferredGap(ComponentPlacement.UNRELATED)
-//					.addComponent(gameStateLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-//					.addContainerGap(22, Short.MAX_VALUE))
-//		);
-//		setLayout(groupLayout);
+
 	}
 	
 	public void setStateLabelText() {
 		gameStateLabel.setText("<html># of Rabbits to win: " + model.getGameState().getNumToWin() + 
 				"<br>Current state of the game: " + model.getGameState().getState().toString() +  "</html>");
+		checkGameState();
+	}
+	private void checkGameState() {
+		if (model.getGameState().getState().equals(StateOfGame.WON)) {
+			JOptionPane.showMessageDialog(null, "GAME WON");
+			System.exit(0);
+		}
 	}
 
 	public void setRedo(boolean enabled) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				redoButton.setEnabled(enabled);
-				//solveButton.setEnabled(false);
-				//showBestMoves.setEnabled(false);
 			}
 		});
 	}
@@ -113,7 +86,11 @@ public class MainMenu extends JPanel {
 			}
 		});	
 	}
-
+	public void enableFindBestMoves() {
+		bestMoves.setEnabled(true);
+		showBestMoves.setEnabled(false);
+		solveButton.setEnabled(false);
+	}
 	private void addListeners() {
 		ButtonListener l = new ButtonListener();
 		undoButton.addActionListener(l);
@@ -131,10 +108,12 @@ public class MainMenu extends JPanel {
 				model.getBoard().undoMove();
 				solveButton.setEnabled(false);
 				bestMoves.setEnabled(true);
+				showBestMoves.setEnabled(false);
 			} else if(e.getSource().equals(redoButton)) {
 				model.getBoard().redoMove();
 				solveButton.setEnabled(false);
 				bestMoves.setEnabled(true);
+				showBestMoves.setEnabled(false);
 			}else if(e.getSource().equals(solveButton)) {
 				try {
 					model.getBoard().solve();
@@ -148,7 +127,6 @@ public class MainMenu extends JPanel {
 				try {
 					model.getBoard().computeSolution();
 				} catch (CloneNotSupportedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}else if(e.getSource().equals(showBestMoves)){

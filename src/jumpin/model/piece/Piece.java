@@ -1,6 +1,5 @@
 package jumpin.model.piece;
 
-import jumpin.model.board.BoardHistory;
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.Orientation;
 
@@ -38,9 +37,11 @@ public class Piece implements Cloneable {
 	public Orientation getOrientation() {
 		return orientation;
 	}
+
+	@Override
 	public Piece clone() throws CloneNotSupportedException {
-		return (Piece)super.clone();
-		
+		return (Piece) super.clone();
+
 	}
 
 }

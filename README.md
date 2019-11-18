@@ -3,11 +3,39 @@ A remade version of rabbit and foxes. Software Development Project 2019.
 
 ## Showcase
 
-| <img src="gifs/PlayableGame.gif" height="50%" width="100%" title="Game being played" alt="gif of game being played">  | <img src="gifs/FoxShowCase.gif" height="50%" width="100%" title="Fox being moved" alt="gif of fox being moved"> |
+**Solver**
+
+| <img src="gifs/solvetest3.gif" height="50%" width="100%" title="Solver being used" alt="gif of game solver being used">  | <img src="gifs/solveLevel2.gif" height="50%" width="100%" title="Solver being used with no solution" alt="gif of solver being used on another level"> |
 | --- | --- |
  
+ The solver works by using a recursive algorithm which looks into theoretical moves up and until a certain threshold (user inputs this threshold). Afterwards, it will search the tree till it reaches the child nodes; if the child node has 0 rabbits left to win the board, it is compared to the current best move. If the depth of the child node is less than the depth of the current best move, it becomes the new best move. The game will notify the user if no best move is found at the threshold.
+ 
+**Undo/Redo**
+
+<p align="center">
+<img src="gifs/solveLevel1.gif" height="50%" width="50%" title="Solver being used with undo/redo" alt="gif of game solver being used with undo/redo">
+ </p>
+ 
+ The Undo/Redo options use two stacks to store the history. Similar to how internet a internet history will work, the redo option is only available if the user hits undo. If a user then makes a new move, the option to redo is no longer available.
+
+**Stress Test**
+
+<p align="center">
+<img src="gifs/changingTest.gif" height="50%" width="100%" title="Solver being used with undo/redo" alt="gif of game solver being used with undo/redo">
+ </p>
+ 
+ In the above gif, we can see the solver take two thresholds. First it is initally given the value 2 and spews out 46 branches (# of combinations any piece can move for two moves). Afterwards, the fox is moved and it must be given a value of 3 to find a solution. 264 branches are created and the solution to solve the game is put in the console. 
+ 
+<p align="center">
+<img src="gifs/stressTest1.gif" height="50%" width="75%" title="Solver being used with undo/redo" alt="gif of game solver being used with undo/redo">
+ </p>
+ 
+ A board with a 6 move solution is put under stress using our algorithm. It takes approximately 19 seconds to compute the solution with 3185463 branches created. This required approximately 3.2gb of ram. To furthur reduce the number of branches, we should incorporate the fact that a piece should not move back to the position it came from. We could also keep track of the smallest depth of an available solution and truncate any node that goes past this depth. To reduce the system memory, only small bits of information should be cloned. In this scenario, the history of node is stored at the node. Instead, the node should only store the move it took from it's previous position. In past iterations, a whole board object was cloned and required 12gb of system memory to compute a solution. 
+
 **Features**
 
+* BFS to find a solution to solve the board (similar to min/max algorithim but playing agaisnt itself)
+* History of moves with a undo/redo option
 * Highlights available moves for selected piece
 * Fox can slide on either piece clicked and the correct amount of units moved
 * **Visually stunning**

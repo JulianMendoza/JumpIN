@@ -22,7 +22,7 @@ import jumpin.model.util.Position;
  * @author Giuseppe, Julian
  * @documentation Cameron
  */
-public class Board implements Cloneable{
+public class Board implements Cloneable {
 
 	private BoardModel model;
 	/**
@@ -35,21 +35,22 @@ public class Board implements Cloneable{
 	private Position selectedPosition;
 
 	private List<MoveSet> validMoveSets;
-	
+
 	private BoardHistory history;
 
 	private Solver solver;
-	
+
 	/**
 	 * Constructs the board
-	 * @throws CloneNotSupportedException 
+	 * 
+	 * @throws CloneNotSupportedException
 	 */
-	public Board() throws CloneNotSupportedException {
+	public Board() {
 		model = new BoardModel(BoardUtilities.createDefaultBoardModel());
 		history = new BoardHistory();
 		solver = new Solver(this);
 	}
-	
+
 	public void computeSolution(int threshHold) throws CloneNotSupportedException {
 		solver.populateMoveTree(threshHold);
 	}
@@ -64,6 +65,7 @@ public class Board implements Cloneable{
 		this.validMoveSets = board.validMoveSets;
 		this.history = board.history;
 	}
+
 	/**
 	 * Gets the piece in the specified position
 	 * 
@@ -139,11 +141,11 @@ public class Board implements Cloneable{
 			throw new IllegalMoveException();
 		}
 	}
-	
+
 	public void undoMove() {
 		update(history.undo());
 	}
-	
+
 	public void redoMove() {
 		update(history.redo());
 	}
@@ -230,70 +232,73 @@ public class Board implements Cloneable{
 	public BoardModel getModel() {
 		return model;
 	}
-	
+
 	public BoardHistory getHistory() {
 		return history;
 	}
+
 	public void setHistory(BoardHistory history) {
-		this.history=history;
+		this.history = history;
 	}
-	
+
 	/**
 	 * Get board Clone
 	 * 
 	 */
+	@Override
 	public Board clone() throws CloneNotSupportedException {
 		Board boardCopy = new Board();
 		int height = model.getHeight();
 		int width = model.getWidth();
-		for(int i = 0; i < height; i++) {
-			for(int j = 0; j < width; j++) {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				Position pos = new Position(j, i);
-				if(!getTile(pos).isEmpty()) {
+				if (!getTile(pos).isEmpty()) {
 					boardCopy.assignPiece(pos, getTile(pos).getPiece());
 				}
-				
+
 			}
 		}
-		if(selectedPosition!=null) {
-		boardCopy.selectPiece(selectedPosition);
+		if (selectedPosition != null) {
+			boardCopy.selectPiece(selectedPosition);
 		}
 		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
-	
+
 	/**
 	 * 
 	 * @return best moves
 	 */
-	public List<MoveSet> getBestMoves(){
+	public List<MoveSet> getBestMoves() {
 		return solver.getBestMoves();
 	}
+
 	public void solve() throws IllegalMoveException {
-			this.movePiece(solver.getBestMoves().get(0).get(0));
-			solver.getBestMoves().remove(0);
+		this.movePiece(solver.getBestMoves().get(0).get(0));
+		solver.getBestMoves().remove(0);
 	}
-	
+
 	public List<MoveSet> getAllValidMoveSets(List<Position> toOmit) throws CloneNotSupportedException {
 		List<MoveSet> allValidMoveSets = new ArrayList<MoveSet>();
 		Board boardCopy = clone();
 		int height = model.getHeight();
 		int width = model.getWidth();
-		for(int i = 0; i < height; i++) {
-			for(int j = 0; j < width; j++) {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				Position pos = new Position(j, i);
-				if(toOmit.contains(pos)) {
+				if (toOmit.contains(pos)) {
 					continue;
 				}
-				if(!getTile(pos).isEmpty()) {
+				if (!getTile(pos).isEmpty()) {
 					boardCopy.selectPiece(pos);
-					for(MoveSet moveSet : boardCopy.getValidMoveSets()) {
-						if(!allValidMoveSets.contains(moveSet)) { //dont add duplicate movesets for both pieces of the fox
+					for (MoveSet moveSet : boardCopy.getValidMoveSets()) {
+						if (!allValidMoveSets.contains(moveSet)) { // dont add duplicate movesets for both pieces of the fox
 							allValidMoveSets.add(moveSet);
 						}
 					}
 				}
-				
+
 			}
 		}
 		return allValidMoveSets;

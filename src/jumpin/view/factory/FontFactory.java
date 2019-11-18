@@ -2,7 +2,9 @@ package jumpin.view.factory;
 
 import java.awt.Font;
 
-import jumpin.view.font.DefaultFont;
+import jumpin.view.style.font.ButtonFont;
+import jumpin.view.style.font.DefaultFont;
+import jumpin.view.style.font.MenuFont;
 
 /**
  * <b>Factory for creating font</b>
@@ -23,6 +25,14 @@ public class FontFactory {
 	 */
 	public static Font createDefaultFont() {
 		return new DefaultFont();
+	}
+
+	public static Font createMenuFont(int style, int size) {
+		return new MenuFont(style, size);
+	}
+
+	public static Font createButtonFont(int style, int size) {
+		return new ButtonFont(style, size);
 	}
 
 }

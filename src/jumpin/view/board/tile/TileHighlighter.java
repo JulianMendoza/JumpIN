@@ -30,8 +30,9 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 	/**
 	 * Default constructor to initialize TileHighlighter
 	 * 
-	 * @param highlightTiles array of tiles to be highlighted to show possible piece move
-	 * @param selectTiles array of select tiles
+	 * @param highlightTiles array of tiles to be highlighted to show possible piece
+	 *                       move
+	 * @param selectTiles    array of select tiles
 	 */
 	public TileHighlighter(List<TileView> highlightTiles, List<TileView> selectTiles) {
 		this.highlightTiles = new ArrayList<TileView>(highlightTiles);
@@ -76,7 +77,7 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 	}
 
 	/**
-	 * Method to  update in background
+	 * Method to update in background
 	 * 
 	 */
 	@Override
@@ -99,11 +100,11 @@ public class TileHighlighter extends SwingWorker<Void, Void> {
 	 */
 	private void updateAndWait(int i) {
 		for (TileView tile : highlightTiles) {
-			tile.setBorder(new LineBorder(new Color(RED, i, BLUE), 4));
+			tile.setBorder(new LineBorder(new Color(RED, i, BLUE), 2));
 		}
 
 		for (TileView tile : selectTiles) {
-			tile.setBorder(new LineBorder(new Color(i, GREEN, BLUE), 4));
+			tile.setBorder(new LineBorder(new Color(i, GREEN, BLUE), 2));
 		}
 
 		try {

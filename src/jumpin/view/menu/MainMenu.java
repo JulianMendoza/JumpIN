@@ -1,12 +1,28 @@
 package jumpin.view.menu;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.plaf.basic.BasicButtonUI;
+
 import jumpin.model.GameModel;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.view.constants.ComponentSize;
+import jumpin.view.constants.ViewConstants;
+import jumpin.view.factory.FontFactory;
+import jumpin.view.style.Button3D;
+import jumpin.view.util.Waiter;
 
 /**
  * GUI Components for the main menu (undo, redo, state, etc.)
@@ -21,14 +37,17 @@ public class MainMenu extends JPanel {
 	private JLabel gameStateLabel;
 	private JPanel threshold;
 	private JTextField thresholdField;
+	private JFrame mainFrame;
 
-	public MainMenu(GameModel model) {
+	public MainMenu(GameModel model, JFrame mainFrame) {
+
 		this.model = model;
+		this.mainFrame = mainFrame;
 		undoButton = new JButton("\u2190 UNDO");
 		redoButton = new JButton("REDO \u2192");
-		solveButton = new JButton("Do best move");
-		bestMoves = new JButton("Find best moves");
-		showBestMoves = new JButton("Show best moves");
+		solveButton = new JButton("Do Best Move");
+		bestMoves = new JButton("Find Solution");
+		showBestMoves = new JButton("Show Solution");
 
 		addListeners();
 		undoButton.setEnabled(false);
@@ -38,17 +57,19 @@ public class MainMenu extends JPanel {
 
 		threshold = new JPanel();
 		thresholdField = new JTextField(15);
-		threshold.add(new JLabel("Please enter a threshold (3-6 recommendation):"));
+		threshold.add(new JLabel("Please enter a maximum moves threshold (3-6 recommendation):"));
 		threshold.add(thresholdField);
 
 		gameStateLabel = new JLabel();
 		gameStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		gameStateLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+
+		applyStyling(undoButton, redoButton, solveButton, bestMoves, showBestMoves, gameStateLabel);
+
 		setStateLabelText();
 
 		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
 		setMaximumSize(getSize());
-		setBackground(new Color(2, 145, 55));
+		setBackground(ViewConstants.BOARD_COLOR);
 
 		this.add(undoButton);
 		this.add(gameStateLabel);
@@ -63,8 +84,7 @@ public class MainMenu extends JPanel {
 	 * Method to update the label text
 	 */
 	public void setStateLabelText() {
-		gameStateLabel.setText("<html># of Rabbits to win: " + model.getGameState().getNumToWin()
-				+ "<br>Current state of the game: " + model.getGameState().getState().toString() + "</html>");
+		gameStateLabel.setText("<html># of Rabbits to win: " + model.getGameState().getNumToWin() + "<br>Current state of the game: " + model.getGameState().getState().toString() + "</html>");
 		checkGameState();
 	}
 
@@ -75,6 +95,7 @@ public class MainMenu extends JPanel {
 	 */
 	public void setRedo(boolean enabled) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				redoButton.setEnabled(enabled);
 			}
@@ -88,6 +109,7 @@ public class MainMenu extends JPanel {
 	 */
 	public void setUndo(boolean enabled) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				undoButton.setEnabled(enabled);
 			}
@@ -135,6 +157,9 @@ public class MainMenu extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			Waiter waiter = new Waiter(mainFrame);
+			waiter.startWaiting();
+
 			if (e.getSource().equals(undoButton)) {
 				model.getBoard().undoMove();
 				solveButton.setEnabled(false);
@@ -152,35 +177,45 @@ public class MainMenu extends JPanel {
 					e1.printStackTrace();
 				}
 			} else if (e.getSource().equals(bestMoves)) {
-				int result = JOptionPane.showConfirmDialog(null, threshold, "Search threshold",
-						JOptionPane.OK_CANCEL_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, threshold, "Search threshold", JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION) {
 					try {
-						Integer.parseInt(thresholdField.getText());
-						model.getBoard().computeSolution(Integer.parseInt(thresholdField.getText()));
+						int threshold = Integer.parseInt(thresholdField.getText());
+						model.getBoard().computeSolution(threshold);
 						if (model.getBoard().getBestMoves() == null) {
-							JOptionPane.showMessageDialog(null, "No Solutions found!", "Invalid entry!",
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No Solutions found!", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 							thresholdField.setText("");
-							return;
 						} else {
 							solveButton.setEnabled(true);
 							showBestMoves.setEnabled(true);
 							bestMoves.setEnabled(false);
 						}
 					} catch (Exception x) {
-						JOptionPane.showMessageDialog(null, "Please only enter integers", "Invalid entry!",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 						thresholdField.setText("");
-						return;
 					}
 				}
 
 			} else if (e.getSource().equals(showBestMoves)) {
-				JOptionPane.showMessageDialog(null, model.getBoard().getBestMoves().toString(), "Current Best Solution",
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, model.getBoard().getBestMoves().toString(), "Current Best Solution", JOptionPane.PLAIN_MESSAGE);
 			}
+
+			waiter.stopWaiting();
 			setStateLabelText();
+		}
+	}
+
+	private void applyStyling(JComponent... components) {
+		Font buttonFont = FontFactory.createButtonFont(Font.BOLD, 14);
+		Font menuFont = FontFactory.createMenuFont(Font.BOLD, 14);
+		BasicButtonUI buttonUI = new Button3D();
+		for (JComponent c : components) {
+			if (c instanceof JButton) {
+				c.setFont(buttonFont);
+				((JButton) c).setUI(buttonUI);
+			} else if (c instanceof JLabel) {
+				c.setFont(menuFont);
+			}
 		}
 	}
 }

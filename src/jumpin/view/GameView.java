@@ -11,6 +11,7 @@ import jumpin.view.board.tile.TileView;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.FontFactory;
+import jumpin.view.factory.ImageFactory;
 import jumpin.view.menu.MainMenu;
 
 /**
@@ -24,8 +25,9 @@ public class GameView extends JFrame implements AbstractFrame {
 	private BoardView boardView;
 	private MainMenu menu;
 
-	/** 
+	/**
 	 * Default constructor that initializes the game
+	 * 
 	 * @param model game
 	 */
 	public GameView(GameModel model) {
@@ -52,8 +54,9 @@ public class GameView extends JFrame implements AbstractFrame {
 		setTitle(ViewConstants.FRAME_TITLE);
 		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setIconImage(ImageFactory.generateRabbit());
 
-		menu = new MainMenu(model);
+		menu = new MainMenu(model, this);
 		getContentPane().add(menu);
 
 		boardView = new BoardView(model.getBoard().getModel());
@@ -85,7 +88,7 @@ public class GameView extends JFrame implements AbstractFrame {
 			view.addMouseListener(l);
 		}
 	}
-	
+
 	public MainMenu getMainMenu() {
 		return menu;
 	}

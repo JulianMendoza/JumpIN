@@ -1,4 +1,4 @@
-package jumpin.view.font;
+package jumpin.view.style.font;
 
 import java.awt.Font;
 

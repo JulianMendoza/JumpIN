@@ -3,6 +3,7 @@ package jumpin.model.solver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.exception.IllegalMoveException;
@@ -23,7 +24,7 @@ public class Solver {
 	private List<TreeNode<MoveState>> childNodes;
 	private List<MoveSet> bestMoves;
 
-	public Solver(Board board) throws CloneNotSupportedException {
+	public Solver(Board board) {
 		this.board = board;
 	}
 
@@ -33,8 +34,7 @@ public class Solver {
 	 * @param threshold the depth of the tree to populate and search for a solution
 	 */
 	public void populateMoveTree(int threshold) throws CloneNotSupportedException {
-		root = new TreeNode<MoveState>(
-				new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board), 0), null);
+		root = new TreeNode<MoveState>(new MoveState(new ArrayList<MoveSet>(), BoardUtilities.getRabbitsToWin(board), 0), null);
 		childNodes = new ArrayList<TreeNode<MoveState>>();
 		createAllBranches(root, board, 0, threshold);
 		bestMoves = getBestMove(threshold);
@@ -58,7 +58,7 @@ public class Solver {
 	private List<MoveSet> getBestMove(int leastDepth) {
 		List<MoveSet> bestmoves = null;
 		for (TreeNode<MoveState> node : childNodes) {
-			MoveState data = (MoveState) node.data();
+			MoveState data = node.data();
 			if (data.getRabbitsToWin() == 0 && data.getDepth() <= leastDepth) {
 				leastDepth = data.getDepth();
 				bestmoves = data.getMoveSet();
@@ -76,8 +76,7 @@ public class Solver {
 	 * @param threshold
 	 * @throws CloneNotSupportedException
 	 */
-	private void createAllBranches(TreeNode<MoveState> node, Board board, int depth, int threshold)
-			throws CloneNotSupportedException {
+	private void createAllBranches(TreeNode<MoveState> node, Board board, int depth, int threshold) throws CloneNotSupportedException {
 		Board newboard = board.clone();
 		if (depth == threshold || BoardUtilities.getRabbitsToWin(newboard) == 0) {
 			// the node is a child
@@ -95,14 +94,11 @@ public class Solver {
 					for (MoveSet moveSet : newboard.getValidMoveSets()) {
 						try {
 							newboard.movePiece(moveSet.get(0));
-							List<MoveSet> movesTogetHere = new ArrayList<MoveSet>(
-									((MoveState) node.data()).getMoveSet()); // Data for the node
-							Collections.copy(movesTogetHere, ((MoveState) node.data()).getMoveSet()); // copy the old
-																										// moves
+							List<MoveSet> movesTogetHere = new ArrayList<MoveSet>(node.data().getMoveSet()); // Data for the node
+							Collections.copy(movesTogetHere, node.data().getMoveSet()); // copy the old
+																						// moves
 							movesTogetHere.add(moveSet); // add the new move
-							TreeNode<MoveState> t = new TreeNode<MoveState>(
-									new MoveState(movesTogetHere, BoardUtilities.getRabbitsToWin(newboard), depth),
-									node); // create a new node
+							TreeNode<MoveState> t = new TreeNode<MoveState>(new MoveState(movesTogetHere, BoardUtilities.getRabbitsToWin(newboard), depth), node); // create a new node
 							node.addChild(t); // append node as a child
 							createAllBranches(t, newboard, depth, threshold); // recursive call to find all possible
 																				// moves on the board

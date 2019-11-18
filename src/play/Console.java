@@ -5,7 +5,7 @@ import jumpin.model.exception.IllegalMoveException;
 
 public class Console {
 
-	public static void main(String args[]) throws IllegalMoveException {
+	public static void main(String args[]) throws IllegalMoveException, CloneNotSupportedException {
 		ConsoleGame game = new ConsoleGame();
 		game.start();
 	}

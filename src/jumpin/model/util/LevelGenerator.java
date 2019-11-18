@@ -73,5 +73,55 @@ public class LevelGenerator {
 		gameState.setState(StateOfGame.IN_PROGRESS);
 		board.addModelListener(gameState);
 	}
+	
+	public void createLevelTest2() {
+		Fox fox = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox fox3 = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Fox fox4 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Mushroom mushroom = new Mushroom();
+		Mushroom mushroom2 = new Mushroom();
+		Mushroom mushroom3 = new Mushroom();
+		Rabbit rabbit = new Rabbit(PieceID.RABBIT_ID_1);
+		Rabbit rabbit2 = new Rabbit(PieceID.RABBIT_ID_1);
+		board.assignPiece(new Position(3,0),rabbit);
+		board.assignPiece(new Position(0,2),rabbit2);
+		board.assignPiece(new Position(1,3),fox3);
+		board.assignPiece(new Position(1,2),fox4);
+		board.assignPiece(new Position(2,1),fox);
+		board.assignPiece(new Position(3,1),fox2);
+		board.assignPiece(new Position(3,2), mushroom);
+		board.assignPiece(new Position(3,3), mushroom2);
+		board.assignPiece(new Position(2,4), mushroom3);
+		gameState.setNumToWin(2);
+		gameState.setState(StateOfGame.IN_PROGRESS);
+		board.addModelListener(gameState);
+	}
+	
+	public void createLevelTest3() {
+		Fox fox = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+		Fox fox3 = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Fox fox4 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
+		Mushroom mushroom = new Mushroom();
+		Mushroom mushroom2 = new Mushroom();
+		Mushroom mushroom3 = new Mushroom();
+		Rabbit rabbit = new Rabbit(PieceID.RABBIT_ID_1);
+		Rabbit rabbit2 = new Rabbit(PieceID.RABBIT_ID_1);
+		Rabbit rabbit3 = new Rabbit(PieceID.RABBIT_ID_1);
+		board.assignPiece(new Position(2,0),rabbit);
+		board.assignPiece(new Position(0,2),rabbit2);
+		board.assignPiece(new Position(3,4),rabbit3);
+		board.assignPiece(new Position(1,1),fox3);
+		board.assignPiece(new Position(1,0),fox4);
+		board.assignPiece(new Position(3,1),fox);
+		board.assignPiece(new Position(4,1),fox2);
+		board.assignPiece(new Position(3,2), mushroom);
+		board.assignPiece(new Position(3,3), mushroom2);
+		board.assignPiece(new Position(2,4), mushroom3);
+		gameState.setNumToWin(3);
+		gameState.setState(StateOfGame.IN_PROGRESS);
+		board.addModelListener(gameState);
+	}
 
 }

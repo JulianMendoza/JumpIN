@@ -1,5 +1,6 @@
 package jumpin.view.board.tile;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 
@@ -126,5 +127,5 @@ public class TileView extends JPanel implements AbstractFrame {
 	public int hashCode() {
 		return model.hashCode() * 37 | super.hashCode() * 17;
 	}
-
+	
 }

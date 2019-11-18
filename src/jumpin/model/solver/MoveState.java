@@ -1,27 +1,61 @@
 package jumpin.model.solver;
 
+import java.util.List;
 import jumpin.model.move.MoveSet;
 
 public class MoveState {
 
 	private final int rabbitsToWin;
-	private final MoveSet moveSet;
+	private final List<MoveSet> moveSets;
+	private final int depth;
 	
-	public MoveState(MoveSet moveSet, int rabbitsToWin) {
+	/**
+	 * MoveStat Constructor
+	 * 
+	 * @param movesTogetHere
+	 * @param rabbitsToWin
+	 * @param depth
+	 */
+	public MoveState(List<MoveSet> movesTogetHere, int rabbitsToWin,int depth) {
 		this.rabbitsToWin = rabbitsToWin;
-		this.moveSet = moveSet;
+		this.moveSets = movesTogetHere;
+		this.depth = depth;
 	}
 
-	public MoveSet getMoveSet() {
-		return moveSet;
+	/**
+	 * Get a list of MoveSet
+	 * 
+	 * @return list of MoveSet
+	 */
+	public List<MoveSet> getMoveSet() {
+		return moveSets;
 	}
 
+	/**
+	 * Get number of rabbits needed to win 
+	 *  
+	 * @return number of rabbits
+	 */
 	public int getRabbitsToWin() {
 		return rabbitsToWin;
 	}
 	
 	public String toString() {
-		return "Rabbits: " + rabbitsToWin + " MoveSet: " + moveSet;
+		String s="Rabbits: " + rabbitsToWin+"\n Depth: "+depth+"\nHistory:";
+		
+		for(MoveSet m:moveSets) {
+			s+= m.toString();
+		}
+		return s;
+	}
+
+	/**
+	 * Get depth number
+	 * 
+	 * @return integer depth
+	 */
+	public int getDepth() {
+		return depth;
 	}
 	
 }

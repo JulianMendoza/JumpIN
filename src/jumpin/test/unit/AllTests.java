@@ -23,6 +23,7 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(FoxMoveSetTest.class));
 		suite.addTest(new TestSuite(RabbitMoveSetTest.class));
 		suite.addTest(new TestSuite(redoUndoTest.class));
+		suite.addTest(new TestSuite(SolverTest.class));
 		return suite;
 	}
 

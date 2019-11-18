@@ -12,6 +12,13 @@ import jumpin.model.move.MoveSet;
  */
 public class EventFactory {
 
+	/**
+	 * Get Movement on board
+	 * 
+	 * @param moveSet movement on board
+	 * @param board initial board
+	 * @return
+	 */
 	public static BoardModelEvent generateBoardModelEvent(MoveSet moveSet, Board board) {
 		int id = BoardModelEventID.MOVE_GENERIC;
 		for (Move move : moveSet) {

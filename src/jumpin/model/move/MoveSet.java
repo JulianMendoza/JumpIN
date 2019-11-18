@@ -3,7 +3,6 @@ package jumpin.model.move;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import jumpin.model.board.BoardHistory;
 
 public class MoveSet extends ArrayList<Move> {
 
@@ -46,6 +45,11 @@ public class MoveSet extends ArrayList<Move> {
 		return hashCode;
 	}
 	
+	/**
+	 * Method to invert moveSet 
+	 *  
+	 * @return inverted moveSet
+	 */
 	public MoveSet invert() {
 		MoveSet invertedSet = new MoveSet();
 		for(Move move : this) {

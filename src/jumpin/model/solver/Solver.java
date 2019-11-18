@@ -67,6 +67,15 @@ public class Solver {
 		return bestmoves;
 	}
 
+	/**
+	 * Creates all possible branches
+	 * 
+	 * @param node
+	 * @param board
+	 * @param depth
+	 * @param threshold
+	 * @throws CloneNotSupportedException
+	 */
 	private void createAllBranches(TreeNode<MoveState> node, Board board, int depth, int threshold)
 			throws CloneNotSupportedException {
 		Board newboard = board.clone();

@@ -1,9 +1,6 @@
 package jumpin.model.solver;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import jumpin.model.board.Board;
 import jumpin.model.move.MoveSet;
 
 public class MoveState {
@@ -12,16 +9,33 @@ public class MoveState {
 	private final List<MoveSet> moveSets;
 	private final int depth;
 	
+	/**
+	 * MoveStat Constructor
+	 * 
+	 * @param movesTogetHere
+	 * @param rabbitsToWin
+	 * @param depth
+	 */
 	public MoveState(List<MoveSet> movesTogetHere, int rabbitsToWin,int depth) {
 		this.rabbitsToWin = rabbitsToWin;
-		this.moveSets=movesTogetHere;
+		this.moveSets = movesTogetHere;
 		this.depth = depth;
 	}
 
+	/**
+	 * Get a list of MoveSet
+	 * 
+	 * @return list of MoveSet
+	 */
 	public List<MoveSet> getMoveSet() {
 		return moveSets;
 	}
 
+	/**
+	 * Get number of rabbits needed to win 
+	 *  
+	 * @return number of rabbits
+	 */
 	public int getRabbitsToWin() {
 		return rabbitsToWin;
 	}
@@ -35,6 +49,11 @@ public class MoveState {
 		return s;
 	}
 
+	/**
+	 * Get depth number
+	 * 
+	 * @return integer depth
+	 */
 	public int getDepth() {
 		return depth;
 	}

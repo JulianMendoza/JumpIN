@@ -115,6 +115,12 @@ public class BoardUtilities {
 		return BoardLogic.generateMoveSet(move, board);
 	}
 	
+	/**
+	 * Get number of rabbits needed to win
+	 * 
+	 * @param board
+	 * @return number of rabbits on board
+	 */
 	public static int getRabbitsToWin(Board board) {
 		int height = board.getModel().getHeight();
 		int width = board.getModel().getWidth();

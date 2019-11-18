@@ -238,6 +238,10 @@ public class Board implements Cloneable{
 		this.history=history;
 	}
 	
+	/**
+	 * Get board Clone
+	 * 
+	 */
 	public Board clone() throws CloneNotSupportedException {
 		Board boardCopy = new Board();
 		int height = model.getHeight();
@@ -257,6 +261,11 @@ public class Board implements Cloneable{
 		boardCopy.setHistory(history.clone());
 		return boardCopy;
 	}
+	
+	/**
+	 * 
+	 * @return best moves
+	 */
 	public List<MoveSet> getBestMoves(){
 		return solver.getBestMoves();
 	}

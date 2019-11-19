@@ -21,6 +21,13 @@ public enum Orientation {
 	 * @param direction direction the piece may move in
 	 * @return true if it is dynamic, east-west, or north-south, otherwise false
 	 */
+	public static Orientation getOrientation(String orientation) {
+		switch(orientation) {
+		case "northsouth":return NORTH_SOUTH;
+		case "eastwest": return EAST_WEST; 
+		}
+		return null;
+	}
 	public boolean isValidDirection(Direction direction) {
 		switch (this) {
 		case DYNAMIC:

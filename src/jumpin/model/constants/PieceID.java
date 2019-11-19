@@ -24,5 +24,20 @@ public class PieceID {
 	public static final String RABBIT_ID_3 = RABBIT + "3";
 
 	public static final String EMPTY = "---";
-
+	
+	public static String getRabbitPieceID(String id) {
+		switch(id) {
+		case "1": return RABBIT_ID_1;
+		case "2": return RABBIT_ID_2;
+		case "3": return RABBIT_ID_3;
+		}
+		return null;
+	}
+	public static String getFoxPieceID(String id) {
+		switch(id) {
+		case "1": return FOX_ID_1;
+		case "2": return FOX_ID_2;
+		}
+		return null;
+	}
 }

@@ -2,7 +2,11 @@ package jumpin.model.solver;
 
 import java.util.List;
 import jumpin.model.move.MoveSet;
-
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class MoveState {
 
 	private final int rabbitsToWin;
@@ -10,7 +14,7 @@ public class MoveState {
 	private final int depth;
 	
 	/**
-	 * MoveStat Constructor
+	 * MoveState Constructor
 	 * 
 	 * @param movesTogetHere
 	 * @param rabbitsToWin

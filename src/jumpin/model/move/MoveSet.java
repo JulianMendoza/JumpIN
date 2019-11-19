@@ -3,7 +3,12 @@ package jumpin.model.move;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * Class to determine the set of moves
+ * 
+ * @author Giuseppe
+ *
+ */
 public class MoveSet extends ArrayList<Move> {
 
 	private static final long serialVersionUID = 3982025784054049899L;

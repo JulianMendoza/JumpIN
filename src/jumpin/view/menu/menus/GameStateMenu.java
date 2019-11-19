@@ -57,7 +57,7 @@ public class GameStateMenu extends GroupBox implements AbstractFrame {
 	}
 
 	private String getText(GameState gameState) {
-		return "<html># of Rabbits left to win: " + gameState.getNumToWin() + "<p>Game State: "
+		return "<html>Rabbits left to win: " + gameState.getNumToWin() + "<p>Game State: "
 				+ gameState.getState().toString() + "</html>";
 	}
 

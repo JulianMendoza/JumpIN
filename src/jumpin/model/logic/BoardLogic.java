@@ -8,7 +8,12 @@ import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
-
+/**
+ * Class to determine the logic of the board
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BoardLogic {
 
 	/**

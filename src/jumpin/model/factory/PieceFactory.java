@@ -7,10 +7,8 @@ import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
 
 /**
- * <b>Factory for creating piece components</b>
- * <p>
+ * Factory for creating piece components
  * if there is extra work to do to create a component it goes here
- * <p>
  * (there is none currently)
  * 
  * @author Giuseppe

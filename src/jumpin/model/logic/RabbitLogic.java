@@ -8,7 +8,12 @@ import jumpin.model.constants.Direction;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.model.util.Position;
-
+/**
+ * Class to determine the logic of a rabbit
+ * 
+ * @author Giuseppe
+ *
+ */
 public class RabbitLogic {
 
 	/**

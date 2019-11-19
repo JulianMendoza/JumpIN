@@ -4,10 +4,8 @@ import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
 
 /**
- * <b>Factory for creating tile components</b>
- * <p>
+ * Factory for creating tile components
  * if there is extra work to do to create a component it goes here
- * <p>
  * (there is none currently)
  * 
  * @author Giuseppe

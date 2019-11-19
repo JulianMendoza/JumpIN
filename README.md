@@ -3,8 +3,6 @@ A remade version of rabbit and foxes. Software Development Project 2019.
 
 ## Showcase
 
-**Not all gifs were attached with this submission due to cuLearn file size limitations. Other gifs can be viewed on github**
-
 **Solver**
 
 | <img src="gifs/solvetest3.gif" height="50%" width="100%" title="Solver being used" alt="gif of game solver being used">  | <img src="gifs/solveLevel2.gif" height="50%" width="100%" title="Solver being used with no solution" alt="gif of solver being used on another level"> |

@@ -10,8 +10,8 @@ public class GUI {
 		GameModel model = new GameModel();
 		//model.getGenerator().createLevel1();
 		//model.getGenerator().createLevelTest();
-		//model.getGenerator().createLevelTest2();
-		model.getGenerator().createLevelTest3();
+		model.getGenerator().createLevelTest2();
+		//model.getGenerator().createLevelTest3();
 		GameView view = new GameView(model);
 		GameController controller = new GameController(model, view);
 		controller.launch();

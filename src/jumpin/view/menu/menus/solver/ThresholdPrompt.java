@@ -8,16 +8,14 @@ import javax.swing.SwingUtilities;
 import jumpin.view.AbstractFrame;
 
 /**
+ * Class for fetching the move threshold number input
  * 
  * @author Giuseppe
- *
  */
 public class ThresholdPrompt extends JPanel implements AbstractFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1599647700466379424L;
+	
 	private JTextField thresholdField;
 	private final String PROMPT = "Please enter a maximum moves threshold (3-6 recommendation):";
 

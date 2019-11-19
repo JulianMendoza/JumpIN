@@ -11,9 +11,9 @@ import jumpin.model.piece.pieces.Rabbit;
 import jumpin.view.constants.ImageConstants;
 
 /**
+ * View class for a game piece
  * 
  * @author Giuseppe
- *
  */
 public class PieceView extends JLabel {
 
@@ -34,7 +34,7 @@ public class PieceView extends JLabel {
 		setIcon(imageIcon);
 	}
 
-	/**]
+	/**
 	 * Method to check images against the constants
 	 * 
 	 * @return location of image path

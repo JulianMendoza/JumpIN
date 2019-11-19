@@ -19,53 +19,53 @@ import jumpin.view.menu.listener.MenuListener;
 import jumpin.view.util.GroupBox;
 
 /**
+ * Game History Menu component of the main menu
  * 
  * @author Giuseppe
- *
  */
 public class HistoryMenu extends GroupBox implements MenuFrame {
 
-	List<MenuListener> menuListeners;
+	private List<MenuListener> menuListeners;
 
-	private JButton undoMove;
-	private JButton redoMove;
+	private JButton undoMoveButton;
+	private JButton redoMoveButton;
 
 	private final String UNDO_TEXT = "\u2190 UNDO";
 	private final String REDO_TEXT = "REDO \u2192";
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4841219774868685113L;
 
 	public HistoryMenu() {
 		super("History");
 		populate();
 	}
-
+	
+	/**
+	 * Fill History Menu with necessary components
+	 */
 	@Override
 	public void populate() {
 		menuListeners = new ArrayList<MenuListener>();
 		setBackground(ViewConstants.BOARD_COLOR);
 
-		undoMove = ComponentFactory.create3DMenuButton(UNDO_TEXT);
-		redoMove = ComponentFactory.create3DMenuButton(REDO_TEXT);
-		undoMove.setEnabled(false);
-		redoMove.setEnabled(false);
+		undoMoveButton = ComponentFactory.create3DMenuButton(UNDO_TEXT);
+		redoMoveButton = ComponentFactory.create3DMenuButton(REDO_TEXT);
+		undoMoveButton.setEnabled(false);
+		redoMoveButton.setEnabled(false);
 
 		setPreferredSize(ComponentSize.MAIN_MENU_PANEL);
 
 		addButtonListeners();
 
-		add(undoMove);
+		add(undoMoveButton);
 		add(Box.createRigidArea(new Dimension(13, 0)));
-		add(redoMove);
+		add(redoMoveButton);
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
-		undoMove.addActionListener(l);
-		redoMove.addActionListener(l);
+		undoMoveButton.addActionListener(l);
+		redoMoveButton.addActionListener(l);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class HistoryMenu extends GroupBox implements MenuFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				redoMove.setEnabled(enabled);
+				redoMoveButton.setEnabled(enabled);
 			}
 		});
 	}
@@ -96,7 +96,7 @@ public class HistoryMenu extends GroupBox implements MenuFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				undoMove.setEnabled(enabled);
+				undoMoveButton.setEnabled(enabled);
 			}
 		});
 	}
@@ -105,11 +105,11 @@ public class HistoryMenu extends GroupBox implements MenuFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(undoMove)) {
+			if (e.getSource().equals(undoMoveButton)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.UNDO);
 				}
-			} else if (e.getSource().equals(redoMove)) {
+			} else if (e.getSource().equals(redoMoveButton)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.REDO);
 				}

@@ -29,6 +29,9 @@ public class MainMenu extends JPanel implements MenuFrame {
 		populate();
 	}
 
+	/**
+	 * Fills top MenuFrame with solver, history, game state components
+	 */
 	@Override
 	public void populate() {
 		solverMenu = new SolverMenu();
@@ -63,6 +66,11 @@ public class MainMenu extends JPanel implements MenuFrame {
 		return gameStateMenu;
 	}
 
+	/**
+	 * Update game state menu with current state
+	 * 
+	 * @param model the Game Model
+	 */
 	public void initialize(GameModel model) {
 		gameStateMenu.update(model.getGameState());
 	}

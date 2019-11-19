@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 
 /**
+ * A couple GUI-interaction tasks that are performed in a background thread
  * 
  * @author Giuseppe
- *
  */
 public class Waiter extends SwingWorker<Void, Void> {
 

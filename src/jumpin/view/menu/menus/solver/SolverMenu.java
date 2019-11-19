@@ -18,23 +18,21 @@ import jumpin.view.menu.listener.MenuListener;
 import jumpin.view.util.GroupBox;
 
 /**
+ * Solver Menu component of the main menu
  * 
  * @author Giuseppe
- *
  */
 public class SolverMenu extends GroupBox implements MenuFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2729791032030947685L;
+	
 	private ThresholdPrompt thresholdPrompt;
 
 	private List<MenuListener> menuListeners;
 
-	private JButton doMove;
-	private JButton findSolution;
-	private JButton showSolution;
+	private JButton doMoveButton;
+	private JButton findSolutionButton;
+	private JButton showSolutionButton;
 
 	private final String DO_MOVE_TEXT = "Do Best Move";
 	private final String FIND_SOLUTION_TEXT = "Find Solution";
@@ -45,6 +43,9 @@ public class SolverMenu extends GroupBox implements MenuFrame {
 		populate();
 	}
 
+	/**
+	 * Fill Solver Menu with necessary components
+	 */
 	@Override
 	public void populate() {
 		menuListeners = new ArrayList<MenuListener>();
@@ -52,48 +53,54 @@ public class SolverMenu extends GroupBox implements MenuFrame {
 		setBackground(ViewConstants.BOARD_COLOR);
 
 		thresholdPrompt = new ThresholdPrompt();
-		doMove = ComponentFactory.create3DMenuButton(DO_MOVE_TEXT);
-		findSolution = ComponentFactory.create3DMenuButton(FIND_SOLUTION_TEXT);
-		showSolution = ComponentFactory.create3DMenuButton(SHOW_SOLUTION_TEXT);
+		doMoveButton = ComponentFactory.create3DMenuButton(DO_MOVE_TEXT);
+		findSolutionButton = ComponentFactory.create3DMenuButton(FIND_SOLUTION_TEXT);
+		showSolutionButton = ComponentFactory.create3DMenuButton(SHOW_SOLUTION_TEXT);
 
-		doMove.setEnabled(false);
-		showSolution.setEnabled(false);
+		doMoveButton.setEnabled(false);
+		showSolutionButton.setEnabled(false);
 
 		setLayout(new GridLayout(0, 1, 0, 0));
 
 		setPreferredSize(ComponentSize.MAIN_MENU_PANEL);
 
 		addButtonListeners();
-		add(findSolution);
-		add(doMove);
-		add(showSolution);
+		add(findSolutionButton);
+		add(doMoveButton);
+		add(showSolutionButton);
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
-		doMove.addActionListener(l);
-		findSolution.addActionListener(l);
-		showSolution.addActionListener(l);
+		doMoveButton.addActionListener(l);
+		findSolutionButton.addActionListener(l);
+		showSolutionButton.addActionListener(l);
 	}
 
+	/**
+	 * Disable all Solver Menu buttons except Find Solution button
+	 */
 	public void resetSolution() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				doMove.setEnabled(false);
-				showSolution.setEnabled(false);
-				findSolution.setEnabled(true);
+				doMoveButton.setEnabled(false);
+				showSolutionButton.setEnabled(false);
+				findSolutionButton.setEnabled(true);
 			}
 		});
 	}
 
+	/**
+	 * Enable all Solver Menu buttons except Find Solution button
+	 */
 	public void setSolution() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				doMove.setEnabled(true);
-				showSolution.setEnabled(true);
-				findSolution.setEnabled(false);
+				doMoveButton.setEnabled(true);
+				showSolutionButton.setEnabled(true);
+				findSolutionButton.setEnabled(false);
 			}
 		});
 	}
@@ -111,15 +118,15 @@ public class SolverMenu extends GroupBox implements MenuFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(doMove)) {
+			if (e.getSource().equals(doMoveButton)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.DO_MOVE);
 				}
-			} else if (e.getSource().equals(findSolution)) {
+			} else if (e.getSource().equals(findSolutionButton)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.FIND_SOLUTION);
 				}
-			} else if (e.getSource().equals(showSolution)) {
+			} else if (e.getSource().equals(showSolutionButton)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.SHOW_SOLUTION);
 				}

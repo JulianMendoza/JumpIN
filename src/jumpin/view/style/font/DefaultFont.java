@@ -5,9 +5,9 @@ import java.awt.Font;
 import jumpin.view.constants.FontConstants;
 
 /**
+ * A class that creates a 12-point plain font
  * 
  * @author Giuseppe
- *
  */
 public class DefaultFont extends Font {
 

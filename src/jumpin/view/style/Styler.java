@@ -10,9 +10,9 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import jumpin.view.factory.FontFactory;
 
 /**
+ * A class that stylizes several JComponents by setting their font
  * 
  * @author Giuseppe
- *
  */
 public class Styler {
 

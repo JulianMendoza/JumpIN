@@ -11,15 +11,12 @@ import javax.swing.border.TitledBorder;
 import jumpin.view.factory.FontFactory;
 
 /**
+ * A box to group components separate from each other in the main menu (Game State, History, Solver)
  * 
  * @author Giuseppe
- *
  */
 public class GroupBox extends JPanel {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 558910162906322077L;
 
 	public GroupBox(String boxName) {

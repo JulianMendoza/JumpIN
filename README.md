@@ -5,7 +5,7 @@ A remade version of rabbit and foxes. Software Development Project 2019.
 
 **Solver**
 
-| <img src="gifs/solvetest3.gif" height="50%" width="100%" title="Solver being used" alt="gif of game solver being used">  | <img src="gifs/solveLevel2.gif" height="50%" width="100%" title="Solver being used with no solution" alt="gif of solver being used on another level"> |
+| <img src="gifs/solvetest3.gif" height="50%" width="100%" title="Solver being used" alt="gif of game solver being used">  | <img src="gifs/solveLevel2.gif" height="50%" width="100%" title="Solver being used with no solution option" alt="gif of solver being used on another level"> |
 | --- | --- |
  
  The solver works by using a recursive algorithm which looks into theoretical moves up and until a certain threshold (user inputs this threshold). Afterwards, it will search the tree till it reaches the child nodes.
@@ -34,7 +34,7 @@ A remade version of rabbit and foxes. Software Development Project 2019.
 **Stress Test**
 
 <p align="center">
-<img src="gifs/changingTest.gif" height="50%" width="100%" title="Solver being used with undo/redo" alt="gif of game solver being used with undo/redo">
+<img src="gifs/changingTest.gif" height="50%" width="100%" title="Testing solver after moving piece" alt="gif of game using solver after a piece is moved">
  </p>
  
  In the above gif, we can see the solver take two thresholds. 
@@ -43,7 +43,7 @@ A remade version of rabbit and foxes. Software Development Project 2019.
  264 branches are created and the solution to solve the game is put in the console. 
  
 <p align="center">
-<img src="gifs/stressTest1.gif" height="50%" width="75%" title="Solver being used with undo/redo" alt="gif of game solver being used with undo/redo">
+<img src="gifs/stressTest1.gif" height="50%" width="75%" title="Stress test" alt="gif of game solver being used with a depth of 6">
  </p>
  
 A board with a 6 move solution is put under stress using our algorithm. It takes approximately 19 seconds to compute the solution with 3185463 branches created. This required approximately 3.5gb of ram. 

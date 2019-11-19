@@ -270,11 +270,11 @@ public class Board implements Cloneable {
 	 * 
 	 * @return best moves
 	 */
-	public List<MoveSet> getBestMoves() {
+	public List<MoveSet> getSolution() {
 		return solver.getBestMoves();
 	}
 
-	public void solve() throws IllegalMoveException {
+	public void doNextBestMove() throws IllegalMoveException {
 		this.movePiece(solver.getBestMoves().get(0).get(0));
 		solver.getBestMoves().remove(0);
 	}

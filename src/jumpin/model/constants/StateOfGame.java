@@ -14,7 +14,7 @@ public enum StateOfGame {
 	@Override
 	public String toString() {
 		if (this == WON) {
-			return "YOU WON";
+			return "YOU WON!";
 		} else if (this == IN_PROGRESS) {
 			return "In Progress";
 		} else {

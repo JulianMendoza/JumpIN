@@ -1,5 +1,7 @@
 package jumpin.view.constants;
 
+import java.awt.Dimension;
+
 /**
  * Constants for component sizes
  * 
@@ -23,5 +25,7 @@ public class ComponentSize {
 	public static final int FRAME_WIDTH = 750;
 
 	public static final int FRAME_HEIGHT = MENU_HEIGHT + BOARD_HEIGHT + 25; // 25 because the frame bar is 25 pixels
+
+	public static final Dimension MAIN_MENU_PANEL = new Dimension(200, 105);
 
 }

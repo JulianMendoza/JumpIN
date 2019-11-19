@@ -1,11 +1,13 @@
 package jumpin.controller.listener;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.BoardHistory;
 import jumpin.model.board.BoardModelListener;
 import jumpin.model.board.event.BoardModelEvent;
+import jumpin.model.constants.StateOfGame;
 import jumpin.model.move.Move;
 import jumpin.model.move.MoveSet;
 import jumpin.view.GameView;
@@ -19,7 +21,7 @@ import jumpin.view.piece.PieceView;
  *
  */
 public class ViewModelListener implements BoardModelListener {
-	
+
 	private GameView view;
 	private GameModel model;
 
@@ -37,17 +39,18 @@ public class ViewModelListener implements BoardModelListener {
 	public void update(BoardModelEvent e) {
 		updateBoard(e);
 		updateMenu();
+		checkGameState();
 	}
 
 	private void updateMenu() {
 		MainMenu menu = view.getMainMenu();
 		BoardHistory history = model.getBoard().getHistory();
-		menu.setRedo(history.hasRedo());
-		menu.setUndo(history.hasUndo());
-		menu.setStateLabelText();
+		menu.getHistoryMenu().setRedo(history.hasRedo());
+		menu.getHistoryMenu().setUndo(history.hasUndo());
+		menu.getGameStateMenu().update(model.getGameState());
 		view.repaint();
 	}
-	
+
 	private void updateBoard(BoardModelEvent e) {
 		BoardView boardView = view.getBoardView();
 		MoveSet moveSet = e.getUpdates();
@@ -62,5 +65,12 @@ public class ViewModelListener implements BoardModelListener {
 		}
 		boardView.stopHighlighting();
 		view.repaint();
+	}
+
+	private void checkGameState() {
+		if (model.getGameState().getState().equals(StateOfGame.WON)) {
+			JOptionPane.showMessageDialog(view, model.getGameState().getState().toString());
+			System.exit(0);
+		}
 	}
 }

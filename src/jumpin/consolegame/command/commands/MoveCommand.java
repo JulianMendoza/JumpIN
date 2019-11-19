@@ -17,8 +17,10 @@ import jumpin.model.util.Position;
  */
 public class MoveCommand implements Command {
 
+	@SuppressWarnings("unused")
 	private Direction direction;
 	private Position position;
+	@SuppressWarnings("unused")
 	private int distance;
 	private GameModel game;
 
@@ -32,7 +34,6 @@ public class MoveCommand implements Command {
 	 * @throws InvalidCommandException if parse fails
 	 */
 	public MoveCommand(String command, GameModel game) throws InvalidCommandException {
-		distance = -1;
 		parse(command);
 		this.game = game;
 	}

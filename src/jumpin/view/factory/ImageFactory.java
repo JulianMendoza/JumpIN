@@ -2,8 +2,6 @@ package jumpin.view.factory;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.List;
 
 import jumpin.view.constants.ImageConstants;
 
@@ -28,20 +26,8 @@ public class ImageFactory {
 	}
 
 	/**
-	 * Method to generate image for rabbit movement
-	 * 
-	 * @return images for rabbit movement
-	 */
-	public static List<Image> generateRabbitMove() {
-		List<Image> rabbitMove = new ArrayList<Image>();
-		for (String filename : ImageConstants.RABBIT_MOVES) {
-			rabbitMove.add(generateImage(filename));
-		}
-		return rabbitMove;
-	}
-
-	/**
 	 * Method to generate an image given a string representation
+	 * 
 	 * @param filename string of image
 	 * @return generated image
 	 */

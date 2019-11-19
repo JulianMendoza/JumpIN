@@ -58,10 +58,10 @@ public class SolverTests extends TestCase {
 		board.assignPiece(new Position(2,4), mushroom);
 		board.assignPiece(new Position(1,4), mushroom2);
 		board.computeSolution(3);
-		board.solve();
+		board.doNextBestMove();
 		board.selectPiece(new Position (3,4));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
-		board.solve();
+		board.doNextBestMove();
 		board.selectPiece(new Position (0,4));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
 	}
@@ -90,7 +90,7 @@ public class SolverTests extends TestCase {
 		board.assignPiece(new Position(3,3), mushroom2);
 		board.assignPiece(new Position(2,4), mushroom3);
 		board.computeSolution(4);
-        board.solve();
+        board.doNextBestMove();
 		board.selectPiece(new Position (2,2));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
 		board.selectPiece(new Position (2,1));
@@ -98,10 +98,10 @@ public class SolverTests extends TestCase {
 		board.selectPiece(new Position (0,1));
 		assertTrue(board.getSelectedPiece() instanceof Fox);
 		board.computeSolution(4);
-		board.solve();
+		board.doNextBestMove();
 		board.selectPiece(new Position (1,4));
 		assertTrue(board.getSelectedPiece() instanceof Fox);
-		board.solve();
+		board.doNextBestMove();
 		board.selectPiece(new Position (3,1));
 		assertTrue(board.getSelectedPiece() instanceof Fox);
 		board.selectPiece(new Position (3,0));
@@ -109,7 +109,7 @@ public class SolverTests extends TestCase {
 		board.selectPiece(new Position (3,4));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
 		board.computeSolution(4);
-		board.solve();
+		board.doNextBestMove();
 		board.selectPiece(new Position (0,4));
 		assertTrue(board.getSelectedPiece() instanceof Rabbit);
 	}

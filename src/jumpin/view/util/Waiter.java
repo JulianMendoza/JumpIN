@@ -5,6 +5,11 @@ import java.awt.Cursor;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class Waiter extends SwingWorker<Void, Void> {
 
 	private JFrame waitFrame;

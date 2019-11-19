@@ -27,7 +27,7 @@ public class PieceListener implements MouseListener {
 	private GameView view;
 
 	/**
-	 * Default constructor for PieceListener 
+	 * Default constructor for PieceListener
 	 * 
 	 * @param model
 	 * @param view
@@ -37,12 +37,9 @@ public class PieceListener implements MouseListener {
 		this.view = view;
 	}
 
-	// A comment
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-	}
-
+	/**
+	 * Mouse pressed is by far the most consistent listener for listening to clicks
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		BoardView view = this.view.getBoardView();
@@ -91,6 +88,13 @@ public class PieceListener implements MouseListener {
 			}
 		}
 		return highlightTiles;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		// comment part 2
+
 	}
 
 	@Override

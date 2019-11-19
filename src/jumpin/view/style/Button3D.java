@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
- * Fancy Button Styling
+ * Fancy Button Styling from a previous project I did
  * 
  * @author Giuseppe
  *

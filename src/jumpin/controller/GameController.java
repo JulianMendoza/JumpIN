@@ -1,6 +1,7 @@
 package jumpin.controller;
 
 import jumpin.controller.listener.BoardListener;
+import jumpin.controller.listener.MainMenuListener;
 import jumpin.controller.listener.PieceListener;
 import jumpin.controller.listener.ViewModelListener;
 import jumpin.model.GameModel;
@@ -24,12 +25,14 @@ public class GameController {
 	}
 
 	public void launch() {
+		view.getMainMenu().initialize(model);
 		view.setVisible(true);
 	}
 
 	private void initializeListeners() {
 		view.addPieceListener(new PieceListener(model, view));
 		view.addBoardListener(new BoardListener(model, view));
+		view.addMenuListener(new MainMenuListener(model, view));
 		model.getBoard().addModelListener(new ViewModelListener(model, view));
 	}
 

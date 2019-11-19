@@ -2,7 +2,6 @@ package jumpin.model.util;
 
 import java.text.ParseException;
 
-import jumpin.model.board.BoardHistory;
 import jumpin.model.constants.Direction;
 
 /**
@@ -11,7 +10,7 @@ import jumpin.model.constants.Direction;
  * @author Giuseppe
  *
  */
-public class Position implements Cloneable{
+public class Position implements Cloneable {
 	/**
 	 * 
 	 */
@@ -163,9 +162,11 @@ public class Position implements Cloneable{
 
 		throw new ParseException("Incorrect formatting", 0);
 	}
+
+	@Override
 	public Position clone() throws CloneNotSupportedException {
-		return (Position)super.clone();
-		
+		return (Position) super.clone();
+
 	}
-	
+
 }

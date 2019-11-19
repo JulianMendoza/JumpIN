@@ -3,11 +3,8 @@ package jumpin.controller.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
-
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
-import jumpin.model.constants.StateOfGame;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.FoxLogic;
 import jumpin.model.move.Move;
@@ -36,10 +33,6 @@ public class BoardListener implements MouseListener {
 	public BoardListener(GameModel model, GameView view) {
 		this.model = model;
 		this.view = view;
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
 	}
 
 	@Override
@@ -72,26 +65,15 @@ public class BoardListener implements MouseListener {
 	private void doMove(Move move) {
 		try {
 			model.getBoard().movePiece(move);
-		//	view.getMainMenu().disableShowBestMoves();
-			view.getMainMenu().enableFindBestMoves();
-			checkGameState();
+			view.getMainMenu().getSolverMenu().resetSolution();
 		} catch (IllegalMoveException e) {
 			model.getBoard().deselectPiece();
 		}
 	}
 
-	/**
-	 * Method to check the state of the game
-	 * 
-	 */
-	private void checkGameState() {
-		if (model.getGameState().getState().equals(StateOfGame.WON)) {
-			JOptionPane.showMessageDialog(view, "GAME WON");
-			System.exit(0);
-		}
+	@Override
+	public void mouseClicked(MouseEvent e) {
 	}
-	
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -110,6 +92,5 @@ public class BoardListener implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

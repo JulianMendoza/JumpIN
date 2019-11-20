@@ -15,11 +15,11 @@ public class GUI {
 		//model.getGenerator().createLevelTest();
 		//model.getGenerator().createLevelTest2();
 		//model.getGenerator().createLevelTest3();
-		model.getGenerator().loadLevel("levels/Level1.xml");
+		model.getGenerator().loadLevelXML("levels/Level1.xml");
 		GameView view = new GameView(model);
 		GameController controller = new GameController(model, view);
 		controller.launch();
-		model.getGenerator().saveLevel(model.getBoard());
+		model.getGenerator().saveLevelXML();
 	}
 
 }

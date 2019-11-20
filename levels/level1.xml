@@ -1,45 +1,45 @@
 <?xml version="1.0"?>
 <level id="1" numToWin="3">
 	<piece name="fox">
-		<foxPart>tail</foxPart>
-		<orientation>northsouth</orientation>
-		<id>1</id>
+		<foxPart>TAIL</foxPart>
+		<orientation>NORTH_SOUTH</orientation>
+		<id>Fox1</id>
 		<position x="1" y="0" />
 	</piece>
 	<piece name="fox">
-		<foxPart>head</foxPart>
-		<orientation>northsouth</orientation>
-		<id>1</id>
+		<foxPart>HEAD</foxPart>
+		<orientation>NORTH_SOUTH</orientation>
+		<id>Fox1</id>
 		<position x="1" y="1"/>
 	</piece>
 	<piece name="rabbit">
-		<id>1</id>
+		<id>Rabbit1</id>
 		<position x="3" y="0"/>
 	</piece>
 	<piece name="mushroom">
 		<position x="3" y="1"/>
 	</piece>
 	<piece name="fox">
-		<foxPart>tail</foxPart>
-		<orientation>eastwest</orientation>
-		<id>2</id>
+		<foxPart>TAIL</foxPart>
+		<orientation>EAST_WEST</orientation>
+		<id>Fox2</id>
 		<position x="4" y="3"/>
 	</piece>
 	<piece name="fox">
-			<foxPart>head</foxPart>
-			<orientation>eastwest</orientation>
-			<id>2</id>
+			<foxPart>HEAD</foxPart>
+			<orientation>EAST_WEST</orientation>
+			<id>Fox2</id>
 		<position x="3" y="3"/>
 	</piece>
 	<piece name="mushroom">
 		<position x="2" y="4"/>
 	</piece>
 	<piece name="rabbit">
-			<id>2</id>
+			<id>Rabbit2</id>
 		<position x="1" y="4"/>
 	</piece>
 	<piece name="rabbit">
-		<id>3</id>
-		<position x="4" y="2"/>	
+		<id>Rabbit3</id>
+		<position x="4" y="2"/>
 	</piece>
 </level>

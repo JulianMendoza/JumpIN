@@ -23,8 +23,8 @@ public enum Orientation {
 	 */
 	public static Orientation getOrientation(String orientation) {
 		switch(orientation) {
-		case "northsouth":return NORTH_SOUTH;
-		case "eastwest": return EAST_WEST; 
+		case "NORTH_SOUTH":return NORTH_SOUTH;
+		case "EAST_WEST": return EAST_WEST; 
 		}
 		return null;
 	}
@@ -70,5 +70,13 @@ public enum Orientation {
 		}
 
 		return validDirections;
+	}
+	@Override
+	public String toString() {
+		switch(this){
+		case NORTH_SOUTH: return "northsouth";
+		case EAST_WEST: return "eastwest";
+		}
+		return null;
 	}
 }

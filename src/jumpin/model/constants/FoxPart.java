@@ -10,8 +10,8 @@ public enum FoxPart {
 	HEAD, TAIL;
 	public static FoxPart getFoxPart(String foxpart) {
 		switch(foxpart) {
-		case "head": return HEAD;
-		case "tail": return TAIL;
+		case "HEAD": return HEAD;
+		case "TAIL": return TAIL;
 		}
 		return null;
 	}

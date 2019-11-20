@@ -143,7 +143,7 @@ public class LevelGenerator {
 		board.addModelListener(gameState);
 	}
 
-	public void loadLevel(String filename) {
+	public void loadLevelXML(String filename) {
 		try {
 			File inputFile = new File(filename);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -162,9 +162,9 @@ public class LevelGenerator {
 						piece=new Fox(
 						FoxPart.getFoxPart(eElement.getElementsByTagName("foxPart").item(0).getTextContent()),
 						Orientation.getOrientation(eElement.getElementsByTagName("orientation").item(0).getTextContent()),
-						PieceID.getFoxPieceID(eElement.getElementsByTagName("id").item(0).getTextContent()));
+						eElement.getElementsByTagName("id").item(0).getTextContent());
 					}else if(eElement.getAttribute("name").equals("rabbit")) {
-						piece=new Rabbit(PieceID.getRabbitPieceID(eElement.getElementsByTagName("id").item(0).getTextContent()));
+						piece=new Rabbit(eElement.getElementsByTagName("id").item(0).getTextContent());
 					}else {
 						piece = new Mushroom();
 					}
@@ -183,12 +183,12 @@ public class LevelGenerator {
 			e.printStackTrace();
 		}
 	}
-	public void saveLevel(Board board) throws ParserConfigurationException, TransformerException {
+	public void saveLevelXML() throws ParserConfigurationException, TransformerException {
 		  DocumentBuilderFactory dbFactory =DocumentBuilderFactory.newInstance();
 		  DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		  Document doc = dBuilder.newDocument();
 		  Attr attr = doc.createAttribute("numToWin");
-	      attr.setValue("call to gamestate for num of rabbits to win"); //fixme
+	      attr.setValue(Integer.toString(gameState.getNumToWin())); 
 		  Element rootElement = doc.createElement("level");
 		  rootElement.setAttributeNode(attr);
 	      doc.appendChild(rootElement);
@@ -203,18 +203,18 @@ public class LevelGenerator {
 						if(piece instanceof Fox) {
 						    attrpiece.setValue("fox");
 							Element foxPart=doc.createElement("foxPart");
-							foxPart.appendChild(doc.createTextNode("cast piece to fox and find foxpart")); //fixme
+							foxPart.appendChild(doc.createTextNode(((FoxPart)(((Fox)piece).getPart())).toString())); 
 							pieceElem.appendChild(foxPart);
 							Element orientation=doc.createElement("orientation");
-							orientation.appendChild(doc.createTextNode("cast piece to fox and find orientation")); //fixme
+							orientation.appendChild(doc.createTextNode(((Orientation)((Fox)piece).getOrientation()).toString()));
 							pieceElem.appendChild(orientation);
 							Element id=doc.createElement("id");
-							id.appendChild(doc.createTextNode("cast piece to fox and find id")); //fixme
+							id.appendChild(doc.createTextNode(((Fox)piece).getPieceID())); 
 							pieceElem.appendChild(id);
 						}else if(piece instanceof Rabbit) {
 						    attrpiece.setValue("rabbit");
 							Element id=doc.createElement("id");
-							id.appendChild(doc.createTextNode("piece->id")); //fixme
+							id.appendChild(doc.createTextNode(((Rabbit)piece).getPieceID())); 
 							pieceElem.appendChild(id);
 						}else {
 						    attrpiece.setValue("mushroom");
@@ -234,13 +234,11 @@ public class LevelGenerator {
 				}
 			}
 	      //to a file
-	      
 	      TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	      Transformer transformer = transformerFactory.newTransformer();
 	      DOMSource source = new DOMSource(doc);
 	      //StreamResult result = new StreamResult(new File("C:\\cars.xml"));
 	      //transformer.transform(source, result);
-	      
 	      
 	   // Output to console for testing
 	         StreamResult consoleResult = new StreamResult(System.out);

@@ -2,7 +2,6 @@ package jumpin.test.unit;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.tile.RabbitHole;
-import jumpin.model.constants.StateOfGame;
 import jumpin.model.util.Position;
 import junit.framework.*;
 
@@ -26,16 +25,6 @@ public class GameModelTest extends TestCase {
 	public void testGameState() {
 		assertEquals(-1, game.getGameState().getNumToWin());
 		assertEquals(null, game.getGameState().getState());
-	}
-
-	/**
-	 * 
-	 * Test for correct rabbits to win and game state after generating Level 1
-	 */
-	public void testLevel1() {
-		game.getGenerator().createLevel1();
-		assertEquals(3, game.getGameState().getNumToWin());
-		assertEquals(StateOfGame.IN_PROGRESS, game.getGameState().getState());
 	}
 
 

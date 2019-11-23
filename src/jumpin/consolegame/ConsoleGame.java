@@ -27,7 +27,7 @@ public class ConsoleGame extends GameModel {
 	 */
 	public ConsoleGame() throws CloneNotSupportedException {
 		super();
-		this.getGenerator().createLevel1();
+		this.getGenerator().loadLevelXML();
 		scanner = new Scanner(System.in);
 	}
 

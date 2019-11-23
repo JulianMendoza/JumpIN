@@ -77,11 +77,17 @@ public class SaveLoadMenu extends GroupBox implements MenuFrame {
 					l.menuActionPerformed(MenuEvent.XML_SAVE);
 				}
 			} else if (e.getSource().equals(loadXMLButton)) {
-
+				for (MenuListener l : menuListeners) {
+					l.menuActionPerformed(MenuEvent.XML_LOAD);
+				}
 			} else if (e.getSource().equals(loadTXTButton)) {
-
+				for (MenuListener l : menuListeners) {
+					l.menuActionPerformed(MenuEvent.SERIALIZE);
+				}
 			} else if (e.getSource().equals(saveTXTButton)) {
-
+				for (MenuListener l : menuListeners) {
+					l.menuActionPerformed(MenuEvent.DESERIALIZE);
+				}
 			}
 
 		}

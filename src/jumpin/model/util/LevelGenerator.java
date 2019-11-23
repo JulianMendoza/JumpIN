@@ -11,6 +11,7 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
 import java.io.File;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
@@ -27,6 +28,7 @@ import org.w3c.dom.NodeList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -53,55 +55,61 @@ public class LevelGenerator {
 
 	public void loadLevelXML() {
 		/**
-		 *  DELEGATE THIS PART
+		 * DELEGATE THIS PART
 		 */
 		JFrame parentFrame = new JFrame();
 		JFileChooser fc = new JFileChooser();
 		fc.setCurrentDirectory(new java.io.File("."));
-		fc.setDialogTitle("Choose where to save the level");
-		FileNameExtensionFilter filter= new FileNameExtensionFilter("xml files (*.xml)", "xml");
+		fc.setDialogTitle("Choose which level to load");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 		fc.setFileFilter(filter);
-		int userSelection = fc.showSaveDialog(parentFrame);
+		int userSelection = fc.showOpenDialog(parentFrame);
 		/**
 		 * 
 		 */
-		if(userSelection==JFileChooser.APPROVE_OPTION) {
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fc.getSelectedFile().getAbsolutePath());
-			doc.getDocumentElement().normalize();
-			NodeList nList = doc.getElementsByTagName("piece");
-			
-			for (int i = 0; i < nList.getLength(); i++) {
-				Piece piece;
-				Node nNode = nList.item(i);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					eElement.getAttribute("name");
-					if(eElement.getAttribute("name").equals("fox")) {
-						piece=new Fox(
-						FoxPart.getFoxPart(eElement.getElementsByTagName("foxPart").item(0).getTextContent()),
-						Orientation.getOrientation(eElement.getElementsByTagName("orientation").item(0).getTextContent()),
-						eElement.getElementsByTagName("id").item(0).getTextContent());
-					}else if(eElement.getAttribute("name").equals("rabbit")) {
-						piece=new Rabbit(eElement.getElementsByTagName("id").item(0).getTextContent());
-					}else {
-						piece = new Mushroom();
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			try {
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(fc.getSelectedFile().getAbsolutePath());
+				doc.getDocumentElement().normalize();
+				NodeList nList = doc.getElementsByTagName("piece");
+
+				for (int i = 0; i < nList.getLength(); i++) {
+					Piece piece;
+					Node nNode = nList.item(i);
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						eElement.getAttribute("name");
+						if (eElement.getAttribute("name").equals("fox")) {
+							piece = new Fox(
+									FoxPart.getFoxPart(
+											eElement.getElementsByTagName("foxPart").item(0).getTextContent()),
+									Orientation.getOrientation(
+											eElement.getElementsByTagName("orientation").item(0).getTextContent()),
+									eElement.getElementsByTagName("id").item(0).getTextContent());
+						} else if (eElement.getAttribute("name").equals("rabbit")) {
+							piece = new Rabbit(eElement.getElementsByTagName("id").item(0).getTextContent());
+						} else {
+							piece = new Mushroom();
+						}
+						Node n = (Node) (eElement.getElementsByTagName("position").item(0));
+						Element position = (Element) n;
+						int x = Integer.parseInt(position.getAttribute("x"));
+						int y = Integer.parseInt(position.getAttribute("y"));
+						board.assignPiece(new Position(x, y), piece);
 					}
-				 Node n=(Node)(eElement.getElementsByTagName("position").item(0));
-				 Element position=(Element)n;
-				 int x=Integer.parseInt(position.getAttribute("x"));
-				 int y=Integer.parseInt(position.getAttribute("y"));
-				 board.assignPiece(new Position(x,y),piece);
 				}
+				gameState.setNumToWin(Integer.parseInt(doc.getDocumentElement().getAttribute("numToWin")));
+				gameState.setState(StateOfGame.IN_PROGRESS);
+				board.addModelListener(gameState);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "No found file", "Error", JOptionPane.ERROR_MESSAGE);
+				loadLevelXML();
 			}
-			gameState.setNumToWin(Integer.parseInt(doc.getDocumentElement().getAttribute("numToWin")));
-			gameState.setState(StateOfGame.IN_PROGRESS);
-			board.addModelListener(gameState);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "No selected file", "Error", JOptionPane.ERROR_MESSAGE);
+			loadLevelXML();
 		}
 	}
 
@@ -158,24 +166,26 @@ public class LevelGenerator {
 			}
 		}
 		/**
-		 *  DELEGATE THIS PART
+		 * DELEGATE THIS PART
 		 */
 		JFrame parentFrame = new JFrame();
 		JFileChooser fc = new JFileChooser();
 		fc.setCurrentDirectory(new java.io.File("."));
 		fc.setDialogTitle("Choose where to save the level");
-		FileNameExtensionFilter filter= new FileNameExtensionFilter("xml files (*.xml)", "xml");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 		fc.setFileFilter(filter);
 		int userSelection = fc.showSaveDialog(parentFrame);
-		File fileToSave=null;
-		if(userSelection==JFileChooser.APPROVE_OPTION) {
-			fileToSave=new File(fc.getSelectedFile().getAbsolutePath()+".xml");
+		File fileToSave = null;
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			fileToSave = new File(fc.getSelectedFile().getAbsolutePath() + ".xml");
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(fileToSave);
+			transformer.transform(source, result);
+		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "File not saved", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(fileToSave);
-		transformer.transform(source, result);
 		/**
 		 * 
 		 */

@@ -1,6 +1,8 @@
 package jumpin.controller.listener;
 
 import javax.swing.JOptionPane;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
@@ -69,6 +71,24 @@ public class MainMenuListener implements MenuListener {
 					thresholdPrompt.clearText();
 				}
 			}
+			break;
+		case MenuEvent.XML_SAVE:
+			try {
+				model.getGenerator().saveLevelXML();
+			} catch (ParserConfigurationException e) {
+				
+			} catch (TransformerException e) {
+				
+			}
+			break;
+		case MenuEvent.XML_LOAD:
+			System.out.println("TODO -> MainMenuListener");
+			break;
+		case MenuEvent.SERIALIZE:
+			System.out.println("TODO -> MainMenuListener");
+			break;
+		case MenuEvent.DESERIALIZE:
+			System.out.println("TODO -> MainMenuListener");
 			break;
 		}
 

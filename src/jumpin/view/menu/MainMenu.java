@@ -56,6 +56,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 	public void addMenuListener(MenuListener l) {
 		solverMenu.addMenuListener(l);
 		historyMenu.addMenuListener(l);
+		saveLoadMenu.addMenuListener(l);
 	}
 
 	public SolverMenu getSolverMenu() {

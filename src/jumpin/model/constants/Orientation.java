@@ -71,12 +71,4 @@ public enum Orientation {
 
 		return validDirections;
 	}
-	@Override
-	public String toString() {
-		switch(this){
-		case NORTH_SOUTH: return "northsouth";
-		case EAST_WEST: return "eastwest";
-		}
-		return null;
-	}
 }

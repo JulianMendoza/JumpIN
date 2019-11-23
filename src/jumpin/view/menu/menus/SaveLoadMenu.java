@@ -11,6 +11,7 @@ import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
 import jumpin.view.menu.MenuFrame;
+import jumpin.view.menu.listener.MenuEvent;
 import jumpin.view.menu.listener.MenuListener;
 import jumpin.view.util.GroupBox;
 
@@ -72,7 +73,9 @@ public class SaveLoadMenu extends GroupBox implements MenuFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource().equals(saveXMLButton)) {
-
+				for (MenuListener l : menuListeners) {
+					l.menuActionPerformed(MenuEvent.XML_SAVE);
+				}
 			} else if (e.getSource().equals(loadXMLButton)) {
 
 			} else if (e.getSource().equals(loadTXTButton)) {

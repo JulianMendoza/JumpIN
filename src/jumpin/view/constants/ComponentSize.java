@@ -26,6 +26,6 @@ public class ComponentSize {
 
 	public static final int FRAME_HEIGHT = MENU_HEIGHT + BOARD_HEIGHT + 25; // 25 because the frame bar is 25 pixels
 
-	public static final Dimension MAIN_MENU_PANEL = new Dimension(200, 105);
+	public static final Dimension MAIN_MENU_PANEL = new Dimension(175, 105);
 
 }

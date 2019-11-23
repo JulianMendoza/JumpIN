@@ -11,6 +11,7 @@ import jumpin.view.constants.ViewConstants;
 import jumpin.view.menu.listener.MenuListener;
 import jumpin.view.menu.menus.GameStateMenu;
 import jumpin.view.menu.menus.HistoryMenu;
+import jumpin.view.menu.menus.SaveLoadMenu;
 import jumpin.view.menu.menus.solver.SolverMenu;
 
 /**
@@ -23,6 +24,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 	private SolverMenu solverMenu;
 	private HistoryMenu historyMenu;
 	private GameStateMenu gameStateMenu;
+	private SaveLoadMenu saveLoadMenu;
 	private static final long serialVersionUID = -436968148338186761L;
 
 	public MainMenu() {
@@ -37,6 +39,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 		solverMenu = new SolverMenu();
 		historyMenu = new HistoryMenu();
 		gameStateMenu = new GameStateMenu();
+		saveLoadMenu = new SaveLoadMenu();
 
 		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
@@ -46,6 +49,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 		add(gameStateMenu);
 		add(historyMenu);
 		add(solverMenu);
+		add(saveLoadMenu);
 	}
 
 	@Override

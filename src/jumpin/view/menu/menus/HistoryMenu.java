@@ -30,8 +30,8 @@ public class HistoryMenu extends GroupBox implements MenuFrame {
 	private JButton undoMoveButton;
 	private JButton redoMoveButton;
 
-	private final String UNDO_TEXT = "\u2190 UNDO";
-	private final String REDO_TEXT = "REDO \u2192";
+	private final String UNDO_TEXT = "<UNDO"; //\u2190 unicode if you want to resize the button
+	private final String REDO_TEXT = "REDO>"; //\u2192 unicode if you want to resize the button
 	
 	private static final long serialVersionUID = -4841219774868685113L;
 
@@ -58,7 +58,7 @@ public class HistoryMenu extends GroupBox implements MenuFrame {
 		addButtonListeners();
 
 		add(undoMoveButton);
-		add(Box.createRigidArea(new Dimension(13, 0)));
+		add(Box.createRigidArea(new Dimension(8, 0)));
 		add(redoMoveButton);
 	}
 

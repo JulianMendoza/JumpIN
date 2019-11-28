@@ -1,8 +1,8 @@
 package jumpin.view.util;
 
 import java.awt.Cursor;
+import java.awt.Window;
 
-import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 
 /**
@@ -12,10 +12,10 @@ import javax.swing.SwingWorker;
  */
 public class Waiter extends SwingWorker<Void, Void> {
 
-	private JFrame waitFrame;
+	private Window waitFrame;
 	private boolean isWaiting;
 
-	public Waiter(JFrame waitFrame) {
+	public Waiter(Window waitFrame) {
 		this.waitFrame = waitFrame;
 	}
 

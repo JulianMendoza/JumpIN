@@ -5,7 +5,7 @@ import jumpin.controller.listener.MainMenuListener;
 import jumpin.controller.listener.PieceListener;
 import jumpin.controller.listener.ViewModelListener;
 import jumpin.model.GameModel;
-import jumpin.view.GameView;
+import jumpin.view.game.GameView;
 
 /**
  * 
@@ -25,8 +25,8 @@ public class GameController {
 	}
 
 	public void launch() {
-		view.getMainMenu().initialize(model);
 		view.setVisible(true);
+		view.getMainMenu().initialize(model);
 	}
 
 	private void initializeListeners() {

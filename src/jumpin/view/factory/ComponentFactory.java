@@ -5,8 +5,8 @@ import javax.swing.JLabel;
 
 import jumpin.model.board.tile.Tile;
 import jumpin.model.piece.Piece;
-import jumpin.view.board.tile.TileView;
-import jumpin.view.piece.PieceView;
+import jumpin.view.game.board.tile.TileView;
+import jumpin.view.game.piece.PieceView;
 import jumpin.view.style.Styler;
 
 /**

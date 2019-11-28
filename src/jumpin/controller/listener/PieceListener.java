@@ -11,10 +11,10 @@ import jumpin.model.piece.pieces.Fox;
 import jumpin.model.structures.Position;
 import jumpin.model.structures.move.Move;
 import jumpin.model.structures.move.MoveSet;
-import jumpin.view.GameView;
-import jumpin.view.board.BoardView;
-import jumpin.view.board.tile.TileView;
-import jumpin.view.piece.PieceView;
+import jumpin.view.game.GameView;
+import jumpin.view.game.board.BoardView;
+import jumpin.view.game.board.tile.TileView;
+import jumpin.view.game.piece.PieceView;
 
 /**
  * 

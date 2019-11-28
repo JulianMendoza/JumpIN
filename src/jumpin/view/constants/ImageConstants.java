@@ -27,6 +27,6 @@ public class ImageConstants {
 
 	public static final String MUSHROOM = "images/mushroom.png";
 
-	public static final String[] RABBIT_MOVES = {};
+	public static final String SPLASH_SCREEN = "images/splashscreen.jpg";
 
 }

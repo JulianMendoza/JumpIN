@@ -28,4 +28,12 @@ public class ComponentSize {
 
 	public static final Dimension MAIN_MENU_PANEL = new Dimension(175, 105);
 
+	public static final int SPLASH_WIDTH = 600;
+
+	public static final int SPLASH_HEIGHT = 425;
+
+	public static final int SPLASH_IMAGE_HEIHGT = 400;
+
+	public static final int SPLASH_IMAGE_WIDTH = 600;
+
 }

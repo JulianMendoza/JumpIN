@@ -6,11 +6,12 @@ import javax.xml.transform.TransformerException;
 
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
-import jumpin.view.GameView;
-import jumpin.view.menu.MainMenu;
-import jumpin.view.menu.listener.MenuEvent;
-import jumpin.view.menu.listener.MenuListener;
-import jumpin.view.menu.menus.solver.ThresholdPrompt;
+import jumpin.view.game.GameView;
+import jumpin.view.game.menu.MainMenu;
+import jumpin.view.game.menu.listener.MenuEvent;
+import jumpin.view.game.menu.listener.MenuListener;
+import jumpin.view.game.menu.menus.solver.ThresholdPrompt;
+import jumpin.view.level.LevelLoader;
 import jumpin.view.util.Waiter;
 
 /**
@@ -72,22 +73,20 @@ public class MainMenuListener implements MenuListener {
 				}
 			}
 			break;
-		case MenuEvent.XML_SAVE:
+		case MenuEvent.SAVE_LEVEL:
 			try {
 				model.getGenerator().saveLevelXML();
 			} catch (ParserConfigurationException e) {
-				
+
 			} catch (TransformerException e) {
-				
+
 			}
 			break;
-		case MenuEvent.XML_LOAD:
-			System.out.println("TODO -> MainMenuListener");
+		case MenuEvent.LOAD_LEVEL:
+			LevelLoader loader = new LevelLoader(model, view);
+			loader.launchChooser(false);
 			break;
-		case MenuEvent.SERIALIZE:
-			System.out.println("TODO -> MainMenuListener");
-			break;
-		case MenuEvent.DESERIALIZE:
+		case MenuEvent.GENERATE_LEVEL:
 			System.out.println("TODO -> MainMenuListener");
 			break;
 		}

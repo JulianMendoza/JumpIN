@@ -10,10 +10,10 @@ import jumpin.model.board.event.BoardModelEvent;
 import jumpin.model.constants.StateOfGame;
 import jumpin.model.structures.move.Move;
 import jumpin.model.structures.move.MoveSet;
-import jumpin.view.GameView;
-import jumpin.view.board.BoardView;
-import jumpin.view.menu.MainMenu;
-import jumpin.view.piece.PieceView;
+import jumpin.view.game.GameView;
+import jumpin.view.game.board.BoardView;
+import jumpin.view.game.menu.MainMenu;
+import jumpin.view.game.piece.PieceView;
 
 /**
  * 
@@ -69,7 +69,7 @@ public class ViewModelListener implements BoardModelListener {
 
 	private void checkGameState() {
 		if (model.getGameState().getState().equals(StateOfGame.WON)) {
-			JOptionPane.showMessageDialog(view, model.getGameState().getState().toString());
+			JOptionPane.showMessageDialog(view, model.getGameState().getState().toString(), "Victory", JOptionPane.INFORMATION_MESSAGE);
 			System.exit(0);
 		}
 	}

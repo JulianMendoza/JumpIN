@@ -1,6 +1,6 @@
 package jumpin.model.board.event;
 
-import jumpin.model.move.MoveSet;
+import jumpin.model.structures.move.MoveSet;
 
 /**
  * Constants for identifying Board Model Events

@@ -1,7 +1,7 @@
 package jumpin.model;
 
 import jumpin.model.board.Board;
-import jumpin.model.util.LevelGenerator;
+import jumpin.model.file.LevelGenerator;
 
 /**
  * A class that constructs the game

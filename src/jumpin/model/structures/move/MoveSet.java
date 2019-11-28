@@ -1,4 +1,4 @@
-package jumpin.model.move;
+package jumpin.model.structures.move;
 
 import java.util.ArrayList;
 import java.util.Collections;

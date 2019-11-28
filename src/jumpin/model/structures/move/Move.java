@@ -1,6 +1,6 @@
-package jumpin.model.move;
+package jumpin.model.structures.move;
 
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 import jumpin.util.Pair;
 
 /**

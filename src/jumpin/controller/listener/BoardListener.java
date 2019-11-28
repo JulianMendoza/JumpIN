@@ -5,12 +5,12 @@ import java.awt.event.MouseListener;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
+import jumpin.model.board.util.BoardUtilities;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.FoxLogic;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
-import jumpin.model.util.BoardUtilities;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 import jumpin.view.GameView;
 import jumpin.view.board.tile.TileView;
 

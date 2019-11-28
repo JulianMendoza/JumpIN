@@ -1,17 +1,12 @@
-package jumpin.model.util;
+package jumpin.model.file;
 
-import jumpin.model.GameState;
-import jumpin.model.board.Board;
-import jumpin.model.constants.BoardConstants;
-import jumpin.model.constants.FoxPart;
-import jumpin.model.constants.Orientation;
-import jumpin.model.constants.StateOfGame;
-import jumpin.model.piece.Piece;
-import jumpin.model.piece.pieces.Fox;
-import jumpin.model.piece.pieces.Mushroom;
-import jumpin.model.piece.pieces.Rabbit;
 import java.io.File;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
@@ -26,16 +21,22 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.parsers.DocumentBuilder;
+import jumpin.model.GameState;
+import jumpin.model.board.Board;
+import jumpin.model.constants.BoardConstants;
+import jumpin.model.constants.FoxPart;
+import jumpin.model.constants.Orientation;
+import jumpin.model.constants.StateOfGame;
+import jumpin.model.piece.Piece;
+import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Mushroom;
+import jumpin.model.piece.pieces.Rabbit;
+import jumpin.model.structures.Position;
 
 /**
  * Class to generate levels on load
  * 
- * @author Julian
+ * @author Julian, Giuseppe
  *
  */
 public class LevelGenerator {
@@ -82,18 +83,13 @@ public class LevelGenerator {
 						Element eElement = (Element) nNode;
 						eElement.getAttribute("name");
 						if (eElement.getAttribute("name").equals("fox")) {
-							piece = new Fox(
-									FoxPart.getFoxPart(
-											eElement.getElementsByTagName("foxPart").item(0).getTextContent()),
-									Orientation.getOrientation(
-											eElement.getElementsByTagName("orientation").item(0).getTextContent()),
-									eElement.getElementsByTagName("id").item(0).getTextContent());
+							piece = new Fox(FoxPart.getFoxPart(eElement.getElementsByTagName("foxPart").item(0).getTextContent()), Orientation.getOrientation(eElement.getElementsByTagName("orientation").item(0).getTextContent()), eElement.getElementsByTagName("id").item(0).getTextContent());
 						} else if (eElement.getAttribute("name").equals("rabbit")) {
 							piece = new Rabbit(eElement.getElementsByTagName("id").item(0).getTextContent());
 						} else {
 							piece = new Mushroom();
 						}
-						Node n = (Node) (eElement.getElementsByTagName("position").item(0));
+						Node n = (eElement.getElementsByTagName("position").item(0));
 						Element position = (Element) n;
 						int x = Integer.parseInt(position.getAttribute("x"));
 						int y = Integer.parseInt(position.getAttribute("y"));
@@ -134,11 +130,10 @@ public class LevelGenerator {
 					if (piece instanceof Fox) {
 						attrpiece.setValue("fox");
 						Element foxPart = doc.createElement("foxPart");
-						foxPart.appendChild(doc.createTextNode(((FoxPart) (((Fox) piece).getPart())).toString()));
+						foxPart.appendChild(doc.createTextNode((((Fox) piece).getPart()).toString()));
 						pieceElem.appendChild(foxPart);
 						Element orientation = doc.createElement("orientation");
-						orientation.appendChild(
-								doc.createTextNode(((Orientation) ((Fox) piece).getOrientation()).toString()));
+						orientation.appendChild(doc.createTextNode(((Fox) piece).getOrientation().toString()));
 						pieceElem.appendChild(orientation);
 						Element id = doc.createElement("id");
 						id.appendChild(doc.createTextNode(((Fox) piece).getPieceID()));

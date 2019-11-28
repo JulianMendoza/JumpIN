@@ -1,20 +1,21 @@
 package jumpin.model.board;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import jumpin.model.board.event.BoardModelEvent;
 import jumpin.model.board.event.EventFactory;
 import jumpin.model.board.tile.Tile;
+import jumpin.model.board.util.BoardUtilities;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.BoardLogic;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.Piece;
 import jumpin.model.solver.Solver;
-import jumpin.model.util.BoardUtilities;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 
 /**
  * A class that gets and mutates attributes of the game board
@@ -22,7 +23,12 @@ import jumpin.model.util.Position;
  * @author Giuseppe, Julian
  * @documentation Cameron
  */
-public class Board implements Cloneable {
+public class Board implements Cloneable, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2041969771095691873L;
 
 	private BoardModel model;
 	/**

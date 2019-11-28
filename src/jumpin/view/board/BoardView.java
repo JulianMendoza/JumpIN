@@ -10,7 +10,7 @@ import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 
 import jumpin.model.board.BoardModel;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 import jumpin.view.AbstractFrame;
 import jumpin.view.board.tile.TileHighlighter;
 import jumpin.view.board.tile.TileView;

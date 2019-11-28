@@ -1,6 +1,6 @@
 package jumpin.model.constants;
 
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 
 /**
  * Constants related to the game board

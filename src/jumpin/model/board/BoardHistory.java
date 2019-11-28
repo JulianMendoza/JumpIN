@@ -2,7 +2,7 @@ package jumpin.model.board;
 
 import java.util.Stack;
 
-import jumpin.model.move.MoveSet;
+import jumpin.model.structures.move.MoveSet;
 
 /**
  * 

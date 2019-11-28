@@ -2,7 +2,7 @@ package jumpin.test.unit;
 
 import jumpin.model.GameModel;
 import jumpin.model.board.tile.RabbitHole;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 import junit.framework.*;
 
 /**

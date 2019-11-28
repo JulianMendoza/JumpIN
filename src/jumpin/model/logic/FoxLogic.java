@@ -8,10 +8,10 @@ import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.Orientation;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 import jumpin.util.Pair;
 
 /**

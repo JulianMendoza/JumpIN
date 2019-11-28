@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jumpin.model.board.Board;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 /**
  * Class to determine the logic of the board
  * 

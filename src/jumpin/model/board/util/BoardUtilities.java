@@ -1,4 +1,4 @@
-package jumpin.model.util;
+package jumpin.model.board.util;
 
 import java.util.List;
 
@@ -9,9 +9,10 @@ import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
 import jumpin.model.factory.TileFactory;
 import jumpin.model.logic.BoardLogic;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Rabbit;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 
 /**
  * Utility class for operations with the board. Has knowledge of the default

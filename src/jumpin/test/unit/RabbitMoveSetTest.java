@@ -10,12 +10,12 @@ import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.RabbitLogic;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 import junit.framework.TestCase;
 
 /**

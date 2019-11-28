@@ -2,8 +2,8 @@ package jumpin.model.board.event;
 
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.RabbitHole;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 
 /**
  * 

@@ -1,7 +1,8 @@
 package jumpin.model.solver;
 
 import java.util.List;
-import jumpin.model.move.MoveSet;
+
+import jumpin.model.structures.move.MoveSet;
 /**
  * 
  * @author Giuseppe

@@ -1,7 +1,8 @@
-package jumpin.model.util;
+package jumpin.model.structures;
 
 import java.text.ParseException;
 
+import jumpin.model.board.util.BoardUtilities;
 import jumpin.model.constants.Direction;
 
 /**

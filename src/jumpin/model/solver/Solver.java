@@ -6,10 +6,10 @@ import java.util.List;
 
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.util.BoardUtilities;
 import jumpin.model.exception.IllegalMoveException;
-import jumpin.model.move.MoveSet;
-import jumpin.model.util.BoardUtilities;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.MoveSet;
 import jumpin.util.TreeNode;
 
 /**

@@ -7,7 +7,7 @@ import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.GameModel;
 import jumpin.model.constants.Direction;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 
 /**
  * Command implementation for "Move"

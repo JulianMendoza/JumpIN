@@ -3,7 +3,7 @@ package jumpin.test.unit;
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.piece.pieces.Mushroom;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
 import junit.framework.*;
 /**
  * Test case for mushroom placement and movement

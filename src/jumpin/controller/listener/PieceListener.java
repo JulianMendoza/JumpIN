@@ -7,10 +7,10 @@ import java.util.List;
 
 import jumpin.model.GameModel;
 import jumpin.model.logic.FoxLogic;
-import jumpin.model.move.Move;
-import jumpin.model.move.MoveSet;
 import jumpin.model.piece.pieces.Fox;
-import jumpin.model.util.Position;
+import jumpin.model.structures.Position;
+import jumpin.model.structures.move.Move;
+import jumpin.model.structures.move.MoveSet;
 import jumpin.view.GameView;
 import jumpin.view.board.BoardView;
 import jumpin.view.board.tile.TileView;

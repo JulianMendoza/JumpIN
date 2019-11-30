@@ -19,6 +19,7 @@ public class View {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
+			
 		}
 	}
 

@@ -11,7 +11,6 @@ public class GUI {
 
 	public static void main(String args[]) throws CloneNotSupportedException, ParserConfigurationException, TransformerException {
 		GameModel model = new GameModel();
-		// model.getGenerator().loadLevelXML();
 		View view = new View(model);
 		GameController controller = new GameController(model, view.getGameView());
 		controller.launch();

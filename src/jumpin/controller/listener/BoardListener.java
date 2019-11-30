@@ -61,6 +61,8 @@ public class BoardListener implements MouseListener {
 				}
 
 			}
+			view.getBoardView().stopHighlighting();
+			model.getBoard().deselectPiece();
 		}
 	}
 

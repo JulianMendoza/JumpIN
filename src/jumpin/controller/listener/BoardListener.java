@@ -3,6 +3,7 @@ package jumpin.controller.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import jumpin.controller.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.board.util.BoardUtilities;
@@ -30,9 +31,10 @@ public class BoardListener implements MouseListener {
 	 * @param model
 	 * @param view
 	 */
-	public BoardListener(GameModel model, GameView view) {
-		this.model = model;
-		this.view = view;
+
+	public BoardListener(GameController gc) {
+		this.model = gc.getModel();
+		this.view = gc.getGameView();
 	}
 
 	@Override

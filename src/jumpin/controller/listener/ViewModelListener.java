@@ -3,6 +3,7 @@ package jumpin.controller.listener;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import jumpin.controller.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.board.BoardHistory;
 import jumpin.model.board.BoardModelListener;
@@ -30,9 +31,10 @@ public class ViewModelListener implements BoardModelListener {
 	 * 
 	 * @param boardView
 	 */
-	public ViewModelListener(GameModel model, GameView view) {
-		this.model = model;
-		this.view = view;
+
+	public ViewModelListener(GameController gc) {
+		this.model = gc.getModel();
+		this.view = gc.getGameView();
 	}
 
 	@Override

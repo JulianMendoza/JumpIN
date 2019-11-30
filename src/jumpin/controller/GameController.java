@@ -1,11 +1,15 @@
 package jumpin.controller;
 
+import java.io.File;
+
 import jumpin.controller.listener.BoardListener;
 import jumpin.controller.listener.MainMenuListener;
 import jumpin.controller.listener.PieceListener;
 import jumpin.controller.listener.ViewModelListener;
 import jumpin.model.GameModel;
+import jumpin.view.View;
 import jumpin.view.game.GameView;
+import jumpin.view.launch.ScreenSplasher;
 
 /**
  * 
@@ -15,25 +19,46 @@ import jumpin.view.game.GameView;
 public class GameController {
 
 	private GameModel model;
-	private GameView view;
+	private View view;
+	private GameView gameView;
 
-	public GameController(GameModel model, GameView view) {
-		this.view = view;
-		this.model = model;
-
-		initializeListeners();
+	public GameController() {
+		this.model = new GameModel();
+		this.view = new View(model);
+		this.gameView = view.getGameView();
+	}
+	
+	public GameView getGameView() {
+		return gameView;
+	}
+	
+	public GameModel getModel() {
+		return model;
 	}
 
 	public void launch() {
-		view.setVisible(true);
-		view.getMainMenu().initialize(model);
+		initializeListeners();
+		gameView.getMainMenu().initialize(model);
+		splash();
+	}
+	
+	public void handleload(File f) {
+		gameView.dispose();
+		this.model = new GameModel();
+		this.view = new View(model,f);
+		this.gameView = view.getGameView();
+		launch();
+	}
+	public void splash() {
+		ScreenSplasher splasher = new ScreenSplasher(gameView);
+		splasher.execute();
 	}
 
 	private void initializeListeners() {
-		view.addPieceListener(new PieceListener(model, view));
-		view.addBoardListener(new BoardListener(model, view));
-		view.addMenuListener(new MainMenuListener(model, view));
-		model.getBoard().addModelListener(new ViewModelListener(model, view));
+		gameView.addPieceListener(new PieceListener(this));
+		gameView.addBoardListener(new BoardListener(this));
+		gameView.addMenuListener(new MainMenuListener(this));
+		model.getBoard().addModelListener(new ViewModelListener(this));
 	}
 
 }

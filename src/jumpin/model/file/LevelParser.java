@@ -40,7 +40,6 @@ public class LevelParser {
 				Document doc = dBuilder.parse(level.getAbsolutePath());
 				doc.getDocumentElement().normalize();
 				NodeList nList = doc.getElementsByTagName("piece");
-
 				for (int i = 0; i < nList.getLength(); i++) {
 					Piece piece;
 					Node nNode = nList.item(i);

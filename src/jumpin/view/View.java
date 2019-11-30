@@ -1,5 +1,7 @@
 package jumpin.view;
 
+import java.io.File;
+
 import jumpin.model.GameModel;
 import jumpin.view.game.GameView;
 import jumpin.view.level.LevelLoader;
@@ -16,11 +18,11 @@ public class View {
 	public View(GameModel model) {
 		new LevelLoader(model, gameView).launchChooser(true);
 		gameView = new GameView(model);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			
-		}
+	}
+
+	public View(GameModel model, File f) {
+		new LevelLoader(model, gameView).load(f);
+		gameView = new GameView(model);
 	}
 
 	public GameView getGameView() {

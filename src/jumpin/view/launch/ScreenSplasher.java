@@ -19,9 +19,7 @@ public class ScreenSplasher extends SwingWorker<Void, Void> {
 		if (gameView != null) {
 			gameView.setVisible(false);
 		}
-
 		splashScreen.splash();
-
 		return null;
 	}
 

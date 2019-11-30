@@ -58,7 +58,6 @@ public class SplashScreen extends JWindow implements AbstractFrame {
 		waiter.startWaiting();
 		load();
 		setVisible(false);
-
 	}
 
 	private void load() {

@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import jumpin.controller.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.logic.FoxLogic;
 import jumpin.model.piece.pieces.Fox;
@@ -32,9 +33,10 @@ public class PieceListener implements MouseListener {
 	 * @param model
 	 * @param view
 	 */
-	public PieceListener(GameModel model, GameView view) {
-		this.model = model;
-		this.view = view;
+
+	public PieceListener(GameController gc) {
+		this.model = gc.getModel();
+		this.view = gc.getGameView();
 	}
 
 	/**

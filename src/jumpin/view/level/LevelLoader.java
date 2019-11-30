@@ -1,5 +1,7 @@
 package jumpin.view.level;
 
+import java.io.File;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -8,7 +10,6 @@ import jumpin.model.GameModel;
 import jumpin.model.exception.LevelParseException;
 import jumpin.model.file.LevelParser;
 import jumpin.view.game.GameView;
-import jumpin.view.launch.ScreenSplasher;
 
 /**
  * 
@@ -19,10 +20,8 @@ public class LevelLoader {
 
 	private LevelParser parser;
 	private JFrame parentFrame;
-	private GameView gameView;
 
 	public LevelLoader(GameModel gameModel, GameView gameView) {
-		this.gameView = gameView;
 		parser = new LevelParser(gameModel.getBoard(), gameModel.getGameState());
 		constructFrame();
 	}
@@ -33,7 +32,7 @@ public class LevelLoader {
 		parentFrame.setSize(200, 200);
 	}
 
-	public GameView launchChooser(boolean mandatoryChoice) {
+	public File launchChooser(boolean mandatoryChoice) {
 		LevelChooser fc = new LevelChooser();
 		int userSelection = fc.showOpenDialog(parentFrame);
 
@@ -41,9 +40,7 @@ public class LevelLoader {
 			try {
 				parser.parseLevel(fc.getSelectedFile());
 				parentFrame.dispose();
-
-				ScreenSplasher splasher = new ScreenSplasher(gameView);
-				splasher.execute();
+				return fc.getSelectedFile();
 			} catch (LevelParseException e) {
 				JOptionPane.showMessageDialog(parentFrame, e.getMessage(), "Parsing Error", JOptionPane.ERROR_MESSAGE);
 				launchChooser(mandatoryChoice);
@@ -56,7 +53,14 @@ public class LevelLoader {
 				parentFrame.dispose();
 			}
 		}
-		return gameView;
+		return null;
+	}
+	public void load(File f) {
+		try {
+			parser.parseLevel(f);
+		} catch (LevelParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

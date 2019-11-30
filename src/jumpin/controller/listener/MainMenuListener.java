@@ -1,9 +1,12 @@
 package jumpin.controller.listener;
 
+import java.io.File;
+
 import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import jumpin.controller.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.view.game.GameView;
@@ -23,10 +26,12 @@ public class MainMenuListener implements MenuListener {
 
 	private GameView view;
 	private GameModel model;
+	private GameController gameController;
 
-	public MainMenuListener(GameModel model, GameView view) {
-		this.view = view;
-		this.model = model;
+	public MainMenuListener(GameController gc) {
+		this.model = gc.getModel();
+		this.view = gc.getGameView();
+		this.gameController=gc;
 	}
 
 	@Override
@@ -84,7 +89,10 @@ public class MainMenuListener implements MenuListener {
 			break;
 		case MenuEvent.LOAD_LEVEL:
 			LevelLoader loader = new LevelLoader(model, view);
-			loader.launchChooser(false);
+			File f=loader.launchChooser(false);
+			if(f!=null) {
+				gameController.handleload(f);
+			}
 			break;
 		case MenuEvent.GENERATE_LEVEL:
 			System.out.println("TODO -> MainMenuListener");

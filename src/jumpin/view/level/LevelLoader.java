@@ -39,7 +39,7 @@ public class LevelLoader {
 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			try {
-				parser.parseLevel(fc.getSelectedFile());
+				parser.parseLevelXML(fc.getSelectedFile());
 				parentFrame.dispose();
 
 				ScreenSplasher splasher = new ScreenSplasher(gameView);

@@ -11,6 +11,7 @@ import jumpin.view.game.menu.MainMenu;
 import jumpin.view.game.menu.listener.MenuEvent;
 import jumpin.view.game.menu.listener.MenuListener;
 import jumpin.view.game.menu.menus.solver.ThresholdPrompt;
+import jumpin.view.level.LevelBuilder;
 import jumpin.view.level.LevelLoader;
 import jumpin.view.util.Waiter;
 
@@ -40,10 +41,12 @@ public class MainMenuListener implements MenuListener {
 			model.getBoard().undoMove();
 			menu.getSolverMenu().resetSolution();
 			break;
+			
 		case MenuEvent.REDO:
 			model.getBoard().redoMove();
 			menu.getSolverMenu().resetSolution();
 			break;
+			
 		case MenuEvent.DO_MOVE:
 			try {
 				model.getBoard().doNextBestMove();
@@ -51,9 +54,11 @@ public class MainMenuListener implements MenuListener {
 				e.printStackTrace();
 			}
 			break;
+			
 		case MenuEvent.SHOW_SOLUTION:
 			JOptionPane.showMessageDialog(view, model.getBoard().getSolution().toString(), "Current Best Solution", JOptionPane.PLAIN_MESSAGE);
 			break;
+			
 		case MenuEvent.FIND_SOLUTION:
 			ThresholdPrompt thresholdPrompt = menu.getSolverMenu().getThresholdPrompt();
 			int result = JOptionPane.showConfirmDialog(view, thresholdPrompt, "Search threshold", JOptionPane.OK_CANCEL_OPTION);
@@ -73,6 +78,7 @@ public class MainMenuListener implements MenuListener {
 				}
 			}
 			break;
+			
 		case MenuEvent.SAVE_LEVEL:
 			try {
 				model.getGenerator().saveLevelXML();
@@ -82,12 +88,18 @@ public class MainMenuListener implements MenuListener {
 
 			}
 			break;
+			
 		case MenuEvent.LOAD_LEVEL:
 			LevelLoader loader = new LevelLoader(model, view);
 			loader.launchChooser(false);
 			break;
+			
 		case MenuEvent.GENERATE_LEVEL:
 			System.out.println("TODO -> MainMenuListener");
+			break;
+		
+		case MenuEvent.BUILD_LEVEL :
+			LevelBuilder builder = new LevelBuilder(model);
 			break;
 		}
 

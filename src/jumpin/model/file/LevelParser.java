@@ -23,6 +23,11 @@ import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.structures.Position;
 
+/**
+ * Class for parsing levels using XML file and String
+ * 
+ * @author Julian, Cameron
+ */
 public class LevelParser {
 
 	private Board board;
@@ -93,12 +98,12 @@ public class LevelParser {
 			
 			for (String p : pieces) {
 				String tokens[] = p.split("-");
+				x = Character.getNumericValue(tokens[1].charAt(0));
+				y = Character.getNumericValue(tokens[1].charAt(1));
 				
 				if (tokens[0].startsWith("fox")) {
 					numFoxes++;
 					int foxID = Character.getNumericValue(tokens[0].charAt(3));
-					x = Character.getNumericValue(tokens[1].charAt(0));
-					y = Character.getNumericValue(tokens[1].charAt(1));
 					
 					if (numFoxes < 3) {
 						if (tokens[0].endsWith("NS")) {
@@ -133,8 +138,6 @@ public class LevelParser {
 					numRabbits++;
 					
 					if (numRabbits < 4) {
-						x = Character.getNumericValue(tokens[1].toCharArray()[0]);
-						y = Character.getNumericValue(tokens[1].toCharArray()[1]);
 						
 						if (tokens[0].endsWith("1")) {
 							board.assignPiece(new Position(x, y), new Rabbit(PieceID.RABBIT_ID_1));
@@ -153,8 +156,6 @@ public class LevelParser {
 					}
 					
 				} else if (tokens[0].equals("mush")) {
-					x = Character.getNumericValue(tokens[1].charAt(0));
-					y = Character.getNumericValue(tokens[1].charAt(1));
 					board.assignPiece(new Position(x, y), new Mushroom());
 				} else {
 					throw new LevelParseException("Unknown token");

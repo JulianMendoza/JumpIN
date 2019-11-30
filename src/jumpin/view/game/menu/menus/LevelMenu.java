@@ -18,7 +18,7 @@ import jumpin.view.util.GroupBox;
 
 /**
  * 
- * @author Julian, Giuseppe
+ * @author Julian, Giuseppe, Cameron
  *
  */
 public class LevelMenu extends GroupBox implements MenuFrame {

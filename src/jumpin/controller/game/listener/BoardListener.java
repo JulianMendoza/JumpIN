@@ -1,9 +1,9 @@
-package jumpin.controller.listener;
+package jumpin.controller.game.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import jumpin.controller.GameController;
+import jumpin.controller.game.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.board.util.BoardUtilities;

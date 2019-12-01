@@ -4,6 +4,11 @@ import javax.swing.SwingWorker;
 
 import jumpin.view.game.GameView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class ScreenSplasher extends SwingWorker<Void, Void> {
 
 	private SplashScreen splashScreen;

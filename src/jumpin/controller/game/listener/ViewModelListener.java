@@ -1,9 +1,9 @@
-package jumpin.controller.listener;
+package jumpin.controller.game.listener;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import jumpin.controller.GameController;
+import jumpin.controller.game.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.board.BoardHistory;
 import jumpin.model.board.BoardModelListener;

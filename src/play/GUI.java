@@ -3,7 +3,7 @@ package play;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import jumpin.controller.GameController;
+import jumpin.controller.game.GameController;
 
 public class GUI {
 

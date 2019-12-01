@@ -2,6 +2,7 @@ package jumpin.view.level;
 
 import java.io.File;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class LevelLoader {
 		parentFrame = new JFrame();
 		parentFrame.setLocationRelativeTo(null);
 		parentFrame.setSize(200, 200);
+		parentFrame.add(new JButton());
 	}
 
 	public File launchChooser(boolean mandatoryChoice) {
@@ -55,6 +57,7 @@ public class LevelLoader {
 		}
 		return null;
 	}
+
 	public void load(File f) {
 		try {
 			parser.parseLevel(f);

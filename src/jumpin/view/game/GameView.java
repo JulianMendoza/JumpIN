@@ -3,8 +3,8 @@ package jumpin.view.game;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import jumpin.controller.listener.BoardListener;
-import jumpin.controller.listener.PieceListener;
+import jumpin.controller.game.listener.BoardListener;
+import jumpin.controller.game.listener.PieceListener;
 import jumpin.model.GameModel;
 import jumpin.view.AbstractFrame;
 import jumpin.view.constants.ComponentSize;

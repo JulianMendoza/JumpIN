@@ -1,11 +1,11 @@
-package jumpin.controller;
+package jumpin.controller.game;
 
 import java.io.File;
 
-import jumpin.controller.listener.BoardListener;
-import jumpin.controller.listener.MainMenuListener;
-import jumpin.controller.listener.PieceListener;
-import jumpin.controller.listener.ViewModelListener;
+import jumpin.controller.game.listener.BoardListener;
+import jumpin.controller.game.listener.MainMenuListener;
+import jumpin.controller.game.listener.PieceListener;
+import jumpin.controller.game.listener.ViewModelListener;
 import jumpin.model.GameModel;
 import jumpin.view.View;
 import jumpin.view.game.GameView;

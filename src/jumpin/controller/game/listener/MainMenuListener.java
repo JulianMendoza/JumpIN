@@ -1,4 +1,4 @@
-package jumpin.controller.listener;
+package jumpin.controller.game.listener;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import jumpin.controller.GameController;
+import jumpin.controller.game.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.view.game.GameView;

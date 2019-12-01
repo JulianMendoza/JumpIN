@@ -29,11 +29,11 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 
 	private JButton saveLevel;
 	private JButton loadLevel;
-	private JButton generateLevel;
+	private JButton levelBuilder;
 
 	private final String SAVE = "Save Level";
 	private final String LOAD = "Load Level";
-	private final String GENERATE = "Generate Level";
+	private final String GENERATE = "Level Builder";
 
 	public LevelMenu() {
 		super("Level");
@@ -47,21 +47,21 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 
 		saveLevel = ComponentFactory.create3DMenuButton(SAVE);
 		loadLevel = ComponentFactory.create3DMenuButton(LOAD);
-		generateLevel = ComponentFactory.create3DMenuButton(GENERATE);
+		levelBuilder = ComponentFactory.create3DMenuButton(GENERATE);
 
 		setLayout(new GridLayout(0, 1, 0, 0));
 		setPreferredSize(ComponentSize.MAIN_MENU_PANEL);
 		addButtonListeners();
 		add(saveLevel);
 		add(loadLevel);
-		add(generateLevel);
+		add(levelBuilder);
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
 		saveLevel.addActionListener(l);
 		loadLevel.addActionListener(l);
-		generateLevel.addActionListener(l);
+		levelBuilder.addActionListener(l);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.LOAD_LEVEL);
 				}
-			} else if (e.getSource().equals(generateLevel)) {
+			} else if (e.getSource().equals(levelBuilder)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.GENERATE_LEVEL);
 				}

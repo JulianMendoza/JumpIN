@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
+import John.GeneratePrompt;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
@@ -26,7 +27,8 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 	private static final long serialVersionUID = 1L;
 
 	private List<MenuListener> menuListeners;
-
+	
+	private GeneratePrompt generatePrompt;
 	private JButton saveLevel;
 	private JButton loadLevel;
 	private JButton levelBuilder;
@@ -45,6 +47,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 		menuListeners = new ArrayList<MenuListener>();
 		setBackground(ViewConstants.BOARD_COLOR);
 
+		generatePrompt = new GeneratePrompt();
 		saveLevel = ComponentFactory.create3DMenuButton(SAVE);
 		loadLevel = ComponentFactory.create3DMenuButton(LOAD);
 		levelBuilder = ComponentFactory.create3DMenuButton(GENERATE);
@@ -68,7 +71,9 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 	public void addMenuListener(MenuListener l) {
 		menuListeners.add(l);
 	}
-
+	public GeneratePrompt getGeneratePrompt() {
+		return generatePrompt;
+	}
 	class ButtonListener implements ActionListener {
 
 		@Override

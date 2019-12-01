@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import John.GeneratePrompt;
 import jumpin.controller.game.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
@@ -95,7 +96,32 @@ public class MainMenuListener implements MenuListener {
 			}
 			break;
 		case MenuEvent.GENERATE_LEVEL:
-			System.out.println("TODO -> MainMenuListener");
+			GeneratePrompt generatePrompt = menu.getLevelMenu().getGeneratePrompt();
+			int level = JOptionPane.showConfirmDialog(view, generatePrompt, "Generate Level", JOptionPane.OK_CANCEL_OPTION);
+			if (level == JOptionPane.OK_OPTION) {
+				try {
+					int difficulty = Integer.parseInt(generatePrompt.getText());
+					
+					if (difficulty > 7 || difficulty < 1) {
+						JOptionPane.showMessageDialog(view, "Please enter diffciulty within range", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+						generatePrompt.clearText();
+					} else {
+						do {
+							model.setBoard(model.getLevel().createLevel());
+
+							model.getBoard().computeSolution(difficulty);
+						}while(model.getBoard().getSolution() == null || difficulty != model.getBoard().getSolution().size());
+						view.dispose();
+						GameView view = new GameView(model);
+						gameController.handleGeneration(model, view);
+						gameController.launch();
+
+					}
+				} catch (Exception x) {
+					JOptionPane.showMessageDialog(view, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+				    generatePrompt.clearText();
+				}
+			}
 			break;
 		}
 

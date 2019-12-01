@@ -79,4 +79,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 	public void initialize(GameModel model) {
 		gameStateMenu.update(model.getGameState());
 	}
+	public LevelMenu getLevelMenu() {
+		return saveLoadMenu;
+	}
 }

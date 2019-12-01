@@ -86,5 +86,12 @@ public class GameController {
 		model.getBoard().addModelListener(new ViewModelListener(this));
 	}
 
+	public void handleGeneration(GameModel model, GameView view) {
+		this.model=model;
+		this.gameView=view;
+		
+		levelLoaded=true;
+	}
+
 
 }

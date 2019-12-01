@@ -1,5 +1,6 @@
 package jumpin.model;
 
+import John.GenerateLevel;
 import jumpin.model.board.Board;
 import jumpin.model.file.LevelGenerator;
 
@@ -14,6 +15,7 @@ public class GameModel {
 	private Board board;
 	private GameState gameState;
 	private LevelGenerator generator;
+	private GenerateLevel level;
 
 	/**
 	 * Default constructor for the Game
@@ -23,6 +25,7 @@ public class GameModel {
 		board = new Board();
 		gameState = new GameState();
 		generator = new LevelGenerator(this.board, this.gameState);
+		level=new GenerateLevel(this.board,this.gameState);
 	}
 
 	public Board getBoard() {
@@ -35,6 +38,13 @@ public class GameModel {
 
 	public LevelGenerator getGenerator() {
 		return generator;
+	}
+	public GenerateLevel getLevel() {
+		return level;
+	}
+	public void setBoard(Board b) {
+		this.board=b;
+		generator = new LevelGenerator(this.board, this.gameState);
 	}
 
 	/**

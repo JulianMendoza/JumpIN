@@ -14,41 +14,41 @@ import jumpin.controller.launch.LaunchController;
  */
 public class LaunchMenu extends JPanel{
 	private static final long serialVersionUID = 1555205823441698028L;
-	private JButton play, build, load;
+	private JButton playBtn, buildBtn, loadBtn;
 	private LaunchController controller;
 
 	public LaunchMenu(LaunchController launchController) {
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		play = new JButton("Play Game");
-		load = new JButton("Load Level");
-		build = new JButton("Build Level");
+		playBtn = new JButton("Play Game");
+		loadBtn = new JButton("Load Level");
+		buildBtn = new JButton("Build Level");
 		addButtonListeners();
 		add(Box.createVerticalStrut(50));
-		add(play);
+		add(playBtn);
 		add(Box.createVerticalStrut(50));
-		add(load);
+		add(loadBtn);
 		add(Box.createVerticalStrut(50));
-		add(build);
+		add(buildBtn);
 		controller=launchController;
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
-		play.addActionListener(l);
-		load.addActionListener(l);
-		build.addActionListener(l);
+		playBtn.addActionListener(l);
+		loadBtn.addActionListener(l);
+		buildBtn.addActionListener(l);
 	}
 	
 	class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(play)) {
+			if (e.getSource().equals(playBtn)) {
 				controller.handlePlay();
-			} else if (e.getSource().equals(load)) {
+			} else if (e.getSource().equals(loadBtn)) {
 				controller.handleLoad();
-			} else if (e.getSource().equals(build)) {
+			} else if (e.getSource().equals(buildBtn)) {
 				controller.handleBuild();
 			}
 

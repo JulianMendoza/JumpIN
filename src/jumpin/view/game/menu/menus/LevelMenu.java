@@ -29,9 +29,9 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 	private List<MenuListener> menuListeners;
 	
 	private GeneratePrompt generatePrompt;
-	private JButton saveLevel;
-	private JButton loadLevel;
-	private JButton levelBuilder;
+	private JButton saveLevelBtn;
+	private JButton loadLevelBtn;
+	private JButton levelBuilderBtn;
 
 	private final String SAVE = "Save Level";
 	private final String LOAD = "Load Level";
@@ -48,23 +48,23 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 		setBackground(ViewConstants.BOARD_COLOR);
 
 		generatePrompt = new GeneratePrompt();
-		saveLevel = ComponentFactory.create3DMenuButton(SAVE);
-		loadLevel = ComponentFactory.create3DMenuButton(LOAD);
-		levelBuilder = ComponentFactory.create3DMenuButton(GENERATE);
+		saveLevelBtn = ComponentFactory.create3DMenuButton(SAVE);
+		loadLevelBtn = ComponentFactory.create3DMenuButton(LOAD);
+		levelBuilderBtn = ComponentFactory.create3DMenuButton(GENERATE);
 
 		setLayout(new GridLayout(0, 1, 0, 0));
 		setPreferredSize(ComponentSize.MAIN_MENU_PANEL);
 		addButtonListeners();
-		add(saveLevel);
-		add(loadLevel);
-		add(levelBuilder);
+		add(saveLevelBtn);
+		add(loadLevelBtn);
+		add(levelBuilderBtn);
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
-		saveLevel.addActionListener(l);
-		loadLevel.addActionListener(l);
-		levelBuilder.addActionListener(l);
+		saveLevelBtn.addActionListener(l);
+		loadLevelBtn.addActionListener(l);
+		levelBuilderBtn.addActionListener(l);
 	}
 
 	@Override
@@ -78,15 +78,15 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(saveLevel)) {
+			if (e.getSource().equals(saveLevelBtn)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.SAVE_LEVEL);
 				}
-			} else if (e.getSource().equals(loadLevel)) {
+			} else if (e.getSource().equals(loadLevelBtn)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.LOAD_LEVEL);
 				}
-			} else if (e.getSource().equals(levelBuilder)) {
+			} else if (e.getSource().equals(levelBuilderBtn)) {
 				for (MenuListener l : menuListeners) {
 					l.menuActionPerformed(MenuEvent.GENERATE_LEVEL);
 				}

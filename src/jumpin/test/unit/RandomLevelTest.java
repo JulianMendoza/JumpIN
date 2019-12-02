@@ -24,6 +24,7 @@ public class RandomLevelTest extends TestCase {
 		levelGenerator = new GenerateLevel(theBoard, theModel.getGameState());
 	}
 
+
 	/**
 	 * Test if randomly generated levels are solvable
 	 * 

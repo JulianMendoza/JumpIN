@@ -1,9 +1,9 @@
 package jumpin.test.unit;
 
 import John.GenerateLevel;
+
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
-import jumpin.model.file.LevelGenerator;
 import junit.framework.TestCase;
 
 /**

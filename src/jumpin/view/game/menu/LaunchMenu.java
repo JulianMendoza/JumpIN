@@ -1,5 +1,6 @@
 package jumpin.view.game.menu;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import jumpin.controller.launch.LaunchController;
 import jumpin.view.factory.ComponentFactory;
 /**
@@ -29,6 +31,10 @@ public class LaunchMenu extends JPanel{
 		playButton = ComponentFactory.create3DMenuButton(PLAY_TEXT);
 		loadButton = ComponentFactory.create3DMenuButton(LOAD_TEXT);
 		buildButton = ComponentFactory.create3DMenuButton(BUILD_TEXT);
+		
+		playButton.setBackground(Color.GRAY);
+		loadButton.setBackground(Color.GRAY);
+		buildButton.setBackground(Color.GRAY);
 		
 		addButtonListeners();
 		add(Box.createVerticalStrut(60));

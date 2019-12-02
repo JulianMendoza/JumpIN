@@ -1,7 +1,7 @@
 package jumpin.view.game.menu;
 
 import jumpin.view.AbstractFrame;
-import jumpin.view.game.menu.listener.MenuListener;
+import jumpin.view.listener.MenuListener;
 
 /**
  * Functional interface for the main menu

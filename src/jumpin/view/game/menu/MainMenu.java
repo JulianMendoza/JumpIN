@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 import jumpin.model.GameModel;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
-import jumpin.view.game.menu.listener.MenuListener;
 import jumpin.view.game.menu.menus.GameStateMenu;
 import jumpin.view.game.menu.menus.HistoryMenu;
 import jumpin.view.game.menu.menus.LevelMenu;
 import jumpin.view.game.menu.menus.solver.SolverMenu;
+import jumpin.view.listener.MenuListener;
 
 /**
  * GUI Components for the main menu (undo, redo, state, etc.)

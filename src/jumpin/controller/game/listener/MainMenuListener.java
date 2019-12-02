@@ -11,10 +11,10 @@ import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.view.game.GameView;
 import jumpin.view.game.menu.MainMenu;
-import jumpin.view.game.menu.listener.MenuEvent;
-import jumpin.view.game.menu.listener.MenuListener;
 import jumpin.view.game.menu.menus.solver.ThresholdPrompt;
 import jumpin.view.level.LevelLoader;
+import jumpin.view.listener.MenuEvent;
+import jumpin.view.listener.MenuListener;
 import jumpin.view.util.Waiter;
 
 /**

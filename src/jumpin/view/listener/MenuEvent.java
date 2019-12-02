@@ -1,4 +1,4 @@
-package jumpin.view.game.menu.listener;
+package jumpin.view.listener;
 
 public class MenuEvent {
 

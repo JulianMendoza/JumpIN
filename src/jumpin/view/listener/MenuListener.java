@@ -1,4 +1,4 @@
-package jumpin.view.game.menu.listener;
+package jumpin.view.listener;
 
 /**
  * Functional interface for listeners of the main menu

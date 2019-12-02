@@ -14,7 +14,7 @@ import jumpin.view.factory.ImageFactory;
 import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.menu.MainMenu;
-import jumpin.view.game.menu.listener.MenuListener;
+import jumpin.view.listener.MenuListener;
 
 /**
  * 

@@ -27,6 +27,7 @@ public class GameController {
 	public GameController(LaunchController lc) {
 		this.model = new GameModel();
 		this.gameView = new GameView(model);
+		this.launchController = lc;
 		levelLoaded = false;
 	}
 

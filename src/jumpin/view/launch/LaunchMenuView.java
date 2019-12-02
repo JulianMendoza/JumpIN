@@ -1,4 +1,4 @@
-package jumpin.view;
+package jumpin.view.launch;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import jumpin.controller.launch.LaunchController;
+import jumpin.view.constants.ImageConstants;
 import jumpin.view.factory.ImageFactory;
 import jumpin.view.game.menu.LaunchMenu;
 
@@ -26,11 +27,11 @@ public class LaunchMenuView extends JFrame {
 	}
 
 	public void populate() {
-		JLabel background = new JLabel(new ImageIcon("images\\StartMenu.jpg"));
+		JLabel background = new JLabel(new ImageIcon(ImageConstants.START_MENU));
 		add(background);
 		background.setLayout(new FlowLayout());
 		setSize(600, 455);
-		launchMenu.setBackground(new Color(0,0,0,0));
+		launchMenu.setBackground(new Color(0, 0, 0, 0));
 		launchMenu.setOpaque(false);
 		background.add(launchMenu);
 		setLocationRelativeTo(null);

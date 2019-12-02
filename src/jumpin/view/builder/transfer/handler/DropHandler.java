@@ -1,26 +1,29 @@
-package jumpin.view.builder;
+package jumpin.view.builder.transfer.handler;
 
+import java.awt.Container;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 import javax.swing.TransferHandler;
 
+import jumpin.view.builder.menu.TrashCan;
+import jumpin.view.builder.transfer.TransferablePiece;
+import jumpin.view.builder.transfer.TransferredPiece;
 import jumpin.view.factory.DragFactory;
-import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
-public class TileDropHandler extends TransferHandler {
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
+public class DropHandler extends TransferHandler {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 581970729998717500L;
-	private BoardView boardView;
-
-	public TileDropHandler(BoardView boardView) {
-		this.boardView = boardView;
-	}
 
 	@Override
 	public boolean canImport(TransferSupport support) {
@@ -29,6 +32,7 @@ public class TileDropHandler extends TransferHandler {
 				TileView tileView = (TileView) support.getComponent();
 				return tileView.getModel().isEmpty();
 			}
+			return support.getComponent() instanceof TrashCan;
 		}
 		return false;
 	}
@@ -41,14 +45,28 @@ public class TileDropHandler extends TransferHandler {
 		// Check target component
 		try {
 			Object o = support.getTransferable().getTransferData(TransferablePiece.FLAVOR);
-			if (o instanceof TransferredPiece && support.getComponent() instanceof TileView) {
-				updateBoard((TileView) support.getComponent(), (TransferredPiece) o);
+			if (o instanceof TransferredPiece) {
+				if (support.getComponent() instanceof TileView) {
+					updateBoard((TileView) support.getComponent(), (TransferredPiece) o);
+				} else if (support.getComponent() instanceof TrashCan) {
+					trashPiece(((TransferredPiece) o).getOldTile());
+				}
 			}
 		} catch (UnsupportedFlavorException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;
+	}
+
+	private void trashPiece(TileView oldTile) {
+		if (oldTile != null) {
+			oldTile.getModel().clear();
+			oldTile.populate();
+			Container c = oldTile.getParent();
+			c.validate();
+			c.repaint();
+		}
 	}
 
 	private void updateBoard(TileView newTile, TransferredPiece transferredPiece) {
@@ -62,8 +80,10 @@ public class TileDropHandler extends TransferHandler {
 		newTile.getModel().setPiece(piece.getPiece());
 		newTile.populate();
 		DragFactory.makeDraggablePiece(newTile.getPieceView());
-		boardView.validate();
-		boardView.repaint();
+
+		Container c = newTile.getParent();
+		c.validate();
+		c.repaint();
 	}
 
 }

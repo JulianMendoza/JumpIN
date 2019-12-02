@@ -1,21 +1,27 @@
-package jumpin.view.builder;
+package jumpin.view.builder.transfer.handler;
 
 import java.awt.datatransfer.Transferable;
 
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
+import jumpin.view.builder.transfer.TransferablePiece;
 import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
-public class PieceDragHandler extends TransferHandler {
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
+public class DragHandler extends TransferHandler {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5164773908328999100L;
 
-	public PieceDragHandler() {
+	public DragHandler() {
 		super("text");
 	}
 
@@ -33,7 +39,6 @@ public class PieceDragHandler extends TransferHandler {
 
 	@Override
 	public boolean canImport(TransferSupport support) {
-
 		return !(support.getComponent() instanceof PieceView) && support.isDataFlavorSupported(TransferablePiece.FLAVOR);
 	}
 

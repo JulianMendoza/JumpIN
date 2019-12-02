@@ -1,4 +1,4 @@
-package jumpin.view.builder;
+package jumpin.view.builder.transfer;
 
 import java.io.Serializable;
 
@@ -6,6 +6,11 @@ import jumpin.util.Pair;
 import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class TransferredPiece extends Pair<PieceView, TileView> implements Serializable {
 
 	/**

@@ -1,47 +1,50 @@
 package jumpin.view.builder.menu;
 
-import java.awt.Color;
+import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-import jumpin.model.constants.FoxPart;
-import jumpin.model.constants.Orientation;
-import jumpin.model.constants.PieceID;
-import jumpin.model.piece.pieces.Fox;
-import jumpin.model.piece.pieces.Mushroom;
-import jumpin.model.piece.pieces.Rabbit;
 import jumpin.view.AbstractFrame;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
-import jumpin.view.factory.DragFactory;
-import jumpin.view.game.piece.PieceView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BuilderMenu extends JPanel implements AbstractFrame {
+
+	private JScrollPane scrollPane;
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3784367179192639288L;
+	private static final long serialVersionUID = -2068785327419860500L;
 
-	public BuilderMenu() {
+	public BuilderMenu(PieceMenu pieceMenu) {
 		super();
+		constructScrollPane(pieceMenu);
 		populate();
+	}
+
+	private void constructScrollPane(PieceMenu pieceMenu) {
+		scrollPane = new JScrollPane(pieceMenu, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setPreferredSize(new Dimension(300, ComponentSize.BUILDER_MENU_HEIGHT));
 	}
 
 	@Override
 	public void populate() {
-		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
-		setBounds(0, 0, ComponentSize.BUILDER_MENU_WIDTH, ComponentSize.BUILDER_MENU_HEIGHT);
+		setBounds(0, 0, ComponentSize.BUILDER_MENU_WIDTH, ComponentSize.BUILDER_MENU_HEIGHT + ComponentSize.FRAME_BAR_HEIGHT);
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		add(new BuilderControlMenu("Builder"));
+		add(new TrashCan());
+		add(scrollPane);
 
-		add(DragFactory.makeDraggablePiece(new PieceView(new Rabbit(PieceID.RABBIT))));
-		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX))));
-		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX))));
-		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX))));
-		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX))));
-		add(DragFactory.makeDraggablePiece(new PieceView(new Mushroom())));
 	}
 
 }

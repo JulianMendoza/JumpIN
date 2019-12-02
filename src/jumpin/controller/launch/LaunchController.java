@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 import jumpin.controller.builder.BuilderController;
 import jumpin.controller.game.GameController;
-import jumpin.view.LaunchMenuView;
 import jumpin.view.game.GameView;
+import jumpin.view.launch.LaunchMenuView;
 import jumpin.view.launch.ScreenSplasher;
 
 /**

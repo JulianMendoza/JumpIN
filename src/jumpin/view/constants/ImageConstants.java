@@ -29,4 +29,8 @@ public class ImageConstants {
 
 	public static final String SPLASH_SCREEN = "images/splashscreen.jpg";
 
+	public static final String TRASH_CAN = "images/trashcan.png";
+
+	public static final String START_MENU = "images/StartMenu.jpg";
+
 }

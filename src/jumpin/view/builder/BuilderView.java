@@ -9,6 +9,8 @@ import jumpin.model.board.BoardModel;
 import jumpin.model.board.util.BoardUtilities;
 import jumpin.view.AbstractFrame;
 import jumpin.view.builder.menu.BuilderMenu;
+import jumpin.view.builder.menu.PieceMenu;
+import jumpin.view.builder.transfer.handler.DropHandler;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.FontFactory;
@@ -16,13 +18,18 @@ import jumpin.view.factory.ImageFactory;
 import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BuilderView extends JFrame implements AbstractFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1916881036341049618L;
-	private BuilderMenu menu;
+	private PieceMenu menu;
 
 	private BoardView boardView;
 
@@ -41,19 +48,19 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null);
 
-		menu = new BuilderMenu();
-		getContentPane().add(new BuilderMenuScroller(menu));
+		menu = new PieceMenu();
+		getContentPane().add(new BuilderMenu(menu));
 
 		boardView = new BoardView(new BoardModel(BoardUtilities.createDefaultBoardModel()));
-		TileDropHandler handler = new TileDropHandler(boardView);
-
-		getContentPane().add(boardView);
+		DropHandler handler = new DropHandler();
 		for (Component c : boardView.getComponents()) {
 			if (c instanceof TileView) {
 				TileView tileView = (TileView) c;
 				tileView.setTransferHandler(handler);
 			}
 		}
+
+		getContentPane().add(boardView);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

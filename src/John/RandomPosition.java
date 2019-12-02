@@ -12,28 +12,28 @@ public class RandomPosition {
 		super();
 	}
 	
-	public static Position getRandomPosition() {
+	public static Position getRandomPosition(Board board) {
 		Random rn = new Random();
-		int x = rn.nextInt(4);
-		int y = rn.nextInt(4);
+		int x = rn.nextInt(board.getModel().getWidth()-1);
+		int y = rn.nextInt(board.getModel().getHeight()-1);
 		return new Position (x,y);
 	}
 	
-	public static Position[] getEastWest() {
+	public static Position[] getEastWest(Board board) {
 		Position headTail[] = new Position[2]; 
 		Random rn = new Random();
-		int x = rn.nextInt(4);
-		int y = rn.nextInt(4);
+		int x = rn.nextInt(board.getModel().getWidth()-1);
+		int y = rn.nextInt(board.getModel().getHeight()-1);
 		headTail[0] = new Position(x,y);
 		headTail[1] = new Position(x+1,y);
 		return headTail;
 	}
 	
-	public static Position[] getNorthSouth() {
+	public static Position[] getNorthSouth(Board board) {
 		Position headTail[] = new Position[2]; 
 		Random rn = new Random();
-		int x = rn.nextInt(4);
-		int y = rn.nextInt(4);
+		int x = rn.nextInt(board.getModel().getWidth()-1);
+		int y = rn.nextInt(board.getModel().getHeight()-1);
 		headTail[0] = new Position(x,y);
 		headTail[1] = new Position(x,y-1);
 		return headTail;

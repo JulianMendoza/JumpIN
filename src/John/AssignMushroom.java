@@ -23,10 +23,10 @@ public class AssignMushroom {
 		
 		for(int i = 0; i < rn.nextInt(3)+1; i++) {
 			mush = new Mushroom();
-			pos = RandomPosition.getRandomPosition();
+			pos = RandomPosition.getRandomPosition(board);
 			board.selectPiece(pos);
 			while(!check.validSpace(board, pos)){
-				pos = RandomPosition.getRandomPosition();
+				pos = RandomPosition.getRandomPosition(board);
 			}
 			board.assignPiece(pos, mush);
 		}

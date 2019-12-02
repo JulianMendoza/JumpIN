@@ -32,9 +32,9 @@ public class AssignRabbit {
 			else {
 				rabbit = new Rabbit(PieceID.RABBIT_ID_3);
 			}
-			pos = RandomPosition.getRandomPosition();
+			pos = RandomPosition.getRandomPosition(board);
 			while(!check.validSpace(board, pos)){
-				pos = RandomPosition.getRandomPosition();
+				pos = RandomPosition.getRandomPosition(board);
 			}
 			board.assignPiece(pos, rabbit);
 		}

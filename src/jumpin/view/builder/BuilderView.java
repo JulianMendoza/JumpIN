@@ -35,17 +35,18 @@ public class BuilderView extends JFrame implements AbstractFrame {
 	public void populate() {
 		setFont(FontFactory.createDefaultFont());
 		setResizable(false);
-		setTitle(ViewConstants.FRAME_TITLE);
+		setTitle(ViewConstants.FRAME_TITLE + " Level Builder");
 		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null);
-		TileDropHandler handler = new TileDropHandler();
 
 		menu = new BuilderMenu();
 		getContentPane().add(menu);
 
 		boardView = new BoardView(new BoardModel(BoardUtilities.createDefaultBoardModel()));
+		TileDropHandler handler = new TileDropHandler(boardView);
+
 		getContentPane().add(boardView);
 		for (Component c : boardView.getComponents()) {
 			if (c instanceof TileView) {

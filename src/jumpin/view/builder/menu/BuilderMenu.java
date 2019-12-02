@@ -14,6 +14,7 @@ import javax.swing.border.TitledBorder;
 import jumpin.view.builder.menu.menus.BuilderControlMenu;
 import jumpin.view.builder.menu.menus.PieceMenu;
 import jumpin.view.builder.menu.menus.TrashCan;
+import jumpin.view.builder.transfer.handler.DropHandler;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.FontFactory;
@@ -29,16 +30,22 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 
 	private JScrollPane scrollPane;
 	private BuilderControlMenu controlMenu;
+	private TrashCan trashCan;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2068785327419860500L;
 
-	public BuilderMenu(PieceMenu pieceMenu) {
+	public BuilderMenu(PieceMenu pieceMenu, DropHandler handler) {
 		super();
+		constructTrashCan(handler);
 		constructScrollPane(pieceMenu);
 		populate();
+	}
+
+	private void constructTrashCan(DropHandler handler) {
+		trashCan = new TrashCan(handler);
 	}
 
 	private void constructScrollPane(PieceMenu pieceMenu) {
@@ -59,7 +66,7 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 
 		controlMenu = new BuilderControlMenu("Builder Control");
 		add(controlMenu);
-		add(new TrashCan());
+		add(trashCan);
 		add(scrollPane);
 
 	}

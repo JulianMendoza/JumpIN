@@ -1,7 +1,5 @@
 package jumpin.view.builder;
 
-import java.awt.Component;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -48,17 +46,11 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null);
 
-		menu = new BuilderMenu(new PieceMenu());
+		boardView = new BoardView(new BoardModel(BoardUtilities.createDefaultBoardModel()));
+
+		menu = new BuilderMenu(new PieceMenu(), new DropHandler(this));
 		getContentPane().add(menu);
 
-		boardView = new BoardView(new BoardModel(BoardUtilities.createDefaultBoardModel()));
-		DropHandler handler = new DropHandler();
-		for (Component c : boardView.getComponents()) {
-			if (c instanceof TileView) {
-				TileView tileView = (TileView) c;
-				tileView.setTransferHandler(handler);
-			}
-		}
 		getContentPane().add(boardView);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -73,28 +65,15 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		 * Reset the board
 		 */
 		getMenu();
-		for (Component c : boardView.getComponents()) {
-			if (c instanceof TileView) {
-				TileView tileView = (TileView) c;
-				tileView.getModel().clear();
-				tileView.clearPiece();
-			}
+		for (TileView tileView : boardView.getTileViews()) {
+			tileView.getModel().clear();
+			tileView.clearPiece();
 		}
 		super.dispose();
 	}
 
 	public BoardView getBoardView() {
 		return boardView;
-	}
-
-	public static BuilderView findBuilderView(Component c) {
-		Component parent = c;
-		while ((parent = parent.getParent()) != null) {
-			if (parent instanceof BuilderView) {
-				return (BuilderView) parent;
-			}
-		}
-		return null;
 	}
 
 }

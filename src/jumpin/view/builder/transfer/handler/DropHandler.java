@@ -1,17 +1,21 @@
 package jumpin.view.builder.transfer.handler;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 import javax.swing.TransferHandler;
 
+import jumpin.model.constants.PieceID;
+import jumpin.model.piece.UniquePiece;
+import jumpin.model.piece.pieces.Fox;
+import jumpin.model.piece.pieces.Rabbit;
 import jumpin.view.builder.BuilderView;
 import jumpin.view.builder.menu.menus.TrashCan;
 import jumpin.view.builder.transfer.TransferablePiece;
 import jumpin.view.builder.transfer.TransferredPiece;
 import jumpin.view.factory.DragFactory;
+import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
@@ -21,6 +25,13 @@ import jumpin.view.game.piece.PieceView;
  *
  */
 public class DropHandler extends TransferHandler {
+
+	private BuilderView view;
+
+	public DropHandler(BuilderView view) {
+		this.view = view;
+		addTileDropHandlers(view.getBoardView());
+	}
 
 	/**
 	 * 
@@ -53,7 +64,8 @@ public class DropHandler extends TransferHandler {
 				} else if (support.getComponent() instanceof TrashCan) {
 					trashPiece(((TransferredPiece) o).getOldTile());
 				}
-				disableSave(support.getComponent());
+				resetIDs(view.getBoardView());
+				disableSave();
 			}
 		} catch (UnsupportedFlavorException | IOException e) {
 			// TODO Auto-generated catch block
@@ -84,15 +96,29 @@ public class DropHandler extends TransferHandler {
 		newTile.populate();
 		DragFactory.makeDraggablePiece(newTile.getPieceView());
 
-		Container c = newTile.getParent();
-		c.validate();
-		c.repaint();
+		view.validate();
+		view.repaint();
 	}
 
-	private void disableSave(Component c) {
-		BuilderView v = BuilderView.findBuilderView(c);
-		if (v != null) {
-			v.getMenu().getMenu().setSaveEnabled(false);
+	private void resetIDs(BoardView boardView) {
+		for (TileView tileView : boardView.getTileViews()) {
+			if (!tileView.getModel().isEmpty()) {
+				if (tileView.getModel().getPiece() instanceof Rabbit) {
+					((UniquePiece) tileView.getModel().getPiece()).setPieceID(PieceID.RABBIT);
+				} else if (tileView.getModel().getPiece() instanceof Fox) {
+					((UniquePiece) tileView.getModel().getPiece()).setPieceID(PieceID.FOX);
+				}
+			}
+		}
+	}
+
+	private void disableSave() {
+		view.getMenu().getMenu().setSaveEnabled(false);
+	}
+
+	private void addTileDropHandlers(BoardView boardView) {
+		for (TileView tileView : boardView.getTileViews()) {
+			tileView.setTransferHandler(this);
 		}
 	}
 

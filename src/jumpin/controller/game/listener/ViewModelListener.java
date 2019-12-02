@@ -25,7 +25,8 @@ public class ViewModelListener implements BoardModelListener {
 
 	private GameView view;
 	private GameModel model;
-
+	private GameController controller;
+	
 	/**
 	 * Default constructor for ViewModelListener
 	 * 
@@ -33,6 +34,7 @@ public class ViewModelListener implements BoardModelListener {
 	 */
 
 	public ViewModelListener(GameController gc) {
+		this.controller=gc;
 		this.model = gc.getModel();
 		this.view = gc.getGameView();
 	}
@@ -72,7 +74,7 @@ public class ViewModelListener implements BoardModelListener {
 	private void checkGameState() {
 		if (model.getGameState().getState().equals(StateOfGame.WON)) {
 			JOptionPane.showMessageDialog(view, model.getGameState().getState().toString(), "Victory", JOptionPane.INFORMATION_MESSAGE);
-			System.exit(0);
+			controller.handleWin();
 		}
 	}
 }

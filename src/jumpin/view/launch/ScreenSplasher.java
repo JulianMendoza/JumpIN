@@ -1,8 +1,8 @@
 package jumpin.view.launch;
 
+import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 
-import jumpin.view.game.GameView;
 
 /**
  * 
@@ -12,17 +12,17 @@ import jumpin.view.game.GameView;
 public class ScreenSplasher extends SwingWorker<Void, Void> {
 
 	private SplashScreen splashScreen;
-	private GameView gameView;
+	private JFrame view;
 
-	public ScreenSplasher(GameView gameView) {
-		this.gameView = gameView;
+	public ScreenSplasher(JFrame view) {
+		this.view = view;
 		splashScreen = new SplashScreen();
 	}
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		if (gameView != null) {
-			gameView.setVisible(false);
+		if (view != null) {
+			view.setVisible(false);
 		}
 		splashScreen.splash();
 		return null;
@@ -31,8 +31,8 @@ public class ScreenSplasher extends SwingWorker<Void, Void> {
 	@Override
 	protected void done() {
 
-		if (gameView != null) {
-			gameView.setVisible(true);
+		if (view != null) {
+			view.setVisible(true);
 		}
 	}
 

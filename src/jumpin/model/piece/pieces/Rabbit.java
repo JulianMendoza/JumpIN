@@ -1,8 +1,9 @@
 package jumpin.model.piece.pieces;
 
+import java.io.Serializable;
+
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
-import jumpin.model.piece.Piece;
 import jumpin.model.piece.UniquePiece;
 
 /**
@@ -11,9 +12,12 @@ import jumpin.model.piece.UniquePiece;
  * @author Giuseppe
  *
  */
-public class Rabbit extends Piece implements UniquePiece {
+public class Rabbit extends UniquePiece implements Serializable {
 
-	private String pieceID;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -776390835267869484L;
 
 	/**
 	 * Constructs rabbit piece
@@ -21,8 +25,7 @@ public class Rabbit extends Piece implements UniquePiece {
 	 * @param pieceID String representation of Rabbit piece number
 	 */
 	public Rabbit(String pieceID) {
-		super(Orientation.DYNAMIC);
-		this.pieceID = pieceID;
+		super(Orientation.DYNAMIC, pieceID);
 	}
 
 	/**
@@ -30,18 +33,9 @@ public class Rabbit extends Piece implements UniquePiece {
 	 * 
 	 * @return string constant for Rabbit piece
 	 */
+	@Override
 	public String toString() {
 		return PieceID.RABBIT;
-	}
-
-	/**
-	 * method to return string representation of Rabbit piece ID
-	 * 
-	 * @return ID for a rabbit piece
-	 */
-	@Override
-	public String getPieceID() {
-		return pieceID;
 	}
 
 	/**
@@ -58,7 +52,7 @@ public class Rabbit extends Piece implements UniquePiece {
 		} else if (o == this) {
 			return true;
 		} else if (o instanceof Rabbit) {
-			return pieceID.equals(((Rabbit) o).getPieceID());
+			return getPieceID().equals(((Rabbit) o).getPieceID());
 		} else {
 			return false;
 		}

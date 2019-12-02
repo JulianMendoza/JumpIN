@@ -1,5 +1,7 @@
 package jumpin.model.piece;
 
+import java.io.Serializable;
+
 import jumpin.model.constants.Direction;
 import jumpin.model.constants.Orientation;
 
@@ -8,7 +10,11 @@ import jumpin.model.constants.Orientation;
  * @author Giuseppe
  * 
  */
-public class Piece implements Cloneable {
+public class Piece implements Cloneable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 727628923264983774L;
 	/**
 	 * The orientation of the piece . NORTH_SOUTH/EAST_WEST if it is a fox. STATIC
 	 * if it is a mushroom DYNAMIC if i is a rabbit

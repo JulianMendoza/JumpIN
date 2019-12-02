@@ -10,6 +10,8 @@ import jumpin.consolegame.command.commands.MoveCommand;
 import jumpin.consolegame.exception.InvalidCommandException;
 import jumpin.exception.JumpINException;
 import jumpin.model.GameModel;
+import jumpin.model.file.LevelParser;
+import jumpin.view.level.LevelDialog;
 
 /**
  * A class for creating a console game
@@ -28,9 +30,16 @@ public class ConsoleGame extends GameModel {
 	 */
 	public ConsoleGame() throws CloneNotSupportedException {
 		super();
-		this.getGenerator().loadLevelXML();
+		LevelDialog loader = new LevelDialog();
+		LevelParser parser = loader.parseLevel(false);
+		if (parser.successfulyParsed()) {
+			 GameModel g=parser.getModel();
+			 this.setBoard(g.getBoard());
+			 this.setGameState(g.getGameState());
+		}
 		scanner = new Scanner(System.in);
 	}
+	
 
 	/**
 	 * Starts the game. Welcomes the player and continuously polls user commands.

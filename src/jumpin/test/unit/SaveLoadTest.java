@@ -56,7 +56,6 @@ public class SaveLoadTest extends TestCase {
 		savedBoard.assignPiece(new Position(2, 4), mush2);
 		
 		File savedLevel = new File("test.xml");
-		// **SAVE IT AS "test.xml"**
 		LevelSaver.saveLevel(savedLevel, theModel);
 		
 		levelLoader = new LevelParser();

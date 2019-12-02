@@ -92,7 +92,7 @@ public class DropHandler extends TransferHandler {
 			oldTile.populate();
 		}
 
-		newTile.getModel().setPiece(new PieceView(piece).getPiece());
+		newTile.getModel().setPiece(piece.getPiece());
 		newTile.populate();
 		DragFactory.makeDraggablePiece(newTile.getPieceView());
 

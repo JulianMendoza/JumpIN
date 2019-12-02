@@ -50,13 +50,12 @@ public class BoardLogic {
 				if(tile.getPiece() != null && tile.getPiece() instanceof UniquePiece) {
 					if(tile.getPiece() instanceof Fox){
 						Fox fox = (Fox) tile.getPiece();
-						fox.setPieceID(PieceID.FOX+currFoxID);
 						assignFoxID(board,fox,currFoxID,pos);
 						currFoxID++;
 					}
 					else{
-						Rabbit rabbit = (Rabbit) tile.getPiece();
-						rabbit.setPieceID(PieceID.RABBIT+currRabbitID);
+						Rabbit rabbit = new Rabbit(PieceID.RABBIT+currRabbitID);
+						board.assignPiece(pos,rabbit);
 						currRabbitID++;
 					}
 				}
@@ -64,31 +63,47 @@ public class BoardLogic {
 		}
 	}
 	private static void assignFoxID(Board board,Fox fox,int currFoxID,Position pos) {
-		if(!fox.getPieceID().equals(PieceID.FOX)) {
+		if(fox.getPieceID().equals(PieceID.FOX)) {
+			Fox newFox = new Fox(fox.getPart(),fox.getOrientation(),PieceID.FOX+currFoxID);
+			board.assignPiece(pos,newFox);
 			switch(fox.getOrientation()) {
 			case NORTH_SOUTH:
 				if(pos.getY()==0) { 
-					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart().equals(FoxPart.TAIL)) {
+						sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					}
 				}else if(pos.getY()==4) {
-					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart().equals(FoxPart.HEAD)) {
+						sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					}
 				}else {
-					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
-					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart().equals(FoxPart.TAIL)) {
+						sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					}else if(fox.getPart().equals(FoxPart.HEAD)) {
+						sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					}
 				}
 				break;
 			case EAST_WEST:
 				if(pos.getX()==0) { 
-					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart().equals(FoxPart.HEAD)) {
+						sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					}
 				}else if(pos.getX()==4) {
-					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart().equals(FoxPart.TAIL)) {
+						sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					}
 				}else {
-					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
-					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart().equals(FoxPart.HEAD)) {
+						sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					}else if(fox.getPart().equals(FoxPart.TAIL)) {
+						sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					}
 				}
 				break;
 			default:
 				break;
-			}	
+			}
 		}
 	}
 	private static void sameFoxHelper(Position pos,Board board,int currFoxID,Orientation o) {
@@ -96,7 +111,8 @@ public class BoardLogic {
 		if(tile.getPiece() instanceof Fox){
 			Fox fox2 = (Fox) tile.getPiece();
 			if(fox2.getOrientation()==o) {
-				fox2.setPieceID(PieceID.FOX+currFoxID);
+				Fox newFox = new Fox(fox2.getPart(),fox2.getOrientation(),PieceID.FOX+currFoxID);
+				board.assignPiece(pos,newFox);
 			}
 		}
 	}

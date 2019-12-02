@@ -3,12 +3,9 @@ package jumpin.model.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import John.AssignID;
 import jumpin.model.board.Board;
-import jumpin.model.board.BoardModel;
-import jumpin.model.board.tile.RabbitHole;
 import jumpin.model.board.tile.Tile;
-import jumpin.model.constants.FoxPart;
+import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
 import jumpin.model.piece.UniquePiece;
 import jumpin.model.piece.pieces.Fox;
@@ -41,10 +38,10 @@ public class BoardLogic {
 	}
 	
 	public static void organizeID(Board board){
-		AssignID assignID = new AssignID();
 		int height = board.getModel().getHeight();
 		int width = board.getModel().getWidth();
 		int currRabbitID = 1;
+		int currFoxID = 1;
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Position pos = new Position(j, i);
@@ -52,17 +49,55 @@ public class BoardLogic {
 				if(tile.getPiece() != null && tile.getPiece() instanceof UniquePiece) {
 					if(tile.getPiece() instanceof Fox){
 						Fox fox = (Fox) tile.getPiece();
-						assignID.assignFoxID(board, fox);
+						assignFoxID(board,fox,currFoxID,pos);
+						currFoxID++;
 					}
 					else{
 						Rabbit rabbit = (Rabbit) tile.getPiece();
 						rabbit.setPieceID(PieceID.RABBIT+currRabbitID);
+						currRabbitID++;
 					}
 				}
 			}
 		}
 	}
-	
+	private static void assignFoxID(Board board,Fox fox,int currFoxID,Position pos) {
+		if(!fox.getPieceID().equals(PieceID.FOX)) {
+			switch(fox.getOrientation()) {
+			case NORTH_SOUTH:
+				if(pos.getY()==0) { 
+					sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+				}else if(pos.getY()==4) {
+					sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+				}else {
+					sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+				}
+				break;
+			case EAST_WEST:
+				if(pos.getX()==0) { 
+					sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+				}else if(pos.getX()==4) {
+					sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+				}else {
+					sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+				}
+				break;
+			default:
+				break;
+			}	
+		}
+	}
+	private static void sameFoxHelper(Position pos,Board board,int currFoxID,Orientation o) {
+		Tile tile=board.getTile(pos);
+		if(tile.getPiece() instanceof Fox){
+			Fox fox2 = (Fox) tile.getPiece();
+			if(fox2.getOrientation()==o) {
+				fox2.setPieceID(PieceID.FOX+currFoxID);
+			}
+		}
+	}
 	/**
 	 * Method to generate moveset based on a move for a piece
 	 * 

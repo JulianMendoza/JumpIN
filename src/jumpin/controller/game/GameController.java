@@ -55,9 +55,7 @@ public class GameController {
 			handleGeneration();
 		}
 	}
-	/*
-	 * Internal load from the game
-	 */
+
 	public void handleload(File f) {
 		gameView.dispose();
 		this.model = new GameModel();
@@ -66,9 +64,7 @@ public class GameController {
 		levelLoaded=true;
 		launch();
 	}
-	/*
-	 * Load from the menu
-	 */
+
 	public void loadLevel() {
 		File f=new LevelLoader(model, gameView).launchChooser(false);
 		if(f!=null) {

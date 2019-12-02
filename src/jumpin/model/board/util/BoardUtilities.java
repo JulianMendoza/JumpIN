@@ -8,6 +8,7 @@ import jumpin.model.board.tile.Tile;
 import jumpin.model.board.validator.BoardValidator;
 import jumpin.model.constants.BoardConstants;
 import jumpin.model.constants.Direction;
+import jumpin.model.exception.InvalidBoardException;
 import jumpin.model.factory.TileFactory;
 import jumpin.model.logic.BoardLogic;
 import jumpin.model.piece.pieces.Rabbit;
@@ -143,8 +144,8 @@ public class BoardUtilities {
 		return rabbitsToWin;
 	}
 
-	public static boolean validate(Board board, int maxMoves) {
-		return BoardValidator.validate(board, maxMoves);
+	public static void validate(Board board, int maxMoves) throws InvalidBoardException {
+		BoardValidator.validate(board, maxMoves);
 	}
 
 }

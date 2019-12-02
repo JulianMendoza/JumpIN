@@ -7,6 +7,7 @@ import jumpin.model.GameModel;
 import jumpin.model.GameState;
 import jumpin.model.board.Board;
 import jumpin.model.board.util.BoardUtilities;
+import jumpin.model.exception.InvalidBoardException;
 import jumpin.view.builder.BuilderView;
 import jumpin.view.level.LevelDialog;
 import jumpin.view.listener.MenuEvent;
@@ -41,9 +42,13 @@ public class BuilderMenuListener implements MenuListener {
 			if (result == JOptionPane.OK_OPTION) {
 				try {
 					int threshold = Integer.parseInt(thresholdPrompt.getText());
-					view.getMenu().getMenu().setSaveEnabled(BoardUtilities.validate(createBoard(), threshold));
+					BoardUtilities.validate(createBoard(), threshold);
+					view.getMenu().getMenu().setSaveEnabled(true);
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(view, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+					thresholdPrompt.clearText();
+				} catch (InvalidBoardException e2) {
+					JOptionPane.showMessageDialog(view, e2.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
 					thresholdPrompt.clearText();
 				}
 			}

@@ -118,8 +118,10 @@ public class MainMenuListener implements MenuListener {
 
 					}
 				} catch (Exception x) {
-					JOptionPane.showMessageDialog(view, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
-				    generatePrompt.clearText();
+					System.out.println(model.getBoard().toString());
+					x.printStackTrace();
+					//JOptionPane.showMessageDialog(view, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+				   // generatePrompt.clearText();
 				}
 			}
 			break;

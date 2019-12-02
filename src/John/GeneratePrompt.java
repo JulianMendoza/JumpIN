@@ -54,7 +54,6 @@ public class GeneratePrompt extends JPanel implements AbstractFrame {
 					gc.setRandomLevel(view,model,true);
 				}
 			} catch (Exception x) {
-				x.printStackTrace();
 				JOptionPane.showMessageDialog(this, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 			    this.clearText();
 			}

@@ -94,7 +94,9 @@ public class MainMenuListener implements MenuListener {
 				gameController.handleload(f);
 			}
 			break;
-		case MenuEvent.GENERATE_LEVEL:
+		case MenuEvent.BUILD_LEVEL:
+				view.dispose();
+				gameController.handleBuild();
 			break;
 		}
 

@@ -88,7 +88,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 				}
 			} else if (e.getSource().equals(levelBuilderBtn)) {
 				for (MenuListener l : menuListeners) {
-					l.menuActionPerformed(MenuEvent.GENERATE_LEVEL);
+					l.menuActionPerformed(MenuEvent.BUILD_LEVEL);
 				}
 			}
 

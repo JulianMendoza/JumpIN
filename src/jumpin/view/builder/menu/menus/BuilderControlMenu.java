@@ -55,10 +55,16 @@ public class BuilderControlMenu extends GroupBox implements MenuFrame {
 		saveLevel = ComponentFactory.create3DMenuButton(SAVE);
 		saveLevel.setEnabled(false);
 		back = ComponentFactory.create3DMenuButton(BACK);
-
+		addButtonListeners();
 		add(validateLevel);
 		add(saveLevel);
 		add(back);
+	}
+	private void addButtonListeners() {
+		ActionListener l = new ButtonListener();
+		validateLevel.addActionListener(l);
+		saveLevel.addActionListener(l);
+		back.addActionListener(l);
 	}
 
 	@Override
@@ -80,7 +86,7 @@ public class BuilderControlMenu extends GroupBox implements MenuFrame {
 				}
 			} else if (e.getSource().equals(back)) {
 				for (MenuListener l : menuListeners) {
-					l.menuActionPerformed(MenuEvent.SAVE_LEVEL);
+					l.menuActionPerformed(MenuEvent.BACK);
 				}
 			}
 

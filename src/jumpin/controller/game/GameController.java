@@ -102,4 +102,8 @@ public class GameController {
 		launchController.handleWin();
 	}
 
+	public void handleBuild() {
+		launchController.handleBuild();
+	}
+
 }

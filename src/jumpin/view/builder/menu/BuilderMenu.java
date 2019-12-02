@@ -56,7 +56,6 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 	@Override
 	public void addMenuListener(MenuListener l) {
 		controlMenu.addMenuListener(l);
-		;
 	}
 
 }

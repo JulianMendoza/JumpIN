@@ -16,7 +16,7 @@ public class MenuEvent {
 
 	public static final int LOAD_LEVEL = 6;
 
-	public static final int GENERATE_LEVEL = 7;
+	public static final int BUILD_LEVEL = 7;
 
 	public static final int VALIDATE_LEVEL = 8;
 

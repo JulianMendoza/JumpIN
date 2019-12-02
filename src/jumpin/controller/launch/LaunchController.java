@@ -20,6 +20,10 @@ public class LaunchController {
 
 	public LaunchController() {
 		gameController = new GameController(this);
+		buildController = new BuilderController(this);
+	}
+	public LaunchMenuView getStartView() {
+		return startView;
 	}
 
 	public void startMenu() {
@@ -52,7 +56,12 @@ public class LaunchController {
 	}
 
 	public void handleBuild() {
-
+		startView.setVisible(false);
+		splash(buildController.getView());
+		buildController.launch();
+	}
+	public void handleBack() {
+		splash(startView);
 	}
 
 	public void splash(JFrame view) {

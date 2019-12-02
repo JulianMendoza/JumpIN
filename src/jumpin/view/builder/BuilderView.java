@@ -59,7 +59,6 @@ public class BuilderView extends JFrame implements AbstractFrame {
 				tileView.setTransferHandler(handler);
 			}
 		}
-
 		getContentPane().add(boardView);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -68,8 +67,4 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		return menu;
 	}
 
-	public static void main(String args[]) {
-		BuilderView view = new BuilderView();
-		view.setVisible(true);
-	}
 }

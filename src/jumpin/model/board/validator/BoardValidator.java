@@ -58,7 +58,7 @@ public class BoardValidator {
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
-		if(board.getSolution()==null) {
+		if(board.getSolution()==null||numToWin==0) {
 			throw new InvalidBoardException("Board is not solvable");
 		}
 		/*

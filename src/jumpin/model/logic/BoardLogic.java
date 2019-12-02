@@ -5,6 +5,7 @@ import java.util.List;
 
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.Tile;
+import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
 import jumpin.model.piece.UniquePiece;
@@ -67,22 +68,22 @@ public class BoardLogic {
 			switch(fox.getOrientation()) {
 			case NORTH_SOUTH:
 				if(pos.getY()==0) { 
-					sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
 				}else if(pos.getY()==4) {
-					sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
 				}else {
-					sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
-					sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX(),pos.getY()+1),board,currFoxID,Orientation.NORTH_SOUTH);
+					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX(),pos.getY()-1),board,currFoxID,Orientation.NORTH_SOUTH);
 				}
 				break;
 			case EAST_WEST:
 				if(pos.getX()==0) { 
-					sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
 				}else if(pos.getX()==4) {
-					sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
 				}else {
-					sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
-					sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart()==FoxPart.HEAD) sameFoxHelper(new Position(pos.getX()+1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
+					if(fox.getPart()==FoxPart.TAIL) sameFoxHelper(new Position(pos.getX()-1,pos.getY()),board,currFoxID,Orientation.EAST_WEST);
 				}
 				break;
 			default:

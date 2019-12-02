@@ -20,6 +20,11 @@ public class UniquePiece extends Piece {
 		setPieceID(pieceID);
 	}
 
+	public UniquePiece(UniquePiece piece) {
+		super(piece.getOrientation());
+		pieceID = piece.getPieceID();
+	}
+
 	private String pieceID;
 
 	/**

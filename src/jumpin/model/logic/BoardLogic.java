@@ -3,9 +3,17 @@ package jumpin.model.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import John.AssignID;
 import jumpin.model.board.Board;
+import jumpin.model.board.BoardModel;
+import jumpin.model.board.tile.RabbitHole;
+import jumpin.model.board.tile.Tile;
+import jumpin.model.constants.FoxPart;
+import jumpin.model.constants.PieceID;
+import jumpin.model.piece.UniquePiece;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
+import jumpin.model.structures.Position;
 import jumpin.model.structures.move.Move;
 import jumpin.model.structures.move.MoveSet;
 /**
@@ -30,6 +38,29 @@ public class BoardLogic {
 			validMoves.addAll(FoxLogic.findFoxMoves(board));
 		}
 		return validMoves;
+	}
+	
+	public static void organizeID(Board board){
+		AssignID assignID = new AssignID();
+		int height = board.getModel().getHeight();
+		int width = board.getModel().getWidth();
+		int currRabbitID = 1;
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				Position pos = new Position(j, i);
+				Tile tile = board.getTile(pos);
+				if(tile.getPiece() != null && tile.getPiece() instanceof UniquePiece) {
+					if(tile.getPiece() instanceof Fox){
+						Fox fox = (Fox) tile.getPiece();
+						assignID.assignFoxID(board, fox);
+					}
+					else{
+						Rabbit rabbit = (Rabbit) tile.getPiece();
+						rabbit.setPieceID(PieceID.RABBIT+currRabbitID);
+					}
+				}
+			}
+		}
 	}
 	
 	/**

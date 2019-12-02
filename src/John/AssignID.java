@@ -8,7 +8,7 @@ import jumpin.model.constants.PieceID;
 import jumpin.model.piece.pieces.Fox;
 
 public class AssignID {
-	private Fox fox1,fox2,fox3,fox4;
+	private Fox fox1,fox2,fox3;
 	
 	public AssignID(){
 		super();
@@ -18,7 +18,6 @@ public class AssignID {
 		fox1 = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_1);
 		fox2 = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_1);
 		fox3 = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_2);
-	    fox4 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_2);
 		
 	    if(fox.getPart().equals(fox1.getPart()) && fox.getOrientation().equals(fox1.getOrientation())){
 	    	fox.setPieceID(PieceID.FOX_ID_1);

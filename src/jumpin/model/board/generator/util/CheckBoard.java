@@ -1,4 +1,4 @@
-package John;
+package jumpin.model.board.generator.util;
 
 import jumpin.model.board.Board;
 import jumpin.model.board.tile.RabbitHole;

@@ -7,6 +7,11 @@ import javax.swing.TransferHandler;
 
 import jumpin.view.game.piece.PieceView;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class DragListener implements MouseListener {
 
 	@Override
@@ -30,7 +35,6 @@ public class DragListener implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		PieceView pieceView = (PieceView) e.getSource();
-
 		TransferHandler th = pieceView.getTransferHandler();
 		th.exportAsDrag(pieceView, e, TransferHandler.COPY);
 	}

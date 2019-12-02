@@ -13,7 +13,7 @@ import jumpin.view.factory.FontFactory;
 import jumpin.view.factory.ImageFactory;
 import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
-import jumpin.view.game.menu.MainMenu;
+import jumpin.view.game.menu.GameMenu;
 import jumpin.view.listener.MenuListener;
 
 /**
@@ -25,7 +25,7 @@ public class GameView extends JFrame implements AbstractFrame {
 	private static final long serialVersionUID = -5089660197653181626L;
 	private GameModel model;
 	private BoardView boardView;
-	private MainMenu menu;
+	private GameMenu menu;
 
 	/**
 	 * Default constructor that initializes the game
@@ -60,7 +60,7 @@ public class GameView extends JFrame implements AbstractFrame {
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null); // centers the window
 
-		menu = new MainMenu();
+		menu = new GameMenu();
 		getContentPane().add(menu);
 
 		boardView = new BoardView(model.getBoard().getModel());
@@ -97,7 +97,8 @@ public class GameView extends JFrame implements AbstractFrame {
 		menu.addMenuListener(l);
 	}
 
-	public MainMenu getMainMenu() {
+	public GameMenu getMainMenu() {
 		return menu;
 	}
+
 }

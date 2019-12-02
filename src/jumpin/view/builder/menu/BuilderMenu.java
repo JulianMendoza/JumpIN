@@ -1,17 +1,23 @@
 package jumpin.view.builder.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import jumpin.view.builder.menu.menus.BuilderControlMenu;
 import jumpin.view.builder.menu.menus.PieceMenu;
 import jumpin.view.builder.menu.menus.TrashCan;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
-import jumpin.view.game.menu.MenuFrame;
+import jumpin.view.factory.FontFactory;
+import jumpin.view.listener.MenuFrame;
 import jumpin.view.listener.MenuListener;
 
 /**
@@ -37,7 +43,10 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 
 	private void constructScrollPane(PieceMenu pieceMenu) {
 		scrollPane = new JScrollPane(pieceMenu, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setPreferredSize(new Dimension(300, ComponentSize.BUILDER_MENU_HEIGHT));
+		scrollPane.setPreferredSize(new Dimension(100, ComponentSize.BUILDER_MENU_HEIGHT));
+		scrollPane.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Piece Picker", TitledBorder.CENTER, TitledBorder.TOP, FontFactory.createMenuFont(Font.BOLD, 14), new Color(0, 0, 0)));
+		scrollPane.setBackground(ViewConstants.BOARD_COLOR);
+		scrollPane.setViewportBorder(null);
 	}
 
 	@Override
@@ -46,11 +55,17 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+
 		controlMenu = new BuilderControlMenu("Builder Control");
 		add(controlMenu);
 		add(new TrashCan());
 		add(scrollPane);
 
+	}
+
+	public BuilderControlMenu getMenu() {
+		return controlMenu;
 	}
 
 	@Override

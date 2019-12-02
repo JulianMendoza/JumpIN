@@ -1,10 +1,12 @@
-package John;
+package jumpin.model.board.generator;
 
-
+import jumpin.model.GameModel;
 import jumpin.model.GameState;
 import jumpin.model.board.Board;
+import jumpin.model.board.generator.util.AssignFox;
+import jumpin.model.board.generator.util.AssignMushroom;
+import jumpin.model.board.generator.util.AssignRabbit;
 import jumpin.model.constants.StateOfGame;
-
 
 /**
  * 
@@ -13,30 +15,23 @@ import jumpin.model.constants.StateOfGame;
  */
 
 public class GenerateLevel {
-	
-	private Board board;
-	private GameState gameState;
 
-	public GenerateLevel(Board board, GameState gamestate){
-		this.board = board;
-		this.gameState = gamestate;
-	}
-	
-	public Board createLevel() throws CloneNotSupportedException{
-		board=new Board();
-		
+	public static GameModel createLevel() throws CloneNotSupportedException {
+		Board board = new Board();
+		GameState gameState = new GameState();
+
 		AssignFox assignFox = new AssignFox(board);
 		assignFox.assign();
-		
+
 		AssignRabbit assignRabbit = new AssignRabbit(board);
 		gameState.setNumToWin(assignRabbit.assign());
-		
+
 		AssignMushroom assignMush = new AssignMushroom(board);
 		assignMush.assign();
-		
+
 		gameState.setState(StateOfGame.IN_PROGRESS);
 		board.addModelListener(gameState);
-		return board;
-		
+		return new GameModel(board, gameState);
+
 	}
 }

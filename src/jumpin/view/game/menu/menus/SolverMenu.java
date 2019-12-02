@@ -1,4 +1,4 @@
-package jumpin.view.game.menu.menus.solver;
+package jumpin.view.game.menu.menus;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,9 +12,10 @@ import javax.swing.SwingUtilities;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
-import jumpin.view.game.menu.MenuFrame;
 import jumpin.view.listener.MenuEvent;
+import jumpin.view.listener.MenuFrame;
 import jumpin.view.listener.MenuListener;
+import jumpin.view.prompt.ThresholdPrompt;
 import jumpin.view.util.GroupBox;
 
 /**

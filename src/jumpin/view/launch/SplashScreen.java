@@ -28,7 +28,7 @@ public class SplashScreen extends JWindow implements AbstractFrame {
 	 */
 	private static final long serialVersionUID = -2383405811428507600L;
 	private JProgressBar loadBar;
-	private static final int LOAD_TIME = 500;
+	private static final int LOAD_TIME = 2000;
 
 	public SplashScreen() {
 		super();
@@ -68,7 +68,7 @@ public class SplashScreen extends JWindow implements AbstractFrame {
 				e.printStackTrace();
 			}
 			loadBar.setValue(loadBar.getValue() + 10);
-			loadBar.setString("Loading level... " + computePercentage(loadBar.getValue()));
+			loadBar.setString("Loading... " + computePercentage(loadBar.getValue()));
 		}
 	}
 

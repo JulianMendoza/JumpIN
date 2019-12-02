@@ -1,11 +1,13 @@
 package jumpin.view.builder.transfer.handler;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 import javax.swing.TransferHandler;
 
+import jumpin.view.builder.BuilderView;
 import jumpin.view.builder.menu.menus.TrashCan;
 import jumpin.view.builder.transfer.TransferablePiece;
 import jumpin.view.builder.transfer.TransferredPiece;
@@ -51,6 +53,7 @@ public class DropHandler extends TransferHandler {
 				} else if (support.getComponent() instanceof TrashCan) {
 					trashPiece(((TransferredPiece) o).getOldTile());
 				}
+				disableSave(support.getComponent());
 			}
 		} catch (UnsupportedFlavorException | IOException e) {
 			// TODO Auto-generated catch block
@@ -84,6 +87,13 @@ public class DropHandler extends TransferHandler {
 		Container c = newTile.getParent();
 		c.validate();
 		c.repaint();
+	}
+
+	private void disableSave(Component c) {
+		BuilderView v = BuilderView.findBuilderView(c);
+		if (v != null) {
+			v.getMenu().getMenu().setSaveEnabled(false);
+		}
 	}
 
 }

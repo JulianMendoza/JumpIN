@@ -25,7 +25,7 @@ public class LevelChooser extends JFileChooser implements AbstractFrame {
 	@Override
 	public void populate() {
 		setCurrentDirectory(new java.io.File("."));
-		setDialogTitle("Choose which level to load");
+		setDialogTitle("Choose level file");
 		setFileFilter(new FileNameExtensionFilter("xml files (*.xml)", "xml"));
 	}
 

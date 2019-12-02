@@ -1,8 +1,5 @@
 package jumpin.view.builder.menu.menus;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import jumpin.model.constants.FoxPart;
@@ -36,7 +33,6 @@ public class PieceMenu extends JPanel implements AbstractFrame {
 
 	@Override
 	public void populate() {
-		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		setBounds(0, 0, ComponentSize.BUILDER_MENU_WIDTH, ComponentSize.BUILDER_MENU_HEIGHT);
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);

@@ -7,22 +7,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import jumpin.controller.launch.LaunchController;
+import jumpin.view.AbstractFrame;
 import jumpin.view.constants.ImageConstants;
 import jumpin.view.factory.ImageFactory;
-import jumpin.view.game.menu.LaunchMenu;
+import jumpin.view.launch.menu.LaunchMenu;
 
 /**
  * 
  * @author: John
  */
-public class LaunchMenuView extends JFrame {
+public class LaunchView extends JFrame implements AbstractFrame {
 	private static final long serialVersionUID = 1L;
 	private LaunchMenu launchMenu;
 
-	public LaunchMenuView(LaunchController lc) {
+	public LaunchView() {
 		super("Welcome To JumpIN");
-		launchMenu = new LaunchMenu(lc);
+		launchMenu = new LaunchMenu();
 		populate();
 	}
 
@@ -37,6 +37,9 @@ public class LaunchMenuView extends JFrame {
 		setLocationRelativeTo(null);
 		setIconImage(ImageFactory.generateRabbit());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
+	}
+
+	public LaunchMenu getMenu() {
+		return launchMenu;
 	}
 }

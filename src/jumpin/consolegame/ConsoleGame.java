@@ -23,7 +23,8 @@ public class ConsoleGame extends GameModel {
 
 	/**
 	 * Constructs a Console Game
-	 * @throws CloneNotSupportedException 
+	 * 
+	 * @throws CloneNotSupportedException
 	 */
 	public ConsoleGame() throws CloneNotSupportedException {
 		super();

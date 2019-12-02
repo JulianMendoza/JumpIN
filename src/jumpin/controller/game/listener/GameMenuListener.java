@@ -1,20 +1,17 @@
 package jumpin.controller.game.listener;
 
-import java.io.File;
-
 import javax.swing.JOptionPane;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import jumpin.controller.game.GameController;
 import jumpin.model.GameModel;
 import jumpin.model.exception.IllegalMoveException;
+import jumpin.model.file.LevelParser;
 import jumpin.view.game.GameView;
-import jumpin.view.game.menu.MainMenu;
-import jumpin.view.game.menu.menus.solver.ThresholdPrompt;
-import jumpin.view.level.LevelLoader;
+import jumpin.view.game.menu.GameMenu;
+import jumpin.view.level.LevelDialog;
 import jumpin.view.listener.MenuEvent;
 import jumpin.view.listener.MenuListener;
+import jumpin.view.prompt.ThresholdPrompt;
 import jumpin.view.util.Waiter;
 
 /**
@@ -22,23 +19,23 @@ import jumpin.view.util.Waiter;
  * @author Giuseppe
  *
  */
-public class MainMenuListener implements MenuListener {
+public class GameMenuListener implements MenuListener {
 
 	private GameView view;
 	private GameModel model;
 	private GameController gameController;
 
-	public MainMenuListener(GameController gc) {
+	public GameMenuListener(GameController gc) {
 		this.model = gc.getModel();
 		this.view = gc.getGameView();
-		this.gameController=gc;
+		this.gameController = gc;
 	}
 
 	@Override
 	public void menuActionPerformed(int menuEvent) {
 		Waiter waiter = new Waiter(view);
 		waiter.startWaiting();
-		MainMenu menu = view.getMainMenu();
+		GameMenu menu = view.getMainMenu();
 
 		switch (menuEvent) {
 		case MenuEvent.UNDO:
@@ -79,24 +76,19 @@ public class MainMenuListener implements MenuListener {
 			}
 			break;
 		case MenuEvent.SAVE_LEVEL:
-			try {
-				model.getGenerator().saveLevelXML();
-			} catch (ParserConfigurationException e) {
-
-			} catch (TransformerException e) {
-
-			}
+			LevelDialog saver = new LevelDialog();
+			saver.saveLevel(model);
 			break;
 		case MenuEvent.LOAD_LEVEL:
-			LevelLoader loader = new LevelLoader(model, view);
-			File f=loader.launchChooser(false);
-			if(f!=null) {
-				gameController.handleload(f);
+			LevelDialog loader = new LevelDialog();
+			LevelParser parser = loader.parseLevel(false);
+			if (parser.successfulyParsed()) {
+				gameController.handleLoad(parser);
 			}
 			break;
 		case MenuEvent.BUILD_LEVEL:
-				view.dispose();
-				gameController.handleBuild();
+			view.dispose();
+			gameController.handleBuild();
 			break;
 		}
 

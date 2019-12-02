@@ -22,4 +22,6 @@ public class MenuEvent {
 
 	public static final int BACK = 9;
 
+	public static final int PLAY_GAME = 10;
+
 }

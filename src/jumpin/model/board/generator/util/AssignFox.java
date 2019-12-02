@@ -1,4 +1,4 @@
-package John;
+package jumpin.model.board.generator.util;
 
 import java.util.Random;
 

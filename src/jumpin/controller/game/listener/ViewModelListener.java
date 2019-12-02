@@ -13,7 +13,7 @@ import jumpin.model.structures.move.Move;
 import jumpin.model.structures.move.MoveSet;
 import jumpin.view.game.GameView;
 import jumpin.view.game.board.BoardView;
-import jumpin.view.game.menu.MainMenu;
+import jumpin.view.game.menu.GameMenu;
 import jumpin.view.game.piece.PieceView;
 
 /**
@@ -47,7 +47,7 @@ public class ViewModelListener implements BoardModelListener {
 	}
 
 	private void updateMenu() {
-		MainMenu menu = view.getMainMenu();
+		GameMenu menu = view.getMainMenu();
 		BoardHistory history = model.getBoard().getHistory();
 		menu.getHistoryMenu().setRedo(history.hasRedo());
 		menu.getHistoryMenu().setUndo(history.hasUndo());

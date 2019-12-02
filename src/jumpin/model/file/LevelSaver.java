@@ -2,10 +2,6 @@ package jumpin.model.file;
 
 import java.io.File;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,60 +15,30 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import jumpin.model.GameModel;
 import jumpin.model.GameState;
 import jumpin.model.board.Board;
 import jumpin.model.constants.BoardConstants;
+import jumpin.model.exception.LevelSaveException;
 import jumpin.model.piece.Piece;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.structures.Position;
 
-/**
- * Class to generate levels on load
- * 
- * @author Julian
- *
- */
-public class LevelGenerator {
-	private Board board;
-	private GameState gameState;
+public class LevelSaver {
 
-	/**
-	 * Default constructor for LevelGenerator
-	 * 
-	 * @param board
-	 * @param gameState
-	 */
-	public LevelGenerator(Board board, GameState gameState) {
-		this.board = board;
-		this.gameState = gameState;
-	}
+	public static void saveLevel(File file, GameModel model) throws LevelSaveException {
+		GameState gameState = model.getGameState();
+		Board board = model.getBoard();
 
-	public void loadLevelXML() {
-		/**
-		 * DELEGATE THIS PART
-		 */
-		JFrame parentFrame = new JFrame();
-		JFileChooser fc = new JFileChooser();
-		fc.setCurrentDirectory(new java.io.File("."));
-		fc.setDialogTitle("Choose which level to load");
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
-		fc.setFileFilter(filter);
-		int userSelection = fc.showOpenDialog(parentFrame);
-		/**
-		 * 
-		 */
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-
-		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
-			JOptionPane.showMessageDialog(null, "No selected file", "Error", JOptionPane.ERROR_MESSAGE);
-			loadLevelXML();
-		}
-	}
-
-	public void saveLevelXML() throws ParserConfigurationException, TransformerException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		DocumentBuilder dBuilder = null;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			throw new LevelSaveException("Failed to create document builder");
+		}
+
 		Document doc = dBuilder.newDocument();
 		Attr attr = doc.createAttribute("numToWin");
 		attr.setValue(Integer.toString(gameState.getNumToWin()));
@@ -121,29 +87,19 @@ public class LevelGenerator {
 
 			}
 		}
-		/**
-		 * DELEGATE THIS PART
-		 */
-		JFrame parentFrame = new JFrame();
-		JFileChooser fc = new JFileChooser();
-		fc.setCurrentDirectory(new java.io.File("."));
-		fc.setDialogTitle("Choose where to save the level");
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
-		fc.setFileFilter(filter);
-		int userSelection = fc.showSaveDialog(parentFrame);
-		File fileToSave = null;
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-			fileToSave = new File(fc.getSelectedFile().getAbsolutePath() + ".xml");
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
+
+		File fileToSave = new File(file.getAbsolutePath() + ".xml");
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
+		try {
+			transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(fileToSave);
 			transformer.transform(source, result);
-		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
-			JOptionPane.showMessageDialog(null, "File not saved", "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (TransformerException e) {
+			throw new LevelSaveException("Error saving level");
 		}
-		/**
-		 * 
-		 */
+
 	}
+
 }

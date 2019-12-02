@@ -1,4 +1,4 @@
-package jumpin.view.game.menu.menus.solver;
+package jumpin.view.prompt;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,9 +15,9 @@ import jumpin.view.AbstractFrame;
 public class ThresholdPrompt extends JPanel implements AbstractFrame {
 
 	private static final long serialVersionUID = -1599647700466379424L;
-	
+
 	private JTextField thresholdField;
-	private final String PROMPT = "Please enter a search depth threshold:";
+	private final String PROMPT = "Please enter a threshold for max moves to solve the game:";
 
 	public ThresholdPrompt() {
 		populate();

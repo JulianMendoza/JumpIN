@@ -4,34 +4,38 @@ import javax.swing.JFrame;
 
 import jumpin.controller.builder.BuilderController;
 import jumpin.controller.game.GameController;
-import jumpin.view.launch.LaunchMenuView;
+import jumpin.controller.launch.listener.LaunchMenuListener;
+import jumpin.view.launch.LaunchView;
 import jumpin.view.launch.ScreenSplasher;
 
 /**
  * Main controller
  * 
- * @author Julian
+ * @author Julian, Giuseppe
  *
  */
 public class LaunchController {
 	private GameController gameController;
 	private BuilderController buildController;
-	private LaunchMenuView startView;
+	private LaunchView startView;
 
 	public LaunchController() {
 		gameController = new GameController(this);
 		buildController = new BuilderController(this);
+		startView = new LaunchView();
+		initializeListeners();
 	}
-	public LaunchMenuView getStartView() {
+
+	public LaunchView getStartView() {
 		return startView;
 	}
 
+	private void initializeListeners() {
+		startView.getMenu().addMenuListener(new LaunchMenuListener(this));
+	}
+
 	public void startMenu() {
-		if (startView == null) {
-			startView = new LaunchMenuView(this);
-		} else {
-			startView.setVisible(true);
-		}
+		startView.setVisible(true);
 	}
 
 	public void handlePlay() {
@@ -58,8 +62,8 @@ public class LaunchController {
 	public void handleBuild() {
 		startView.setVisible(false);
 		splash(buildController.getView());
-		buildController.launch();
 	}
+
 	public void handleBack() {
 		splash(startView);
 	}

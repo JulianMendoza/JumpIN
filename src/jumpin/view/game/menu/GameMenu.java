@@ -11,7 +11,8 @@ import jumpin.view.constants.ViewConstants;
 import jumpin.view.game.menu.menus.GameStateMenu;
 import jumpin.view.game.menu.menus.HistoryMenu;
 import jumpin.view.game.menu.menus.LevelMenu;
-import jumpin.view.game.menu.menus.solver.SolverMenu;
+import jumpin.view.game.menu.menus.SolverMenu;
+import jumpin.view.listener.MenuFrame;
 import jumpin.view.listener.MenuListener;
 
 /**
@@ -19,7 +20,7 @@ import jumpin.view.listener.MenuListener;
  * 
  * @author Julian, Giuseppe, John, Cameron Davis
  */
-public class MainMenu extends JPanel implements MenuFrame {
+public class GameMenu extends JPanel implements MenuFrame {
 
 	private SolverMenu solverMenu;
 	private HistoryMenu historyMenu;
@@ -27,7 +28,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 	private LevelMenu saveLoadMenu;
 	private static final long serialVersionUID = -436968148338186761L;
 
-	public MainMenu() {
+	public GameMenu() {
 		populate();
 	}
 

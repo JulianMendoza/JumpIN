@@ -1,40 +1,37 @@
 package jumpin.view.level;
 
-import java.io.File;
-
-import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import jumpin.model.GameModel;
 import jumpin.model.exception.LevelParseException;
+import jumpin.model.exception.LevelSaveException;
 import jumpin.model.file.LevelParser;
-import jumpin.view.game.GameView;
+import jumpin.model.file.LevelSaver;
 
 /**
  * 
  * @author Giuseppe, Julian
  *
  */
-public class LevelLoader {
+public class LevelDialog {
 
-	private LevelParser parser;
-	private JFrame parentFrame;
+	private JDialog parentFrame;
 
-	public LevelLoader(GameModel gameModel, GameView gameView) {
-		parser = new LevelParser(gameModel.getBoard(), gameModel.getGameState());
+	public LevelDialog() {
 		constructFrame();
 	}
 
 	private void constructFrame() {
-		parentFrame = new JFrame();
+		parentFrame = new JDialog();
 		parentFrame.setLocationRelativeTo(null);
 		parentFrame.setSize(200, 200);
-		parentFrame.add(new JButton());
 	}
 
-	public File launchChooser(boolean mandatoryChoice) {
+	public LevelParser parseLevel(boolean mandatoryChoice) {
+		LevelParser parser = new LevelParser();
+
 		LevelChooser fc = new LevelChooser();
 		int userSelection = fc.showOpenDialog(parentFrame);
 
@@ -42,28 +39,35 @@ public class LevelLoader {
 			try {
 				parser.parseLevel(fc.getSelectedFile());
 				parentFrame.dispose();
-				return fc.getSelectedFile();
 			} catch (LevelParseException e) {
 				JOptionPane.showMessageDialog(parentFrame, e.getMessage(), "Parsing Error", JOptionPane.ERROR_MESSAGE);
-				launchChooser(mandatoryChoice);
+				parseLevel(mandatoryChoice);
 			}
 		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
 			if (mandatoryChoice) {
 				JOptionPane.showMessageDialog(parentFrame, "You must choose a level!", "Severe Error", JOptionPane.ERROR_MESSAGE);
-				launchChooser(mandatoryChoice);
+				parseLevel(mandatoryChoice);
 			} else {
 				parentFrame.dispose();
 			}
 		}
-		return null;
+		return parser;
 	}
 
-	public void load(File f) {
-		try {
-			parser.parseLevel(f);
-		} catch (LevelParseException e) {
-			e.printStackTrace();
+	public void saveLevel(GameModel model) {
+		LevelChooser fc = new LevelChooser();
+		int userSelection = fc.showSaveDialog(parentFrame);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			try {
+				LevelSaver.saveLevel(fc.getSelectedFile(), model);
+			} catch (LevelSaveException e) {
+				JOptionPane.showMessageDialog(parentFrame, e.getMessage(), "Parsing Error", JOptionPane.ERROR_MESSAGE);
+				saveLevel(model);
+			}
+		} else if (userSelection == JFileChooser.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "File not saved", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+		parentFrame.dispose();
 	}
 
 }

@@ -8,13 +8,13 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-import John.GeneratePrompt;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
-import jumpin.view.game.menu.MenuFrame;
 import jumpin.view.listener.MenuEvent;
+import jumpin.view.listener.MenuFrame;
 import jumpin.view.listener.MenuListener;
+import jumpin.view.prompt.DifficultyPrompt;
 import jumpin.view.util.GroupBox;
 
 /**
@@ -28,7 +28,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 
 	private List<MenuListener> menuListeners;
 	
-	private GeneratePrompt generatePrompt;
+	private DifficultyPrompt generatePrompt;
 	private JButton saveLevelBtn;
 	private JButton loadLevelBtn;
 	private JButton levelBuilderBtn;
@@ -47,7 +47,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 		menuListeners = new ArrayList<MenuListener>();
 		setBackground(ViewConstants.BOARD_COLOR);
 
-		generatePrompt = new GeneratePrompt();
+		generatePrompt = new DifficultyPrompt();
 		saveLevelBtn = ComponentFactory.create3DMenuButton(SAVE);
 		loadLevelBtn = ComponentFactory.create3DMenuButton(LOAD);
 		levelBuilderBtn = ComponentFactory.create3DMenuButton(GENERATE);
@@ -71,7 +71,7 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 	public void addMenuListener(MenuListener l) {
 		menuListeners.add(l);
 	}
-	public GeneratePrompt getGeneratePrompt() {
+	public DifficultyPrompt getGeneratePrompt() {
 		return generatePrompt;
 	}
 	class ButtonListener implements ActionListener {

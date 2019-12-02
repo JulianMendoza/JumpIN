@@ -67,4 +67,34 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		return menu;
 	}
 
+	@Override
+	public void dispose() {
+		/**
+		 * Reset the board
+		 */
+		getMenu();
+		for (Component c : boardView.getComponents()) {
+			if (c instanceof TileView) {
+				TileView tileView = (TileView) c;
+				tileView.getModel().clear();
+				tileView.clearPiece();
+			}
+		}
+		super.dispose();
+	}
+
+	public BoardView getBoardView() {
+		return boardView;
+	}
+
+	public static BuilderView findBuilderView(Component c) {
+		Component parent = c;
+		while ((parent = parent.getParent()) != null) {
+			if (parent instanceof BuilderView) {
+				return (BuilderView) parent;
+			}
+		}
+		return null;
+	}
+
 }

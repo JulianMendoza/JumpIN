@@ -1,18 +1,21 @@
 package jumpin.view.builder.menu.menus;
 
-import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
 import jumpin.view.factory.ComponentFactory;
-import jumpin.view.game.menu.MenuFrame;
+import jumpin.view.layout.GBC;
 import jumpin.view.listener.MenuEvent;
+import jumpin.view.listener.MenuFrame;
 import jumpin.view.listener.MenuListener;
 import jumpin.view.util.GroupBox;
 
@@ -47,24 +50,40 @@ public class BuilderControlMenu extends GroupBox implements MenuFrame {
 	@Override
 	public void populate() {
 		setBackground(ViewConstants.BOARD_COLOR);
-		setLayout(new GridLayout(0, 1, 0, 0));
+		// setLayout(new GridLayout(0, 1, 0, 0));
+		setLayout(new GridBagLayout());
+
 		setForeground(ViewConstants.BOARD_COLOR);
-		setPreferredSize(ComponentSize.MAIN_MENU_PANEL);
+		Dimension size = new Dimension(150, ComponentSize.BUILDER_MENU_HEIGHT);
+		setSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
 
 		validateLevel = ComponentFactory.create3DMenuButton(VALIDATE);
 		saveLevel = ComponentFactory.create3DMenuButton(SAVE);
 		saveLevel.setEnabled(false);
 		back = ComponentFactory.create3DMenuButton(BACK);
 		addButtonListeners();
-		add(validateLevel);
-		add(saveLevel);
-		add(back);
+		add(validateLevel, new GBC(0, 0));
+		add(saveLevel, new GBC(0, 1));
+		add(back, new GBC(0, 2));
 	}
+
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
 		validateLevel.addActionListener(l);
 		saveLevel.addActionListener(l);
 		back.addActionListener(l);
+	}
+
+	public void setSaveEnabled(boolean enabled) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				validateLevel.setEnabled(!enabled);
+				saveLevel.setEnabled(enabled);
+			}
+		});
 	}
 
 	@Override

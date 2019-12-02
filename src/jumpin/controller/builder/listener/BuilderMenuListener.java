@@ -1,34 +1,57 @@
 package jumpin.controller.builder.listener;
 
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import jumpin.controller.builder.BuilderController;
+import jumpin.model.GameModel;
+import jumpin.model.GameState;
+import jumpin.model.board.Board;
+import jumpin.model.board.util.BoardUtilities;
 import jumpin.view.builder.BuilderView;
-import jumpin.view.game.menu.MainMenu;
+import jumpin.view.level.LevelDialog;
 import jumpin.view.listener.MenuEvent;
 import jumpin.view.listener.MenuListener;
+import jumpin.view.prompt.ThresholdPrompt;
 import jumpin.view.util.Waiter;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class BuilderMenuListener implements MenuListener {
 
 	private BuilderView view;
-	private JFrame previousScreen;
 	private BuilderController bc;
+
 	public BuilderMenuListener(BuilderController bc) {
 		this.view = bc.getView();
-		this.previousScreen = bc.getPreviousScreen();
-		this.bc=bc;
+		this.bc = bc;
 	}
 
 	@Override
 	public void menuActionPerformed(int menuEvent) {
 		Waiter waiter = new Waiter(view);
 		waiter.startWaiting();
-		
+
 		switch (menuEvent) {
 		case MenuEvent.VALIDATE_LEVEL:
+			ThresholdPrompt thresholdPrompt = new ThresholdPrompt();
+			int result = JOptionPane.showConfirmDialog(view, thresholdPrompt, "Search threshold", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				try {
+					int threshold = Integer.parseInt(thresholdPrompt.getText());
+					view.getMenu().getMenu().setSaveEnabled(BoardUtilities.validate(createBoard(), threshold));
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(view, "Please only enter integers", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+					thresholdPrompt.clearText();
+				}
+			}
+
 			break;
 		case MenuEvent.SAVE_LEVEL:
+			LevelDialog saver = new LevelDialog();
+			saver.saveLevel(createGameModel());
 			break;
 		case MenuEvent.BACK:
 			bc.handleBack();
@@ -37,4 +60,16 @@ public class BuilderMenuListener implements MenuListener {
 		waiter.stopWaiting();
 	}
 
+	private Board createBoard() {
+		Board board = new Board();
+		board.setModel(view.getBoardView().getModel());
+		return board;
+	}
+
+	private GameModel createGameModel() {
+		Board board = createBoard();
+		GameState gameState = new GameState();
+		gameState.setNumToWin(BoardUtilities.getRabbitsToWin(board));
+		return new GameModel(board, gameState);
+	}
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.swing.TransferHandler;
 
-import jumpin.view.builder.menu.TrashCan;
+import jumpin.view.builder.menu.menus.TrashCan;
 import jumpin.view.builder.transfer.TransferablePiece;
 import jumpin.view.builder.transfer.TransferredPiece;
 import jumpin.view.factory.DragFactory;

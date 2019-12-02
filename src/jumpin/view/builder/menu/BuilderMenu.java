@@ -6,18 +6,23 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import jumpin.view.AbstractFrame;
+import jumpin.view.builder.menu.menus.BuilderControlMenu;
+import jumpin.view.builder.menu.menus.PieceMenu;
+import jumpin.view.builder.menu.menus.TrashCan;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
+import jumpin.view.game.menu.MenuFrame;
+import jumpin.view.listener.MenuListener;
 
 /**
  * 
  * @author Giuseppe
  *
  */
-public class BuilderMenu extends JPanel implements AbstractFrame {
+public class BuilderMenu extends JPanel implements MenuFrame {
 
 	private JScrollPane scrollPane;
+	private BuilderControlMenu controlMenu;
 
 	/**
 	 * 
@@ -41,10 +46,17 @@ public class BuilderMenu extends JPanel implements AbstractFrame {
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		add(new BuilderControlMenu("Builder"));
+		controlMenu = new BuilderControlMenu("Builder Control");
+		add(controlMenu);
 		add(new TrashCan());
 		add(scrollPane);
 
+	}
+
+	@Override
+	public void addMenuListener(MenuListener l) {
+		controlMenu.addMenuListener(l);
+		;
 	}
 
 }

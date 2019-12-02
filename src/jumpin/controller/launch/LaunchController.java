@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 
 import jumpin.controller.builder.BuilderController;
 import jumpin.controller.game.GameController;
-import jumpin.view.game.GameView;
 import jumpin.view.launch.LaunchMenuView;
 import jumpin.view.launch.ScreenSplasher;
 
@@ -21,8 +20,8 @@ public class LaunchController {
 
 	public LaunchController() {
 		gameController = new GameController(this);
-		buildController = new BuilderController();
 	}
+
 	public void startMenu() {
 		if (startView == null) {
 			startView = new LaunchMenuView(this);
@@ -30,27 +29,32 @@ public class LaunchController {
 			startView.setVisible(true);
 		}
 	}
+
 	public void handlePlay() {
 		gameController.launch();
 		checkLevelLoaded();
 	}
+
 	public void handleLoad() {
 		gameController.loadLevel();
 		checkLevelLoaded();
 	}
+
 	public void handleWin() {
 		splash(startView);
 	}
+
 	private void checkLevelLoaded() {
-		if(gameController.isLevelLoaded()) {
+		if (gameController.isLevelLoaded()) {
 			startView.setVisible(false);
 			gameController.launch();
 		}
 	}
+
 	public void handleBuild() {
 
 	}
-	
+
 	public void splash(JFrame view) {
 		ScreenSplasher splasher = new ScreenSplasher(view);
 		splasher.execute();

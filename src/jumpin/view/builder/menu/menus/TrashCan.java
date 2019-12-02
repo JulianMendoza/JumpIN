@@ -1,4 +1,4 @@
-package jumpin.view.builder.menu;
+package jumpin.view.builder.menu.menus;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

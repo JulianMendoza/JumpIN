@@ -9,7 +9,7 @@ import jumpin.model.board.BoardModel;
 import jumpin.model.board.util.BoardUtilities;
 import jumpin.view.AbstractFrame;
 import jumpin.view.builder.menu.BuilderMenu;
-import jumpin.view.builder.menu.PieceMenu;
+import jumpin.view.builder.menu.menus.PieceMenu;
 import jumpin.view.builder.transfer.handler.DropHandler;
 import jumpin.view.constants.ComponentSize;
 import jumpin.view.constants.ViewConstants;
@@ -29,7 +29,7 @@ public class BuilderView extends JFrame implements AbstractFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1916881036341049618L;
-	private PieceMenu menu;
+	private BuilderMenu menu;
 
 	private BoardView boardView;
 
@@ -48,8 +48,8 @@ public class BuilderView extends JFrame implements AbstractFrame {
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null);
 
-		menu = new PieceMenu();
-		getContentPane().add(new BuilderMenu(menu));
+		menu = new BuilderMenu(new PieceMenu());
+		getContentPane().add(menu);
 
 		boardView = new BoardView(new BoardModel(BoardUtilities.createDefaultBoardModel()));
 		DropHandler handler = new DropHandler();
@@ -62,6 +62,10 @@ public class BuilderView extends JFrame implements AbstractFrame {
 
 		getContentPane().add(boardView);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public BuilderMenu getMenu() {
+		return menu;
 	}
 
 	public static void main(String args[]) {

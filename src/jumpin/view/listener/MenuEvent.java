@@ -18,4 +18,8 @@ public class MenuEvent {
 
 	public static final int GENERATE_LEVEL = 7;
 
+	public static final int VALIDATE_LEVEL = 8;
+
+	public static final int BACK = 9;
+
 }

@@ -54,7 +54,6 @@ public class BuilderView extends JFrame implements AbstractFrame {
 				tileView.setTransferHandler(handler);
 			}
 		}
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

@@ -62,7 +62,6 @@ public class TileDropHandler extends TransferHandler {
 		newTile.getModel().setPiece(piece.getPiece());
 		newTile.populate();
 		DragFactory.makeDraggablePiece(newTile.getPieceView());
-
 		boardView.validate();
 		boardView.repaint();
 	}

@@ -1,6 +1,5 @@
 package jumpin.test.unit;
 
-import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.board.generator.GenerateLevel;
 import junit.framework.TestCase;
@@ -12,32 +11,22 @@ import junit.framework.TestCase;
  */
 
 public class RandomLevelTest extends TestCase {
-
-	private GenerateLevel levelGenerator;
-	private GameModel theModel;
-	private Board theBoard;
-
-	@Override
-	protected void setUp() throws CloneNotSupportedException {
-		theModel = new GameModel();
-		theBoard = theModel.getBoard();
-		levelGenerator = new GenerateLevel(theBoard, theModel.getGameState());
-	}
-
+	
+	private Board randomBoard;
 
 	/**
-	 * Test if randomly generated levels are solvable
+	 * Test for solvable random levels after six moves
 	 * 
 	 * @throws CloneNotSupportedException
 	 */
 	public void testSolvableRandomLevel() throws CloneNotSupportedException {
-		Board randomizedBoard = levelGenerator.createLevel();
+		randomBoard = GenerateLevel.createLevel().getBoard();
 
 		while (true) {
-			randomizedBoard.computeSolution(6);
-			if (randomizedBoard.getSolution() != null)
+			randomBoard.computeSolution(6);
+			if (randomBoard.getSolution() != null)
 				break;
-			randomizedBoard = levelGenerator.createLevel();
+			randomBoard = GenerateLevel.createLevel().getBoard();
 		}
 	}
 

@@ -2,17 +2,15 @@ package jumpin.test.unit;
 
 import java.io.File;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
 import jumpin.model.GameModel;
 import jumpin.model.board.Board;
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
 import jumpin.model.exception.LevelParseException;
-import jumpin.model.file.LevelGenerator;
+import jumpin.model.exception.LevelSaveException;
 import jumpin.model.file.LevelParser;
+import jumpin.model.file.LevelSaver;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Mushroom;
 import jumpin.model.piece.pieces.Rabbit;
@@ -27,7 +25,6 @@ import junit.framework.TestCase;
 
 public class SaveLoadTest extends TestCase {
 
-	private LevelGenerator levelSaver;
 	private LevelParser levelLoader;
 	private GameModel theModel;
 	private Board savedBoard, loadedBoard;
@@ -39,14 +36,12 @@ public class SaveLoadTest extends TestCase {
 	 * Creates a sample level, saves it, loads it, and test for correct 
 	 * piece positioning on the board that was loaded
 	 * 
-	 * @throws ParserConfigurationException
-	 * @throws TransformerException
 	 * @throws LevelParseException
+	 * @throws LevelSaveException 
 	 */
-	public void testSaveLoad() throws ParserConfigurationException, TransformerException, LevelParseException {
+	public void testSaveLoad() throws LevelSaveException, LevelParseException {
 		theModel = new GameModel();
 		savedBoard = theModel.getBoard();
-		loadedBoard = theModel.getBoard();
 		
 		foxHead = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 		foxTail = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
@@ -60,14 +55,14 @@ public class SaveLoadTest extends TestCase {
 		savedBoard.assignPiece(new Position(3, 1), mush1);
 		savedBoard.assignPiece(new Position(2, 4), mush2);
 		
-		levelSaver = new LevelGenerator(savedBoard, theModel.getGameState());
-		// **SAVE IT AS "test.xml"**
-		levelSaver.saveLevelXML(); 
-		
 		File savedLevel = new File("test.xml");
-		levelLoader = new LevelParser(loadedBoard, theModel.getGameState());
+		// **SAVE IT AS "test.xml"**
+		LevelSaver.saveLevel(savedLevel, theModel);
+		
+		levelLoader = new LevelParser();
 		levelLoader.parseLevel(savedLevel);
 		
+		loadedBoard = levelLoader.getModel().getBoard();
 		loadedBoard.selectPiece(new Position(1, 1));
 		assertTrue(loadedBoard.getSelectedPiece() instanceof Fox);
 		loadedBoard.selectPiece(new Position(1, 0));

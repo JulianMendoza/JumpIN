@@ -29,14 +29,20 @@ public class LaunchController {
 	}
 
 	public void handlePlay() {
-		startView.setVisible(false);
 		gameController.launch();
+		checkLevelLoaded();
+		
 	}
-
 	public void handleLoad() {
 		gameController.loadLevel();
+		checkLevelLoaded();
 	}
-
+	private void checkLevelLoaded() {
+		if(gameController.isLevelLoaded()) {
+			startView.setVisible(false);
+			gameController.launch();
+		}
+	}
 	public void handleBuild() {
 
 	}

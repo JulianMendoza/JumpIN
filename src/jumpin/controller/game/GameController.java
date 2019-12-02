@@ -2,6 +2,7 @@ package jumpin.controller.game;
 
 import java.io.File;
 
+import John.GeneratePrompt;
 import jumpin.controller.game.listener.BoardListener;
 import jumpin.controller.game.listener.MainMenuListener;
 import jumpin.controller.game.listener.PieceListener;
@@ -23,6 +24,7 @@ public class GameController {
 	private View view;
 	private GameView gameView;
 	private boolean levelLoaded;
+	private GeneratePrompt generatePrompt;
 
 	public GameController() {
 		this.model = new GameModel();
@@ -37,18 +39,19 @@ public class GameController {
 	public GameModel getModel() {
 		return model;
 	}
+	public boolean isLevelLoaded() {
+		return levelLoaded;
+	}
 
 	public void launch() {
 		if(levelLoaded) {
 			initializeListeners();
 			gameView.getMainMenu().initialize(model);
 			splash();
+			levelLoaded=false;
 		}else {
-			//generate a random level
-			System.out.println("TODO");
-			System.exit(0);
+			handleGeneration();
 		}
-		levelLoaded=false;
 	}
 	/*
 	 * Internal load from the game
@@ -79,19 +82,22 @@ public class GameController {
 		splasher.execute();
 	}
 
+	public void setRandomLevel(GameView gv,GameModel model,boolean levelLoaded) {
+		this.gameView=gv;
+		this.model=model;
+		this.levelLoaded=levelLoaded;
+	}
+
+	public void handleGeneration() {
+		generatePrompt = new GeneratePrompt();
+		generatePrompt.prompt(this);
+	}
+
 	private void initializeListeners() {
 		gameView.addPieceListener(new PieceListener(this));
 		gameView.addBoardListener(new BoardListener(this));
 		gameView.addMenuListener(new MainMenuListener(this));
 		model.getBoard().addModelListener(new ViewModelListener(this));
 	}
-
-	public void handleGeneration(GameModel model, GameView view) {
-		this.model=model;
-		this.gameView=view;
-		
-		levelLoaded=true;
-	}
-
 
 }

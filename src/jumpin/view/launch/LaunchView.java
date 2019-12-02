@@ -26,7 +26,9 @@ public class LaunchView extends JFrame implements AbstractFrame {
 		populate();
 	}
 
+	@Override
 	public void populate() {
+		setResizable(false);
 		JLabel background = new JLabel(new ImageIcon(ImageConstants.START_MENU));
 		add(background);
 		background.setLayout(new FlowLayout());

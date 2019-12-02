@@ -1,4 +1,4 @@
-package jumpin.view.launch;
+package jumpin.view.launch.splash;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

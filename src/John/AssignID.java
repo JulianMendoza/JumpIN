@@ -1,7 +1,6 @@
 package John;
 
 import jumpin.model.board.Board;
-import jumpin.model.board.BoardModel;
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;

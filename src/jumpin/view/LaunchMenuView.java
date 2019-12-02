@@ -26,13 +26,15 @@ public class LaunchMenuView extends JFrame {
 	}
 
 	public void populate() {
-		JLabel background = new JLabel(new ImageIcon("images\\splashscreen.jpg"));
-		add(background);
-		background.setLayout(new FlowLayout());
+	//	JLabel background = new JLabel(new ImageIcon("images\\splashscreen.jpg"));
+	//	add(background);
+		//background.setLayout(new FlowLayout());
+		setLayout(new FlowLayout());
+		getContentPane().setBackground(Color.GREEN);
 		setSize(615, 430);
 		launchMenu.setBackground(new Color(0,0,0,0));
 		launchMenu.setOpaque(false);
-		background.add(launchMenu);
+		add(launchMenu);
 		setLocationRelativeTo(null);
 		setIconImage(ImageFactory.generateRabbit());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -44,6 +44,10 @@ public class BoardUtilities {
 		}
 		return board;
 	}
+	
+	public static void organizeID(Board board){
+		BoardLogic.organizeID(board);
+	}
 
 	/**
 	 * Only east and south are considered positive directions when north west is

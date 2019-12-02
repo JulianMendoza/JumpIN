@@ -7,10 +7,10 @@ import jumpin.controller.game.listener.BoardListener;
 import jumpin.controller.game.listener.MainMenuListener;
 import jumpin.controller.game.listener.PieceListener;
 import jumpin.controller.game.listener.ViewModelListener;
+import jumpin.controller.launch.LaunchController;
 import jumpin.model.GameModel;
 import jumpin.view.View;
 import jumpin.view.game.GameView;
-import jumpin.view.launch.ScreenSplasher;
 import jumpin.view.level.LevelLoader;
 
 /**
@@ -25,8 +25,10 @@ public class GameController {
 	private GameView gameView;
 	private boolean levelLoaded;
 	private GeneratePrompt generatePrompt;
+	private LaunchController launchController;
 
-	public GameController() {
+	public GameController(LaunchController lc) {
+		this.launchController=lc;
 		this.model = new GameModel();
 		this.gameView = new GameView(model);
 		levelLoaded=false;
@@ -78,8 +80,7 @@ public class GameController {
 	}
 	
 	public void splash() {
-		ScreenSplasher splasher = new ScreenSplasher(gameView);
-		splasher.execute();
+		launchController.splash(gameView);
 	}
 
 	public void setRandomLevel(GameView gv,GameModel model,boolean levelLoaded) {
@@ -98,6 +99,11 @@ public class GameController {
 		gameView.addBoardListener(new BoardListener(this));
 		gameView.addMenuListener(new MainMenuListener(this));
 		model.getBoard().addModelListener(new ViewModelListener(this));
+	}
+
+	public void handleWin() {
+		gameView.dispose();
+		launchController.handleWin();
 	}
 
 }

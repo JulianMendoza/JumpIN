@@ -11,6 +11,7 @@ import junit.framework.TestCase;
  * 
  * @author Cameron
  */
+
 public class RandomLevelTest extends TestCase {
 
 	private GenerateLevel levelGenerator;

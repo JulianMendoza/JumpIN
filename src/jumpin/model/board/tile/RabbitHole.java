@@ -1,5 +1,7 @@
 package jumpin.model.board.tile;
 
+import java.io.Serializable;
+
 import jumpin.model.piece.pieces.Rabbit;
 
 /**
@@ -8,7 +10,12 @@ import jumpin.model.piece.pieces.Rabbit;
  * @author Giuseppe
  * @documentation Cameron Davis
  */
-public class RabbitHole extends Tile {
+public class RabbitHole extends Tile implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7763166965655813521L;
 
 	/**
 	 * Checks if the hole has a rabbit in it

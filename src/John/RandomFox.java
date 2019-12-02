@@ -12,9 +12,9 @@ import jumpin.model.piece.pieces.Fox;
  */
 
 public class RandomFox {
-	private boolean trigger;
+	private boolean isFirstPiece;
 	public RandomFox() {
-		trigger=true;
+		isFirstPiece = true;
 	}
 	public Fox[] getFox(int rnd){
 		Fox fox[] = new Fox[2];
@@ -22,25 +22,25 @@ public class RandomFox {
 	    switch(rnd){
 	    
 		case 1:
-			if(trigger) {
+			if(isFirstPiece) {
 				fox[1] = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_1);
 				fox[0] = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_1);
 			}else {
 				fox[1] = new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
 				fox[0] = new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
 			}
-			trigger=false;
+			isFirstPiece = false;
 			return fox;
 			
 		case 2:
-			if(trigger) {
+			if(isFirstPiece) {
 				fox[1] = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 				fox[0] = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			}else {
 				fox[1] = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_2);
 				fox[0] = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_2);
 			}
-			trigger=false;
+			isFirstPiece = false;
 			return fox;
 		}
 		return null;

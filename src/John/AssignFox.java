@@ -33,9 +33,9 @@ public class AssignFox {
 		for(int i = 0; i < rn.nextInt(2)+1; i++ ) {
 			fox = rndFox.getFox(rn.nextInt(2)+1);
 			if(fox[0].getOrientation().equals(Orientation.EAST_WEST)){
-				pos = Position.getEastWest();
+				pos = RandomPosition.getEastWest();
 				while(!check.validSpace(board, pos[0]) || !check.validSpace(board, pos[1])){
-					pos = Position.getEastWest();
+					pos = RandomPosition.getEastWest();
 				}
 				
 				board.assignPiece(pos[0], fox[0]);
@@ -43,9 +43,9 @@ public class AssignFox {
 			}
 			
 			else{
-				pos = Position.getNorthSouth();
+				pos = RandomPosition.getNorthSouth();
 				while(!check.validSpace(board, pos[0]) || !check.validSpace(board, pos[1])){
-					pos = Position.getNorthSouth();
+					pos = RandomPosition.getNorthSouth();
 				}
 
 				

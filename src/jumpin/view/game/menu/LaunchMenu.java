@@ -8,46 +8,54 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import jumpin.controller.launch.LaunchController;
+import jumpin.view.factory.ComponentFactory;
 /**
  *  @author: John, Julian
  */
 public class LaunchMenu extends JPanel{
 	private static final long serialVersionUID = 1555205823441698028L;
-	private JButton play, build, load;
+	private JButton playButton, loadButton, buildButton;
+	private final String PLAY_TEXT = "Play Game";
+	private final String LOAD_TEXT = "Load Level";
+	private final String BUILD_TEXT = "Build Level";
+
+	
 	private LaunchController controller;
 
 	public LaunchMenu(LaunchController launchController) {
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		play = new JButton("Play Game");
-		load = new JButton("Load Level");
-		build = new JButton("Build Level");
+		
+		playButton = ComponentFactory.create3DMenuButton(PLAY_TEXT);
+		loadButton = ComponentFactory.create3DMenuButton(LOAD_TEXT);
+		buildButton = ComponentFactory.create3DMenuButton(BUILD_TEXT);
+		
 		addButtonListeners();
 		add(Box.createVerticalStrut(50));
-		add(play);
-		add(Box.createVerticalStrut(50));
-		add(load);
-		add(Box.createVerticalStrut(50));
-		add(build);
+		add(playButton);
+		add(Box.createVerticalStrut(60));
+		add(loadButton);
+		add(Box.createVerticalStrut(60));
+		add(buildButton);
 		controller=launchController;
 	}
 
 	private void addButtonListeners() {
 		ActionListener l = new ButtonListener();
-		play.addActionListener(l);
-		load.addActionListener(l);
-		build.addActionListener(l);
+		playButton.addActionListener(l);
+		loadButton.addActionListener(l);
+		buildButton.addActionListener(l);
 	}
 	
 	class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(play)) {
+			if (e.getSource().equals(playButton)) {
 				controller.handlePlay();
-			} else if (e.getSource().equals(load)) {
+			} else if (e.getSource().equals(loadButton)) {
 				controller.handleLoad();
-			} else if (e.getSource().equals(build)) {
+			} else if (e.getSource().equals(buildButton)) {
 				controller.handleBuild();
 			}
 

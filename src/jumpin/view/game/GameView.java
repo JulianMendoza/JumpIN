@@ -54,8 +54,8 @@ public class GameView extends JFrame implements AbstractFrame {
 	public void populate() {
 		setFont(FontFactory.createDefaultFont());
 		setResizable(false);
-		setTitle(ViewConstants.FRAME_TITLE);
-		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
+		setTitle(ViewConstants.GAME_FRAME_TITLE);
+		setSize(ComponentSize.GAME_FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null); // centers the window

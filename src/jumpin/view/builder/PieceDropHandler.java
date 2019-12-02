@@ -5,6 +5,7 @@ import java.awt.datatransfer.Transferable;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
+import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
 public class PieceDropHandler extends TransferHandler {
@@ -21,6 +22,11 @@ public class PieceDropHandler extends TransferHandler {
 	@Override
 	protected Transferable createTransferable(JComponent component) {
 		if (component instanceof PieceView) {
+			if (component.getParent() instanceof TileView) {
+				TileView tileView = (TileView) component.getParent();
+				tileView.getModel().clear();
+				tileView.populate();
+			}
 			return new PieceTransferable((PieceView) component);
 		}
 		return null;
@@ -28,6 +34,7 @@ public class PieceDropHandler extends TransferHandler {
 
 	@Override
 	public boolean canImport(TransferSupport support) {
-		return support.isDataFlavorSupported(PieceTransferable.FLAVOR);
+
+		return !(support.getComponent() instanceof PieceView) && support.isDataFlavorSupported(PieceTransferable.FLAVOR);
 	}
 }

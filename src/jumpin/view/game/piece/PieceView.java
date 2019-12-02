@@ -1,5 +1,7 @@
 package jumpin.view.game.piece;
 
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -15,7 +17,7 @@ import jumpin.view.constants.ImageConstants;
  * 
  * @author Giuseppe
  */
-public class PieceView extends JLabel {
+public class PieceView extends JLabel implements Serializable {
 
 	private static final long serialVersionUID = 159673643052373533L;
 	private Piece model;

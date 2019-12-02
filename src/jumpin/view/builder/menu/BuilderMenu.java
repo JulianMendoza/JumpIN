@@ -32,13 +32,15 @@ public class BuilderMenu extends JPanel implements AbstractFrame {
 	@Override
 	public void populate() {
 		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
-		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
+		setBounds(0, 0, ComponentSize.BUILDER_MENU_WIDTH, ComponentSize.BUILDER_MENU_HEIGHT);
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);
 
 		add(DragFactory.makeDraggablePiece(new PieceView(new Rabbit(PieceID.RABBIT))));
 		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX))));
+		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX))));
 		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX))));
+		add(DragFactory.makeDraggablePiece(new PieceView(new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX))));
 		add(DragFactory.makeDraggablePiece(new PieceView(new Mushroom())));
 	}
 

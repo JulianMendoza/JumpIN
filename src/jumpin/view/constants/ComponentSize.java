@@ -10,6 +10,8 @@ import java.awt.Dimension;
  */
 public class ComponentSize {
 
+	public static final int FRAME_BAR_HEIGHT = 25;
+
 	public static final int BOARD_WIDTH = 750;
 
 	public static final int BOARD_HEIGHT = 750;
@@ -18,13 +20,21 @@ public class ComponentSize {
 
 	public static final int TILE_WIDTH = 150;
 
-	public static final int MENU_WIDTH = 750;
+	public static final int GAME_MENU_WIDTH = 750;
 
-	public static final int MENU_HEIGHT = 150;
+	public static final int GAME_MENU_HEIGHT = 150;
 
-	public static final int FRAME_WIDTH = 750;
+	public static final int GAME_FRAME_WIDTH = 750;
 
-	public static final int FRAME_HEIGHT = MENU_HEIGHT + BOARD_HEIGHT + 25; // 25 because the frame bar is 25 pixels
+	public static final int BUILDER_MENU_HEIGHT = 150;
+
+	public static final int BUILDER_MENU_WIDTH = 750;
+
+	public static final int BUILDER_FRAME_HEIGHT = BUILDER_MENU_HEIGHT + BOARD_HEIGHT + FRAME_BAR_HEIGHT;
+
+	public static final int BUILDER_FRAME_WIDTH = 750;
+
+	public static final int FRAME_HEIGHT = GAME_MENU_HEIGHT + BOARD_HEIGHT + FRAME_BAR_HEIGHT; // 25 because the frame bar is 25 pixels
 
 	public static final Dimension MAIN_MENU_PANEL = new Dimension(175, 105);
 

@@ -42,7 +42,7 @@ public class MainMenu extends JPanel implements MenuFrame {
 		saveLoadMenu = new LevelMenu();
 
 		setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
-		setBounds(0, 0, ComponentSize.MENU_WIDTH, ComponentSize.MENU_HEIGHT);
+		setBounds(0, 0, ComponentSize.GAME_MENU_WIDTH, ComponentSize.GAME_MENU_HEIGHT);
 		setMaximumSize(getSize());
 		setBackground(ViewConstants.BOARD_COLOR);
 

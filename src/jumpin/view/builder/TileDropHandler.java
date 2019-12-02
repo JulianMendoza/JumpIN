@@ -52,9 +52,17 @@ public class TileDropHandler extends TransferHandler {
 	}
 
 	private void updateBoard(TileView tileView, PieceView pieceView) {
+		System.out.println(pieceView.getParent());
+		if (pieceView.getParent() instanceof TileView) {
+			TileView parent = (TileView) pieceView.getParent();
+			parent.getModel().clear();
+			parent.populate();
+		}
 		tileView.getModel().setPiece(pieceView.getPiece());
 		tileView.populate();
-		DragFactory.makeDraggablePiece(pieceView);
+		DragFactory.makeDraggablePiece(tileView.getPieceView());
+
+		boardView.validate();
 		boardView.repaint();
 	}
 

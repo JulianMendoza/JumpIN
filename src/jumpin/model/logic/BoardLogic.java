@@ -49,6 +49,7 @@ public class BoardLogic {
 				if(tile.getPiece() != null && tile.getPiece() instanceof UniquePiece) {
 					if(tile.getPiece() instanceof Fox){
 						Fox fox = (Fox) tile.getPiece();
+						fox.setPieceID(PieceID.FOX+currFoxID);
 						assignFoxID(board,fox,currFoxID,pos);
 						currFoxID++;
 					}

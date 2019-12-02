@@ -28,5 +28,4 @@ public class RandomLevelTest extends TestCase {
 			randomBoard = GenerateLevel.createLevel().getBoard();
 		}
 	}
-
 }

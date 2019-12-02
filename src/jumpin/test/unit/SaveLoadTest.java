@@ -72,7 +72,5 @@ public class SaveLoadTest extends TestCase {
 		assertTrue(loadedBoard.getSelectedPiece() instanceof Mushroom);
 		loadedBoard.selectPiece(new Position(2, 4));
 		assertTrue(loadedBoard.getSelectedPiece() instanceof Mushroom);
-		
 	}
-
 }

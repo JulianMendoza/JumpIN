@@ -24,7 +24,7 @@ public class TileDropHandler extends TransferHandler {
 
 	@Override
 	public boolean canImport(TransferSupport support) {
-		if (support.isDataFlavorSupported(PieceTransferable.FLAVOR)) {
+		if (support.isDataFlavorSupported(TransferablePiece.FLAVOR)) {
 			if (support.getComponent() instanceof TileView) {
 				TileView tileView = (TileView) support.getComponent();
 				return tileView.getModel().isEmpty();
@@ -40,9 +40,9 @@ public class TileDropHandler extends TransferHandler {
 		}
 		// Check target component
 		try {
-			Object o = support.getTransferable().getTransferData(PieceTransferable.FLAVOR);
-			if (o instanceof PieceView && support.getComponent() instanceof TileView) {
-				updateBoard((TileView) support.getComponent(), (PieceView) o);
+			Object o = support.getTransferable().getTransferData(TransferablePiece.FLAVOR);
+			if (o instanceof TransferredPiece && support.getComponent() instanceof TileView) {
+				updateBoard((TileView) support.getComponent(), (TransferredPiece) o);
 			}
 		} catch (UnsupportedFlavorException | IOException e) {
 			// TODO Auto-generated catch block
@@ -51,17 +51,17 @@ public class TileDropHandler extends TransferHandler {
 		return true;
 	}
 
-	private void updateBoard(TileView tileView, PieceView pieceView) {
-		System.out.println(pieceView.getParent());
-		if (pieceView.getParent() instanceof TileView) {
-			TileView parent = (TileView) pieceView.getParent();
-			parent.getModel().clear();
-			parent.populate();
+	private void updateBoard(TileView newTile, TransferredPiece transferredPiece) {
+		PieceView piece = transferredPiece.getPiece();
+		TileView oldTile = transferredPiece.getOldTile();
+		if (oldTile != null) {
+			oldTile.getModel().clear();
+			oldTile.populate();
 		}
-		tileView.getModel().setPiece(pieceView.getPiece());
-		tileView.populate();
-		DragFactory.makeDraggablePiece(tileView.getPieceView());
 
+		newTile.getModel().setPiece(piece.getPiece());
+		newTile.populate();
+		DragFactory.makeDraggablePiece(newTile.getPieceView());
 		boardView.validate();
 		boardView.repaint();
 	}

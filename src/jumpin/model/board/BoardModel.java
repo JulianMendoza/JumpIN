@@ -1,5 +1,6 @@
 package jumpin.model.board;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ import jumpin.model.piece.Piece;
  * @author Giuseppe, Julian
  * @documentation Cameron Davis
  */
-public class BoardModel implements Cloneable {
+public class BoardModel implements Cloneable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3410851870031551457L;
 	private List<BoardModelListener> listeners;
 	private Tile[][] model;
 
@@ -77,9 +82,11 @@ public class BoardModel implements Cloneable {
 	public void assignPiece(int x, int y, Piece piece) {
 		model[y][x].setPiece(piece);
 	}
+
+	@Override
 	public BoardModel clone() throws CloneNotSupportedException {
-		return (BoardModel)super.clone();
-		
+		return (BoardModel) super.clone();
+
 	}
 
 }

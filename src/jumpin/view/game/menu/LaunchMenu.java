@@ -31,7 +31,7 @@ public class LaunchMenu extends JPanel{
 		buildButton = ComponentFactory.create3DMenuButton(BUILD_TEXT);
 		
 		addButtonListeners();
-		add(Box.createVerticalStrut(50));
+		add(Box.createVerticalStrut(60));
 		add(playButton);
 		add(Box.createVerticalStrut(60));
 		add(loadButton);

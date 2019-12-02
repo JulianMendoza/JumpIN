@@ -1,5 +1,7 @@
 package jumpin.model.board.tile;
 
+import java.io.Serializable;
+
 import jumpin.model.constants.PieceID;
 import jumpin.model.piece.Piece;
 
@@ -9,8 +11,12 @@ import jumpin.model.piece.Piece;
  * @author Giuseppe
  * @documentation Cameron Davis
  */
-public class Tile {
+public class Tile implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 963710394821533608L;
 	/**
 	 * The piece in this tile
 	 */
@@ -63,6 +69,5 @@ public class Tile {
 		}
 		return "[ " + pieceName + " ]";
 	}
-	
-	
+
 }

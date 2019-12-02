@@ -13,6 +13,7 @@ import jumpin.model.constants.BoardConstants;
 import jumpin.model.exception.IllegalMoveException;
 import jumpin.model.logic.BoardLogic;
 import jumpin.model.piece.Piece;
+import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.solver.Solver;
 import jumpin.model.structures.Position;
 import jumpin.model.structures.move.Move;
@@ -136,6 +137,10 @@ public class Board implements Cloneable, Serializable {
 			assignPiece(move.getNewPos(), movePiece);
 			clearTile(move.getOldPos());
 		}
+	}
+	
+	public void organizeID(){
+		BoardUtilities.organizeID(this);
 	}
 
 	public void movePiece(Move move) throws IllegalMoveException {

@@ -5,16 +5,17 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
+import jumpin.view.game.board.tile.TileView;
 import jumpin.view.game.piece.PieceView;
 
-public class PieceTransferable implements Transferable {
+public class TransferablePiece implements Transferable {
 
-	private PieceView piece;
+	private TransferredPiece data;
 
 	public static final DataFlavor FLAVOR = new DataFlavor(PieceView.class, "Piece");
 
-	public PieceTransferable(PieceView piece) {
-		this.piece = piece;
+	public TransferablePiece(PieceView pieceView, TileView tileView) {
+		data = new TransferredPiece(pieceView, tileView);
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class PieceTransferable implements Transferable {
 
 	@Override
 	public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-		return piece;
+		return data;
 	}
 
 }

@@ -6,7 +6,7 @@ import jumpin.controller.builder.BuilderController;
 import jumpin.controller.game.GameController;
 import jumpin.controller.launch.listener.LaunchMenuListener;
 import jumpin.view.launch.LaunchView;
-import jumpin.view.launch.ScreenSplasher;
+import jumpin.view.launch.splash.ScreenSplasher;
 
 /**
  * Main controller

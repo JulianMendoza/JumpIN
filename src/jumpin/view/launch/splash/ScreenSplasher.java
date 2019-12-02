@@ -1,4 +1,4 @@
-package jumpin.view.launch;
+package jumpin.view.launch.splash;
 
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;

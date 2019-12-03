@@ -4,6 +4,10 @@ A remade version of rabbit and foxes. Software Development Project 2019.
 Authors: Giuseppe Pappalia, Julian Mendoza, John Warde, Cameron Davis
 
 **Installation**
+1.	Locate “MileStone4.zip” and extract it to anywhere you want
+2.	Please make sure that images and levels is in the same directory as the game.jar file.
+3.	Double-click game.jar to launch the game.
+4.	Play the game! Choose a level to load by choosing the load level option in the main menu or generate a random level by clicking play.
 
 **Features**
 

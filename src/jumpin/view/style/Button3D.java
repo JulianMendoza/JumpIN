@@ -17,7 +17,9 @@ import javax.swing.plaf.basic.BasicButtonUI;
  *
  */
 public class Button3D extends BasicButtonUI {
-
+	/**
+	 * Styling of the button
+	 */
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
@@ -25,14 +27,18 @@ public class Button3D extends BasicButtonUI {
 		button.setOpaque(false);
 		button.setBorder(new EmptyBorder(5, 15, 5, 15));
 	}
-
+	/**
+	 * Styling of the button
+	 */
 	@Override
 	public void paint(Graphics g, JComponent c) {
 		AbstractButton b = (AbstractButton) c;
 		paintBackground(g, b, b.getModel().isPressed() ? 2 : 0);
 		super.paint(g, c);
 	}
-
+	/**
+	 * Color styling of the button
+	 */
 	private void paintBackground(Graphics g, JComponent c, int yOffset) {
 		Dimension size = c.getSize();
 		Graphics2D g2 = (Graphics2D) g;

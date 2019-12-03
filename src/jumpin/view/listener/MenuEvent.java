@@ -1,5 +1,7 @@
 package jumpin.view.listener;
-
+/*
+ * Constants for the MenuEvent
+ */
 public class MenuEvent {
 
 	public static final int UNDO = 0;

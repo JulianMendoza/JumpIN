@@ -11,6 +11,7 @@ import jumpin.model.file.LevelParser;
 import jumpin.model.file.LevelSaver;
 
 /**
+ * Class which contructs a level dialog
  * 
  * @author Giuseppe, Julian
  *
@@ -28,7 +29,9 @@ public class LevelDialog {
 		parentFrame.setLocationRelativeTo(null);
 		parentFrame.setSize(200, 200);
 	}
-
+	/*
+	 *  Parser dialog
+	 */
 	public LevelParser parseLevel(boolean mandatoryChoice) {
 		LevelParser parser = new LevelParser();
 
@@ -53,7 +56,9 @@ public class LevelDialog {
 		}
 		return parser;
 	}
-
+	/*
+	 * Saving the level
+	 */
 	public void saveLevel(GameModel model) {
 		LevelChooser fc = new LevelChooser();
 		int userSelection = fc.showSaveDialog(parentFrame);

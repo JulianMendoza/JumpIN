@@ -22,18 +22,25 @@ public class ThresholdPrompt extends JPanel implements AbstractFrame {
 	public ThresholdPrompt() {
 		populate();
 	}
-
+	/**
+	 * Styling for the prompt
+	 */
 	@Override
 	public void populate() {
 		thresholdField = new JTextField(15);
 		add(new JLabel(PROMPT));
 		add(thresholdField);
 	}
-
+	/**
+	 *  Method to get the user input from the prompt
+	 * @return String of the text
+	 */
 	public String getText() {
 		return thresholdField.getText();
 	}
-
+	/**
+	 * Method to clear the text of the prompt
+	 */
 	public void clearText() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

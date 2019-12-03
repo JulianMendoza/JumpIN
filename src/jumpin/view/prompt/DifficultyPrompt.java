@@ -13,14 +13,12 @@ import jumpin.view.AbstractFrame;
 import jumpin.view.game.GameView;
 
 /**
- * 
- * @author JOHN
+ * Class that generates a difficulty prompt
+ * @author John
  *
  */
 public class DifficultyPrompt extends JPanel implements AbstractFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JTextField generateField;
 	private final String PROMPT = "Please enter level of difficulty (1-6)";
@@ -28,14 +26,18 @@ public class DifficultyPrompt extends JPanel implements AbstractFrame {
 	public DifficultyPrompt() {
 		populate();
 	}
-
+	/**
+	 * Styling for the prompt
+	 */
 	@Override
 	public void populate() {
 		generateField = new JTextField(15);
 		add(new JLabel(PROMPT));
 		add(generateField);
 	}
-
+	/**
+	 * Method to prompt the user
+	 */
 	public void prompt(GameController gc) {
 		GameModel model = gc.getModel();
 		GameView gameView = gc.getGameView();
@@ -62,11 +64,16 @@ public class DifficultyPrompt extends JPanel implements AbstractFrame {
 			}
 		}
 	}
-
+	/**
+	 * Method to get the string of the user input
+	 * @return String of the user input
+	 */
 	public String getText() {
 		return generateField.getText();
 	}
-
+	/**
+	 * Clear text of the prompt
+	 */
 	public void clearText() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

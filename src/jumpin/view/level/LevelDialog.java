@@ -11,7 +11,7 @@ import jumpin.model.file.LevelParser;
 import jumpin.model.file.LevelSaver;
 
 /**
- * Class which contructs a level dialog
+ * Class which constructs a level dialog
  * 
  * @author Giuseppe, Julian
  *

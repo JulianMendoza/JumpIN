@@ -11,7 +11,11 @@ import jumpin.model.piece.UniquePiece;
 import jumpin.model.piece.pieces.Fox;
 import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.structures.Position;
-
+/**
+ * Class to validate the board
+ * @author Julian
+ *
+ */
 public class BoardValidator {
 	
 
@@ -88,7 +92,6 @@ public class BoardValidator {
 				if (!board.getTile(pos).isEmpty()) {
 					Tile tile = board.getTile(pos);
 					if(tile.getPiece() instanceof Fox) {
-						System.out.println(((UniquePiece) tile.getPiece()).getPieceID());
 						if(!piece.equals(tile.getPiece())){
 							if((piece.getPieceID().equals(((UniquePiece) tile.getPiece()).getPieceID()))) {
 								found=true;
@@ -100,7 +103,7 @@ public class BoardValidator {
 			}
 		}
 		if(!found) {
-			throw new InvalidBoardException("Fox is misoriented");
+			throw new InvalidBoardException("Fox is missing a piece or misoriented");
 		}
 		
 

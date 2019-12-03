@@ -1,7 +1,0 @@
-When submitting the files, export the project as a runnable jar.
-MOVE the images folder and level folder to the same place as the jar.
-Create a deliverables folder with all the necessary information.
-SELECT ALL FOLDERS AND SEND TO A ZIP.
-Extract the zip and run the jar to make sure the game works.
-Submit the zip file
-See Game.zip for an example

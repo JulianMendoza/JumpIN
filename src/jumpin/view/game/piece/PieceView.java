@@ -1,5 +1,7 @@
 package jumpin.view.game.piece;
 
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -15,9 +17,10 @@ import jumpin.view.constants.ImageConstants;
  * 
  * @author Giuseppe
  */
-public class PieceView extends JLabel {
+public class PieceView extends JLabel implements Serializable {
 
 	private static final long serialVersionUID = 159673643052373533L;
+	private Piece model;
 
 	/**
 	 * Default Constructor
@@ -26,8 +29,13 @@ public class PieceView extends JLabel {
 	 */
 	public PieceView(Piece model) {
 		super(new ImageIcon(getImageLocation(model)));
+		this.model = model;
 		setBounds(0, 0, 75, 75);
 		setMaximumSize(getSize());
+	}
+
+	public Piece getPiece() {
+		return model;
 	}
 
 	/**
@@ -63,6 +71,8 @@ public class PieceView extends JLabel {
 				return ImageConstants.RABBIT_2;
 			case PieceID.RABBIT_ID_3:
 				return ImageConstants.RABBIT_3;
+			default:
+				return ImageConstants.RABBIT_1;
 			}
 		}
 		return ImageConstants.MUSHROOM;

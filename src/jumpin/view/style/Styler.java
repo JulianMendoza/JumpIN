@@ -15,7 +15,10 @@ import jumpin.view.factory.FontFactory;
  * @author Giuseppe
  */
 public class Styler {
-
+	/**
+	 * Method to apply style to a component
+	 * @param components
+	 */
 	public static void applyMenuStyle(JComponent... components) {
 		Font buttonFont = FontFactory.createButtonFont(Font.BOLD, 14);
 		Font menuFont = FontFactory.createMenuFont(Font.BOLD, 12);

@@ -1,5 +1,7 @@
 package jumpin.util;
 
+import java.io.Serializable;
+
 /**
  * Utility class for constructing a pair of type A and type B
  * 
@@ -8,7 +10,11 @@ package jumpin.util;
  * @param <A>
  * @param <B>
  */
-public class Pair<A, B> {
+public class Pair<A, B> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6477221124113346308L;
 	private A first;
 	private B second;
 
@@ -18,6 +24,7 @@ public class Pair<A, B> {
 		this.second = second;
 	}
 
+	@Override
 	public int hashCode() {
 		int hashFirst = first != null ? first.hashCode() : 0;
 		int hashSecond = second != null ? second.hashCode() : 0;
@@ -25,6 +32,7 @@ public class Pair<A, B> {
 		return (hashFirst + hashSecond) * hashSecond + hashFirst;
 	}
 
+	@Override
 	public boolean equals(Object other) {
 		if (other instanceof Pair) {
 			Pair<?, ?> otherPair = (Pair<?, ?>) other;
@@ -34,6 +42,7 @@ public class Pair<A, B> {
 		return false;
 	}
 
+	@Override
 	public String toString() {
 		return "(" + first + ", " + second + ")";
 	}

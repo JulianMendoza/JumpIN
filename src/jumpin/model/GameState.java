@@ -23,6 +23,11 @@ public class GameState implements BoardModelListener {
 		this.gameState = null;
 	}
 
+	public GameState(GameState gameState) {
+		setNumToWin(gameState.getNumToWin());
+		setState(gameState.getState());
+	}
+
 	/**
 	 * Constructor for the game's state
 	 * 

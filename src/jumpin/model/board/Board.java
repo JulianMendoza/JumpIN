@@ -2,6 +2,7 @@ package jumpin.model.board;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import jumpin.model.board.event.BoardModelEvent;
@@ -157,7 +158,14 @@ public class Board implements Cloneable, Serializable {
 	}
 
 	public List<MoveSet> getValidMoveSets() {
-		return validMoveSets;
+		List<MoveSet> s = new ArrayList<MoveSet>(validMoveSets);
+		Collections.copy(s, validMoveSets);
+		for (MoveSet m : validMoveSets) {
+			if (m.isEmpty()) {
+				s.remove(m);
+			}
+		}
+		return s;
 	}
 
 	/**
@@ -308,6 +316,10 @@ public class Board implements Cloneable, Serializable {
 			}
 		}
 		return allValidMoveSets;
+	}
+
+	public void setModel(BoardModel model) {
+		this.model = model;
 	}
 
 }

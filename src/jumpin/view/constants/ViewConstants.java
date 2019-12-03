@@ -17,5 +17,7 @@ public class ViewConstants {
 
 	public static final LineBorder DEFAULT_TILE_BORDER = new LineBorder(BOARD_COLOR, 2);
 
-	public static final String FRAME_TITLE = "JumpIN";
+	public static final String GAME_FRAME_TITLE = "JumpIN";
+
+	public static final String BUILDER_FRAME_TITLE = GAME_FRAME_TITLE + "Level Builder";
 }

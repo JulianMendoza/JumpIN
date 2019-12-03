@@ -18,7 +18,10 @@ import jumpin.view.factory.FontFactory;
 public class GroupBox extends JPanel {
 	
 	private static final long serialVersionUID = 558910162906322077L;
-
+	/**
+	 * Method to group the box
+	 * @param boxName
+	 */
 	public GroupBox(String boxName) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), boxName, TitledBorder.CENTER, TitledBorder.TOP, FontFactory.createMenuFont(Font.BOLD, 14), new Color(0, 0, 0)));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));

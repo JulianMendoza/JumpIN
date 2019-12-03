@@ -2,6 +2,11 @@ package jumpin.model.exception;
 
 import jumpin.exception.JumpINException;
 
+/**
+ * 
+ * @author Giuseppe
+ *
+ */
 public class LevelParseException extends JumpINException {
 
 	/**

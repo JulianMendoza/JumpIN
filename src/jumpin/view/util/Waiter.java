@@ -14,20 +14,26 @@ public class Waiter extends SwingWorker<Void, Void> {
 
 	private Window waitFrame;
 	private boolean isWaiting;
-
+	
 	public Waiter(Window waitFrame) {
 		this.waitFrame = waitFrame;
 	}
-
+	/**
+	 * Invoke waiter
+	 */
 	public void startWaiting() {
 		isWaiting = true;
 		execute();
 	}
-
+	/**
+	 * Stop waiter
+	 */
 	public void stopWaiting() {
 		isWaiting = false;
 	}
-
+	/**
+	 * doInBackground for threads only occurs once.
+	 */
 	@Override
 	protected Void doInBackground() throws Exception {
 		waitFrame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -36,7 +42,9 @@ public class Waiter extends SwingWorker<Void, Void> {
 		}
 		return null;
 	}
-
+	/**
+	 * Method applies after thread is done executing.
+	 */
 	@Override
 	protected void done() {
 		waitFrame.setCursor(Cursor.getDefaultCursor());

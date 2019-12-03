@@ -3,8 +3,8 @@ package jumpin.view.game;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import jumpin.controller.listener.BoardListener;
-import jumpin.controller.listener.PieceListener;
+import jumpin.controller.game.listener.BoardListener;
+import jumpin.controller.game.listener.PieceListener;
 import jumpin.model.GameModel;
 import jumpin.view.AbstractFrame;
 import jumpin.view.constants.ComponentSize;
@@ -13,8 +13,8 @@ import jumpin.view.factory.FontFactory;
 import jumpin.view.factory.ImageFactory;
 import jumpin.view.game.board.BoardView;
 import jumpin.view.game.board.tile.TileView;
-import jumpin.view.game.menu.MainMenu;
-import jumpin.view.game.menu.listener.MenuListener;
+import jumpin.view.game.menu.GameMenu;
+import jumpin.view.listener.MenuListener;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class GameView extends JFrame implements AbstractFrame {
 	private static final long serialVersionUID = -5089660197653181626L;
 	private GameModel model;
 	private BoardView boardView;
-	private MainMenu menu;
+	private GameMenu menu;
 
 	/**
 	 * Default constructor that initializes the game
@@ -54,13 +54,13 @@ public class GameView extends JFrame implements AbstractFrame {
 	public void populate() {
 		setFont(FontFactory.createDefaultFont());
 		setResizable(false);
-		setTitle(ViewConstants.FRAME_TITLE);
-		setSize(ComponentSize.FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
+		setTitle(ViewConstants.GAME_FRAME_TITLE);
+		setSize(ComponentSize.GAME_FRAME_WIDTH, ComponentSize.FRAME_HEIGHT);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setIconImage(ImageFactory.generateRabbit());
 		setLocationRelativeTo(null); // centers the window
 
-		menu = new MainMenu();
+		menu = new GameMenu();
 		getContentPane().add(menu);
 
 		boardView = new BoardView(model.getBoard().getModel());
@@ -97,7 +97,8 @@ public class GameView extends JFrame implements AbstractFrame {
 		menu.addMenuListener(l);
 	}
 
-	public MainMenu getMainMenu() {
+	public GameMenu getMainMenu() {
 		return menu;
 	}
+
 }

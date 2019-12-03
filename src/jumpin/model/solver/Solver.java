@@ -38,7 +38,7 @@ public class Solver {
 		childNodes = new ArrayList<TreeNode<MoveState>>();
 		createAllBranches(root, board, 0, threshold);
 		bestMoves = getBestMove(threshold);
-		System.out.println("Number of branches: " + childNodes.size() + "\nBest move: \n" + bestMoves);
+		//System.out.println("Number of branches: " + childNodes.size() + "\nBest move: \n" + bestMoves);
 	}
 
 	/**

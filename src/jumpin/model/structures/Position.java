@@ -1,5 +1,6 @@
 package jumpin.model.structures;
 
+import java.io.Serializable;
 import java.text.ParseException;
 
 import jumpin.model.board.util.BoardUtilities;
@@ -11,7 +12,11 @@ import jumpin.model.constants.Direction;
  * @author Giuseppe
  *
  */
-public class Position implements Cloneable {
+public class Position implements Cloneable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5242366384821817264L;
 	/**
 	 * 
 	 */

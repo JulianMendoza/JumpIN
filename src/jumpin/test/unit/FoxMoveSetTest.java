@@ -26,6 +26,8 @@ import junit.framework.TestCase;
 		private Fox fox2;
 		private Fox fox3;
 		private Fox fox4;
+		private Fox fox5;
+		private Fox fox6;
 		private List<MoveSet> moves;
 		private Rabbit rabbit;
 		private MoveSet moveset;
@@ -36,7 +38,9 @@ import junit.framework.TestCase;
 			fox = new Fox(FoxPart.HEAD, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			fox2 = new Fox(FoxPart.TAIL, Orientation.NORTH_SOUTH, PieceID.FOX_ID_1);
 			fox3=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
-			fox4=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+			fox4=new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_2);
+			fox5=new Fox(FoxPart.HEAD, Orientation.EAST_WEST, PieceID.FOX_ID_1);
+			fox6=new Fox(FoxPart.TAIL, Orientation.EAST_WEST, PieceID.FOX_ID_1);
 			rabbit = new Rabbit(PieceID.RABBIT_ID_1);
 			moveset=new MoveSet();
 		}
@@ -336,5 +340,16 @@ import junit.framework.TestCase;
 			moveset.add(new Move(new Position(1,2),new Position(1,0)));
 			moveset.add(new Move(new Position(1,3),new Position(1,1)));
 			assertTrue(moves.contains(moveset));
+		}
+		
+		public void testFoxBesideFox() {
+			board.assignPiece(new Position(0, 1), fox3);
+			board.assignPiece(new Position(1, 1), fox4);
+			board.assignPiece(new Position(2, 1), fox5);
+			board.assignPiece(new Position(3, 1), fox6);
+			System.out.println(board.toString());
+			board.selectPiece(new Position(3, 1));
+			moves=FoxLogic.findFoxMoves(board);
+			assertTrue(moves.size()==1);
 		}
 }

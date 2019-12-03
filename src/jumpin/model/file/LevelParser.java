@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import jumpin.model.GameModel;
 import jumpin.model.GameState;
 import jumpin.model.board.Board;
 import jumpin.model.constants.FoxPart;
@@ -24,15 +25,17 @@ import jumpin.model.structures.Position;
 
 public class LevelParser {
 
-	private Board board;
-	private GameState gameState;
+	private GameModel model;
 
-	public LevelParser(Board board, GameState gameState) {
-		this.gameState = gameState;
-		this.board = board;
-	}
-
+	/**
+	 * method to load the level from xml
+	 * @param level
+	 * @throws LevelParseException
+	 */
 	public void parseLevel(File level) throws LevelParseException {
+		model = null;
+		Board boardCopy = new Board();
+		GameState gameStateCopy = new GameState();
 		if (level.getName().endsWith(".xml")) {
 			try {
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -40,7 +43,6 @@ public class LevelParser {
 				Document doc = dBuilder.parse(level.getAbsolutePath());
 				doc.getDocumentElement().normalize();
 				NodeList nList = doc.getElementsByTagName("piece");
-
 				for (int i = 0; i < nList.getLength(); i++) {
 					Piece piece;
 					Node nNode = nList.item(i);
@@ -58,18 +60,27 @@ public class LevelParser {
 						Element position = (Element) n;
 						int x = Integer.parseInt(position.getAttribute("x"));
 						int y = Integer.parseInt(position.getAttribute("y"));
-						board.assignPiece(new Position(x, y), piece);
+						boardCopy.assignPiece(new Position(x, y), piece);
 					}
 				}
-				gameState.setNumToWin(Integer.parseInt(doc.getDocumentElement().getAttribute("numToWin")));
-				gameState.setState(StateOfGame.IN_PROGRESS);
-				board.addModelListener(gameState);
+				gameStateCopy.setNumToWin(Integer.parseInt(doc.getDocumentElement().getAttribute("numToWin")));
+				gameStateCopy.setState(StateOfGame.IN_PROGRESS);
+				boardCopy.addModelListener(gameStateCopy);
 			} catch (Exception e) {
 				throw new LevelParseException("Error parsing level");
 			}
 		} else {
 			throw new LevelParseException("Illegal file type");
 		}
+		model = new GameModel(boardCopy, gameStateCopy);
+	}
+
+	public boolean successfulyParsed() {
+		return model != null;
+	}
+
+	public GameModel getModel() {
+		return model;
 	}
 
 }

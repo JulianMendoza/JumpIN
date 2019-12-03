@@ -69,7 +69,9 @@ public class FoxLogic {
 		Position oldPos = getOtherFoxPosition(board, (Fox) board.getSelectedPiece());
 		Pair<Integer, Integer> inc = move.getIncrement();
 		Position newPos = new Position(oldPos.getX() + inc.getFirst(), oldPos.getY() + inc.getSecond());
-		
+		if(board.getTile(newPos) instanceof RabbitHole) {
+			return moveSet;
+		}
 		if(move.getNewPos().equals(oldPos)) {
 			moveSet.add(new Move(oldPos, newPos));
 			moveSet.add(move);

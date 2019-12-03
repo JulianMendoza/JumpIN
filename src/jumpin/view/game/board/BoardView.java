@@ -77,7 +77,7 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 	}
 
 	/**
-	 * Method to return position of tile 
+	 * Method to return position of tile
 	 * 
 	 * @param tileView board tile
 	 * @return x and y position of tile
@@ -96,7 +96,7 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 	}
 
 	/**
-	 * Method to implement highlighting 
+	 * Method to implement highlighting
 	 * 
 	 * @param highlightTiles
 	 * @param selectTiles
@@ -105,6 +105,10 @@ public class BoardView extends JLayeredPane implements AbstractFrame {
 		stopHighlighting();
 		highlighter = new TileHighlighter(highlightTiles, selectTiles);
 		highlighter.execute();
+	}
+
+	public BoardModel getModel() {
+		return model;
 	}
 
 	/**

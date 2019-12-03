@@ -24,6 +24,8 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(RabbitMoveSetTest.class));
 		suite.addTest(new TestSuite(RedoUndoTest.class));
 		suite.addTest(new TestSuite(SolverTests.class));
+		suite.addTest(new TestSuite(SaveLoadTest.class));
+		suite.addTest(new TestSuite(RandomLevelTest.class));
 		return suite;
 	}
 

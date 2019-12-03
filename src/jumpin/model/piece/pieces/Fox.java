@@ -1,5 +1,7 @@
 package jumpin.model.piece.pieces;
 
+import java.io.Serializable;
+
 import jumpin.model.constants.FoxPart;
 import jumpin.model.constants.Orientation;
 import jumpin.model.constants.PieceID;
@@ -12,9 +14,12 @@ import jumpin.model.piece.UniquePiece;
  * @author Giuseppe
  *
  */
-public class Fox extends Piece implements UniquePiece {
+public class Fox extends UniquePiece implements Serializable {
 
-	private String pieceID;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3311570701232204712L;
 	private FoxPart part;
 
 	/**
@@ -25,8 +30,7 @@ public class Fox extends Piece implements UniquePiece {
 	 * @param pieceID     String representation of Fox piece number
 	 */
 	public Fox(FoxPart part, Orientation orientation, String pieceID) {
-		super(orientation);
-		this.pieceID = pieceID;
+		super(orientation, pieceID);
 		this.part = part;
 	}
 
@@ -40,16 +44,6 @@ public class Fox extends Piece implements UniquePiece {
 	}
 
 	/**
-	 * method for getting Fox piece id
-	 * 
-	 * @return fox ID number
-	 */
-	@Override
-	public String getPieceID() {
-		return pieceID;
-	}
-
-	/**
 	 * method to check if Fox piece corresponds to head or to tail
 	 * 
 	 * @param piece
@@ -58,7 +52,7 @@ public class Fox extends Piece implements UniquePiece {
 	public boolean isSameFox(Piece piece) {
 		if (piece instanceof Fox) {
 			Fox fox = (Fox) piece;
-			return fox.getPieceID().equals(pieceID);
+			return fox.getPieceID().equals(getPieceID());
 		}
 		return false;
 	}
@@ -68,6 +62,7 @@ public class Fox extends Piece implements UniquePiece {
 	 * 
 	 * @return string constant of Fox
 	 */
+	@Override
 	public String toString() {
 		return PieceID.FOX;
 	}

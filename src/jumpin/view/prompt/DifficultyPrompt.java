@@ -21,7 +21,7 @@ public class DifficultyPrompt extends JPanel implements AbstractFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField generateField;
-	private final String PROMPT = "Please enter level of difficulty (1-6)";
+	private final String PROMPT = "Please enter level of difficulty (1-5)";
 
 	public DifficultyPrompt() {
 		populate();
@@ -46,7 +46,7 @@ public class DifficultyPrompt extends JPanel implements AbstractFrame {
 			try {
 				int difficulty = Integer.parseInt(this.getText());
 
-				if (difficulty > 7 || difficulty < 1) {
+				if (difficulty > 6 || difficulty < 1) {
 					JOptionPane.showMessageDialog(gameView, "Please enter diffciulty within range", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 					this.clearText();
 				} else {

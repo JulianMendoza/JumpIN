@@ -46,7 +46,7 @@ public class DifficultyPrompt extends JPanel implements AbstractFrame {
 			try {
 				int difficulty = Integer.parseInt(this.getText());
 
-				if (difficulty > 6 || difficulty < 1) {
+				if (difficulty > 5 || difficulty < 1) {
 					JOptionPane.showMessageDialog(gameView, "Please enter diffciulty within range", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 					this.clearText();
 				} else {

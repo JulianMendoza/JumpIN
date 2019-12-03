@@ -16,22 +16,11 @@ Authors: Giuseppe Pappalia, Julian Mendoza, John Warde, Cameron Davis
 
 **Screenshots**
 
-<p align="center">
-<img src="readme_images/main_menu_screen_shot.png" height="50%" width="50%" title="Main menu of the JumpIN game" alt="Main menu">
-<div align="center">Main menu of the JumpIN game. Presented on launch.</div>
-</p>
- <p align="center">
-<img src="readme_images/load_level_screen_shot.png" height="50%" width="50%" title="Loading screen of the JumpIN game" alt="Loading screen">
-<div align="center">Loading screen between events.</div>
-</p>
-<p align="center">
-<img src="readme_images/game_play_screen_shot.png" height="50%" width="50%" title="Game play of the JumpIN game" alt="Game play">
-<div align="center">Game play of the board game JumpIN.</div>
-</p>
-<p align="center">
-<img src="readme_images/level_builder_screen_shot.png" height="50%" width="50%" title="Level builder of the JumpIN game" alt="Level builder">
-<div align="center">Interactive GUI level builder with a validator.</div>
-</p>
+|<p align="center"><img src="readme_images/main_menu_screen_shot.png" height="75%" width="100%" title="Main menu of the JumpIN game" alt="Main menu"><div align="center">Main menu of the JumpIN game. Presented on launch.</div></p>|<p align="center"><img src="readme_images/load_level_screen_shot.png" height="50%" width="100%" title="Loading screen of the JumpIN game" alt="Loading screen"><div align="center">Loading screen between events.</div></p>|
+| --- | --- |
+
+|<p align="center"><img src="readme_images/game_play_screen_shot.png" height="75%" width="100%" title="Game play of the JumpIN game" alt="Game play"><div align="center">Game play of the board game JumpIN.</div></p>|<p align="center"><img src="readme_images/level_builder_screen_shot.png" height="75%" width="100%" title="Level builder of the JumpIN game" alt="Level builder"><div align="center">Interactive GUI level builder with a validator.</div></p>|
+| --- | --- |
 
 ## Rules
 

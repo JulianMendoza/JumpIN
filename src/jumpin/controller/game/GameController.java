@@ -24,6 +24,10 @@ public class GameController {
 	private DifficultyPrompt generatePrompt;
 	private LaunchController launchController;
 
+	/**
+	 * constructor method
+	 * @param lc
+	 */
 	public GameController(LaunchController lc) {
 		this.model = new GameModel();
 		this.gameView = new GameView(model);
@@ -43,6 +47,9 @@ public class GameController {
 		return levelLoaded;
 	}
 
+	/**
+	 * method to launch game
+	 */
 	public void launch() {
 		if (levelLoaded) {
 			initializeListeners();
@@ -54,6 +61,10 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * method to handle the level load
+	 * @param parser
+	 */
 	public void handleLoad(LevelParser parser) {
 		gameView.dispose();
 		this.model = parser.getModel();
@@ -62,6 +73,9 @@ public class GameController {
 		launch();
 	}
 
+	/**
+	 * method to load level
+	 */
 	public void loadLevel() {
 		LevelDialog loader = new LevelDialog();
 		LevelParser parser = loader.parseLevel(false);
@@ -72,16 +86,26 @@ public class GameController {
 		}
 	}
 
+
 	public void splash() {
 		launchController.splash(gameView);
 	}
 
+	/**
+	 * method to set a random level
+	 * @param gv
+	 * @param model
+	 * @param levelLoaded
+	 */
 	public void setRandomLevel(GameView gv, GameModel model, boolean levelLoaded) {
 		this.gameView = gv;
 		this.model = model;
 		this.levelLoaded = levelLoaded;
 	}
 
+	/**
+	 * method to handle random level generation
+	 */
 	public void handleGeneration() {
 		generatePrompt = new DifficultyPrompt();
 		generatePrompt.prompt(this);
@@ -94,11 +118,17 @@ public class GameController {
 		model.getBoard().addModelListener(new ViewModelListener(this));
 	}
 
+	/**
+	 * method to handle win
+	 */
 	public void handleWin() {
 		gameView.dispose();
 		launchController.handleWin();
 	}
 
+	/**
+	 * method to handle the build level
+	 */
 	public void handleBuild() {
 		launchController.handleBuild();
 	}

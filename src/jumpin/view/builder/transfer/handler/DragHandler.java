@@ -21,6 +21,9 @@ public class DragHandler extends TransferHandler {
 	 */
 	private static final long serialVersionUID = 5164773908328999100L;
 
+	/**
+	 * constructor method
+	 */
 	public DragHandler() {
 		super("text");
 	}

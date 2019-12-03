@@ -20,6 +20,9 @@ public class LaunchView extends JFrame implements AbstractFrame {
 	private static final long serialVersionUID = 1L;
 	private LaunchMenu launchMenu;
 
+	/**
+	 * constructor method
+	 */
 	public LaunchView() {
 		super("Welcome To JumpIN");
 		launchMenu = new LaunchMenu();

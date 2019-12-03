@@ -5,7 +5,7 @@ import jumpin.controller.launch.LaunchController;
 import jumpin.view.builder.BuilderView;
 
 /**
- * 
+ * Controller for level builder
  * @author Giuseppe
  *
  */
@@ -14,6 +14,10 @@ public class BuilderController {
 	private BuilderView view;
 	private LaunchController lc;
 
+	/**
+	 * constructor method
+	 * @param lc
+	 */
 	public BuilderController(LaunchController lc) {
 		this.lc = lc;
 		view = new BuilderView();
@@ -24,6 +28,9 @@ public class BuilderController {
 		return view;
 	}
 
+	/**
+	 * method to handle back action
+	 */
 	public void handleBack() {
 		view.dispose();
 		lc.handleBack();

@@ -25,6 +25,10 @@ public class GameMenuListener implements MenuListener {
 	private GameModel model;
 	private GameController gameController;
 
+	/**
+	 * constructor method
+	 * @param gc
+	 */
 	public GameMenuListener(GameController gc) {
 		this.model = gc.getModel();
 		this.view = gc.getGameView();

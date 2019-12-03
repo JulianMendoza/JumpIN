@@ -66,6 +66,10 @@ public class BoardListener implements MouseListener {
 		}
 	}
 
+	/**
+	 * method to move piece on board using solver
+	 * @param move
+	 */
 	private void doMove(Move move) {
 		try {
 			model.getBoard().movePiece(move);

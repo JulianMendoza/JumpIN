@@ -30,6 +30,9 @@ public class SplashScreen extends JWindow implements AbstractFrame {
 	private JProgressBar loadBar;
 	private static final int LOAD_TIME = 2000;
 
+	/**
+	 * constructor method
+	 */
 	public SplashScreen() {
 		super();
 		populate();

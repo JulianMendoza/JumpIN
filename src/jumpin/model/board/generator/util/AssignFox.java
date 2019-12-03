@@ -20,12 +20,19 @@ public class AssignFox {
 	private Position pos[];
 	private CheckBoard check;
 	
+	/**
+	 * constructor method
+	 * @param board
+	 */
 	public AssignFox(Board board) {
 		this.board = board;
 		this.check = new CheckBoard();
 		this.pos = new Position[2];
 	}
 	
+	/**
+	 * method to assign fox piece to board
+	 */
 	public void assign() {
 		Random rn = new Random();
 		RandomFox rndFox = new RandomFox();

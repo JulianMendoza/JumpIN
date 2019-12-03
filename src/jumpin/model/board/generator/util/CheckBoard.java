@@ -14,10 +14,13 @@ import jumpin.model.structures.Position;
  */
 
 public class CheckBoard {
-	public CheckBoard(){
-		super();
-	}
 	
+	/**
+	 * method to check for valid space on board
+	 * @param board
+	 * @param pos
+	 * @return true if space is valid
+	 */
 	public boolean validSpace(Board board, Position pos){
 		board.deselectPiece();
 		board.selectPiece(pos);

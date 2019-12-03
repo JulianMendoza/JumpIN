@@ -8,7 +8,7 @@ import javax.swing.TransferHandler;
 import jumpin.view.game.piece.PieceView;
 
 /**
- * 
+ * Mouse Event for level builder
  * @author Giuseppe
  *
  */

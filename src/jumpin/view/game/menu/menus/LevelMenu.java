@@ -37,6 +37,9 @@ public class LevelMenu extends GroupBox implements MenuFrame {
 	private final String LOAD = "Load Level";
 	private final String GENERATE = "Level Builder";
 
+	/**
+	 * constructor method
+	 */
 	public LevelMenu() {
 		super("Level");
 		populate();

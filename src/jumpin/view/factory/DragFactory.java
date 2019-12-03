@@ -6,6 +6,11 @@ import jumpin.view.game.piece.PieceView;
 
 public class DragFactory {
 
+	/**
+	 * method to make draggable piece
+	 * @param pieceView
+	 * @return
+	 */
 	public static PieceView makeDraggablePiece(PieceView pieceView) {
 		pieceView.setTransferHandler(new DragHandler());
 		pieceView.addMouseListener(new DragListener());

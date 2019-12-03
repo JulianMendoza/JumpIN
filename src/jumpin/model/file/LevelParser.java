@@ -27,6 +27,11 @@ public class LevelParser {
 
 	private GameModel model;
 
+	/**
+	 * method to load the level from xml
+	 * @param level
+	 * @throws LevelParseException
+	 */
 	public void parseLevel(File level) throws LevelParseException {
 		model = null;
 		Board boardCopy = new Board();

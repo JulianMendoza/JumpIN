@@ -18,6 +18,11 @@ public class TransferredPiece extends Pair<PieceView, TileView> implements Seria
 	 */
 	private static final long serialVersionUID = 2739469193592266670L;
 
+	/**
+	 * constructor method
+	 * @param pieceView
+	 * @param tileView
+	 */
 	public TransferredPiece(PieceView pieceView, TileView tileView) {
 		super(pieceView, tileView);
 	}

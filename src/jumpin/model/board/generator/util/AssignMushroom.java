@@ -13,11 +13,18 @@ public class AssignMushroom {
 	private CheckBoard check;
 	private Position pos;
 
+	/**
+	 * constructor method
+	 * @param board
+	 */
 	public AssignMushroom(Board board) {
 		this.board = board;
 		this.check = new CheckBoard();
 	}
 	
+	/**
+	 * method to assign mushroom piece to board
+	 */
 	public void assign() {
 		Random rn = new Random();
 		

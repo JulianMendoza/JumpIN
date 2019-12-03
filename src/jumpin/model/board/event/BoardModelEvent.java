@@ -13,6 +13,11 @@ public class BoardModelEvent {
 	private MoveSet moveSet;
 	private int id;
 
+	/**
+	 * constructor method
+	 * @param id
+	 * @param moveSet
+	 */
 	public BoardModelEvent(int id, MoveSet moveSet) {
 		this.moveSet = moveSet;
 		this.id = id;

@@ -9,7 +9,7 @@ import jumpin.model.board.generator.util.AssignRabbit;
 import jumpin.model.constants.StateOfGame;
 
 /**
- * 
+ * Class to generate level
  * @author JOHN
  *
  */

@@ -25,6 +25,10 @@ public class BuilderMenuListener implements MenuListener {
 	private BuilderView view;
 	private BuilderController bc;
 
+	/**
+	 * constructor method
+	 * @param bc
+	 */
 	public BuilderMenuListener(BuilderController bc) {
 		this.view = bc.getView();
 		this.bc = bc;
@@ -65,12 +69,20 @@ public class BuilderMenuListener implements MenuListener {
 		waiter.stopWaiting();
 	}
 
+	/**
+	 * method to create new board
+	 * @return board
+	 */
 	private Board createBoard() {
 		Board board = new Board();
 		board.setModel(view.getBoardView().getModel());
 		return board;
 	}
 
+	/**
+	 * method to create new GameModel
+	 * @return GameModel
+	 */
 	private GameModel createGameModel() {
 		Board board = createBoard();
 		GameState gameState = new GameState();

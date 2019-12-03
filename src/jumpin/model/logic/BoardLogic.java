@@ -38,6 +38,10 @@ public class BoardLogic {
 		return validMoves;
 	}
 	
+	/**
+	 * method to organize IDs for in level builder
+	 * @param board
+	 */
 	public static void organizeID(Board board){
 		int height = board.getModel().getHeight();
 		int width = board.getModel().getWidth();
@@ -62,6 +66,14 @@ public class BoardLogic {
 			}
 		}
 	}
+	
+	/**
+	 * method to assign FoxID in level builder
+	 * @param board
+	 * @param fox
+	 * @param currFoxID
+	 * @param pos
+	 */
 	private static void assignFoxID(Board board,Fox fox,int currFoxID,Position pos) {
 		if(fox.getPieceID().equals(PieceID.FOX)) {
 			Fox newFox = new Fox(fox.getPart(),fox.getOrientation(),PieceID.FOX+currFoxID);
@@ -106,6 +118,14 @@ public class BoardLogic {
 			}
 		}
 	}
+	
+	/**
+	 * method to check for same fox
+	 * @param pos
+	 * @param board
+	 * @param currFoxID
+	 * @param o
+	 */
 	private static void sameFoxHelper(Position pos,Board board,int currFoxID,Orientation o) {
 		Tile tile=board.getTile(pos);
 		if(tile.getPiece() instanceof Fox){

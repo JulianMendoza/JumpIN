@@ -144,6 +144,12 @@ public class BoardUtilities {
 		return rabbitsToWin;
 	}
 
+	/**
+	 * method to validate level 
+	 * @param board
+	 * @param maxMoves
+	 * @throws InvalidBoardException
+	 */
 	public static void validate(Board board, int maxMoves) throws InvalidBoardException {
 		BoardValidator.validate(board, maxMoves);
 	}

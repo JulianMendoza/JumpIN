@@ -37,6 +37,11 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 	 */
 	private static final long serialVersionUID = -2068785327419860500L;
 
+	/**
+	 * constructor method
+	 * @param pieceMenu
+	 * @param handler
+	 */
 	public BuilderMenu(PieceMenu pieceMenu, DropHandler handler) {
 		super();
 		constructTrashCan(handler);
@@ -44,10 +49,18 @@ public class BuilderMenu extends JPanel implements MenuFrame {
 		populate();
 	}
 
+	/**
+	 * method to make trash can
+	 * @param handler
+	 */
 	private void constructTrashCan(DropHandler handler) {
 		trashCan = new TrashCan(handler);
 	}
 
+	/**
+	 * method to construct the scroll pane
+	 * @param pieceMenu
+	 */
 	private void constructScrollPane(PieceMenu pieceMenu) {
 		scrollPane = new JScrollPane(pieceMenu, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setPreferredSize(new Dimension(100, ComponentSize.BUILDER_MENU_HEIGHT));

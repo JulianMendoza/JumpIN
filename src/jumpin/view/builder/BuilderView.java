@@ -31,6 +31,9 @@ public class BuilderView extends JFrame implements AbstractFrame {
 
 	private BoardView boardView;
 
+	/**
+	 * constructor method 
+	 */
 	public BuilderView() {
 		super();
 		populate();

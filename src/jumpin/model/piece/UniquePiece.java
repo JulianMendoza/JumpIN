@@ -15,6 +15,11 @@ public class UniquePiece extends Piece {
 	 */
 	private static final long serialVersionUID = 6734532446081110805L;
 
+	/**
+	 * constructor method
+	 * @param orientation
+	 * @param pieceID
+	 */
 	public UniquePiece(Orientation orientation, String pieceID) {
 		super(orientation);
 		setPieceID(pieceID);

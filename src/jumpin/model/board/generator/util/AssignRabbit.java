@@ -19,6 +19,10 @@ public class AssignRabbit {
 		this.check = new CheckBoard();
 	}
 
+	/**
+	 * method to assign rabbit piece to board
+	 * @return number of rabbits on board
+	 */
 	public int assign() {
 		Random rn = new Random();
 		int numRabbit = rn.nextInt(3)+1;

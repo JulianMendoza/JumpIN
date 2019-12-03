@@ -13,7 +13,14 @@ import jumpin.model.piece.pieces.Rabbit;
 import jumpin.model.structures.Position;
 
 public class BoardValidator {
+	
 
+	/**
+	 * method to check if board is valid in level builder
+	 * @param board
+	 * @param maxMoves
+	 * @throws InvalidBoardException
+	 */
 	public static void validate(Board board, int maxMoves) throws InvalidBoardException{
 		BoardUtilities.organizeID(board);
 		int rabbitCount=0,numToWin=0,countHead=0,countTail=0;
@@ -67,6 +74,12 @@ public class BoardValidator {
 		 */
 	}
 
+	/**
+	 * method to check if two pieces with same ID exist
+	 * @param piece
+	 * @param board
+	 * @throws InvalidBoardException
+	 */
 	private static void containsOtherPiece(UniquePiece piece,Board board) throws InvalidBoardException {
 		boolean found=false;
 		for(int y=0;y<BoardConstants.HEIGHT;y++) {

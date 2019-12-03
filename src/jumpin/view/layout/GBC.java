@@ -15,6 +15,11 @@ public class GBC extends GridBagConstraints {
 	 */
 	private static final long serialVersionUID = 8294595887845159178L;
 
+	/**
+	 * constructor method
+	 * @param x
+	 * @param y
+	 */
 	public GBC(int x, int y) {
 		super();
 		gridwidth = 1;

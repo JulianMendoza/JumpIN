@@ -41,6 +41,10 @@ public class BuilderControlMenu extends GroupBox implements MenuFrame {
 	private final String VALIDATE = "Validate Level";
 	private final String SAVE = "Save Level";
 
+	/**
+	 * constructor methof
+	 * @param boxName
+	 */
 	public BuilderControlMenu(String boxName) {
 		super(boxName);
 		menuListeners = new ArrayList<MenuListener>();
@@ -76,6 +80,10 @@ public class BuilderControlMenu extends GroupBox implements MenuFrame {
 		back.addActionListener(l);
 	}
 
+	/**
+	 * method to enable save button
+	 * @param enabled
+	 */
 	public void setSaveEnabled(boolean enabled) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

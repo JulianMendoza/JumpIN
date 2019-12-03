@@ -28,6 +28,10 @@ public class DropHandler extends TransferHandler {
 
 	private BuilderView view;
 
+	/**
+	 * constructor method
+	 * @param view
+	 */
 	public DropHandler(BuilderView view) {
 		this.view = view;
 		addTileDropHandlers(view.getBoardView());
@@ -74,6 +78,10 @@ public class DropHandler extends TransferHandler {
 		return true;
 	}
 
+	/**
+	 * method to remove piece from board
+	 * @param oldTile
+	 */
 	private void trashPiece(TileView oldTile) {
 		if (oldTile != null) {
 			oldTile.getModel().clear();
@@ -84,6 +92,11 @@ public class DropHandler extends TransferHandler {
 		}
 	}
 
+	/**
+	 * method to update board
+	 * @param newTile
+	 * @param transferredPiece
+	 */
 	private void updateBoard(TileView newTile, TransferredPiece transferredPiece) {
 		PieceView piece = transferredPiece.getPiece();
 		TileView oldTile = transferredPiece.getOldTile();
@@ -100,6 +113,10 @@ public class DropHandler extends TransferHandler {
 		view.repaint();
 	}
 
+	/**
+	 * method to reset piece ID
+	 * @param boardView
+	 */
 	private void resetIDs(BoardView boardView) {
 		for (TileView tileView : boardView.getTileViews()) {
 			if (!tileView.getModel().isEmpty()) {
@@ -112,6 +129,9 @@ public class DropHandler extends TransferHandler {
 		}
 	}
 
+	/**
+	 * method to disable save button
+	 */
 	private void disableSave() {
 		view.getMenu().getMenu().setSaveEnabled(false);
 	}

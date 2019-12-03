@@ -19,6 +19,11 @@ public class TransferablePiece implements Transferable {
 
 	public static final DataFlavor FLAVOR = new DataFlavor(Object.class, "TransferredPiece");
 
+	/**
+	 * constructor method
+	 * @param pieceView
+	 * @param tileView
+	 */
 	public TransferablePiece(PieceView pieceView, TileView tileView) {
 		data = new TransferredPiece(pieceView, tileView);
 	}

@@ -14,6 +14,10 @@ public class LaunchMenuListener implements MenuListener {
 
 	private LaunchController lc;
 
+	/**
+	 * constructor method
+	 * @param lc
+	 */
 	public LaunchMenuListener(LaunchController lc) {
 		this.lc = lc;
 	}

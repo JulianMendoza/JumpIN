@@ -27,6 +27,9 @@ public class LaunchMenu extends JPanel implements MenuFrame {
 	private final String BUILD_TEXT = "Build Level";
 	private List<MenuListener> menuListeners;
 
+	/**
+	 * constructor method
+	 */
 	public LaunchMenu() {
 		super();
 		menuListeners = new ArrayList<MenuListener>();

@@ -27,6 +27,12 @@ import jumpin.model.structures.Position;
 
 public class LevelSaver {
 
+	/**
+	 * method to save level to xml
+	 * @param file
+	 * @param model
+	 * @throws LevelSaveException
+	 */
 	public static void saveLevel(File file, GameModel model) throws LevelSaveException {
 		GameState gameState = model.getGameState();
 		Board board = model.getBoard();

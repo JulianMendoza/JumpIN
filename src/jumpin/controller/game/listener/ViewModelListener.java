@@ -46,6 +46,9 @@ public class ViewModelListener implements BoardModelListener {
 		checkGameState();
 	}
 
+	/**
+	 * method to update the menu
+	 */
 	private void updateMenu() {
 		GameMenu menu = view.getMainMenu();
 		BoardHistory history = model.getBoard().getHistory();
@@ -55,6 +58,10 @@ public class ViewModelListener implements BoardModelListener {
 		view.repaint();
 	}
 
+	/**
+	 * method to update the board
+	 * @param e
+	 */
 	private void updateBoard(BoardModelEvent e) {
 		BoardView boardView = view.getBoardView();
 		MoveSet moveSet = e.getUpdates();
@@ -71,6 +78,9 @@ public class ViewModelListener implements BoardModelListener {
 		view.repaint();
 	}
 
+	/**
+	 * method to check the game state
+	 */
 	private void checkGameState() {
 		if (model.getGameState().getState().equals(StateOfGame.WON)) {
 			JOptionPane.showMessageDialog(view, model.getGameState().getState().toString(), "Victory", JOptionPane.INFORMATION_MESSAGE);

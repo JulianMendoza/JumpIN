@@ -12,10 +12,21 @@ import jumpin.model.piece.pieces.Fox;
  */
 
 public class RandomFox {
+	
 	private boolean isFirstPiece;
+	
+	/**
+	 * constructor method
+	 */
 	public RandomFox() {
 		isFirstPiece = true;
 	}
+	
+	/**
+	 * method to return a fox piece with orientation
+	 * @param rnd
+	 * @return fox array object
+	 */
 	public Fox[] getFox(int rnd){
 		Fox fox[] = new Fox[2];
 		

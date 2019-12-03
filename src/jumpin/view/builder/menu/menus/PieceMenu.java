@@ -26,6 +26,9 @@ public class PieceMenu extends JPanel implements AbstractFrame {
 	 */
 	private static final long serialVersionUID = 3784367179192639288L;
 
+	/**
+	 * constructor method
+	 */
 	public PieceMenu() {
 		super();
 		populate();

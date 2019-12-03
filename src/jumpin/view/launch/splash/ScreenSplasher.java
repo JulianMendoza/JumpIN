@@ -14,6 +14,11 @@ public class ScreenSplasher extends SwingWorker<Void, Void> {
 	private SplashScreen splashScreen;
 	private JFrame view;
 
+	
+	/**
+	 * constructor method
+	 * @param view
+	 */
 	public ScreenSplasher(JFrame view) {
 		this.view = view;
 		splashScreen = new SplashScreen();
